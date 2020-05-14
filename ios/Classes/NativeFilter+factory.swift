@@ -5,6 +5,13 @@ class NativeFilterFactory: NSObject {
     let messenger: FlutterBinaryMessenger
     let methodChannel: FlutterMethodChannel
     private var filters: [NativeFilter] = []
+    
+    subscript(index: Int) -> NativeFilter? {
+        guard index < filters.count && index >= 0 else {
+            return nil
+        }
+        return filters[index]
+    }
 
     init(messenger: FlutterBinaryMessenger) {
         self.messenger =  messenger

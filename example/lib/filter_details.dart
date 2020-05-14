@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/core_image/filter.dart';
+import 'package:nativefilters_example/filter_preview.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final String filterName;
@@ -42,6 +43,18 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
             Navigator.of(context).pop();
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.image),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => FilterPreviewScreen(filter: _filter)),
+              );
+            },
+          ),
+        ],
         title: Text(widget.filterName),
       ),
       body: SingleChildScrollView(
