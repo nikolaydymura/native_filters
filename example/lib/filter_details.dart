@@ -45,6 +45,17 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         ),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.videocam),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        FilterPreviewScreen(filter: _filter, video: true)),
+              );
+            },
+          ),
+          IconButton(
             icon: Icon(Icons.image),
             onPressed: () {
               Navigator.push(

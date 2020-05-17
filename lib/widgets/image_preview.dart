@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:native_filters/core_image/filter.dart';
+
+import 'base_preview.dart';
 
 typedef void FilterImagePreviewCreatedCallback(
     FilterImagePreviewController controller);
@@ -38,18 +38,10 @@ class _FilterPreviewState extends State<FilterImagePreview> {
   }
 }
 
-class FilterImagePreviewController {
-  FilterImagePreviewController._(int id) {
-    this._channel = new MethodChannel('FilterImagePreview_$id');
-  }
-
-  MethodChannel _channel;
+class FilterImagePreviewController extends FilterBasePreviewController {
+  FilterImagePreviewController._(int id) : super('FilterImagePreview_$id');
 
   Future<void> loadData(Uint8List data) async {
-    return _channel.invokeMethod('loadImageData', data);
-  }
-
-  Future<void> changeFilter(CIFilter filter) async {
-    return _channel.invokeMethod('changeFilter', filter.index);
+    return nativeMethod('loadData', data);
   }
 }

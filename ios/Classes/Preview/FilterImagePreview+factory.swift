@@ -1,12 +1,12 @@
 import Flutter
 
 public class FilterImagePreviewFactory : NSObject, FlutterPlatformViewFactory {
-    let messenger: FlutterBinaryMessenger
+    let registrar: FlutterPluginRegistrar
     let factory: NativeFilterFactory
     let id: String = "FilterImagePreview"
 
-    init(messenger: FlutterBinaryMessenger, factory: NativeFilterFactory) {
-        self.messenger = messenger
+    init(registrar: FlutterPluginRegistrar, factory: NativeFilterFactory) {
+        self.registrar = registrar
         self.factory = factory
     }
 
@@ -15,7 +15,7 @@ public class FilterImagePreviewFactory : NSObject, FlutterPlatformViewFactory {
         viewIdentifier viewId: Int64,
         arguments args: Any?
     ) -> FlutterPlatformView {
-        return FilterImagePreview(frame: frame, messenger: messenger, id: viewId, factory: factory)
+        return FilterImagePreview(frame: frame, registrar: registrar, id: viewId, factory: factory)
     }
 }
 

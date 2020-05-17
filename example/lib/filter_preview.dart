@@ -1,15 +1,15 @@
-import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:native_filters/core_image/filter.dart';
+import 'package:native_filters/widgets/base_preview.dart';
 import 'package:native_filters/widgets/image_preview.dart';
+import 'package:native_filters/widgets/video_preview.dart';
 
 class FilterPreviewScreen extends StatefulWidget {
   final CIFilter filter;
+  final bool video;
 
-  const FilterPreviewScreen({Key key, this.filter})
+  const FilterPreviewScreen({Key key, this.filter, this.video = false})
       : super(key: key);
 
   @override
@@ -17,13 +17,7 @@ class FilterPreviewScreen extends StatefulWidget {
 }
 
 class _FilterPreviewState extends State<FilterPreviewScreen> {
-  FilterImagePreviewController _controller;
-
-  Future<Uint8List> _getImageDataFromAssets(String path) async {
-    final byteData = await rootBundle.load('images/$path');
-
-    return byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
-  }
+  FilterBasePreviewController _controller;
 
   @override
   void initState() {
@@ -32,6 +26,7 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
 
   @override
   void dispose() {
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -47,14 +42,25 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
         ),
         title: Text(widget.filter.name),
       ),
-      body: Center(child: FilterImagePreview(
-        onCreated: (controller) async {
-          _controller = controller;
-          final data = await _getImageDataFromAssets('test.jpg');
-          _controller.loadData(data);
-          _controller.changeFilter(widget.filter);
-        },
-      ),),
+      body: Center(
+        child: widget.video ? videoPreview : imagePreview,
+      ),
     );
+  }
+
+  Widget get imagePreview {
+    return FilterImagePreview(onCreated: (controller) async {
+      _controller = controller;
+      _controller.loadAsset('images/test.jpg');
+      _controller.changeFilter(widget.filter);
+    });
+  }
+
+  Widget get videoPreview {
+    return FilterVideoPreview(onCreated: (controller) async {
+      _controller = controller;
+      _controller.loadAsset('videos/test.mp4');
+      _controller.changeFilter(widget.filter);
+    });
   }
 }
