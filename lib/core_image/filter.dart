@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class CIFilterFactory {
@@ -56,17 +58,69 @@ class CIFilter {
     List<String> inputKeys = await this.inputKeys;
     Map<String, Map<String, String>> attributes = Map();
     for (var key in inputKeys) {
-      attributes[key] = await this.getInputKeyDetails(key);
+      attributes[key] = await _getInputKeyDetails(key);
     }
     return attributes;
   }
 
-  Future<Map<String, String>> getInputKeyDetails(String key) async {
+  Future<Map<String, String>> _getInputKeyDetails(String key) async {
     try {
-      return await _methodChannel.invokeMapMethod<String, String>('inputKeyDetails', key);
+      return await _methodChannel.invokeMapMethod<String, String>(
+          'inputKeyDetails', key);
     } catch (error) {
       print(error);
     }
     return Map.identity();
+  }
+
+  Future<void> setFileSource(File path) async {
+    try {
+      return await _methodChannel.invokeMethod('setFileSource', path.path);
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> setAssetSource(String name) async {
+    try {
+      return await _methodChannel.invokeMethod('setAssetSource', name);
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> setSource(Uint8List data) async {
+    try {
+      return await _methodChannel.invokeMethod('setSource', data);
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<Uint8List> export({File output}) async {
+    try {
+      return await _methodChannel.invokeMethod<Uint8List>(
+          'export', output?.path);
+    } catch (error) {
+      print(error);
+    }
+    return null;
+  }
+
+  Future<Uint8List> process(
+      {File input, String asset, Uint8List data, File output}) async {
+    if (input != null) {
+      await setFileSource(input);
+      return export(output: output);
+    }
+    if (asset != null) {
+      await setAssetSource(asset);
+      return export(output: output);
+    }
+    if (data != null) {
+      await setSource(data);
+      return export(output: output);
+    }
+    throw 'Unexpected error';
   }
 }

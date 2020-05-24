@@ -19,9 +19,12 @@ class FilterPreviewScreen extends StatefulWidget {
 class _FilterPreviewState extends State<FilterPreviewScreen> {
   FilterBasePreviewController _controller;
 
+  String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
+
   @override
   void initState() {
     super.initState();
+    widget.filter.setAssetSource(asset).then((_) => setState(() {}));
   }
 
   @override
@@ -49,18 +52,20 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
   }
 
   Widget get imagePreview {
-    return FilterImagePreview(onCreated: (controller) async {
-      _controller = controller;
-      _controller.loadAsset('images/test.jpg');
-      _controller.changeFilter(widget.filter);
-    });
+    return FilterImagePreview(
+        filter: widget.filter,
+        onCreated: (controller) {
+          _controller = controller;
+          _controller.update();
+        });
   }
 
   Widget get videoPreview {
-    return FilterVideoPreview(onCreated: (controller) async {
-      _controller = controller;
-      _controller.loadAsset('videos/test.mp4');
-      _controller.changeFilter(widget.filter);
-    });
+    return FilterVideoPreview(
+        filter: widget.filter,
+        onCreated: (controller) {
+          _controller = controller;
+          _controller.update();
+        });
   }
 }

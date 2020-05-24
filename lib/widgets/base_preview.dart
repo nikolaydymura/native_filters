@@ -1,31 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:native_filters/core_image/filter.dart';
 
 abstract class FilterBasePreviewController {
   final MethodChannel _channel;
+  final CIFilter filter;
 
-  FilterBasePreviewController(String name)
-      : this._channel = new MethodChannel(name);
-
-  Future<void> loadFile(File file) async {
-    return nativeMethod('loadFile', file.path);
-  }
-
-  Future<void> loadAsset(String name) async {
-    return nativeMethod('loadAsset', name);
-  }
-
-  Future<void> changeFilter(CIFilter filter) async {
-    return nativeMethod('changeFilter', filter.index);
+  FilterBasePreviewController(String name, this.filter)
+      : this._channel = new MethodChannel(name) {
+    this._channel.invokeMethod('setFilter', filter.index);
   }
 
   Future<void> dispose() async {
-    return nativeMethod('release');
+    return _channel.invokeMethod('release');
   }
 
-  Future<void> nativeMethod(String method, [dynamic arguments]) async {
-    return _channel.invokeMethod(method, arguments);
+  Future<void> update() async {
+    return _channel.invokeMethod('update');
   }
 }

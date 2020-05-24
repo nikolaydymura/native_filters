@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/core_image/filter.dart';
 import 'package:nativefilters_example/filter_preview.dart';
+import 'package:nativefilters_example/filter_result.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final String filterName;
@@ -18,6 +19,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   CIFilter _filter;
 
   Map<String, Map<String, String>> _details = Map();
+
+  final List<String> _platformPreviews = ["Image Preview", "Video Preview"];
 
   @override
   void initState() {
@@ -51,7 +54,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        FilterPreviewScreen(filter: _filter, video: true)),
+                        FilterResultScreen(filter: _filter, video: true)),
               );
             },
           ),
@@ -61,8 +64,27 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => FilterPreviewScreen(filter: _filter)),
+                    builder: (context) => FilterResultScreen(filter: _filter)),
               );
+            },
+          ),
+          PopupMenuButton(
+            onSelected: (key) {
+              final isVideo = key == _platformPreviews[1];
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        FilterPreviewScreen(filter: _filter, video: isVideo)),
+              );
+            },
+            itemBuilder: (BuildContext context) {
+              return _platformPreviews.map((key) {
+                return PopupMenuItem<String>(
+                  value: key,
+                  child: Text(key),
+                );
+              }).toList();
             },
           ),
         ],

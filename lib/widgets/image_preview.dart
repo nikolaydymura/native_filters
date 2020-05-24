@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:native_filters/core_image/filter.dart';
 
 import 'base_preview.dart';
 
@@ -10,8 +11,10 @@ typedef void FilterImagePreviewCreatedCallback(
 
 class FilterImagePreview extends StatefulWidget {
   final FilterImagePreviewCreatedCallback onCreated;
+  final CIFilter filter;
 
-  const FilterImagePreview({Key key, this.onCreated}) : super(key: key);
+  const FilterImagePreview({Key key, this.onCreated, @required this.filter})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FilterPreviewState();
@@ -34,14 +37,11 @@ class _FilterPreviewState extends State<FilterImagePreview> {
     if (widget.onCreated == null) {
       return;
     }
-    widget.onCreated(new FilterImagePreviewController._(id));
+    widget.onCreated(new FilterImagePreviewController._(id, widget.filter));
   }
 }
 
 class FilterImagePreviewController extends FilterBasePreviewController {
-  FilterImagePreviewController._(int id) : super('FilterImagePreview_$id');
-
-  Future<void> loadData(Uint8List data) async {
-    return nativeMethod('loadData', data);
-  }
+  FilterImagePreviewController._(int id, CIFilter filter)
+      : super('FilterImagePreview_$id', filter);
 }

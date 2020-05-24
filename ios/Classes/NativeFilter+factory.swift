@@ -2,7 +2,7 @@ import Flutter
 
 class NativeFilterFactory: NSObject {
 
-    let messenger: FlutterBinaryMessenger
+    let registrar: FlutterPluginRegistrar
     let methodChannel: FlutterMethodChannel
     private var filters: [NativeFilter] = []
     
@@ -13,11 +13,11 @@ class NativeFilterFactory: NSObject {
         return filters[index]
     }
 
-    init(messenger: FlutterBinaryMessenger) {
-        self.messenger =  messenger
+    init(registrar: FlutterPluginRegistrar) {
+        self.registrar =  registrar
         self.methodChannel = FlutterMethodChannel(
             name: "CIFilterFactory",
-            binaryMessenger: messenger
+            binaryMessenger: registrar.messenger()
         )
         super.init()
 
@@ -29,7 +29,7 @@ class NativeFilterFactory: NSObject {
                 return result(FlutterError.init())
             }
             let index = filters.count
-            let filter = NativeFilter(messenger: messenger, key: name, id: index)
+            let filter = NativeFilter(registrar: registrar, key: name, id: index)
             filters.append(filter)
             return result(index)
         } else if (call.method == "dispose") {

@@ -11,20 +11,6 @@ class FilterVideoPreview: NSObject, FlutterPlatformView {
     
     private var player: AVPlayer?
     
-    private var fileURL: URL? {
-        didSet {
-            guard let url = fileURL else {
-                return
-            }
-            let asset = AVAsset(url: url)
-            let item = AVPlayerItem(asset: asset)
-            item.videoComposition = AVVideoComposition(asset: asset, applyingCIFiltersWithHandler: applyingSelectedFilterHandler)
-            player?.replaceCurrentItem(with: item)
-            player?.seek(to: CMTime.zero)
-            player?.play()
-        }
-    }
-    
     var selectedFilter: NativeFilter?
 
     init(frame: CGRect, registrar: FlutterPluginRegistrar, id: Int64, factory: NativeFilterFactory) {
@@ -54,26 +40,7 @@ class FilterVideoPreview: NSObject, FlutterPlatformView {
     }
 
     func callHandler(call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if call.method == "loadFile" {
-            guard let path = call.arguments as? String else {
-                return result(FlutterError.init())
-            }
-            
-            fileURL = URL(fileURLWithPath: path)
-            result(nil)
-        } else if call.method == "loadAsset" {
-            guard let name = call.arguments as? String else {
-                return result(FlutterError.init())
-            }
-    
-            let asset = registrar.lookupKey(forAsset: name)
-
-            guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
-                return result(FlutterError.init())
-            }
-            fileURL = URL(fileURLWithPath: path)
-            result(nil)
-        } else if call.method == "changeFilter" {
+        if call.method == "setFilter" {
             guard let index = call.arguments as? Int else {
                 return result(FlutterError.init())
             }
@@ -82,6 +49,14 @@ class FilterVideoPreview: NSObject, FlutterPlatformView {
             }
             selectedFilter = filter
             result(nil)
+        } else if call.method == "update" {
+            guard let item = selectedFilter?.processingVideo else {
+                return
+            }
+            player?.replaceCurrentItem(with: item)
+            player?.seek(to: CMTime.zero)
+            player?.play()
+            result(nil)
         } else if call.method == "release" {
             player?.pause()
             player = nil
@@ -89,18 +64,6 @@ class FilterVideoPreview: NSObject, FlutterPlatformView {
             playerViewController?.removeFromParent()
             result(nil)
         }
-    }
-    
-    func applyingSelectedFilterHandler(request: AVAsynchronousCIImageFilteringRequest) {
-        let source = request.sourceImage.clampedToExtent()
-        
-        guard let filter = selectedFilter else {
-            request.finish(with: source, context: nil)
-            return
-        }
-        
-        let output = filter.processing(source) ?? source
-        request.finish(with: output, context: nil)
     }
 
     func view() -> UIView {

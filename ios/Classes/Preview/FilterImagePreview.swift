@@ -2,10 +2,8 @@ import Flutter
 
 class FilterImagePreview: NSObject, FlutterPlatformView {
     let methodChannel: FlutterMethodChannel
-    let registrar: FlutterPluginRegistrar
     let filtersFactory: NativeFilterFactory
     let imageView: UIImageView
-    var originalImage: UIImage?
     var selectedFilter: NativeFilter?
 
 
@@ -16,43 +14,12 @@ class FilterImagePreview: NSObject, FlutterPlatformView {
         )
         imageView = UIImageView(frame: frame)
         filtersFactory = factory
-        self.registrar = registrar
         super.init()
         methodChannel.setMethodCallHandler(callHandler)
     }
 
     func callHandler(call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if call.method == "loadData" {
-            guard let data = call.arguments as? FlutterStandardTypedData else {
-                return result(FlutterError.init())
-            }
-            originalImage = UIImage(data: data.data)
-            imageView.image = originalImage
-            processImage()
-            result(nil)
-        } else if call.method == "loadFile" {
-            guard let path = call.arguments as? String else {
-                return result(FlutterError.init())
-            }
-            originalImage = UIImage(contentsOfFile: path)
-            imageView.image = originalImage
-            processImage()
-            result(nil)
-        } else if call.method == "loadAsset" {
-            guard let name = call.arguments as? String else {
-                return result(FlutterError.init())
-            }
-    
-            let asset = registrar.lookupKey(forAsset: name)
-
-            guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
-                return result(FlutterError.init())
-            }
-            originalImage = UIImage(contentsOfFile: path)
-            imageView.image = originalImage
-            processImage()
-            result(nil)
-        } else if call.method == "changeFilter" {
+        if call.method == "setFilter" {
             guard let index = call.arguments as? Int else {
                 return result(FlutterError.init())
             }
@@ -62,6 +29,12 @@ class FilterImagePreview: NSObject, FlutterPlatformView {
             selectedFilter = filter
             processImage()
             result(nil)
+        } else if call.method == "update" {
+            processImage()
+            result(nil)
+        } else if call.method == "release" {
+            imageView.image = nil
+            result(nil)
         }
     }
 
@@ -70,13 +43,10 @@ class FilterImagePreview: NSObject, FlutterPlatformView {
     }
 
     func processImage() {
-        guard let image = originalImage else {
-            return
-        }
-        guard let processed = selectedFilter?.processing(image) else {
+        guard let image = selectedFilter?.processedImage else {
             return
         }
 
-        imageView.image = processed
+        imageView.image = image
     }
 }
