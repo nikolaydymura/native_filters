@@ -27,4 +27,6 @@ abstract class CIFilter extends CIFilterable {
   String get name;
   Future<List<String>> get inputKeys;
   Future<Map<String, Map<String, String>>> get attributes;
+
+  Future<void> setScalarValue(String key, double value);
 }

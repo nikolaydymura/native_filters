@@ -1,22 +1,3 @@
-# Core Image and GPUImage filters package for Flutter 
-
-A flutter package for iOS and Android for applying filter to image and video. Support all filters from Core Image on iOS.
-
-## Installation
-
-Add `native_filters` package as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
-
-### iOS
-
-No additional configuration required, the plugin work out of the box.
-
-### Android
-
-Not supported in current version.
-
-### Example
-
-``` dart
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -89,15 +70,3 @@ class _MyAppState extends State<MyApp> {
     return Text('Failed to process image');
   }
 }
-```
-
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.

@@ -41,7 +41,6 @@ class _CIFilterGroup extends CIFilterGroup {
     }
   }
 
-
   Future<void> setFileSource(File path) async {
     if (_isVideo(path.path)) {
       return _methodChannel.invokeMethod('setVideoFileSource', path.path);
@@ -107,4 +106,7 @@ class _CIFilterGroup extends CIFilterGroup {
     }
     return {};
   }
+
+  Future<void> _setScalarValue(_CIFilter filter, String key, double value) =>
+      _methodChannel.invokeMethod('setScalarValue', [filter.index, key, value]);
 }

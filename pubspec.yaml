@@ -1,8 +1,7 @@
 name: native_filters
 description: Core Image and GPUImage filters API
-version: 0.0.1
-author:
-homepage:
+version: 0.0.1+alpha
+homepage: https://github.com/nikolaydymura/native_filters
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -27,9 +26,9 @@ flutter:
   # adding or updating assets for this project.
   plugin:
     platforms:
-      android:
-        package: nd.nativefilters
-        pluginClass: NativefiltersPlugin
+#      android:
+#        package: nd.nativefilters
+#        pluginClass: NativefiltersPlugin
       ios:
         pluginClass: NativeFiltersPlugin
 

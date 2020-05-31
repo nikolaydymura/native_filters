@@ -212,6 +212,24 @@ class NativeFilter: NSObject {
             try? image.write(to: output)
             return result(nil)
         }
+        if call.method == "setScalarValue" {
+            guard let args = call.arguments as? [Any], args.count == 3 else {
+                return result(FlutterError.init())
+            }
+            guard let index = args[0] as? Int, index >= 0 && index < filters.count else {
+                return result(FlutterError.init())
+            }
+            
+            guard let key = args[1] as? String else {
+                return result(FlutterError.init())
+            }
+            
+            guard let value = args[2] as? NSNumber else {
+                return result(FlutterError.init())
+            }
+            filters[index].setValue(value, forKey: key)
+            return result(nil)
+        }
         result(FlutterError.init())
     }
 
