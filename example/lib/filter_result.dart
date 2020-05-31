@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:native_filters/core_image/filter.dart';
+import 'package:native_filters/index.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart';
@@ -36,7 +36,8 @@ class _FilterResultState extends State<FilterResultScreen> {
     final path =
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
-    await widget.filter.process(asset: asset, output: _output);
+    await widget.filter.setAssetSource(asset);
+    await widget.filter.export(_output);
     if (widget.video) {
       _prepareVideo();
     }

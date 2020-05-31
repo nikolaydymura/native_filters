@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:native_filters/core_image/filter.dart';
-import 'package:native_filters/widgets/base_preview.dart';
-import 'package:native_filters/widgets/image_preview.dart';
-import 'package:native_filters/widgets/video_preview.dart';
+import 'package:native_filters/index.dart';
 
 class FilterPreviewScreen extends StatefulWidget {
   final CIFilter filter;
@@ -56,7 +53,8 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
         filter: widget.filter,
         onCreated: (controller) {
           _controller = controller;
-          _controller.update();
+          _controller.update().then((_) =>
+              setState(() {}));
         });
   }
 
@@ -65,7 +63,8 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
         filter: widget.filter,
         onCreated: (controller) {
           _controller = controller;
-          _controller.update();
+          _controller.update().then((_) =>
+              setState(() {}));
         });
   }
 }

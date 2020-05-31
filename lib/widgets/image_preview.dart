@@ -1,17 +1,13 @@
-import 'dart:typed_data';
+part of cupertino_native_filters;
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:native_filters/core_image/filter.dart';
-
-import 'base_preview.dart';
-
+@Deprecated('Not for production usage')
 typedef void FilterImagePreviewCreatedCallback(
     FilterImagePreviewController controller);
 
+@Deprecated('Not for production usage')
 class FilterImagePreview extends StatefulWidget {
   final FilterImagePreviewCreatedCallback onCreated;
-  final CIFilter filter;
+  final CIFilterable filter;
 
   const FilterImagePreview({Key key, this.onCreated, @required this.filter})
       : super(key: key);
@@ -37,11 +33,18 @@ class _FilterPreviewState extends State<FilterImagePreview> {
     if (widget.onCreated == null) {
       return;
     }
-    widget.onCreated(new FilterImagePreviewController._(id, widget.filter));
+    final filter = widget.filter;
+    if (filter is _CIFilter) {
+      widget.onCreated(new FilterImagePreviewController._(id, filter.group.keyId));
+    }
+    if (filter is _CIFilterGroup) {
+      widget.onCreated(new FilterImagePreviewController._(id, filter.keyId));
+    }
   }
 }
 
+@Deprecated('Not for production usage')
 class FilterImagePreviewController extends FilterBasePreviewController {
-  FilterImagePreviewController._(int id, CIFilter filter)
-      : super('FilterImagePreview_$id', filter);
+  FilterImagePreviewController._(int id, int filterKey)
+      : super('FilterImagePreview_$id', filterKey);
 }

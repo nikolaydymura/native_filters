@@ -1,24 +1,22 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:native_filters/core_image/filter.dart';
+part of cupertino_native_filters;
 
-import 'base_preview.dart';
-
+@Deprecated('Not for production usage')
 typedef void FilterVideoPreviewCreatedCallback(
     FilterVideoPreviewController controller);
 
+@Deprecated('Not for production usage')
 class FilterVideoPreview extends StatefulWidget {
   final FilterVideoPreviewCreatedCallback onCreated;
-  final CIFilter filter;
+  final CIFilterable filter;
 
   const FilterVideoPreview({Key key, this.onCreated, @required this.filter})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _FilterPreviewState();
+  State<StatefulWidget> createState() => _FilterVideoPreviewState();
 }
 
-class _FilterPreviewState extends State<FilterVideoPreview> {
+class _FilterVideoPreviewState extends State<FilterVideoPreview> {
   @override
   Widget build(BuildContext context) {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
@@ -35,11 +33,18 @@ class _FilterPreviewState extends State<FilterVideoPreview> {
     if (widget.onCreated == null) {
       return;
     }
-    widget.onCreated(new FilterVideoPreviewController._(id, widget.filter));
+    final filter = widget.filter;
+    if (filter is _CIFilter) {
+      widget.onCreated(new FilterVideoPreviewController._(id, filter.group.keyId));
+    }
+    if (filter is _CIFilterGroup) {
+      widget.onCreated(new FilterVideoPreviewController._(id, filter.keyId));
+    }
   }
 }
 
+@Deprecated('Not for production usage')
 class FilterVideoPreviewController extends FilterBasePreviewController {
-  FilterVideoPreviewController._(int id, CIFilter filter)
-      : super('FilterVideoPreview_$id', filter);
+  FilterVideoPreviewController._(int id, int filterKey)
+      : super('FilterVideoPreview_$id', filterKey);
 }

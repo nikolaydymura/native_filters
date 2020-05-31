@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:native_filters/core_image/filter.dart';
+import 'package:native_filters/index.dart';
 import 'package:nativefilters_example/filter_details.dart';
 
 class FilterListScreen extends StatefulWidget {

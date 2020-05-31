@@ -1,13 +1,12 @@
-import 'package:flutter/services.dart';
-import 'package:native_filters/core_image/filter.dart';
+part of cupertino_native_filters;
 
 abstract class FilterBasePreviewController {
   final MethodChannel _channel;
-  final CIFilter filter;
+  final int filterId;
 
-  FilterBasePreviewController(String name, this.filter)
+  FilterBasePreviewController(String name, this.filterId)
       : this._channel = new MethodChannel(name) {
-    this._channel.invokeMethod('setFilter', filter.index);
+    this._channel.invokeMethod('setFilter', filterId);
   }
 
   Future<void> dispose() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:native_filters/core_image/filter.dart';
+import 'package:native_filters/index.dart';
 import 'package:nativefilters_example/filter_preview.dart';
 import 'package:nativefilters_example/filter_result.dart';
 

@@ -4,20 +4,6 @@ import AVFoundation
 import AVKit
 import MobileCoreServices
 
-protocol ImageProcessable: class {
-    func processing(_ ciImage: CIImage?) -> CIImage?
-}
-
-extension ImageProcessable {
-    func processing(_ uiImage: UIImage) -> UIImage? {
-        let origin = CIImage(image: uiImage)
-        
-        let image = processing(origin)
-        
-        return image?.asUIImage(scale: uiImage.scale, orientation: uiImage.imageOrientation) ?? uiImage
-    }
-}
-
 extension CIImage {
     func asUIImage(scale: CGFloat, orientation: UIImage.Orientation)-> UIImage? {
         guard let cgImage = Context.ciContext.createCGImage(self, from: self.extent) else {
@@ -28,36 +14,58 @@ extension CIImage {
     }
 }
 
-class NativeFilter: NSObject, ImageProcessable {
+extension UIImage {
+    func asData(pathExtension: String? = nil) -> Data? {
+        let uti = UTTypeCreatePreferredIdentifierForTag(
+            kUTTagClassFilenameExtension,
+            (pathExtension ?? "png") as CFString,
+            nil)
+        
+        guard let type = uti?.takeRetainedValue() else {
+            return nil
+        }
+        
+        if UTTypeConformsTo(type, kUTTypePNG) {
+            return pngData()
+        }
+        return jpegData(compressionQuality: 0.9)
+    }
+}
+
+class NativeFilter: NSObject {
     let methodChannel: FlutterMethodChannel
     let pluginRegistrar: FlutterPluginRegistrar
-    let name: String
-    lazy var filter: CIFilter? = {
-        return CIFilter(name: name)
-    }()
     
-    private var originalVideo: URL?
-    private var originalImage: UIImage?
+    private var filters: [CIFilter] = []
     
-    var processedImage: UIImage? {
-        guard let image = originalImage else {
-            return nil
+    private var originalVideo: URL? {
+        didSet {
+            if originalVideo != nil {
+                originalImage = nil
+                originalData = nil
+            }
         }
-        return processing(image) ?? image
-    }
-
-    var processingVideo: AVPlayerItem? {
-        guard let url = originalVideo else {
-            return nil
-        }
-        let asset = AVAsset(url: url)
-        let item = AVPlayerItem(asset: asset)
-        item.videoComposition = AVVideoComposition(asset: asset, applyingCIFiltersWithHandler: applyingSelectedFilterHandler)
-        return item
     }
     
-    init(registrar: FlutterPluginRegistrar, key: String, id: Int) {
-        name = key
+    private var originalImage: URL? {
+        didSet {
+            if originalImage != nil {
+                originalVideo = nil
+                originalData = nil
+            }
+        }
+    }
+    
+    private var originalData: Data? {
+        didSet {
+            if originalData != nil {
+                originalVideo = nil
+                originalImage = nil
+            }
+        }
+    }
+    
+    init(registrar: FlutterPluginRegistrar, id: Int) {
         methodChannel = FlutterMethodChannel(
             name: "CIFilter-\(id)",
             binaryMessenger: registrar.messenger()
@@ -68,39 +76,86 @@ class NativeFilter: NSObject, ImageProcessable {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if call.method == "inputKeys" {
-            guard let keys = filter?.inputKeys else {
+        if call.method == "addFilter" {
+            guard let name = call.arguments as? String else {
                 return result(FlutterError.init())
             }
+            guard let filter = CIFilter(name: name) else {
+                return result(FlutterError.init())
+            }
+            let index = filters.count
+            filters.append(filter)
+            return result(index)
+        }
+        if call.method == "removeFilter" {
+            guard let index = call.arguments as? Int,
+                index >= 0 && index < filters.count else {
+                    return result(FlutterError.init())
+            }
+            filters.remove(at: index)
+            return result(nil)
+        }
+        if call.method == "getFilter" {
+            guard let index = call.arguments as? Int,
+                index >= 0 && index < filters.count else {
+                    return result(FlutterError.init())
+            }
+            let name = filters[index].name
+            return result(name)
+        }
+        if call.method == "getFiltersCount" {
+            return result(filters.count)
+        }
+        if call.method == "inputKeys" {
+            guard let index = call.arguments as? Int,
+                index >= 0 && index < filters.count else {
+                    return result(FlutterError.init())
+            }
+            guard index >= 0 && index < filters.count else {
+                return result(FlutterError.init())
+            }
+            let keys = filters[index].inputKeys
             return result(keys)
         }
         if call.method == "inputKeyDetails" {
-            guard let attributes = filter?.attributes,
-                let key = call.arguments as? String else {
-                    return result(FlutterError.init())
+            guard let args = call.arguments as? [Any], args.count == 2 else {
+                return result(FlutterError.init())
             }
+            guard let index = args[0] as? Int, index >= 0 && index < filters.count else {
+                return result(FlutterError.init())
+            }
+            let attributes = filters[index].attributes
+            
+            guard let key = args[1] as? String else {
+                return result(FlutterError.init())
+            }
+            
             guard let data = attributes[key] as? [AnyHashable: Any]  else {
                 return result(FlutterError.init())
             }
             let output = data.mapValues { "\($0)" }
             return result(output)
         }
-        
-        if call.method == "setSource" {
+        if call.method == "setImageDataSource" {
             guard let data = call.arguments as? FlutterStandardTypedData else {
                 return result(FlutterError.init())
             }
-            processSource(data: data.data)
+            originalData = data.data
             return result(nil)
         }
-        if call.method == "setFileSource" {
+        if call.method == "setImageFileSource"  || call.method == "setVideoFileSource" {
             guard let path = call.arguments as? String else {
                 return result(FlutterError.init())
             }
-            processSource(url: URL(fileURLWithPath: path))
+            if call.method == "setVideoFileSource" {
+                originalVideo = URL(fileURLWithPath: path)
+            } else {
+                originalImage = URL(fileURLWithPath: path)
+            }
+            originalImage = URL(fileURLWithPath: path)
             return result(nil)
         }
-        if call.method == "setAssetSource" {
+        if call.method == "setImageAssetSource" || call.method == "setVideoAssetSource"  {
             guard let name = call.arguments as? String else {
                 return result(FlutterError.init())
             }
@@ -110,126 +165,121 @@ class NativeFilter: NSObject, ImageProcessable {
             guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
                 return result(FlutterError.init())
             }
-            processSource(url: URL(fileURLWithPath: path))
+            
+            if call.method == "setVideoAssetSource" {
+                originalVideo = URL(fileURLWithPath: path)
+            } else {
+                originalImage = URL(fileURLWithPath: path)
+            }
             return result(nil)
         }
-        if call.method == "export" {
-            let path = call.arguments as? String
+        if call.method == "exportVideo" {
+            guard let path = call.arguments as? String else {
+                return result(FlutterError.init())
+            }
+            let output = URL(fileURLWithPath: path)
+            guard let exporter = exportVideoSession else {
+                return result(FlutterError.init())
+            }
+            exporter.outputURL = output
+            return exporter.exportAsynchronously { () -> Void in
+                if exporter.error == nil && exporter.status == .completed {
+                    result(nil)
+
+                } else {
+                    let message = String(describing: exporter.error)
+                    print("🔥 \(message) in \(#file), \(#function) 🔥")
+                    result(FlutterError.init())
+                }
+            }
+        }
         
-            if let image = originalImage {
-                return exportImage(input: image, output: path, result: result)
+        if call.method == "exportData" {
+            guard let image = processedImage?.asData(pathExtension: originalImage?.pathExtension) else {
+                return result(FlutterError.init())
             }
-            if let path = path {
-                return exportVideo(output: URL(fileURLWithPath: path), result: result)
+            return result(image)
+        }
+        
+        if call.method == "exportImage" {
+            guard let path = call.arguments as? String else {
+                return result(FlutterError.init())
             }
-            
-            return result(FlutterError.init())
+            let output = URL(fileURLWithPath: path)
+            guard let image = processedImage?.asData(pathExtension: output.pathExtension) else {
+                return result(FlutterError.init())
+            }
+            try? image.write(to: output)
+            return result(nil)
         }
         result(FlutterError.init())
     }
-    
-    func processSource(url: URL? = nil, data: Data? = nil) {
-        originalVideo = nil
-        originalImage = nil
-        if let data = data {
-            originalImage = UIImage(data: data)
-        }
-        if let file = url {
-            let uti = UTTypeCreatePreferredIdentifierForTag(
-                kUTTagClassFilenameExtension,
-                file.pathExtension as CFString,
-                nil)
-            guard let type = uti?.takeRetainedValue() else {
-                return
-            }
-            if UTTypeConformsTo(type, kUTTypeImage) {
-                originalImage = UIImage(contentsOfFile: file.path)
-            } else if UTTypeConformsTo(type, kUTTypeMPEG4) || UTTypeConformsTo(type, kUTTypeVideo) {
-                originalVideo = file
+
+}
+
+extension NativeFilter {
+    func processing(_ ciImage: CIImage?) -> CIImage? {
+        var image = ciImage
+        for filter in filters {
+            filter.setValue(image, forKey: kCIInputImageKey)
+            if let filteredImage = filter.outputImage {
+               image = filteredImage
             }
         }
-    }
-    private func exportImage(input: UIImage, output: String? = nil, result: @escaping FlutterResult) {
-        let image = processing(input) ?? input
-        
-        guard let data = image.jpegData(compressionQuality: 0.9) else {
-            result(FlutterError.init())
-            return
-        }
-        if let path = output {
-            try? data.write(to: URL(fileURLWithPath: path))
-        }
-        result(data)
+        return image
     }
     
-    private func exportVideo(output: URL, result: @escaping FlutterResult) {
-        guard let input = originalVideo else {
-            return result(FlutterError.init())
-        }
-        let asset = AVAsset(url: input)
-        let videoComposition = AVVideoComposition(asset: asset, applyingCIFiltersWithHandler: applyingSelectedFilterHandler)
+    func processing(_ uiImage: UIImage) -> UIImage? {
+        let origin = CIImage(image: uiImage)
         
+        let image = processing(origin)
+        
+        return image?.asUIImage(scale: uiImage.scale, orientation: uiImage.imageOrientation) ?? uiImage
+    }
+}
+
+extension NativeFilter {
+    var processedImage: UIImage? {
+        if let data = originalData, let image = UIImage(data: data) {
+            return processing(image) ?? image
+        }
+        if let path = originalImage?.path, let image = UIImage(contentsOfFile: path) {
+            return processing(image) ?? image
+        }
+        return nil
+    }
+
+    var processingVideo: AVPlayerItem? {
+        guard let url = originalVideo else {
+            return nil
+        }
+        
+        let asset = AVAsset(url: url)
+        let videoComposition = AVVideoComposition(asset: asset) { request in
+            let source = request.sourceImage.clampedToExtent()
+            let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
+            request.finish(with: output, context: nil)
+        }
+        let item = AVPlayerItem(asset: asset)
+        item.videoComposition = videoComposition
+        return item
+    }
+    
+    private var exportVideoSession: AVAssetExportSession? {
+        guard let url = originalVideo else {
+            return nil
+        }
+        
+        let asset = AVAsset(url: url)
+        let videoComposition = AVVideoComposition(asset: asset) { request in
+            let source = request.sourceImage.clampedToExtent()
+            let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
+            request.finish(with: output, context: nil)
+        }
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
         
         exporter?.videoComposition = videoComposition
         exporter?.outputFileType = .mov
-        exporter?.outputURL = output
-
-        exporter?.exportAsynchronously { () -> Void in
-            if exporter?.error == nil && exporter?.status == .completed {
-                result(nil)
-
-            } else {
-                let message = String(describing: exporter?.error)
-                print("🔥 \(message) in \(#file), \(#function) 🔥")
-                result(FlutterError.init())
-            }
-        }
-    }
-    
-    func applyingSelectedFilterHandler(request: AVAsynchronousCIImageFilteringRequest) {
-        let source = request.sourceImage.clampedToExtent()
-        let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
-        request.finish(with: output, context: nil)
-    }
-    
-    func processing(_ ciImage: CIImage?) -> CIImage? {
-        filter?.setValue(ciImage, forKey: kCIInputImageKey)
-        guard let filteredImage = filter?.outputImage else {
-            return ciImage
-        }
-        return filteredImage
-    }
-}
-
-private final class Context {
-    
-    public static let shared = Context()
-    
-    public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
-    
-    public static var options: [CIContextOption : Any] {
-        #if targetEnvironment(simulator)
-        return [
-            CIContextOption.priorityRequestLow : true,
-            CIContextOption.workingColorSpace : NSNull()
-        ]
-        #else
-        return [
-            CIContextOption.useSoftwareRenderer : false,
-            CIContextOption.workingColorSpace : NSNull()
-        ]
-        #endif
-    }
-    
-    public let defaultEgleContext : EAGLContext
-    public let defaultCIContext : CIContext
-    
-    public var egleContext : EAGLContext?
-    public var ciContext : CIContext?
-    
-    fileprivate init() {
-        self.defaultEgleContext = EAGLContext(api: .openGLES2)!
-        self.defaultCIContext = CIContext(eaglContext: self.defaultEgleContext, options: Context.options)
+        return exporter
     }
 }

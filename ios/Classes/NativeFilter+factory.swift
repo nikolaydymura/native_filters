@@ -25,11 +25,8 @@ class NativeFilterFactory: NSObject {
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         if (call.method == "create") {
-            guard let name = call.arguments as? String else {
-                return result(FlutterError.init())
-            }
             let index = filters.count
-            let filter = NativeFilter(registrar: registrar, key: name, id: index)
+            let filter = NativeFilter(registrar: registrar, id: index)
             filters.append(filter)
             return result(index)
         } else if (call.method == "dispose") {
