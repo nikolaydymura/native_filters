@@ -16,7 +16,7 @@ class NativeFilterFactory: NSObject {
     init(registrar: FlutterPluginRegistrar) {
         self.registrar =  registrar
         self.methodChannel = FlutterMethodChannel(
-            name: "CIFilterFactory",
+            name: "FilterFactory",
             binaryMessenger: registrar.messenger()
         )
         super.init()

@@ -10,7 +10,7 @@ class FilterListScreen extends StatefulWidget {
 }
 
 class _FilterListState extends State<FilterListScreen> {
-  final filtersFactory = const CIFilterFactory();
+  final filtersFactory = const FilterFactory();
   List<String> _availableFilters = [];
 
   @override

@@ -1,12 +1,15 @@
 part of cupertino_native_filters;
 
-class CIFilterFactory {
+class FilterFactory {
   static const MethodChannel _methodChannel =
-      const MethodChannel('CIFilterFactory');
+      const MethodChannel('FilterFactory');
 
-  const CIFilterFactory();
+  const FilterFactory();
 
   Future<CIFilter> create(String name) async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      return Future.error('Not supported in $defaultTargetPlatform');
+    }
     final group = await createGroup();
     try {
       final filter = await group.addFilter(name);
@@ -18,6 +21,9 @@ class CIFilterFactory {
   }
 
   Future<CIFilterGroup> createGroup() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      return Future.error('Not supported in $defaultTargetPlatform');
+    }
     try {
       final index = await _methodChannel.invokeMethod('create');
       return _CIFilterGroup(index);
@@ -28,6 +34,9 @@ class CIFilterFactory {
   }
 
   Future<void> dispose(CIFilterable filter) async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      return Future.error('Not supported in $defaultTargetPlatform');
+    }
     try {
       if (filter is _CIFilterGroup) {
         return await _methodChannel.invokeMethod('dispose', filter.keyId);

@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _filtersFactory = const CIFilterFactory();
+  final _filtersFactory = const FilterFactory();
   CIFilter _filter;
   File _output;
 

@@ -6,7 +6,7 @@ import 'package:nativefilters_example/filter_result.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final String filterName;
-  final CIFilterFactory factory;
+  final FilterFactory factory;
 
   const FilterDetailsScreen({Key key, this.filterName, this.factory})
       : super(key: key);

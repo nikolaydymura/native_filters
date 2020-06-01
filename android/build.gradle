@@ -31,3 +31,7 @@ android {
         disable 'InvalidPackage'
     }
 }
+
+dependencies {
+    implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
+}

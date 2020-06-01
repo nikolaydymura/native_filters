@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 part 'core_image/filter.dart';
 part 'core_image/filterable.dart';
 part 'core_image/filter_group.dart';
-part 'core_image/filter_factory.dart';
+part 'factory/filter_factory.dart';
 
 part 'widgets/base_preview.dart';
 part 'widgets/image_preview.dart';
