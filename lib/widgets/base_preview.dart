@@ -1,4 +1,4 @@
-part of cupertino_native_filters;
+part of native_filters;
 
 abstract class FilterBasePreviewController {
   final MethodChannel _channel;
