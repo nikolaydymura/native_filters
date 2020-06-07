@@ -1,4 +1,4 @@
-part of cupertino_native_filters;
+part of native_filters;
 
 @Deprecated('Not for production usage')
 typedef void FilterImagePreviewCreatedCallback(
@@ -7,7 +7,7 @@ typedef void FilterImagePreviewCreatedCallback(
 @Deprecated('Not for production usage')
 class FilterImagePreview extends StatefulWidget {
   final FilterImagePreviewCreatedCallback onCreated;
-  final CIFilterable filter;
+  final Filterable filter;
 
   const FilterImagePreview({Key key, this.onCreated, @required this.filter})
       : super(key: key);
@@ -38,6 +38,12 @@ class _FilterPreviewState extends State<FilterImagePreview> {
       widget.onCreated(new FilterImagePreviewController._(id, filter.group.keyId));
     }
     if (filter is _CIFilterGroup) {
+      widget.onCreated(new FilterImagePreviewController._(id, filter.keyId));
+    }
+    if (filter is _GPUImageFilter) {
+      widget.onCreated(new FilterImagePreviewController._(id, filter.group.keyId));
+    }
+    if (filter is _GPUImageFilterGroup) {
       widget.onCreated(new FilterImagePreviewController._(id, filter.keyId));
     }
   }

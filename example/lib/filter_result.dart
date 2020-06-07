@@ -8,7 +8,7 @@ import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart';
 
 class FilterResultScreen extends StatefulWidget {
-  final CIFilter filter;
+  final Filter filter;
   final bool video;
 
   const FilterResultScreen({Key key, this.filter, this.video = false})

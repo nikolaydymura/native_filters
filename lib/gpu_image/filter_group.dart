@@ -1,20 +1,19 @@
 part of native_filters;
 
-class _CIFilterGroup extends FilterGroup {
-  static final String _mp4 = '.mp4';
+class _GPUImageFilterGroup extends FilterGroup {
   static final String _png = '.png';
   static final String _jpg = '.jpg';
 
   final int keyId;
   final MethodChannel _methodChannel;
 
-  _CIFilterGroup(this.keyId)
-      : _methodChannel = MethodChannel('CIFilter-$keyId');
+  _GPUImageFilterGroup(this.keyId)
+      : _methodChannel = MethodChannel('GPUImageFilter-$keyId');
 
   Future<Filter> getFilter(int index) async {
     try {
       final name = await _methodChannel.invokeMethod('getFilter', index);
-      final filter = _CIFilter(name, index, this);
+      final filter = _GPUImageFilter(name, index, this);
       return filter;
     } catch (_) {
       return null;
@@ -28,7 +27,7 @@ class _CIFilterGroup extends FilterGroup {
   Future<Filter> addFilter(String name) async {
     try {
       final index = await _methodChannel.invokeMethod('addFilter', name);
-      final filter = _CIFilter(name, index, this);
+      final filter = _GPUImageFilter(name, index, this);
       return filter;
     } catch (_) {
       return null;
@@ -36,35 +35,27 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   Future<void> removeFilter(Filter filter) async {
-    if (filter is _CIFilter) {
+    if (filter is _GPUImageFilter) {
       return _methodChannel.invokeMethod('removeFilter', filter.index);
     }
   }
 
   Future<void> setFileSource(File path) async {
-    if (_isVideo(path.path)) {
-      return _methodChannel.invokeMethod('setVideoFileSource', path.path);
-    }
     if (_isImage(path.path)) {
       return _methodChannel.invokeMethod('setImageFileSource', path.path);
     }
+    return Future.error('Not supported');
   }
 
   Future<void> setAssetSource(String name) async {
-    if (_isVideo(name)) {
-      return _methodChannel.invokeMethod('setVideoAssetSource', name);
-    }
     if (_isImage(name)) {
       return _methodChannel.invokeMethod('setImageAssetSource', name);
     }
+    return Future.error('Not supported');
   }
 
   Future<void> setSource(Uint8List data) async {
     return _methodChannel.invokeMethod('setImageDataSource', data);
-  }
-
-  bool _isVideo(String name) {
-    return name?.endsWith(_mp4) == true;
   }
 
   bool _isImage(String name) {
@@ -77,36 +68,9 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   Future<void> export(File output) async {
-    if (_isVideo(output.path)) {
-      return _methodChannel.invokeMethod('exportVideo', output.path);
-    }
     if (_isImage(output.path)) {
       return _methodChannel.invokeMethod('exportImage', output.path);
     }
     return Future.error('Not supported');
   }
-
-  Future<List<String>> _inputKeys(_CIFilter filter) async {
-    try {
-      return await _methodChannel.invokeListMethod<String>(
-          'inputKeys', filter.index);
-    } catch (error) {
-      print(error);
-    }
-    return [];
-  }
-
-  Future<Map<String, String>> _inputKeyDetails(
-      _CIFilter filter, String key) async {
-    try {
-      return await _methodChannel.invokeMapMethod<String, String>(
-          'inputKeyDetails', [filter.index, key]);
-    } catch (error) {
-      print(error);
-    }
-    return {};
-  }
-
-  Future<void> _setScalarValue(_CIFilter filter, String key, double value) =>
-      _methodChannel.invokeMethod('setScalarValue', [filter.index, key, value]);
 }

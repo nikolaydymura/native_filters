@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:native_filters/index.dart';
 
 class FilterPreviewScreen extends StatefulWidget {
-  final CIFilter filter;
+  final Filter filter;
   final bool video;
 
   const FilterPreviewScreen({Key key, this.filter, this.video = false})

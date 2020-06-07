@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _filtersFactory = const FilterFactory();
-  CIFilter _filter;
+  Filter _filter;
   File _output;
 
   String get asset => 'images/test.jpg';

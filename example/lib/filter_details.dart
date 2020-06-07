@@ -16,7 +16,7 @@ class FilterDetailsScreen extends StatefulWidget {
 }
 
 class _FilterDetailsState extends State<FilterDetailsScreen> {
-  CIFilter _filter;
+  Filter _filter;
 
   Map<String, Map<String, String>> _details = Map();
 

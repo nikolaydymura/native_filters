@@ -1,6 +1,6 @@
-part of cupertino_native_filters;
+part of native_filters;
 
-class _CIFilter extends CIFilter {
+class _CIFilter extends Filter {
   final String name;
   final int index;
   final _CIFilterGroup group;
