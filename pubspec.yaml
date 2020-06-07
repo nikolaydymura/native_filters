@@ -1,6 +1,6 @@
 name: native_filters
 description: Core Image and GPUImage filters API
-version: 0.0.1+alpha
+version: 0.0.2+alpha
 homepage: https://github.com/nikolaydymura/native_filters
 
 environment:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:native_filters/index.dart';
-import 'package:nativefilters_example/filter_details.dart';
+import 'package:native_filters/native_filters.dart';
+import 'filter_details.dart';
 
 class FilterListScreen extends StatefulWidget {
   @override

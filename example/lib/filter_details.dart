@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:native_filters/index.dart';
-import 'package:nativefilters_example/filter_preview.dart';
-import 'package:nativefilters_example/filter_result.dart';
+import 'package:native_filters/native_filters.dart';
+import 'filter_preview.dart';
+import 'filter_result.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final String filterName;
