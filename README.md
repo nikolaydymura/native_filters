@@ -12,7 +12,7 @@ No additional configuration required, the plugin work out of the box.
 
 ### Android
 
-Not supported in current version.
+No additional configuration required, the plugin work out of the box.
 
 ### Example
 
