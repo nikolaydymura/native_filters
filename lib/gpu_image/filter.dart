@@ -7,7 +7,8 @@ class _GPUImageFilter extends Filter {
 
   _GPUImageFilter(this.name, this.index, this.group);
 
-  Future<Map<String, Map<String, String>>> get attributes => Future.value(Map.identity());
+  Future<Map<String, Map<String, String>>> get attributes =>
+      Future.value(Map.identity());
 
   @override
   Future<Uint8List> get binaryOutput => group.binaryOutput;
@@ -31,5 +32,4 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setSource(Uint8List data) => group.setSource(data);
-
 }

@@ -42,7 +42,7 @@ class _CIFilter extends Filter {
       attributes = await this.attributes;
     }
     final properties = attributes[key];
-    if (properties  == null) {
+    if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
     if (properties['CIAttributeType'] != 'CIAttributeTypeScalar') {

@@ -10,3 +10,9 @@
 ## 0.0.2+alpha - 7 Jun 2020
 
 * Fixed package structure
+
+## 0.0.3+alpha - 14 Jun 2020
+
+* Added GPUImage wrapper for Android
+* Implemented image processing on Android.
+* Implemented grouping GPUImage filters.

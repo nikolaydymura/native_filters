@@ -1,7 +1,6 @@
 part of native_filters;
 
 abstract class Filterable {
-
   Future<void> setFileSource(File path);
 
   Future<void> setAssetSource(String name);
