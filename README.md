@@ -112,9 +112,9 @@ class _MyAppState extends State<MyApp> {
 
 ### Previews
 
-![alt ios result](samples/ios.png "Applying CIPhotoEffectMono filter in iOS")
+![alt ios result](processed_samples/ios.png "Applying CIPhotoEffectMono filter in iOS")
 
-![alt android result](samples/android.png "Applying GPUImageFalseColorFilter filter in Android")
+![alt android result](processed_samples/android.png "Applying GPUImageFalseColorFilter filter in Android")
 
 ## Getting Started
 
