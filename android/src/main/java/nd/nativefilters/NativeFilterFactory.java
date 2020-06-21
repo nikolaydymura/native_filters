@@ -10,89 +10,6 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
 
 public class NativeFilterFactory implements MethodChannel.MethodCallHandler {
-    private static final String[] NAMES = {
-            "GPUImage3x3ConvolutionFilter",
-            "GPUImageAddBlendFilter",
-            "GPUImageAlphaBlendFilter",
-            "GPUImageBilateralBlurFilter",
-            "GPUImageBoxBlurFilter",
-            "GPUImageBrightnessFilter",
-            "GPUImageBulgeDistortionFilter",
-            "GPUImageCGAColorspaceFilter",
-            "GPUImageChromaKeyBlendFilter",
-            "GPUImageColorBalanceFilter",
-            "GPUImageColorBlendFilter",
-            "GPUImageColorBurnBlendFilter",
-            "GPUImageColorDodgeBlendFilter",
-            "GPUImageColorInvertFilter",
-            "GPUImageColorMatrixFilter",
-            "GPUImageContrastFilter",
-            "GPUImageCrosshatchFilter",
-            "GPUImageDarkenBlendFilter",
-            "GPUImageDifferenceBlendFilter",
-            "GPUImageDilationFilter",
-            "GPUImageDirectionalSobelEdgeDetectionFilter",
-            "GPUImageDissolveBlendFilter",
-            "GPUImageDivideBlendFilter",
-            "GPUImageEmbossFilter",
-            "GPUImageExclusionBlendFilter",
-            "GPUImageExposureFilter",
-            "GPUImageFalseColorFilter",
-            "GPUImageFilter",
-            "GPUImageGammaFilter",
-            "GPUImageGaussianBlurFilter",
-            "GPUImageGlassSphereFilter",
-            "GPUImageGrayscaleFilter",
-            "GPUImageHalftoneFilter",
-            "GPUImageHardLightBlendFilter",
-            "GPUImageHazeFilter",
-            "GPUImageHighlightShadowFilter",
-            "GPUImageHueBlendFilter",
-            "GPUImageHueFilter",
-            "GPUImageKuwaharaFilter",
-            "GPUImageLaplacianFilter",
-            "GPUImageLevelsFilter",
-            "GPUImageLightenBlendFilter",
-            "GPUImageLinearBurnBlendFilter",
-            "GPUImageLookupFilter",
-            "GPUImageLuminanceFilter",
-            "GPUImageLuminanceThresholdFilter",
-            "GPUImageLuminosityBlendFilter",
-            "GPUImageMonochromeFilter",
-            "GPUImageMultiplyBlendFilter",
-            "GPUImageNonMaximumSuppressionFilter",
-            "GPUImageNormalBlendFilter",
-            "GPUImageOpacityFilter",
-            "GPUImageOverlayBlendFilter",
-            "GPUImagePixelationFilter",
-            "GPUImagePosterizeFilter",
-            "GPUImageRGBDilationFilter",
-            "GPUImageRGBFilter",
-            "GPUImageSaturationBlendFilter",
-            "GPUImageSaturationFilter",
-            "GPUImageScreenBlendFilter",
-            "GPUImageSepiaToneFilter",
-            "GPUImageSharpenFilter",
-            "GPUImageSketchFilter",
-            "GPUImageSmoothToonFilter",
-            "GPUImageSobelEdgeDetectionFilter",
-            "GPUImageSobelThresholdFilter",
-            "GPUImageSoftLightBlendFilter",
-            "GPUImageSolarizeFilter",
-            "GPUImageSourceOverBlendFilter",
-            "GPUImageSphereRefractionFilter",
-            "GPUImageSubtractBlendFilter",
-            "GPUImageSwirlFilter",
-            "GPUImageThresholdEdgeDetectionFilter",
-            "GPUImageToneCurveFilter",
-            "GPUImageToonFilter",
-            "GPUImageTransformFilter",
-            "GPUImageVibranceFilter",
-            "GPUImageVignetteFilter",
-            "GPUImageWeakPixelInclusionFilter",
-            "GPUImageWhiteBalanceFilter",
-            "GPUImageZoomBlurFilter",
-    };
     private final MethodChannel channel;
     private final List<NativeFilter> filters = new ArrayList<>();
     @Deprecated
@@ -114,9 +31,7 @@ public class NativeFilterFactory implements MethodChannel.MethodCallHandler {
 
     @Override
     public void onMethodCall(MethodCall call, MethodChannel.Result result) {
-        if (call.method.equals("availableFilters")) {
-            result.success(getAvailableFilters());
-        } else if (call.method.equals("create")) {
+        if (call.method.equals("create")) {
             final int index = filters.size();
             NativeFilter filter = null;
             if (binding != null) {
@@ -148,9 +63,4 @@ public class NativeFilterFactory implements MethodChannel.MethodCallHandler {
             result.notImplemented();
         }
     }
-
-    private List<String> getAvailableFilters() {
-        return Arrays.asList(NAMES);
-    }
-
 }

@@ -28,5 +28,31 @@ abstract class Filter extends Filterable {
   Future<List<String>> get inputKeys;
   Future<Map<String, Map<String, String>>> get attributes;
 
-  Future<void> setScalarValue(String key, double value);
+  /// Change double [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to int or float
+  /// For Core Image filters can be applied to CIFilter that has CIAttributeClass as NSNumber.
+  Future<void> setNumValue(String key, num value);
+  /// Change bool [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to boolean
+  /// For Core Image filters can be applied to CIFilter that has CIAttributeClass as NSNumber and CIAttributeType equals to CIAttributeTypeBoolean
+  Future<void> setBoolValue(String key, bool value);
+  /// Change Color [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for color attributes that have GPUAttributeClass equals to float[]
+  /// For Core Image filters can be applied to CIFilter that has CIAttributeClass equals to CIColor
+  Future<void> setColorValue(String key, Color value);
+  /// Change double array [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to float[]
+  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to NSValue
+  Future<void> setDoubleArrayValue(String key, List<double> value);
+  /// Change double array [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to float[]
+  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to NSValue
+  Future<void> setPointValue(String key, Point value);
+
+  Future<void> setPointArrayValue(String key, List<Point> value);
 }

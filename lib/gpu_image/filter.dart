@@ -7,7 +7,30 @@ class _GPUImageFilter extends Filter {
 
   _GPUImageFilter(this.name, this.index, this.group);
 
-  Future<Map<String, Map<String, String>>> get attributes => Future.value(Map.identity());
+  Future<Map<String, Map<String, String>>> get attributes async {
+    final attributes = Map.of(_gpuAttributes[name]);
+
+    attributes.removeWhere((key, value) =>
+        value['GPUAttributeClass'] == 'InputStream');
+    attributes.forEach((key, value) {
+      if (value['GPUAttributeClass'] == 'float' || value['GPUAttributeClass'] == 'int') {
+        value['AttributeClass'] = 'num';
+      }
+      if (value['GPUAttributeClass'] == 'boolean') {
+        value['AttributeClass'] = 'bool';
+      }
+      if (value['GPUAttributeClass'] == 'float[]') {
+        value['AttributeClass'] = 'List<double>';
+      }
+      if (value['GPUAttributeClass'] == 'PointF') {
+        value['AttributeClass'] = 'Point';
+      }
+      if (value['GPUAttributeClass'] == 'PointF[]') {
+        value['AttributeClass'] = 'List<Point>';
+      }
+    });
+    return Future.value(attributes);
+  }
 
   @override
   Future<Uint8List> get binaryOutput => group.binaryOutput;
@@ -16,7 +39,10 @@ class _GPUImageFilter extends Filter {
   Future<void> export(File output) => group.export(output);
 
   @override
-  Future<List<String>> get inputKeys => Future.value([]);
+  Future<List<String>> get inputKeys async {
+    final attrs = await attributes;
+    return attrs.keys.toList();
+  }
 
   @override
   Future<void> setAssetSource(String name) => group.setAssetSource(name);
@@ -25,11 +51,104 @@ class _GPUImageFilter extends Filter {
   Future<void> setFileSource(File path) => group.setFileSource(path);
 
   @override
-  Future<void> setScalarValue(String key, double value) {
-    throw UnimplementedError();
+  Future<void> setSource(Uint8List data) => group.setSource(data);
+
+  @override
+  Future<void> setNumValue(String key, num value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'float' && type != 'int') {
+      return Future.error('$key is not $type format');
+    }
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(this, method, value);
   }
 
   @override
-  Future<void> setSource(Uint8List data) => group.setSource(data);
+  Future<void> setBoolValue(String key, bool value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'boolean') {
+      return Future.error('$key is not $type format');
+    }
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(this, method, value);
+  }
 
+  @override
+  Future<void> setColorValue(String key, Color value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'float[]' && properties['GPUAttributeType'] != 'vec3') {
+      return Future.error('$key is not $type format');
+    }
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(
+        this,
+        method,
+        Float64List.fromList(
+            [value.red / 255.0, value.green / 255.0, value.blue / 255.0]));
+  }
+
+  @override
+  Future<void> setPointValue(String key, Point value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'PointF') {
+      return Future.error('$key is not $type format');
+    }
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(
+        this, method, Float64List.fromList([value.x, value.y]));
+  }
+
+  @override
+  Future<void> setDoubleArrayValue(String key, List<double> value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'float[]') {
+      return Future.error('$key is not $type format');
+    }
+    if (properties['GPUAttributeType'] == 'vec3' && value.length != 3) {
+      return Future.error('$key is not $type format');
+    }
+    if (properties['GPUAttributeType'] == 'mat3' && value.length != 9) {
+      return Future.error('$key is not $type format');
+    }
+    if (properties['GPUAttributeType'] == 'mat4' && value.length != 16) {
+      return Future.error('$key is not $type format');
+    }
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(this, method, Float64List.fromList(value));
+  }
+
+  @override
+  Future<void> setPointArrayValue(String key, List<Point> value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final type = properties['GPUAttributeClass'];
+    if (type != 'PointF[]') {
+      return Future.error('$key is not $type format');
+    }
+    final values = value.map((e) => [e.x, e.y]).expand((e) => e);
+    final method = properties['GPUAttributeMethod'];
+    return group._setValue(this, method, Float64List.fromList(values));
+  }
 }

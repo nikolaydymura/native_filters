@@ -73,4 +73,7 @@ class _GPUImageFilterGroup extends FilterGroup {
     }
     return Future.error('Not supported');
   }
+
+  Future<void> _setValue(_GPUImageFilter filter, String key, dynamic value) =>
+      _methodChannel.invokeMethod('setValue', [filter.index, key, value]);
 }

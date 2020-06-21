@@ -2,13 +2,18 @@ package nd.nativefilters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PointF;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
@@ -171,6 +176,60 @@ public class NativeFilter implements MethodChannel.MethodCallHandler {
                     decoded.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                 } else {
                     decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                }
+                result.success(null);
+            } catch (Exception e) {
+                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
+                result.error(call.method + " failed", null, e);
+            }
+        } else if (call.method.startsWith("setValue")) {
+            try {
+                ArrayList args = (ArrayList) call.arguments;
+                int index = (int) args.get(0);
+                String methodName = (String) args.get(1);
+                Object argument = args.get(2);
+                List<GPUImageFilter> filters = filterGroup.getFilters();
+                GPUImageFilter filter = filters.get(index);
+                Method method = null;
+                for (Method m : filter.getClass().getDeclaredMethods()) {
+                    if (methodName.equalsIgnoreCase(m.getName())) {
+                        method = m;
+                        break;
+                    }
+                }
+                Class<?> type = method.getParameterTypes()[0];
+                if (type == float.class) {
+                    float value = ((Double) argument).floatValue();
+                    method.invoke(filter, value);
+                }
+                if (type == int.class) {
+                    int value = ((Double) argument).intValue();
+                    method.invoke(filter, value);
+                }
+                if (type == boolean.class) {
+                    boolean value = (Boolean) argument;
+                    method.invoke(filter, value);
+                }
+                if (type == float[].class) {
+                    Double[] arg = ((Double[]) argument);
+                    float[] value = new float[arg.length];
+                    for (int i = 0; i < arg.length; i++) {
+                        value[i] = arg[i].floatValue();
+                    }
+                    method.invoke(filter, new Object[]{value});
+                }
+                if (type == PointF.class) {
+                    Double[] arg = ((Double[]) argument);
+                    PointF value = new PointF(arg[0].floatValue(), arg[1].floatValue());
+                    method.invoke(filter, value);
+                }
+                if (type == PointF[].class) {
+                    Double[] arg = ((Double[]) argument);
+                    PointF[] value = new PointF[arg.length / 2];
+                    for (int i = 0, j = 0; i < arg.length; i += 2, j++) {
+                        value[j] = new PointF(arg[i].floatValue(), arg[i + 1].floatValue());
+                    }
+                    method.invoke(filter, new Object[]{value});
                 }
                 result.success(null);
             } catch (Exception e) {

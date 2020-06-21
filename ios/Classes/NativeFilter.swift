@@ -212,7 +212,7 @@ class NativeFilter: NSObject {
             try? image.write(to: output)
             return result(nil)
         }
-        if call.method == "setScalarValue" {
+        if call.method == "setValue" {
             guard let args = call.arguments as? [Any], args.count == 3 else {
                 return result(FlutterError.init())
             }
@@ -224,11 +224,50 @@ class NativeFilter: NSObject {
                 return result(FlutterError.init())
             }
             
-            guard let value = args[2] as? NSNumber else {
+            guard let attributes = filters[index].attributes[key] as? [AnyHashable: Any] else {
                 return result(FlutterError.init())
             }
-            filters[index].setValue(value, forKey: key)
-            return result(nil)
+            guard let attrClass = attributes[kCIAttributeClass] as? String else {
+                return result(FlutterError.init())
+            }
+            
+            if attrClass == "NSNumber" {
+                guard let value = args[2] as? NSNumber else {
+                    return result(FlutterError.init())
+                }
+                filters[index].setValue(value, forKey: key)
+                return result(nil)
+            } else if attrClass == "CIColor" {
+                guard let values = args[2] as? [Double] else {
+                    return result(FlutterError.init())
+                }
+                let red = CGFloat(values[0])
+                let green = CGFloat(values[1])
+                let blue = CGFloat(values[2])
+                let alpha = CGFloat(values[3])
+                
+                let color = CIColor(red: red, green: green, blue: blue, alpha: alpha)
+                filters[index].setValue(color, forKey: key)
+                return result(nil)
+            } else if attrClass == "CIVector" {
+                guard let values = args[2] as? [Double] else {
+                    return result(FlutterError.init())
+                }
+                let items = values.map { CGFloat($0)}
+                
+                let vector = CIVector(values: items, count: items.count)
+                filters[index].setValue(vector, forKey: key)
+                return result(nil)
+            } else if attrClass == "NSValue" {
+                guard let values = args[2] as? [Double] else {
+                    return result(FlutterError.init())
+                }
+                let items = values.map { CGFloat($0)}
+                
+                let matrix = CGAffineTransform(a: items[0], b: items[1], c: items[2], d: items[3], tx: items[4], ty: items[5])
+                filters[index].setValue(matrix, forKey: key)
+                return result(nil)
+            }
         }
         result(FlutterError.init())
     }

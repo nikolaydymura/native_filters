@@ -53,7 +53,14 @@ class FilterFactory {
 
   Future<List<String>> get availableFilters async {
     try {
-      return await _methodChannel.invokeListMethod<String>('availableFilters');
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
+        final filters = await _methodChannel.invokeListMethod<String>(
+            'availableFilters');
+        return filters.where((e) => !_ciUnsupportedFilters.contains(e)).toList();
+      }
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        return [..._gpuFilters, ..._gpuEffects];
+      }
     } catch (error) {
       print(error);
     }

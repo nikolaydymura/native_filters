@@ -2,6 +2,7 @@ library native_filters;
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -15,9 +16,13 @@ part 'core_image/filter.dart';
 
 part 'core_image/filter_group.dart';
 
+part 'core_image/metadata.dart';
+
 part 'gpu_image/filter.dart';
 
 part 'gpu_image/filter_group.dart';
+
+part 'gpu_image/metadata.dart';
 
 part 'widgets/base_preview.dart';
 

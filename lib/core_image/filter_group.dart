@@ -107,6 +107,6 @@ class _CIFilterGroup extends FilterGroup {
     return {};
   }
 
-  Future<void> _setScalarValue(_CIFilter filter, String key, double value) =>
-      _methodChannel.invokeMethod('setScalarValue', [filter.index, key, value]);
+  Future<void> _setValue(_CIFilter filter, String key, dynamic value) =>
+      _methodChannel.invokeMethod('setValue', [filter.index, key, value]);
 }

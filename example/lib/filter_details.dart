@@ -123,7 +123,10 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
           ),
         ),
       );
-      var data = _details[key];
+      final data = _details[key];
+      if (data['AttributeClass'] == 'num') {
+        items.add(_NumField(name: key, filter: _filter, attribute: data));
+      }
       items.addAll(_attributeDetails(data));
     }
     return items;
@@ -146,5 +149,52 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         .map((e) => [e.key, e.value])
         .expand((element) => element)
         .toList();
+  }
+}
+
+class _NumField extends StatefulWidget {
+  final String name;
+  final Map<String, String> attribute;
+  final Filter filter;
+
+  const _NumField({Key key, this.name, this.filter, this.attribute})
+      : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _NumFieldState();
+}
+
+class _NumFieldState extends State<_NumField> {
+  TextEditingController _controller;
+
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.symmetric(vertical: 16.0),
+        child: Row(children: [
+          Expanded(
+              child: TextField(
+                  controller: _controller,
+                  onSubmitted: (String value) async {
+                    await widget.filter
+                        .setNumValue(widget.name, num.parse(value));
+                  })),
+          RaisedButton(
+              child: Text('apply'),
+              onPressed: () async {
+                await widget.filter
+                    .setNumValue(widget.name, num.parse(_controller.text));
+              }),
+        ]));
   }
 }
