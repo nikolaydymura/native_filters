@@ -10,10 +10,11 @@ class _GPUImageFilter extends Filter {
   Future<Map<String, Map<String, String>>> get attributes async {
     final attributes = Map.of(_gpuAttributes[name]);
 
-    attributes.removeWhere((key, value) =>
-        value['GPUAttributeClass'] == 'InputStream');
+    attributes.removeWhere(
+        (key, value) => value['GPUAttributeClass'] == 'InputStream');
     attributes.forEach((key, value) {
-      if (value['GPUAttributeClass'] == 'float' || value['GPUAttributeClass'] == 'int') {
+      if (value['GPUAttributeClass'] == 'float' ||
+          value['GPUAttributeClass'] == 'int') {
         value['AttributeClass'] = 'num';
       }
       if (value['GPUAttributeClass'] == 'boolean') {

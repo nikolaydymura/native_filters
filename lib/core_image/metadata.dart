@@ -23,9 +23,9 @@ const List<String> _ciUnsupportedFilters = [
   'CISunbeamsGenerator',
   'CITextImageGenerator',
   'CICoreMLModelFilter',
-  'CICameraCalibrationLensCorrection',//AVCameraCalibrationData
-  'CIDepthBlurEffect',//AVCameraCalibrationData
-  'CIColorCubeWithColorSpace',//NSObject
-  'CIColorCurves',//NSObject,
-  'CIColorCubesMixedWithMask'//NSObject
+  'CICameraCalibrationLensCorrection', //AVCameraCalibrationData
+  'CIDepthBlurEffect', //AVCameraCalibrationData
+  'CIColorCubeWithColorSpace', //NSObject
+  'CIColorCurves', //NSObject,
+  'CIColorCubesMixedWithMask' //NSObject
 ];
