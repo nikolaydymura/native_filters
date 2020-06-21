@@ -1,10 +1,9 @@
 part of native_filters;
 
-@Deprecated('Not for production usage')
 typedef void FilterVideoPreviewCreatedCallback(
     FilterVideoPreviewController controller);
 
-@Deprecated('Not for production usage')
+@Deprecated('For demonstration purposes only')
 class FilterVideoPreview extends StatefulWidget {
   final FilterVideoPreviewCreatedCallback onCreated;
   final Filterable filter;
@@ -35,13 +34,15 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
     }
     final filter = widget.filter;
     if (filter is _CIFilter) {
-      widget.onCreated(new FilterVideoPreviewController._(id, filter.group.keyId));
+      widget.onCreated(
+          new FilterVideoPreviewController._(id, filter.group.keyId));
     }
     if (filter is _CIFilterGroup) {
       widget.onCreated(new FilterVideoPreviewController._(id, filter.keyId));
     }
     if (filter is _GPUImageFilter) {
-      widget.onCreated(new FilterVideoPreviewController._(id, filter.group.keyId));
+      widget.onCreated(
+          new FilterVideoPreviewController._(id, filter.group.keyId));
     }
     if (filter is _GPUImageFilterGroup) {
       widget.onCreated(new FilterVideoPreviewController._(id, filter.keyId));
@@ -49,7 +50,6 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
   }
 }
 
-@Deprecated('Not for production usage')
 class FilterVideoPreviewController extends FilterBasePreviewController {
   FilterVideoPreviewController._(int id, int filterKey)
       : super('FilterVideoPreview_$id', filterKey);
