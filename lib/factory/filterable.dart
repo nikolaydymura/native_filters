@@ -45,13 +45,16 @@ abstract class Filter extends Filterable {
   /// Change double array [value] for [key]
   ///
   /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to float[]
-  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to NSValue
+  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to NSValue or CIVector
   Future<void> setDoubleArrayValue(String key, List<double> value);
-  /// Change double array [value] for [key]
+  /// Change point [value] for [key]
   ///
-  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to float[]
-  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to NSValue
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to PointF
+  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to CIVector and and CIAttributeType equals to CIAttributeTypePosition or CIAttributeTypeOffset
   Future<void> setPointValue(String key, Point value);
-
+  /// Change points [value] for [key]
+  ///
+  /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to PointF[]
+  /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to CIVector and and CIAttributeType equals to CIAttributeTypeRectangle
   Future<void> setPointArrayValue(String key, List<Point> value);
 }

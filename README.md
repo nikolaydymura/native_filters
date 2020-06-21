@@ -116,6 +116,35 @@ class _MyAppState extends State<MyApp> {
 
 ![alt android result](processed_samples/android.png "Applying GPUImageFalseColorFilter filter in Android")
 
+## Plugin data types support
+
+The following table shows how to pass values GPUImageFilter:
+
+| GPUAttributeClass       | Filterable method     | Description                               |
+| ----------------------- |-----------------------| ------------------------------------------|
+| **float**               | `setNum`              |                                           |
+| **int**                 | `setNum`              |                                           |
+| **boolean**             | `setBoolValue`        |                                           |
+| **PointF**              | `setPointValue`       |                                           |
+| **float[]**             | `setDoubleArrayValue` |                                           |
+| **float[]**             | `setColorValue`       | If name of function points on color value |
+| **PointF[]**            | `setPointArrayValue`  |                                           |
+
+
+The following table shows how to pass values CIFilter:
+
+| CIAttributeClass       | CIAttributeType          | Filterable method     | Description   |
+| ---------------------- | ------------------------ | --------------------- | --------------|
+| **NSNumber**           |            *             | `setNum`              |               |
+| **NSNumber**           | CIAttributeTypeBoolean   | `setBoolValue`        |               |
+| **CIColor**            |                          | `setColorValue`       |               |
+| **CIVector**           | CIAttributeTypePosition  | `setPointValue`       |               |
+| **CIVector**           | CIAttributeTypeOffset    | `setPointValue`       |               |
+| **CIVector**           | CIAttributeTypeRectangle | `setPointArrayValue`  |               |
+| **CIVector**           | CIAttributeTypePosition3 | `setDoubleArrayValue` |               |
+| **CIVector**           |                          | `setDoubleArrayValue` |               |
+| **NSValue**            |            *             | `setDoubleArrayValue` |               |
+
 ## Getting Started
 
 This project is a starting point for a Flutter

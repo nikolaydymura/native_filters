@@ -16,3 +16,7 @@
 * Added GPUImage wrapper for Android
 * Implemented image processing on Android.
 * Implemented grouping GPUImage filters.
+
+## 0.0.4+alpha - 21 Jun 2020
+
+* Added API to set custom attributes for filter
