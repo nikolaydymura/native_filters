@@ -8,11 +8,16 @@ class _GPUImageFilter extends Filter {
   _GPUImageFilter(this.name, this.index, this.group);
 
   Future<Map<String, Map<String, String>>> get attributes async {
-    final attributes = Map.of(_gpuAttributes[name]);
+    final gpuAttributes = _gpuAttributes[name];
+    if (gpuAttributes == null) {
+      return null;
+    }
+    final attributes = Map.of(gpuAttributes);
 
     attributes.removeWhere(
         (key, value) => value['GPUAttributeClass'] == 'InputStream');
-    attributes.forEach((key, value) {
+    return Future.value(attributes.map((key, attribute) {
+      final value = Map.of(attribute);
       if (value['GPUAttributeClass'] == 'float' ||
           value['GPUAttributeClass'] == 'int') {
         value['AttributeClass'] = 'num';
@@ -29,8 +34,8 @@ class _GPUImageFilter extends Filter {
       if (value['GPUAttributeClass'] == 'PointF[]') {
         value['AttributeClass'] = 'List<Point>';
       }
-    });
-    return Future.value(attributes);
+      return MapEntry(key, value);
+    }));
   }
 
   @override
