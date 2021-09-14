@@ -6,7 +6,8 @@ class FilterPreviewScreen extends StatefulWidget {
   final Filter filter;
   final bool video;
 
-  const FilterPreviewScreen({Key key, this.filter, this.video = false})
+  const FilterPreviewScreen(
+      {Key? key, required this.filter, this.video = false})
       : super(key: key);
 
   @override
@@ -14,7 +15,7 @@ class FilterPreviewScreen extends StatefulWidget {
 }
 
 class _FilterPreviewState extends State<FilterPreviewScreen> {
-  FilterBasePreviewController _controller;
+  FilterBasePreviewController? _controller;
 
   String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
 
@@ -49,22 +50,22 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
   }
 
   Widget get imagePreview {
+    // ignore: deprecated_member_use
     return FilterImagePreview(
         filter: widget.filter,
         onCreated: (controller) {
           _controller = controller;
-          _controller.update().then((_) =>
-              setState(() {}));
+          _controller!.update().then((_) => setState(() {}));
         });
   }
 
   Widget get videoPreview {
+    // ignore: deprecated_member_use
     return FilterVideoPreview(
         filter: widget.filter,
         onCreated: (controller) {
           _controller = controller;
-          _controller.update().then((_) =>
-              setState(() {}));
+          _controller!.update().then((_) => setState(() {}));
         });
   }
 }

@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _filtersFactory = const FilterFactory();
-  String _text = null;
+  String? _text;
   @override
   void initState() {
     super.initState();
@@ -19,15 +19,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _prepare() async {
-    final filters =  await _filtersFactory.availableFilters;
+    final filters = await _filtersFactory.availableFilters;
     final values = Set<String>();
     Set<String> hasInputImage = new Set();
-    for(var name in filters) {
+    for (var name in filters) {
       final filter = await _filtersFactory.create(name);
-      final inputs = await filter.attributes;
-      print(name);
-      print(inputs);
-      await _filtersFactory.dispose(filter);
+      if (filter != null) {
+        final inputs = await filter.attributes;
+        print(name);
+        print(inputs);
+        await _filtersFactory.dispose(filter);
+      }
     }
     print(hasInputImage);
     _text = values.join("\n");
@@ -47,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       body: Center(
         child: _text == null
             ? CircularProgressIndicator()
-            : SingleChildScrollView(child: Text(_text)),
+            : SingleChildScrollView(child: Text(_text!)),
       ),
     );
   }

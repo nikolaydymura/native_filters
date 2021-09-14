@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _filtersFactory = const FilterFactory();
-  String _text = null;
+  String? _text;
 
   @override
   void initState() {
@@ -24,8 +24,10 @@ class _MyAppState extends State<MyApp> {
     final values = Set<String>();
     for (var name in filters) {
       final filter = await _filtersFactory.create(name);
-      final attrs = await filter.attributes;
-      await _filtersFactory.dispose(filter);
+      if (filter != null) {
+        await filter.attributes;
+        await _filtersFactory.dispose(filter);
+      }
     }
     _text = values.join("\n");
   }
@@ -44,7 +46,7 @@ class _MyAppState extends State<MyApp> {
       body: Center(
         child: _text == null
             ? CircularProgressIndicator()
-            : SingleChildScrollView(child: Text(_text)),
+            : SingleChildScrollView(child: Text(_text!)),
       ),
     );
   }

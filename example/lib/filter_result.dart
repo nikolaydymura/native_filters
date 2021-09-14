@@ -11,7 +11,7 @@ class FilterResultScreen extends StatefulWidget {
   final Filter filter;
   final bool video;
 
-  const FilterResultScreen({Key key, this.filter, this.video = false})
+  const FilterResultScreen({Key? key, required this.filter, this.video = false})
       : super(key: key);
 
   @override
@@ -19,8 +19,8 @@ class FilterResultScreen extends StatefulWidget {
 }
 
 class _FilterResultState extends State<FilterResultScreen> {
-  VideoPlayerController _controller;
-  File _output;
+  VideoPlayerController? _controller;
+  File? _output;
 
   String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
 
@@ -37,22 +37,22 @@ class _FilterResultState extends State<FilterResultScreen> {
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
     await widget.filter.setAssetSource(asset);
-    await widget.filter.export(_output);
+    await widget.filter.export(_output!);
     if (widget.video) {
       _prepareVideo();
     }
   }
 
   void _prepareVideo() {
-    if(widget.video) {
-      _controller = VideoPlayerController.file(_output);
+    if (widget.video) {
+      _controller = VideoPlayerController.file(_output!);
 
-      _controller.addListener(() {
+      _controller!.addListener(() {
         setState(() {});
       });
-      _controller.setLooping(true);
-      _controller.initialize().then((_) => setState(() {}));
-      _controller.play();
+      _controller!.setLooping(true);
+      _controller!.initialize().then((_) => setState(() {}));
+      _controller!.play();
     }
   }
 
@@ -77,22 +77,24 @@ class _FilterResultState extends State<FilterResultScreen> {
       body: Center(
         child: _output == null
             ? CircularProgressIndicator()
-            : widget.video ? videoPreview : imagePreview,
+            : widget.video
+                ? videoPreview
+                : imagePreview,
       ),
     );
   }
 
   Widget get imagePreview {
     if (_output != null) {
-      return Image.file(_output);
+      return Image.file(_output!);
     }
     return Text('Failed to process image');
   }
 
   Widget get videoPreview {
     return AspectRatio(
-      aspectRatio: _controller.value.aspectRatio,
-      child: VideoPlayer(_controller),
+      aspectRatio: _controller!.value.aspectRatio,
+      child: VideoPlayer(_controller!),
     );
   }
 }
