@@ -11,7 +11,8 @@ class _CIFilterGroup extends FilterGroup {
   _CIFilterGroup(this.keyId)
       : _methodChannel = MethodChannel('CIFilter-$keyId');
 
-  Future<Filter> getFilter(int index) async {
+  @override
+  Future<Filter?> getFilter(int index) async {
     try {
       final name = await _methodChannel.invokeMethod('getFilter', index);
       final filter = _CIFilter(name, index, this);
@@ -22,10 +23,11 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   @override
-  Future<int> get filtersCount =>
+  Future<int?> get filtersCount =>
       _methodChannel.invokeMethod<int>('getFiltersCount');
 
-  Future<Filter> addFilter(String name) async {
+  @override
+  Future<Filter?> addFilter(String name) async {
     try {
       final index = await _methodChannel.invokeMethod('addFilter', name);
       final filter = _CIFilter(name, index, this);
@@ -35,6 +37,7 @@ class _CIFilterGroup extends FilterGroup {
     }
   }
 
+  @override
   Future<void> removeFilter(Filter filter) async {
     if (filter is _CIFilter) {
       return _methodChannel.invokeMethod('removeFilter', filter.index);
@@ -63,19 +66,20 @@ class _CIFilterGroup extends FilterGroup {
     return _methodChannel.invokeMethod('setImageDataSource', data);
   }
 
-  bool _isVideo(String name) {
+  bool _isVideo(String? name) {
     return name?.endsWith(_mp4) == true;
   }
 
-  bool _isImage(String name) {
+  bool _isImage(String? name) {
     return name?.endsWith(_png) == true || name?.endsWith(_jpg) == true;
   }
 
   @override
-  Future<Uint8List> get binaryOutput async {
+  Future<Uint8List?> get binaryOutput async {
     return _methodChannel.invokeMethod<Uint8List>('exportData');
   }
 
+  @override
   Future<void> export(File output) async {
     if (_isVideo(output.path)) {
       return _methodChannel.invokeMethod('exportVideo', output.path);
@@ -89,7 +93,8 @@ class _CIFilterGroup extends FilterGroup {
   Future<List<String>> _inputKeys(_CIFilter filter) async {
     try {
       return await _methodChannel.invokeListMethod<String>(
-          'inputKeys', filter.index);
+              'inputKeys', filter.index) ??
+          [];
     } catch (error) {
       print(error);
     }
@@ -100,7 +105,8 @@ class _CIFilterGroup extends FilterGroup {
       _CIFilter filter, String key) async {
     try {
       return await _methodChannel.invokeMapMethod<String, String>(
-          'inputKeyDetails', [filter.index, key]);
+              'inputKeyDetails', [filter.index, key]) ??
+          {};
     } catch (error) {
       print(error);
     }

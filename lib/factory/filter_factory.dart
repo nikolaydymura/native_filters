@@ -6,18 +6,20 @@ class FilterFactory {
 
   const FilterFactory();
 
-  Future<Filter> create(String name) async {
+  Future<Filter?> create(String name) async {
     final group = await createGroup();
-    try {
-      final filter = await group.addFilter(name);
-      return filter;
-    } catch (error) {
-      await dispose(group);
+    if (group != null) {
+      try {
+        final filter = await group.addFilter(name);
+        return filter;
+      } catch (error) {
+        await dispose(group);
+      }
     }
     return null;
   }
 
-  Future<FilterGroup> createGroup() async {
+  Future<FilterGroup?> createGroup() async {
     try {
       final index = await _methodChannel.invokeMethod('create');
       if (defaultTargetPlatform == TargetPlatform.iOS) {
@@ -56,9 +58,11 @@ class FilterFactory {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
         final filters =
             await _methodChannel.invokeListMethod<String>('availableFilters');
+
         return filters
-            .where((e) => !_ciUnsupportedFilters.contains(e))
-            .toList();
+                ?.where((e) => !_ciUnsupportedFilters.contains(e))
+                .toList() ??
+            [];
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
         return [..._gpuFilters, ..._gpuEffects];

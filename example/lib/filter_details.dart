@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
+
 import 'filter_preview.dart';
 import 'filter_result.dart';
 
@@ -8,17 +9,20 @@ class FilterDetailsScreen extends StatefulWidget {
   final String filterName;
   final FilterFactory factory;
 
-  const FilterDetailsScreen({Key key, this.filterName, this.factory})
-      : super(key: key);
+  const FilterDetailsScreen({
+    Key? key,
+    required this.filterName,
+    required this.factory,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FilterDetailsState();
 }
 
 class _FilterDetailsState extends State<FilterDetailsScreen> {
-  Filter _filter;
+  Filter? _filter;
 
-  Map<String, Map<String, String>> _details = Map();
+  var _details = <String, Map<String, String>>{};
 
   final List<String> _platformPreviews = ["Image Preview", "Video Preview"];
 
@@ -31,7 +35,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   @override
   void dispose() {
     if (_filter != null) {
-      widget.factory.dispose(_filter);
+      widget.factory.dispose(_filter!);
     }
     super.dispose();
   }
@@ -54,7 +58,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        FilterResultScreen(filter: _filter, video: true)),
+                        FilterResultScreen(filter: _filter!, video: true)),
               );
             },
           ),
@@ -64,7 +68,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => FilterResultScreen(filter: _filter)),
+                    builder: (context) => FilterResultScreen(filter: _filter!)),
               );
             },
           ),
@@ -75,7 +79,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        FilterPreviewScreen(filter: _filter, video: isVideo)),
+                        FilterPreviewScreen(filter: _filter!, video: isVideo)),
               );
             },
             itemBuilder: (BuildContext context) {
@@ -102,7 +106,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
   Future<void> _loadFilterInfo() async {
     _filter = await widget.factory.create(widget.filterName);
-    _details = await _filter?.attributes;
+    _details = (await _filter!.attributes)!;
 
     if (!mounted) return;
 
@@ -124,8 +128,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         ),
       );
       final data = _details[key];
-      if (data['AttributeClass'] == 'num') {
-        items.add(_NumField(name: key, filter: _filter, attribute: data));
+      if (data!['AttributeClass'] == 'num') {
+        items.add(_NumField(name: key, filter: _filter!, attribute: data));
       }
       items.addAll(_attributeDetails(data));
     }
@@ -157,15 +161,19 @@ class _NumField extends StatefulWidget {
   final Map<String, String> attribute;
   final Filter filter;
 
-  const _NumField({Key key, this.name, this.filter, this.attribute})
-      : super(key: key);
+  const _NumField({
+    Key? key,
+    required this.name,
+    required this.filter,
+    required this.attribute,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _NumFieldState();
 }
 
 class _NumFieldState extends State<_NumField> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   void initState() {
     super.initState();
@@ -189,6 +197,7 @@ class _NumFieldState extends State<_NumField> {
                     await widget.filter
                         .setNumValue(widget.name, num.parse(value));
                   })),
+          // ignore: deprecated_member_use
           RaisedButton(
               child: Text('apply'),
               onPressed: () async {

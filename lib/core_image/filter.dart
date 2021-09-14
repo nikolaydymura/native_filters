@@ -4,7 +4,7 @@ class _CIFilter extends Filter {
   final String name;
   final int index;
   final _CIFilterGroup group;
-  Map<String, Map<String, String>> _attributes;
+  Map<String, Map<String, String>>? _attributes;
 
   _CIFilter(this.name, this.index, this.group);
 
@@ -51,11 +51,11 @@ class _CIFilter extends Filter {
       }
     });
     _attributes = attributes;
-    return _attributes;
+    return attributes;
   }
 
   @override
-  Future<Uint8List> get binaryOutput => group.binaryOutput;
+  Future<Uint8List?> get binaryOutput => group.binaryOutput;
 
   @override
   Future<void> export(File output) => group.export(output);
@@ -86,28 +86,28 @@ class _CIFilter extends Filter {
       return Future.error('$key is not NSNumber format');
     }
     if (properties['CIAttributeSliderMin'] != null) {
-      final min = double.parse(properties['CIAttributeSliderMin']);
+      final min = double.parse(properties['CIAttributeSliderMin']!);
 
       if (value < min) {
         return Future.error('$value must be more than $min');
       }
     }
     if (properties['CIAttributeSliderMax'] != null) {
-      final max = double.parse(properties['CIAttributeSliderMax']);
+      final max = double.parse(properties['CIAttributeSliderMax']!);
 
       if (value > max) {
         return Future.error('$value must be less than $max');
       }
     }
     if (properties['CIAttributeMin'] != null) {
-      final min = double.parse(properties['CIAttributeMin']);
+      final min = double.parse(properties['CIAttributeMin']!);
 
       if (value < min) {
         return Future.error('$value must be more than $min');
       }
     }
     if (properties['CIAttributeMax'] != null) {
-      final max = double.parse(properties['CIAttributeMax']);
+      final max = double.parse(properties['CIAttributeMax']!);
 
       if (value > max) {
         return Future.error('$value must be less than $max');

@@ -17,9 +17,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _filtersFactory = const FilterFactory();
-  Filter _filter;
-  File _output;
-  Uint8List _data;
+  Filter? _filter;
+  File? _output;
+  Uint8List? _data;
 
   String get asset => 'images/test.jpg';
 
@@ -41,13 +41,15 @@ class _MyAppState extends State<MyApp> {
     }
     await _filter?.setAssetSource(asset);
     _output = File(path);
-    await _filter?.export(_output);
+    await _filter?.export(_output!);
     _data = await _filter?.binaryOutput;
   }
 
   @override
   void dispose() {
-    _filtersFactory.dispose(_filter);
+    if (_filter != null) {
+      _filtersFactory.dispose(_filter!);
+    }
     super.dispose();
   }
 
@@ -77,14 +79,14 @@ class _MyAppState extends State<MyApp> {
 
   Widget get imagePreview1 {
     if (_output != null) {
-      return Image.file(_output);
+      return Image.file(_output!);
     }
     return Text('Failed to process and save image');
   }
 
   Widget get imagePreview2 {
     if (_data != null) {
-      return Image.memory(_data);
+      return Image.memory(_data!);
     }
     return Text('Failed to process image');
   }

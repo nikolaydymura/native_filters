@@ -7,7 +7,7 @@ class _GPUImageFilter extends Filter {
 
   _GPUImageFilter(this.name, this.index, this.group);
 
-  Future<Map<String, Map<String, String>>> get attributes async {
+  Future<Map<String, Map<String, String>>?> get attributes async {
     final gpuAttributes = _gpuAttributes[name];
     if (gpuAttributes == null) {
       return null;
@@ -39,7 +39,7 @@ class _GPUImageFilter extends Filter {
   }
 
   @override
-  Future<Uint8List> get binaryOutput => group.binaryOutput;
+  Future<Uint8List?> get binaryOutput => group.binaryOutput;
 
   @override
   Future<void> export(File output) => group.export(output);
@@ -47,7 +47,7 @@ class _GPUImageFilter extends Filter {
   @override
   Future<List<String>> get inputKeys async {
     final attrs = await attributes;
-    return attrs.keys.toList();
+    return attrs?.keys.toList() ?? [];
   }
 
   @override
@@ -61,7 +61,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setNumValue(String key, num value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -70,12 +70,14 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(this, method, value);
+    if (method != null) {
+      await group._setValue(this, method, value);
+    }
   }
 
   @override
   Future<void> setBoolValue(String key, bool value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -84,12 +86,14 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(this, method, value);
+    if (method != null) {
+      await group._setValue(this, method, value);
+    }
   }
 
   @override
   Future<void> setColorValue(String key, Color value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -98,16 +102,19 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(
+    if (method != null) {
+      await group._setValue(
         this,
         method,
         Float64List.fromList(
-            [value.red / 255.0, value.green / 255.0, value.blue / 255.0]));
+            [value.red / 255.0, value.green / 255.0, value.blue / 255.0]),
+      );
+    }
   }
 
   @override
   Future<void> setPointValue(String key, Point value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -116,13 +123,18 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(
-        this, method, Float64List.fromList([value.x, value.y]));
+    if (method != null) {
+      await group._setValue(
+        this,
+        method,
+        Float64List.fromList([value.x.toDouble(), value.y.toDouble()]),
+      );
+    }
   }
 
   @override
   Future<void> setDoubleArrayValue(String key, List<double> value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -140,12 +152,14 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(this, method, Float64List.fromList(value));
+    if (method != null) {
+      await group._setValue(this, method, Float64List.fromList(value));
+    }
   }
 
   @override
   Future<void> setPointArrayValue(String key, List<Point> value) async {
-    final properties = (await attributes)[key];
+    final properties = (await attributes)?[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -153,8 +167,14 @@ class _GPUImageFilter extends Filter {
     if (type != 'PointF[]') {
       return Future.error('$key is not $type format');
     }
-    final values = value.map((e) => [e.x, e.y]).expand((e) => e);
+    final values = value
+        .map((e) => [e.x, e.y])
+        .expand((e) => e)
+        .map((e) => e.toDouble())
+        .toList();
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(this, method, Float64List.fromList(values));
+    if (method != null) {
+      await group._setValue(this, method, Float64List.fromList(values));
+    }
   }
 }
