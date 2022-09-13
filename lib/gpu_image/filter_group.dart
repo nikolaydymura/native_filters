@@ -1,6 +1,6 @@
 part of native_filters;
 
-class _GPUImageFilterGroup extends FilterGroup {
+class _GPUImageFilterGroup implements FilterGroup {
   static final String _png = '.png';
   static final String _jpg = '.jpg';
 
@@ -10,7 +10,7 @@ class _GPUImageFilterGroup extends FilterGroup {
   _GPUImageFilterGroup(this.keyId)
       : _methodChannel = MethodChannel('GPUImageFilter-$keyId');
 
-  Future<Filter> getFilter(int index) async {
+  Future<Filter?> getFilter(int index) async {
     try {
       final name = await _methodChannel.invokeMethod('getFilter', index);
       final filter = _GPUImageFilter(name, index, this);
@@ -22,9 +22,9 @@ class _GPUImageFilterGroup extends FilterGroup {
 
   @override
   Future<int> get filtersCount =>
-      _methodChannel.invokeMethod<int>('getFiltersCount');
+      _methodChannel.invokeMethod<int>('getFiltersCount').then((value) => value ?? 0);
 
-  Future<Filter> addFilter(String name) async {
+  Future<Filter?> addFilter(String name) async {
     try {
       final index = await _methodChannel.invokeMethod('addFilter', name);
       final filter = _GPUImageFilter(name, index, this);
@@ -59,11 +59,11 @@ class _GPUImageFilterGroup extends FilterGroup {
   }
 
   bool _isImage(String name) {
-    return name?.endsWith(_png) == true || name?.endsWith(_jpg) == true;
+    return name.endsWith(_png) || name.endsWith(_jpg);
   }
 
   @override
-  Future<Uint8List> get binaryOutput async {
+  Future<Uint8List?> get binaryOutput async {
     return _methodChannel.invokeMethod<Uint8List>('exportData');
   }
 

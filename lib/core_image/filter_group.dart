@@ -11,7 +11,7 @@ class _CIFilterGroup extends FilterGroup {
   _CIFilterGroup(this.keyId)
       : _methodChannel = MethodChannel('CIFilter-$keyId');
 
-  Future<Filter> getFilter(int index) async {
+  Future<Filter?> getFilter(int index) async {
     try {
       final name = await _methodChannel.invokeMethod('getFilter', index);
       final filter = _CIFilter(name, index, this);
@@ -23,9 +23,9 @@ class _CIFilterGroup extends FilterGroup {
 
   @override
   Future<int> get filtersCount =>
-      _methodChannel.invokeMethod<int>('getFiltersCount');
+      _methodChannel.invokeMethod<int>('getFiltersCount').then((value) => value ?? 0);
 
-  Future<Filter> addFilter(String name) async {
+  Future<Filter?> addFilter(String name) async {
     try {
       final index = await _methodChannel.invokeMethod('addFilter', name);
       final filter = _CIFilter(name, index, this);
@@ -64,15 +64,15 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   bool _isVideo(String name) {
-    return name?.endsWith(_mp4) == true;
+    return name.endsWith(_mp4) == true;
   }
 
   bool _isImage(String name) {
-    return name?.endsWith(_png) == true || name?.endsWith(_jpg) == true;
+    return name.endsWith(_png) == true || name.endsWith(_jpg) == true;
   }
 
   @override
-  Future<Uint8List> get binaryOutput async {
+  Future<Uint8List?> get binaryOutput async {
     return _methodChannel.invokeMethod<Uint8List>('exportData');
   }
 
@@ -89,7 +89,7 @@ class _CIFilterGroup extends FilterGroup {
   Future<List<String>> _inputKeys(_CIFilter filter) async {
     try {
       return await _methodChannel.invokeListMethod<String>(
-          'inputKeys', filter.index);
+          'inputKeys', filter.index).then((value) => value ?? <String>[]);
     } catch (error) {
       print(error);
     }
@@ -100,7 +100,7 @@ class _CIFilterGroup extends FilterGroup {
       _CIFilter filter, String key) async {
     try {
       return await _methodChannel.invokeMapMethod<String, String>(
-          'inputKeyDetails', [filter.index, key]);
+          'inputKeyDetails', [filter.index, key]).then((value) => value ?? <String,String>{});
     } catch (error) {
       print(error);
     }

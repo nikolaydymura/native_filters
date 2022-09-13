@@ -10,7 +10,7 @@ class _GPUImageFilter extends Filter {
   Future<Map<String, Map<String, String>>> get attributes async {
     final gpuAttributes = _gpuAttributes[name];
     if (gpuAttributes == null) {
-      return null;
+      return Map.identity();
     }
     final attributes = Map.of(gpuAttributes);
 
@@ -39,7 +39,7 @@ class _GPUImageFilter extends Filter {
   }
 
   @override
-  Future<Uint8List> get binaryOutput => group.binaryOutput;
+  Future<Uint8List?> get binaryOutput => group.binaryOutput;
 
   @override
   Future<void> export(File output) => group.export(output);
@@ -70,6 +70,9 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
     return group._setValue(this, method, value);
   }
 
@@ -84,6 +87,9 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
     return group._setValue(this, method, value);
   }
 
@@ -98,6 +104,9 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
     return group._setValue(
         this,
         method,
@@ -116,8 +125,11 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
     return group._setValue(
-        this, method, Float64List.fromList([value.x, value.y]));
+        this, method, Float64List.fromList([value.x.toDouble(), value.y.toDouble()]));
   }
 
   @override
@@ -140,6 +152,9 @@ class _GPUImageFilter extends Filter {
       return Future.error('$key is not $type format');
     }
     final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
     return group._setValue(this, method, Float64List.fromList(value));
   }
 
@@ -153,8 +168,24 @@ class _GPUImageFilter extends Filter {
     if (type != 'PointF[]') {
       return Future.error('$key is not $type format');
     }
-    final values = value.map((e) => [e.x, e.y]).expand((e) => e);
+    final values = value.map((e) => [e.x, e.y]).expand((e) => e).map((e) => e.toDouble());
     final method = properties['GPUAttributeMethod'];
-    return group._setValue(this, method, Float64List.fromList(values));
+    if (method == null){
+      return;
+    }
+    return group._setValue(this, method, Float64List.fromList(values.toList()));
+  }
+
+  @override
+  Future<void> setAttributeValue(String key, dynamic value) async {
+    final properties = (await attributes)[key];
+    if (properties == null) {
+      return Future.error('$key is not acceptable for $name');
+    }
+    final method = properties['GPUAttributeMethod'];
+    if (method == null){
+      return;
+    }
+    return group._setValue(this, method, value);
   }
 }

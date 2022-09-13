@@ -267,6 +267,21 @@ class NativeFilter: NSObject {
                 let matrix = CGAffineTransform(a: items[0], b: items[1], c: items[2], d: items[3], tx: items[4], ty: items[5])
                 filters[index].setValue(matrix, forKey: key)
                 return result(nil)
+            } else if attrClass == "NSData" {
+                guard let name = args[2] as? String else {
+                     return result(FlutterError.init())
+                }
+                let asset = pluginRegistrar.lookupKey(forAsset: name)
+
+                guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
+                    return result(FlutterError.init())
+                }
+                guard let image = UIImage(contentsOfFile: path) else {
+                    return result(FlutterError.init())
+                }
+                let data = colorCubeFilterFromLUT(image: image, size: 64);
+                filters[index].setValue(data, forKey: key)
+                return result(nil)
             }
         }
         result(FlutterError.init())
@@ -339,4 +354,77 @@ extension NativeFilter {
         exporter?.outputFileType = .mov
         return exporter
     }
+}
+
+fileprivate func colorCubeFilterFromLUT(image : UIImage, size: Int) -> NSData? {
+
+    let lutImage    = image.cgImage
+    let lutWidth    = lutImage!.width
+    let lutHeight   = lutImage!.height
+    let rowCount    = lutHeight / size
+    let columnCount = lutWidth / size
+
+    if ((lutWidth % size != 0) || (lutHeight % size != 0) || (rowCount * columnCount != size)) {
+        NSLog("Invalid colorLUT")
+        return nil
+    }
+
+    let bitmap  = getBytesFromImage(image: image)!
+    let floatSize = MemoryLayout<Float>.size
+
+    let cubeData = UnsafeMutablePointer<Float>.allocate(capacity: size * size * size * 4 * floatSize)
+    var z = 0
+    var bitmapOffset = 0
+
+    for _ in 0 ..< rowCount {
+        for y in 0 ..< size {
+            let tmp = z
+            for _ in 0 ..< columnCount {
+                for x in 0 ..< size {
+
+                    let alpha   = Float(bitmap[bitmapOffset]) / 255.0
+                    let red     = Float(bitmap[bitmapOffset+1]) / 255.0
+                    let green   = Float(bitmap[bitmapOffset+2]) / 255.0
+                    let blue    = Float(bitmap[bitmapOffset+3]) / 255.0
+
+                    let dataOffset = (z * size * size + y * size + x) * 4
+
+                    cubeData[dataOffset + 3] = alpha
+                    cubeData[dataOffset + 2] = red
+                    cubeData[dataOffset + 1] = green
+                    cubeData[dataOffset + 0] = blue
+                    bitmapOffset += 4
+                }
+                z += 1
+            }
+            z = tmp
+        }
+        z += columnCount
+    }
+
+    let colorCubeData = NSData(bytesNoCopy: cubeData, length: size * size * size * 4 * floatSize, freeWhenDone: true)
+    return colorCubeData
+}
+
+
+fileprivate func getBytesFromImage(image:UIImage?) -> [UInt8]?
+{
+    var pixelValues: [UInt8]?
+    if let imageRef = image?.cgImage {
+        let width = Int(imageRef.width)
+        let height = Int(imageRef.height)
+        let bitsPerComponent = 8
+        let bytesPerRow = width * 4
+        let totalBytes = height * bytesPerRow
+
+        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        var intensities = [UInt8](repeating: 0, count: totalBytes)
+
+        let contextRef = CGContext(data: &intensities, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo)
+        contextRef?.draw(imageRef, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
+
+        pixelValues = intensities
+    }
+    return pixelValues!
 }

@@ -1,25 +1,26 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
-void main() => runApp(new MaterialApp(home: MyApp()));
+void main() => runApp(const MaterialApp(home: MyApp()));
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   final _filtersFactory = const FilterFactory();
-  Filter _filter;
-  File _output;
-  Uint8List _data;
+  Filter? _filter;
+  File? _output;
+  Uint8List? _data;
 
   String get asset => 'images/test.jpg';
 
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _prepare() async {
     final directory = await getTemporaryDirectory();
-    final uuid = Uuid();
+    const uuid = Uuid();
     final path = '${directory.path}/${uuid.v4()}.jpg';
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       _filter = await _filtersFactory.create('CIPhotoEffectMono');
@@ -41,13 +42,16 @@ class _MyAppState extends State<MyApp> {
     }
     await _filter?.setAssetSource(asset);
     _output = File(path);
-    await _filter?.export(_output);
+    await _filter?.export(_output!);
     _data = await _filter?.binaryOutput;
   }
 
   @override
   void dispose() {
-    _filtersFactory.dispose(_filter);
+    final filter = _filter;
+    if (filter != null) {
+      _filtersFactory.dispose(filter);
+    }
     super.dispose();
   }
 
@@ -59,13 +63,17 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Center(
         child: _output == null
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : Column(
                 children: <Widget>[
                   Expanded(
+                    child: Image.asset(asset),
+                  ),
+                  const SizedBox(height: 3),
+                  Expanded(
                     child: imagePreview1,
                   ),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   Expanded(
                     child: imagePreview2,
                   )
@@ -76,16 +84,18 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget get imagePreview1 {
-    if (_output != null) {
-      return Image.file(_output);
+    final output = _output;
+    if (output != null) {
+      return Image.file(output);
     }
-    return Text('Failed to process and save image');
+    return const Text('Failed to process and save image');
   }
 
   Widget get imagePreview2 {
-    if (_data != null) {
-      return Image.memory(_data);
+    final data = _data;
+    if (data != null) {
+      return Image.memory(data);
     }
-    return Text('Failed to process image');
+    return const Text('Failed to process image');
   }
 }

@@ -20,3 +20,8 @@
 ## 0.0.4+alpha - 21 Jun 2020
 
 * Added API to set custom attributes for filter
+
+## 0.0.5+alpha - 13 Sep 2022
+
+* Extended API for CIColorCube filter
+* Updated to Flutter 3.x 

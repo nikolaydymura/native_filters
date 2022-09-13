@@ -6,7 +6,7 @@ class FilterFactory {
 
   const FilterFactory();
 
-  Future<Filter> create(String name) async {
+  Future<Filter?> create(String name) async {
     final group = await createGroup();
     try {
       final filter = await group.addFilter(name);
@@ -28,8 +28,9 @@ class FilterFactory {
       }
     } catch (error) {
       print(error);
+      rethrow;
     }
-    return null;
+    throw UnsupportedError('$defaultTargetPlatform');
   }
 
   Future<void> dispose(Filterable filter) async {
@@ -57,8 +58,9 @@ class FilterFactory {
         final filters =
             await _methodChannel.invokeListMethod<String>('availableFilters');
         return filters
-            .where((e) => !_ciUnsupportedFilters.contains(e))
-            .toList();
+                ?.where((e) => !_ciUnsupportedFilters.contains(e))
+                .toList() ??
+            [];
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
         return [..._gpuFilters, ..._gpuEffects];

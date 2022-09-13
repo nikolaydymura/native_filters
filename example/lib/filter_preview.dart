@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
 
@@ -6,15 +5,18 @@ class FilterPreviewScreen extends StatefulWidget {
   final Filter filter;
   final bool video;
 
-  const FilterPreviewScreen({Key key, this.filter, this.video = false})
-      : super(key: key);
+  const FilterPreviewScreen({
+    Key? key,
+    required this.filter,
+    this.video = false,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FilterPreviewState();
 }
 
 class _FilterPreviewState extends State<FilterPreviewScreen> {
-  FilterBasePreviewController _controller;
+  late FilterBasePreviewController _controller;
 
   String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
 
@@ -26,7 +28,7 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -35,7 +37,7 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -50,21 +52,25 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
 
   Widget get imagePreview {
     return FilterImagePreview(
-        filter: widget.filter,
-        onCreated: (controller) {
-          _controller = controller;
-          _controller.update().then((_) =>
-              setState(() {}));
-        });
+      filter: widget.filter,
+      onCreated: (controller) {
+        _controller = controller;
+        _controller.update().then(
+              (_) => setState(() {}),
+            );
+      },
+    );
   }
 
   Widget get videoPreview {
     return FilterVideoPreview(
-        filter: widget.filter,
-        onCreated: (controller) {
-          _controller = controller;
-          _controller.update().then((_) =>
-              setState(() {}));
-        });
+      filter: widget.filter,
+      onCreated: (controller) {
+        _controller = controller;
+        _controller.update().then(
+              (_) => setState(() {}),
+            );
+      },
+    );
   }
 }

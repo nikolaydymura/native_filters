@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,7 +10,7 @@ class FilterResultScreen extends StatefulWidget {
   final Filter filter;
   final bool video;
 
-  const FilterResultScreen({Key key, this.filter, this.video = false})
+  const FilterResultScreen({Key? key, required this.filter, this.video = false})
       : super(key: key);
 
   @override
@@ -19,23 +18,37 @@ class FilterResultScreen extends StatefulWidget {
 }
 
 class _FilterResultState extends State<FilterResultScreen> {
-  VideoPlayerController _controller;
-  File _output;
+  late VideoPlayerController _controller;
+  late File _output;
+
+  bool processing = true;
 
   String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
 
   @override
   void initState() {
     super.initState();
-    _prepare().then((_) => _prepareVideo()).then((_) => setState(() {}));
+    _prepare()
+        .then((_) => _prepareVideo())
+        .then((_) => setState(() {}))
+        .whenComplete(
+          () => setState(() {
+            processing = false;
+          }),
+        );
   }
 
   Future<void> _prepare() async {
     final directory = await getTemporaryDirectory();
-    final uuid = Uuid();
+    const uuid = Uuid();
     final path =
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
+    if (widget.filter.name == 'CIColorCube') {
+      await widget.filter.setNumValue('inputCubeDimension', 64);
+      await widget.filter.setAttributeValue(
+          'inputCubeData', 'filters/filter_lut_3.png');
+    }
     await widget.filter.setAssetSource(asset);
     await widget.filter.export(_output);
     if (widget.video) {
@@ -44,11 +57,13 @@ class _FilterResultState extends State<FilterResultScreen> {
   }
 
   void _prepareVideo() {
-    if(widget.video) {
+    if (widget.video) {
       _controller = VideoPlayerController.file(_output);
 
       _controller.addListener(() {
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+        }
       });
       _controller.setLooping(true);
       _controller.initialize().then((_) => setState(() {}));
@@ -58,7 +73,9 @@ class _FilterResultState extends State<FilterResultScreen> {
 
   @override
   void dispose() {
-    _controller?.dispose();
+    if (widget.video) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
@@ -67,7 +84,7 @@ class _FilterResultState extends State<FilterResultScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -75,18 +92,17 @@ class _FilterResultState extends State<FilterResultScreen> {
         title: Text(widget.filter.name),
       ),
       body: Center(
-        child: _output == null
-            ? CircularProgressIndicator()
-            : widget.video ? videoPreview : imagePreview,
+        child: processing
+            ? const CircularProgressIndicator()
+            : widget.video
+                ? videoPreview
+                : imagePreview,
       ),
     );
   }
 
   Widget get imagePreview {
-    if (_output != null) {
-      return Image.file(_output);
-    }
-    return Text('Failed to process image');
+    return Image.file(_output);
   }
 
   Widget get videoPreview {

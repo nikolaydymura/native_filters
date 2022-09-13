@@ -5,10 +5,10 @@ typedef void FilterVideoPreviewCreatedCallback(
 
 @Deprecated('For demonstration purposes only')
 class FilterVideoPreview extends StatefulWidget {
-  final FilterVideoPreviewCreatedCallback onCreated;
+  final FilterVideoPreviewCreatedCallback? onCreated;
   final Filterable filter;
 
-  const FilterVideoPreview({Key key, this.onCreated, @required this.filter})
+  const FilterVideoPreview({Key? key, this.onCreated, required this.filter})
       : super(key: key);
 
   @override
@@ -34,18 +34,18 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
     }
     final filter = widget.filter;
     if (filter is _CIFilter) {
-      widget.onCreated(
+      widget.onCreated?.call(
           new FilterVideoPreviewController._(id, filter.group.keyId));
     }
     if (filter is _CIFilterGroup) {
-      widget.onCreated(new FilterVideoPreviewController._(id, filter.keyId));
+      widget.onCreated?.call(new FilterVideoPreviewController._(id, filter.keyId));
     }
     if (filter is _GPUImageFilter) {
-      widget.onCreated(
+      widget.onCreated?.call(
           new FilterVideoPreviewController._(id, filter.group.keyId));
     }
     if (filter is _GPUImageFilterGroup) {
-      widget.onCreated(new FilterVideoPreviewController._(id, filter.keyId));
+      widget.onCreated?.call(new FilterVideoPreviewController._(id, filter.keyId));
     }
   }
 }

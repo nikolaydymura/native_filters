@@ -7,17 +7,17 @@ abstract class Filterable {
 
   Future<void> setSource(Uint8List data);
 
-  Future<Uint8List> get binaryOutput;
+  Future<Uint8List?> get binaryOutput;
 
   Future<void> export(File output);
 }
 
 abstract class FilterGroup extends Filterable {
-  Future<Filter> getFilter(int index);
+  Future<Filter?> getFilter(int index);
 
   Future<int> get filtersCount;
 
-  Future<Filter> addFilter(String name);
+  Future<Filter?> addFilter(String name);
 
   Future<void> removeFilter(Filter filter);
 }
@@ -38,6 +38,8 @@ abstract class Filter extends Filterable {
   /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to boolean
   /// For Core Image filters can be applied to CIFilter that has CIAttributeClass as NSNumber and CIAttributeType equals to CIAttributeTypeBoolean
   Future<void> setBoolValue(String key, bool value);
+
+  Future<void> setAttributeValue(String key, dynamic value);
 
   /// Change Color [value] for [key]
   ///
