@@ -3,12 +3,13 @@ part of native_filters;
 class _GPUImageFilterGroup implements FilterGroup {
   static final String _png = '.png';
   static final String _jpg = '.jpg';
+  static final String _mp4 = '.mp4';
 
   final int keyId;
   final MethodChannel _methodChannel;
 
   _GPUImageFilterGroup(this.keyId)
-      : _methodChannel = MethodChannel('GPUImageFilter-$keyId');
+      : _methodChannel = MethodChannel('GPUFilter-$keyId');
 
   Future<Filter?> getFilter(int index) async {
     try {
@@ -41,6 +42,9 @@ class _GPUImageFilterGroup implements FilterGroup {
   }
 
   Future<void> setFileSource(File path) async {
+    if (_isVideo(path.path)) {
+      return _methodChannel.invokeMethod('setVideoFileSource', path.path);
+    }
     if (_isImage(path.path)) {
       return _methodChannel.invokeMethod('setImageFileSource', path.path);
     }
@@ -48,6 +52,9 @@ class _GPUImageFilterGroup implements FilterGroup {
   }
 
   Future<void> setAssetSource(String name) async {
+    if (_isVideo(name)) {
+      return _methodChannel.invokeMethod('setVideoAssetSource', name);
+    }
     if (_isImage(name)) {
       return _methodChannel.invokeMethod('setImageAssetSource', name);
     }
@@ -62,12 +69,19 @@ class _GPUImageFilterGroup implements FilterGroup {
     return name.endsWith(_png) || name.endsWith(_jpg);
   }
 
+  bool _isVideo(String name) {
+    return name.endsWith(_mp4) == true;
+  }
+
   @override
   Future<Uint8List?> get binaryOutput async {
     return _methodChannel.invokeMethod<Uint8List>('exportData');
   }
 
   Future<void> export(File output) async {
+    if (_isVideo(output.path)) {
+      return _methodChannel.invokeMethod('exportVideo', output.path);
+    }
     if (_isImage(output.path)) {
       return _methodChannel.invokeMethod('exportImage', output.path);
     }

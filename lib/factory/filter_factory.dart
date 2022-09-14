@@ -52,22 +52,35 @@ class FilterFactory {
     }
   }
 
-  Future<List<String>> get availableFilters async {
+  Future<List<FilterItem>> get availableFilters async {
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
         final filters =
             await _methodChannel.invokeListMethod<String>('availableFilters');
         return filters
                 ?.where((e) => !_ciUnsupportedFilters.contains(e))
+                .map((e) => FilterItem._(e, true, true))
                 .toList() ??
             [];
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
-        return [..._gpuFilters, ..._gpuEffects];
+        return [
+          ..._glFilters.map((e) => FilterItem._(e, true, false)),
+          ..._gpuFilters.map((e) => FilterItem._(e, false, true)),
+          ..._gpuEffects.map((e) => FilterItem._(e, false, true))
+        ];
       }
     } catch (error) {
       print(error);
     }
     return [];
   }
+}
+
+class FilterItem {
+  final String name;
+  final bool isVideoSupported;
+  final bool isImageSupported;
+
+  FilterItem._(this.name, this.isVideoSupported, this.isImageSupported);
 }

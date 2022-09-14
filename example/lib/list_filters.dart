@@ -5,13 +5,15 @@ import 'package:native_filters/native_filters.dart';
 import 'filter_details.dart';
 
 class FilterListScreen extends StatefulWidget {
+  const FilterListScreen({Key? key}) : super(key: key);
+
   @override
   _FilterListState createState() => _FilterListState();
 }
 
 class _FilterListState extends State<FilterListScreen> {
   final filtersFactory = const FilterFactory();
-  List<String> _availableFilters = [];
+  List<FilterItem> _availableFilters = [];
 
   @override
   void initState() {
@@ -20,7 +22,7 @@ class _FilterListState extends State<FilterListScreen> {
   }
 
   Future<void> _loadFilters() async {
-    List<String> filters = await filtersFactory.availableFilters;
+    List<FilterItem> filters = await filtersFactory.availableFilters;
 
     if (!mounted) return;
 
@@ -33,33 +35,51 @@ class _FilterListState extends State<FilterListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Filters exmaple'),
+        title: const Text('Filters example'),
       ),
-      body: _availableFilters.isEmpty ? _emptyListView : _filtersListView,
+      body: FutureBuilder<List<FilterItem>>(
+        future: filtersFactory.availableFilters,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final items = snapshot.data;
+            if (items == null || items.isEmpty) {
+              return const Center(
+                child: Text('There is no available filters'),
+              );
+            }
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return ListTile(
+                  title: Text(item.name),
+                  subtitle: Row(
+                    children: [
+                      if (item.isImageSupported)
+                        const Icon(Icons.photo),
+                      if (item.isVideoSupported)
+                        const Icon(Icons.video_call),
+                    ],
+                  ),
+                  trailing: const Icon(Icons.navigate_next),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FilterDetailsScreen(
+                          filter: item,
+                          factory: filtersFactory,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              itemCount: items.length,
+            );
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
     );
-  }
-
-  Widget get _emptyListView {
-    return Center(
-      child: Text('There is no avaiable filters'),
-    );
-  }
-
-  Widget get _filtersListView {
-    return ListView(children: _availableFilters.map(_listItem).toList());
-  }
-
-  Widget _listItem(String name) {
-    return ListTile(
-        title: Text(name),
-        trailing: Icon(Icons.navigate_next),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => FilterDetailsScreen(
-                    filterName: name, factory: filtersFactory)),
-          );
-        });
   }
 }

@@ -4,29 +4,38 @@ version '1.0'
 buildscript {
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:7.1.2'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -34,4 +43,5 @@ android {
 
 dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
+    implementation 'com.github.MasayukiSuda:GPUVideo-android:v0.1.2'
 }

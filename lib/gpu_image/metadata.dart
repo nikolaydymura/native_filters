@@ -86,7 +86,56 @@ const List<String> _gpuFilters = [
   "GPUImageZoomBlurFilter",
 ];
 
+const List<String> _glFilters = [
+  "GlBilateralFilter",
+  "GlBoxBlurFilter",
+  "GlBrightnessFilter",
+  "GlBulgeDistortionFilter",
+  "GlCGAColorspaceFilter",
+  "GlContrastFilter",
+  "GlCrosshatchFilter",
+  "GlExposureFilter",
+  "GlGammaFilter",
+  "GlGaussianBlurFilter",
+  "GlGrayScaleFilter",
+  "GlHalftoneFilter",
+  "GlHazeFilter",
+  "GlHighlightShadowFilter",
+  "GlHueFilter",
+  "GlInvertFilter",
+  "GlLookUpTableFilter",
+  "GlLuminanceFilter",
+  "GlLuminanceThresholdFilter",
+  "GlMonochromeFilter",
+  "GlOpacityFilter",
+  "GlOverlayFilter",
+  "GlPixelationFilter",
+  "GlPosterizeFilter",
+  "GlRGBFilter",
+  "GlSaturationFilter",
+  "GlSepiaFilter",
+  "GlSharpenFilter",
+  "GlSolarizeFilter",
+  "GlSphereRefractionFilter",
+  "GlSwirlFilter",
+  "GlThreex3TextureSamplingFilter",
+  "GlToneCurveFilter",
+  "GlToneFilter",
+  "GlVibranceFilter",
+  "GlVignetteFilter",
+  "GlWatermarkFilter",
+  "GlWeakPixelInclusionFilter",
+  "GlWhiteBalanceFilter",
+  "GlZoomBlurFilter",
+];
+
 const Map<String, Map<String, Map<String, String>>> _gpuAttributes = {
+  'GlLookUpTableFilter': {
+    'inputCubeData': {
+      'GPUAttributeClass': 'String',
+      'GPUAttributeMethod': 'setInputCubeData',
+    }
+  },
   'GPUImage3x3ConvolutionFilter': {
     'ConvolutionKernel': {
       'GPUAttributeDefault': '[0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0]',

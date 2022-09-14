@@ -25,3 +25,8 @@
 
 * Extended API for CIColorCube filter
 * Updated to Flutter 3.x 
+
+## 0.0.6+alpha - 15 Sep 2022
+
+* Added support for video extract into Android
+* Added support for LUT with video

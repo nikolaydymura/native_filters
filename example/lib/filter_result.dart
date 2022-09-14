@@ -47,7 +47,12 @@ class _FilterResultState extends State<FilterResultScreen> {
     if (widget.filter.name == 'CIColorCube') {
       await widget.filter.setNumValue('inputCubeDimension', 64);
       await widget.filter.setAttributeValue(
-          'inputCubeData', 'filters/filter_lut_3.png');
+        'inputCubeData',
+        'filters/filter_lut_3.png',
+      );
+    } else if (widget.filter.name == 'GlLookUpTableFilter') {
+      await widget.filter
+          .setAttributeValue('inputCubeData', 'filters/lookup_sample.png');
     }
     await widget.filter.setAssetSource(asset);
     await widget.filter.export(_output);

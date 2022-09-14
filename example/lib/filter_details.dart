@@ -4,12 +4,14 @@ import 'filter_preview.dart';
 import 'filter_result.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
-  final String filterName;
+  final FilterItem filter;
   final FilterFactory factory;
 
-  const FilterDetailsScreen(
-      {Key? key, required this.filterName, required this.factory})
-      : super(key: key);
+  const FilterDetailsScreen({
+    Key? key,
+    required this.filter,
+    required this.factory,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FilterDetailsState();
@@ -48,29 +50,31 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
           },
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.videocam),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      FilterResultScreen(filter: _filter!, video: true),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.image),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FilterResultScreen(filter: _filter!),
-                ),
-              );
-            },
-          ),
+          if (widget.filter.isVideoSupported)
+            IconButton(
+              icon: const Icon(Icons.videocam),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        FilterResultScreen(filter: _filter!, video: true),
+                  ),
+                );
+              },
+            ),
+          if (widget.filter.isImageSupported)
+            IconButton(
+              icon: const Icon(Icons.image),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FilterResultScreen(filter: _filter!),
+                  ),
+                );
+              },
+            ),
           PopupMenuButton(
             onSelected: (key) {
               final isVideo = key == _platformPreviews[1];
@@ -92,7 +96,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
             },
           ),
         ],
-        title: Text(widget.filterName),
+        title: Text(widget.filter.name),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -106,7 +110,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   }
 
   Future<void> _loadFilterInfo() async {
-    _filter = await widget.factory.create(widget.filterName);
+    _filter = await widget.factory.create(widget.filter.name);
     _details = await _filter?.attributes ?? {};
 
     if (!mounted) return;
@@ -171,12 +175,12 @@ class _NumField extends StatefulWidget {
   final Map<String, String> attribute;
   final Filter filter;
 
-  const _NumField(
-      {Key? key,
-      required this.name,
-      required this.filter,
-      required this.attribute})
-      : super(key: key);
+  const _NumField({
+    Key? key,
+    required this.name,
+    required this.filter,
+    required this.attribute,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _NumFieldState();
