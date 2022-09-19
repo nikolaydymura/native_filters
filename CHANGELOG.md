@@ -30,3 +30,7 @@
 
 * Added support for video extract into Android
 * Added support for LUT with video
+
+## 0.0.7+alpha - 19 Sep 2022
+
+* Added support for mov videos in iOS
