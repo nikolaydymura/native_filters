@@ -2,6 +2,7 @@ part of native_filters;
 
 class _CIFilterGroup extends FilterGroup {
   static final String _mp4 = '.mp4';
+  static final String _mov = '.mov';
   static final String _png = '.png';
   static final String _jpg = '.jpg';
 
@@ -64,7 +65,7 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   bool _isVideo(String name) {
-    return name.endsWith(_mp4) == true;
+    return name.endsWith(_mp4) == true || name.endsWith(_mov) == true;
   }
 
   bool _isImage(String name) {
