@@ -5,6 +5,7 @@ class _CIFilterGroup extends FilterGroup {
   static final String _mov = '.mov';
   static final String _png = '.png';
   static final String _jpg = '.jpg';
+  static final String _jpeg = '.jpeg';
 
   final int keyId;
   final MethodChannel _methodChannel;
@@ -69,7 +70,9 @@ class _CIFilterGroup extends FilterGroup {
   }
 
   bool _isImage(String name) {
-    return name.endsWith(_png) == true || name.endsWith(_jpg) == true;
+    return name.endsWith(_png) == true ||
+        name.endsWith(_jpg) == true ||
+        name.endsWith(_jpeg) == true;
   }
 
   @override

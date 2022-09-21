@@ -1,6 +1,6 @@
 name: native_filters
 description: A package that allows you to use a native Core Image and GPUImage filters.
-version: 0.0.7+alpha
+version: 0.0.8+alpha
 homepage: https://github.com/nikolaydymura/native_filters
 repository: https://github.com/nikolaydymura/native_filters
 

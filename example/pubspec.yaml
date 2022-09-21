@@ -44,6 +44,7 @@ dependencies:
   video_player: ^2.4.7
   path_provider: ^2.0.11
   uuid: ^3.0.6
+  file_picker: ^5.2.0
 
 dev_dependencies:
   flutter_test:

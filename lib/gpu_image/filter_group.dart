@@ -3,6 +3,7 @@ part of native_filters;
 class _GPUImageFilterGroup implements FilterGroup {
   static final String _png = '.png';
   static final String _jpg = '.jpg';
+  static final String _jpeg = '.jpeg';
   static final String _mp4 = '.mp4';
 
   final int keyId;
@@ -66,7 +67,9 @@ class _GPUImageFilterGroup implements FilterGroup {
   }
 
   bool _isImage(String name) {
-    return name.endsWith(_png) || name.endsWith(_jpg);
+    return name.endsWith(_png) == true ||
+        name.endsWith(_jpg) == true ||
+        name.endsWith(_jpeg) == true;
   }
 
   bool _isVideo(String name) {
