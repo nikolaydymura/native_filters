@@ -152,7 +152,6 @@ class NativeFilter: NSObject {
             } else {
                 originalImage = URL(fileURLWithPath: path)
             }
-            originalImage = URL(fileURLWithPath: path)
             return result(nil)
         }
         if call.method == "setImageAssetSource" || call.method == "setVideoAssetSource"  {
