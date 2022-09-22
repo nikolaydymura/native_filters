@@ -34,3 +34,15 @@
 ## 0.0.7+alpha - 19 Sep 2022
 
 * Added support for mov videos in iOS
+
+## 0.0.8+alpha - 21 Sep 2022
+
+* Updated exporting video from file
+
+## 0.0.9+alpha - 22 Sep 2022
+
+* Fixed video export for mov files on iOS
+
+## 0.0.10+alpha - 22 Sep 2022
+
+* Fixed video export for mov files on Android
