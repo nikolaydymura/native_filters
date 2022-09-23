@@ -55,7 +55,14 @@ class _FilterResultState extends State<FilterResultScreen> {
           .setAttributeValue('inputCubeData', 'filters/lookup_sample.png');
     }
     await widget.filter.setAssetSource(asset);
+    final watch = Stopwatch();
+    watch.start();
+    if (!widget.video) {
+      await widget.filter.binaryOutput;
+      print('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
+    }
     await widget.filter.export(_output);
+    print('Exporting file took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {
       _prepareVideo();
     }

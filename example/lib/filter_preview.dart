@@ -51,13 +51,17 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
   }
 
   Widget get imagePreview {
+    final watch = Stopwatch();
+    watch.start();
     return FilterImagePreview(
       filter: widget.filter,
       onCreated: (controller) {
         _controller = controller;
-        _controller.update().then(
-              (_) => setState(() {}),
-            );
+        _controller.update().then((_) {
+          print('Native view took ${watch.elapsedMilliseconds} milliseconds');
+        }).then(
+          (_) => setState(() {}),
+        );
       },
     );
   }

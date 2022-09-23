@@ -47,6 +47,6 @@ class FilterImagePreview: NSObject, FlutterPlatformView {
             return
         }
 
-        imageView.image = image
+        imageView.image = UIImage(ciImage: image)
     }
 }

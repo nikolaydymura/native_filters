@@ -46,3 +46,7 @@
 ## 0.0.10+alpha - 22 Sep 2022
 
 * Fixed video export for mov files on Android
+
+## 0.0.11+alpha - 23 Sep 2022
+
+* Improved iOS image processing performance
