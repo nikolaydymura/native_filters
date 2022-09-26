@@ -7,15 +7,6 @@ import 'package:flutter/material.dart';
 class FilterConfigurationBuilder {
   final Map<String, dynamic> _params = {};
 
-  //TODO: questionable
-  CIBarcodeDescriptor
-  InputStream
-
-  Position
-  FloatBuffer
-
-  GPUImageFilter
-
   void setBitmap(String key, Uint8List data) {
     _params[key] = data;
   }
@@ -24,7 +15,7 @@ class FilterConfigurationBuilder {
 
   void setBitmapFile(String key, File file) {}
 
-  void setBool(String key, num value) {
+  void setBool(String key, bool value) {
     _params[key] = value;
   }
 
@@ -32,8 +23,7 @@ class FilterConfigurationBuilder {
     _params[key] = value;
   }
 
-  //TODO: questionable
-  void setCIVector(String key, CIVector value) {
+  void setCIVector(String key, List<double> value) {
     _params[key] = value;
   }
 
@@ -41,24 +31,22 @@ class FilterConfigurationBuilder {
     _params[key] = value;
   }
 
-  void setFloat(String key, num value) {
+  void setFloat(String key, double value) {
     _params[key] = value;
   }
 
-  void setFloatList(String key, List<num> value) {
+  void setFloatList(String key, List<double> value) {
     _params[key] = value;
   }
 
-  void setInt(String key, num value) {
+  void setInt(String key, int value) {
     _params[key] = value;
   }
 
-  //TODO: questionable
   void setNSArray(String key, List<dynamic> value) {
     _params[key] = value;
   }
 
-  //TODO: questionable
   void setNSAttributedString(String key, String value) {
     _params[key] = value;
   }
@@ -75,34 +63,21 @@ class FilterConfigurationBuilder {
     _params[key] = value;
   }
 
-  //TODO: questionable
   void setNSString(String key, String value) {
     _params[key] = value;
   }
 
-  //TODO: questionable
-  void setNSValue(String key, dynamic value) {
+  void setNSValue(String key, List<double> value) {
     _params[key] = value;
   }
 
-  void setPoint(String key, Point value) {
+  void setPoint(String key, Point<num> value) {
     _params[key] = value;
   }
 
-  void setPointList(String key, List<Point> value) {
+  void setPointList(String key, List<Point<num>> value) {
     _params[key] = value;
   }
-
-  //TODO: questionable
-  void setPointF(String key, PointF value) {
-    _params[key] = value;
-  }
-
-  //TODO: questionable
-  void setPointFList(String key, List<PointF> value) {
-    _params[key] = value;
-  }
-
 
   Map<String, dynamic> get params => Map.of(_params);
 }
