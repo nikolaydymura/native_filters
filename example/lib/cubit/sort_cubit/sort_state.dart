@@ -19,12 +19,13 @@ class SortEmpty extends SortState {
 class SortWaiting extends SortState {}
 
 class SortSucceeded extends SortState {
-  final List<FilterItem> sortedList;
+  final List<FilterItem> configurableFilters;
+  final List<FilterItem> nonConfigurableFilters;
 
-  SortSucceeded(this.sortedList);
+  SortSucceeded(this.configurableFilters, this.nonConfigurableFilters);
 
   @override
-  List<Object> get props => [sortedList];
+  List<Object> get props => [configurableFilters, nonConfigurableFilters];
 }
 
 class SortFailed extends SortState {

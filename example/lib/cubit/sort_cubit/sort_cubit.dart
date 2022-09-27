@@ -10,9 +10,8 @@ class SortCubit extends Cubit<SortState> {
 
   @override
   Stream<SortState> get stream => super.stream.doOnListen(() {
-        final filtersFactory = const FilterFactory();
         if (state is SortInitial) {
-          fetchSortData(filtersFactory);
+          fetchSortData(const FilterFactory());
         }
       });
 
@@ -22,43 +21,37 @@ class SortCubit extends Cubit<SortState> {
       if (filters == null || filters.isEmpty) {
         emit(SortEmpty('There is no available filters'));
       }
-      List<FilterItem> sortedFilters = [];
+      List<FilterItem> _configurableFilters = [];
+      List<FilterItem> _nonConfigurableFilters = [];
 
-      print((filters.length));
       //TODO: change to collection where
       for (int i = 0; i < filters.length; i++) {
-        for (int j = 0; j < _configurable.length; j++) {
-          if (filters[i].name == _configurable[j]) {
-            sortedFilters[i] = filters[i];
-          }
+        if (_configurable.contains(filters[i].name)) {
+          _configurableFilters.add(filters[i]);
+        }
+        if (_nonConfigurable.contains(filters[i].name)) {
+          _nonConfigurableFilters.add(filters[i]);
         }
       }
-      emit(SortSucceeded(sortedFilters));
+      emit(
+        SortSucceeded(_configurableFilters, _nonConfigurableFilters),
+      );
     } catch (e) {
       emit(SortFailed(e.toString()));
     }
   }
 
   final List<String> _configurable = [
-    'GPUImageAlphaBlendFilter',
-    'GPUImageDilationFilter',
-    'GPUImageDissolveBlendFilter',
-    'GPUImageLevelsFilter',
-    'GPUImageRGBDilationFilter',
-    'GPUImageSepiaToneFilter',
-    'GPUImage3x3ConvolutionFilter',
     'GPUImageBilateralBlurFilter',
     'GPUImageBoxBlurFilter',
     'GPUImageBrightnessFilter',
     'GPUImageBulgeDistortionFilter',
     'GPUImageChromaKeyBlendFilter',
-    'GPUImageColorBalanceFilter',
     'GPUImageColorMatrixFilter',
     'GPUImageContrastFilter',
     'GPUImageCrosshatchFilter',
     'GPUImageEmbossFilter',
     'GPUImageExposureFilter',
-    'GPUImageFalseColorFilter',
     'GPUImageGammaFilter',
     'GPUImageGaussianBlurFilter',
     'GPUImageGlassSphereFilter',
@@ -67,7 +60,6 @@ class SortCubit extends Cubit<SortState> {
     'GPUImageHighlightShadowFilter',
     'GPUImageHueFilter',
     'GPUImageKuwaharaFilter',
-    'GPUImageLaplacianFilter',
     'GPUImageLookupFilter',
     'GPUImageLuminanceThresholdFilter',
     'GPUImageMonochromeFilter',
@@ -84,9 +76,7 @@ class SortCubit extends Cubit<SortState> {
     'GPUImageSphereRefractionFilter',
     'GPUImageSwirlFilter',
     'GPUImageThresholdEdgeDetectionFilter',
-    'GPUImageToneCurveFilter',
     'GPUImageToonFilter',
-    'GPUImageTransformFilter',
     'GPUImageVibranceFilter',
     'GPUImageVignetteFilter',
     'GPUImageWhiteBalanceFilter',
@@ -121,8 +111,58 @@ class SortCubit extends Cubit<SortState> {
     'GlToneCurveFilter',
     'GlToneFilter',
     'GlVibranceFilter',
-    'GlVignetteFilter',
     'GlWatermarkFilter',
+  ];
+
+  final List<String> _nonConfigurable = [
+    'GPUImageAddBlendFilter',
+    'GPUImageAlphaBlendFilter',
+    'GPUImageCGAColorspaceFilter',
+    'GPUImageColorBlendFilter',
+    'GPUImageColorBurnBlendFilter',
+    'GPUImageColorDodgeBlendFilter',
+    'GPUImageColorInvertFilter',
+    'GPUImageDarkenBlendFilter',
+    'GPUImageDifferenceBlendFilter',
+    'GPUImageDilationFilter',
+    'GPUImageDirectionalSobelEdgeDetectionFilter',
+    'GPUImageDissolveBlendFilter',
+    'GPUImageDivideBlendFilter',
+    'GPUImageExclusionBlendFilter',
+    'GPUImageGrayscaleFilter',
+    'GPUImageLevelsFilter',
+    'GPUImageLightenBlendFilter',
+    'GPUImageLinearBurnBlendFilter',
+    'GPUImageMultiplyBlendFilter',
+    'GPUImageNonMaximumSuppressionFilter',
+    'GPUImageNormalBlendFilter',
+    'GPUImageHardLightBlendFilter',
+    'GPUImageHueBlendFilter',
+    'GPUImageLuminanceFilter',
+    'GPUImageLuminosityBlendFilter',
+    'GPUImageOverlayBlendFilter',
+    'GPUImageRGBDilationFilter',
+    'GPUImageSaturationBlendFilter',
+    'GPUImageScreenBlendFilter',
+    'GPUImageSepiaToneFilter',
+    'GPUImageSketchFilter',
+    'GPUImageSoftLightBlendFilter',
+    'GPUImageSourceOverBlendFilter',
+    'GPUImageSubtractBlendFilter',
+    'GPUImageWeakPixelInclusionFilter',
+    'GPUImage3x3ConvolutionFilter',
+    'GPUImageColorBalanceFilter',
+    'GPUImageFalseColorFilter',
+    'GPUImageLaplacianFilter',
+    'GPUImageToneCurveFilter',
+    'GPUImageTransformFilter',
+    'GlCGAColorspaceFilter',
+    'GlGrayScaleFilter',
+    'GlInvertFilter',
+    'GlLuminanceFilter',
+    'GlSepiaFilter',
+    'GlVignetteFilter',
+    'GlWeakPixelInclusionFilter',
     'GlWhiteBalanceFilter',
     'GlZoomBlurFilter',
   ];
