@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
+import 'cubit/sort_cubit/sort_cubit.dart';
 import 'list_filters.dart';
 
 void main() {
-  runApp(MaterialApp(home: FilterListScreen()));
+  runApp(
+    MultiProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => SortCubit(),
+        ),
+      ],
+      child:
+          const MaterialApp(home: FilterListScreen(title: 'Filters example')),
+    ),
+  );
 }
