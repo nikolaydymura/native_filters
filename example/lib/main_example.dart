@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import 'cubit/sort_cubit/sort_cubit.dart';
+import 'cubit/sort_cubit/available_filters_cubit.dart';
 import 'list_filters.dart';
 
 void main() {
@@ -10,7 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         BlocProvider(
-          create: (_) => SortCubit(),
+          create: (_) => AvailableFiltersCubit(),
         ),
       ],
       child:

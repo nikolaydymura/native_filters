@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:rxdart/rxdart.dart';
 
-part 'sort_state.dart';
+part 'available_filters_state.dart';
 
-class SortCubit extends Cubit<SortState> {
-  SortCubit() : super(SortInitial());
+class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
+  AvailableFiltersCubit() : super(AvailableFiltersStateInitial());
 
   @override
-  Stream<SortState> get stream => super.stream.doOnListen(() {
-        if (state is SortInitial) {
+  Stream<AvailableFiltersState> get stream => super.stream.doOnListen(() {
+        if (state is AvailableFiltersStateInitial) {
           fetchSortData(const FilterFactory());
         }
       });
@@ -19,7 +19,7 @@ class SortCubit extends Cubit<SortState> {
     List<FilterItem> filters = await filtersFactory.availableFilters;
     try {
       if (filters == null || filters.isEmpty) {
-        emit(SortEmpty('There is no available filters'));
+        emit(AvailableFiltersStateEmpty('There is no available filters'));
       }
       List<FilterItem> _configurableFilters = [];
       List<FilterItem> _nonConfigurableFilters = [];
@@ -34,10 +34,11 @@ class SortCubit extends Cubit<SortState> {
         }
       }
       emit(
-        SortSucceeded(_configurableFilters, _nonConfigurableFilters),
+        AvailableFiltersStateSucceeded(
+            _configurableFilters, _nonConfigurableFilters),
       );
     } catch (e) {
-      emit(SortFailed(e.toString()));
+      emit(AvailableFiltersStateFailed(e.toString()));
     }
   }
 

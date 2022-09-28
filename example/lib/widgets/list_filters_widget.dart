@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:native_filters/native_filters.dart';
 
-import '../cubit/sort_cubit/sort_cubit.dart';
+import '../cubit/available_filters_cubit/available_filters_cubit.dart';
 import '../filter_details.dart';
 
 class ListFiltersWidget extends StatelessWidget {
@@ -17,11 +17,13 @@ class ListFiltersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SortCubit, SortState>(
+    return BlocBuilder<AvailableFiltersCubit, AvailableFiltersState>(
       builder: (context, state) {
-        if (state is SortInitial) {
-          context.read<SortCubit>().fetchSortData(const FilterFactory());
-        } else if (state is SortSucceeded) {
+        if (state is AvailableFiltersStateInitial) {
+          context
+              .read<AvailableFiltersCubit>()
+              .fetchSortData(const FilterFactory());
+        } else if (state is AvailableFiltersStateSucceeded) {
           List<FilterItem> items = [];
           if (configurableFilters) {
             items = state.configurableFilters;
@@ -56,7 +58,7 @@ class ListFiltersWidget extends StatelessWidget {
             },
             itemCount: items.length,
           );
-        } else if (state is SortEmpty) {
+        } else if (state is AvailableFiltersStateEmpty) {
           return Center(
             child: Text(state.message),
           );
