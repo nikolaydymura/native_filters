@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/list_filters_widget.dart';
+import '../widgets/list_filters_widget.dart';
 
 class FilterListScreen extends StatefulWidget {
   const FilterListScreen({Key? key, required this.title}) : super(key: key);

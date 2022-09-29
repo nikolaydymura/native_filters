@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:native_filters/native_filters.dart';
 
 import '../cubit/available_filters_cubit/available_filters_cubit.dart';
-import '../filter_details.dart';
+import '../pages/filter_details.dart';
 
 class ListFiltersWidget extends StatelessWidget {
   const ListFiltersWidget({

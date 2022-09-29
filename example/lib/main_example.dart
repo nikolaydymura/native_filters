@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'cubit/available_filters_cubit/available_filters_cubit.dart';
-import 'list_filters.dart';
+import 'pages/list_filters.dart';
 
 void main() {
   runApp(
