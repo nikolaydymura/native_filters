@@ -19,11 +19,7 @@ class ListFiltersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AvailableFiltersCubit, AvailableFiltersState>(
       builder: (context, state) {
-        if (state is AvailableFiltersStateInitial) {
-          context
-              .read<AvailableFiltersCubit>()
-              .fetchSortData(const FilterFactory());
-        } else if (state is AvailableFiltersStateSucceeded) {
+        if (state is AvailableFiltersStateSucceeded) {
           List<FilterItem> items = [];
           if (configurableFilters) {
             items = state.configurableFilters;
