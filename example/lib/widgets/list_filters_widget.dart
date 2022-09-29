@@ -8,10 +8,10 @@ import '../pages/filter_details.dart';
 class ListFiltersWidget extends StatelessWidget {
   const ListFiltersWidget({
     super.key,
-    required this.configurableFilters,
+    required this.items,
   });
 
-  final bool configurableFilters;
+  final List<FilterItem> items;
 
   final filtersFactory = const FilterFactory();
 
@@ -20,13 +20,6 @@ class ListFiltersWidget extends StatelessWidget {
     return BlocBuilder<AvailableFiltersCubit, AvailableFiltersState>(
       builder: (context, state) {
         if (state is AvailableFiltersStateSucceeded) {
-          List<FilterItem> items = [];
-          if (configurableFilters) {
-            items = state.configurableFilters;
-          } else {
-            items = state.nonConfigurableFilters;
-          }
-
           return ListView.builder(
             itemBuilder: (context, index) {
               final item = items[index];

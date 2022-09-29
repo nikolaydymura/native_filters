@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:native_filters/native_filters.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/available_filters_cubit/available_filters_cubit.dart';
 import '../widgets/list_filters_widget.dart';
 
 class FilterListScreen extends StatefulWidget {
@@ -10,6 +14,7 @@ class FilterListScreen extends StatefulWidget {
 }
 
 class _FilterListState extends State<FilterListScreen> {
+  final filtersFactory = const FilterFactory();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -37,13 +42,35 @@ class _FilterListState extends State<FilterListScreen> {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: <Widget>[
-            ListFiltersWidget(configurableFilters: true),
-            ListFiltersWidget(configurableFilters: false),
-            Center(child: Text('in developing')),
-            Center(child: Text('in developing')),
-          ],
+        body: FutureBuilder<List<FilterItem>>(
+          future: filtersFactory.availableFilters,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final items = snapshot.data;
+              if (items == null || items.isEmpty) {
+                return const Center(
+                  child: Text('There is no available filters'),
+                );
+              }
+
+              return BlocBuilder<AvailableFiltersCubit, AvailableFiltersState>(
+                builder: (context, state) {
+                  if (state is AvailableFiltersStateSucceeded) {
+                    return TabBarView(
+                      children: <Widget>[
+                        ListFiltersWidget(items: state.configurableFilters),
+                        ListFiltersWidget(items: state.nonConfigurableFilters),
+                        const Center(child: Text('in developing')),
+                        const Center(child: Text('in developing')),
+                      ],
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
+              );
+            }
+            return const CircularProgressIndicator();
+          },
         ),
       ),
     );

@@ -5,7 +5,13 @@ abstract class AvailableFiltersState extends Equatable {
   List<Object> get props => [];
 }
 
-class AvailableFiltersStateInitial extends AvailableFiltersState {}
+class AvailableFiltersStateInitial extends AvailableFiltersState {
+  final List<FilterItem> items;
+
+  AvailableFiltersStateInitial(this.items);
+  @override
+  List<Object> get props => [];
+}
 
 class AvailableFiltersStateEmpty extends AvailableFiltersState {
   final String message;

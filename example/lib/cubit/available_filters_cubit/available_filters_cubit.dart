@@ -6,31 +6,29 @@ import 'package:rxdart/rxdart.dart';
 part 'available_filters_state.dart';
 
 class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
-  AvailableFiltersCubit() : super(AvailableFiltersStateInitial());
+  final List<FilterItem> items;
+  AvailableFiltersCubit(this.items)
+      : super(AvailableFiltersStateInitial(items));
 
   @override
   Stream<AvailableFiltersState> get stream => super.stream.doOnListen(() {
         if (state is AvailableFiltersStateInitial) {
-          fetchSortData(const FilterFactory());
+          fetchSortData(items);
         }
       });
 
-  Future<void> fetchSortData(FilterFactory filtersFactory) async {
-    List<FilterItem> filters = await filtersFactory.availableFilters;
+  Future<void> fetchSortData(List<FilterItem> items) async {
     try {
-      if (filters == null || filters.isEmpty) {
-        emit(AvailableFiltersStateEmpty('There is no available filters'));
-      }
       List<FilterItem> _configurableFilters = [];
       List<FilterItem> _nonConfigurableFilters = [];
 
       //TODO: change to collection where
-      for (int i = 0; i < filters.length; i++) {
-        if (_configurable.contains(filters[i].name)) {
-          _configurableFilters.add(filters[i]);
+      for (int i = 0; i < items.length; i++) {
+        if (_configurable.contains(items[i].name)) {
+          _configurableFilters.add(items[i]);
         }
-        if (_nonConfigurable.contains(filters[i].name)) {
-          _nonConfigurableFilters.add(filters[i]);
+        if (_nonConfigurable.contains(items[i].name)) {
+          _nonConfigurableFilters.add(items[i]);
         }
       }
       emit(
