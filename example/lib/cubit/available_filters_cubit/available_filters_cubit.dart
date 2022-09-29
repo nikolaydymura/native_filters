@@ -35,7 +35,9 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
       }
       emit(
         AvailableFiltersStateSucceeded(
-            _configurableFilters, _nonConfigurableFilters),
+          _configurableFilters,
+          _nonConfigurableFilters,
+        ),
       );
     } catch (e) {
       emit(AvailableFiltersStateFailed(e.toString()));

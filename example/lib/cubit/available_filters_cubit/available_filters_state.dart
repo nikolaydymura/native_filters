@@ -23,7 +23,9 @@ class AvailableFiltersStateSucceeded extends AvailableFiltersState {
   final List<FilterItem> nonConfigurableFilters;
 
   AvailableFiltersStateSucceeded(
-      this.configurableFilters, this.nonConfigurableFilters);
+    this.configurableFilters,
+    this.nonConfigurableFilters,
+  );
 
   @override
   List<Object> get props => [configurableFilters, nonConfigurableFilters];

@@ -14,7 +14,7 @@ class _FilterListState extends State<FilterListScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: 2,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Center(child: Text(widget.title)),
@@ -28,6 +28,12 @@ class _FilterListState extends State<FilterListScreen> {
               Tab(
                 icon: Icon(Icons.amp_stories_outlined),
               ),
+              Tab(
+                icon: Icon(Icons.videocam),
+              ),
+              Tab(
+                icon: Icon(Icons.image),
+              ),
             ],
           ),
         ),
@@ -35,6 +41,8 @@ class _FilterListState extends State<FilterListScreen> {
           children: <Widget>[
             ListFiltersWidget(configurableFilters: true),
             ListFiltersWidget(configurableFilters: false),
+            Center(child: Text('in developing')),
+            Center(child: Text('in developing')),
           ],
         ),
       ),
