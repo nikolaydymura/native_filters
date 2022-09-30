@@ -19,18 +19,11 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
 
   Future<void> fetchSortData(List<FilterItem> items) async {
     try {
-      List<FilterItem> _configurableFilters = [];
-      List<FilterItem> _nonConfigurableFilters = [];
+      List<FilterItem> _configurableFilters =
+          items.where((e) => _configurable.contains(e.name)).toList();
+      List<FilterItem> _nonConfigurableFilters =
+          items.where((e) => _nonConfigurable.contains(e.name)).toList();
 
-      //TODO: change to collection where
-      for (int i = 0; i < items.length; i++) {
-        if (_configurable.contains(items[i].name)) {
-          _configurableFilters.add(items[i]);
-        }
-        if (_nonConfigurable.contains(items[i].name)) {
-          _nonConfigurableFilters.add(items[i]);
-        }
-      }
       emit(
         AvailableFiltersStateSucceeded(
           _configurableFilters,

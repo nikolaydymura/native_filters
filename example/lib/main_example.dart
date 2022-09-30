@@ -10,6 +10,7 @@ void main() async {
   const filtersFactory = FilterFactory();
 
   final items = await filtersFactory.availableFilters;
+
   runApp(
     MultiProvider(
       providers: [
