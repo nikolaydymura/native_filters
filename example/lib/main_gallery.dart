@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:video_player/video_player.dart';
 
 void main() => runApp(const MaterialApp(home: MyApp()));
 
@@ -22,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   Filter? _filter;
   File? _output;
   Uint8List? _data;
+  VideoPlayerController? _controller;
 
   String get asset => 'images/test.jpg';
 
@@ -32,11 +34,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _prepare() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(type: FileType.video);
     final filePath = result?.files.single.path;
     final directory = await getTemporaryDirectory();
     const uuid = Uuid();
-    final path = '${directory.path}/${uuid.v4()}.jpeg';
+    final path = '${directory.path}/${uuid.v4()}.mov';
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       _filter = await _filtersFactory.create('CIPhotoEffectMono');
     }
@@ -51,7 +54,9 @@ class _MyAppState extends State<MyApp> {
 
     _output = File(path);
     await _filter?.export(_output!);
-    _data = await _filter?.binaryOutput;
+    _controller = VideoPlayerController.file(_output!);
+    await _controller!.initialize();
+    await _controller!.play();
   }
 
   @override
@@ -74,17 +79,13 @@ class _MyAppState extends State<MyApp> {
             ? const CircularProgressIndicator()
             : Column(
                 children: <Widget>[
-                  Expanded(
-                    child: Image.asset(asset),
-                  ),
-                  const SizedBox(height: 3),
-                  Expanded(
-                    child: imagePreview1,
-                  ),
-                  const SizedBox(height: 3),
-                  Expanded(
-                    child: imagePreview2,
-                  )
+                  if (_controller != null)
+                    _controller!.value.isInitialized
+                        ? AspectRatio(
+                            aspectRatio: _controller!.value.aspectRatio,
+                            child: VideoPlayer(_controller!),
+                          )
+                        : Container(),
                 ],
               ),
       ),

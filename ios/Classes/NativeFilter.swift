@@ -32,6 +32,34 @@ extension UIImage {
     }
 }
 
+extension CIImage {
+    func asData(pathExtension: String? = nil, output: URL? = nil) -> Data? {
+        let uti = UTTypeCreatePreferredIdentifierForTag(
+            kUTTagClassFilenameExtension,
+            (pathExtension ?? "png") as CFString,
+            nil)
+        
+        guard let type = uti?.takeRetainedValue() else {
+            return nil
+        }
+        
+        if UTTypeConformsTo(type, kUTTypePNG) {
+            if let file = output {
+                try? CIContext().writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                return nil
+            } else {
+                return CIContext().pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            }
+        }
+        if let file = output {
+            try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            return nil
+        } else {
+            return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+        }
+    }
+}
+
 class NativeFilter: NSObject {
     let methodChannel: FlutterMethodChannel
     let pluginRegistrar: FlutterPluginRegistrar
@@ -56,7 +84,7 @@ class NativeFilter: NSObject {
         }
     }
     
-    private var originalData: Data? {
+    private var originalData: CIImage? {
         didSet {
             if originalData != nil {
                 originalVideo = nil
@@ -140,7 +168,7 @@ class NativeFilter: NSObject {
             guard let data = call.arguments as? FlutterStandardTypedData else {
                 return result(FlutterError.init())
             }
-            originalData = data.data
+            originalData = CIImage(data: data.data)
             return result(nil)
         }
         if call.method == "setImageFileSource"  || call.method == "setVideoFileSource" {
@@ -152,7 +180,6 @@ class NativeFilter: NSObject {
             } else {
                 originalImage = URL(fileURLWithPath: path)
             }
-            originalImage = URL(fileURLWithPath: path)
             return result(nil)
         }
         if call.method == "setImageAssetSource" || call.method == "setVideoAssetSource"  {
@@ -206,10 +233,9 @@ class NativeFilter: NSObject {
                 return result(FlutterError.init())
             }
             let output = URL(fileURLWithPath: path)
-            guard let image = processedImage?.asData(pathExtension: output.pathExtension) else {
-                return result(FlutterError.init())
-            }
-            try? image.write(to: output)
+            processedImage?.asData(pathExtension: output.pathExtension, output: output)
+                //return result(FlutterError.init())
+        
             return result(nil)
         }
         if call.method == "setValue" {
@@ -302,20 +328,33 @@ extension NativeFilter {
     }
     
     func processing(_ uiImage: UIImage) -> UIImage? {
+        #if DEBUG
+        let start = DispatchTime.now()
+        #endif
         let origin = CIImage(image: uiImage)
         
         let image = processing(origin)
         
-        return image?.asUIImage(scale: uiImage.scale, orientation: uiImage.imageOrientation) ?? uiImage
+#if DEBUG
+let end = DispatchTime.now()
+
+let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+let timeInterval = Double(nanoTime) / 1_000_000_000
+
+print("\(#function): \(timeInterval) seconds")
+#endif
+        
+        let result = image?.asUIImage(scale: uiImage.scale, orientation: uiImage.imageOrientation)
+        return result ?? uiImage
     }
 }
 
 extension NativeFilter {
-    var processedImage: UIImage? {
-        if let data = originalData, let image = UIImage(data: data) {
+    var processedImage: CIImage? {
+        if let image = originalData {
             return processing(image) ?? image
         }
-        if let path = originalImage?.path, let image = UIImage(contentsOfFile: path) {
+        if let path = originalImage, let image = CIImage(contentsOf: path) {
             return processing(image) ?? image
         }
         return nil
