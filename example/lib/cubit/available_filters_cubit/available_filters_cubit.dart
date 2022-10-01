@@ -6,19 +6,23 @@ import 'package:rxdart/rxdart.dart';
 part 'available_filters_state.dart';
 
 class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
-  final List<FilterItem> items;
-  AvailableFiltersCubit(this.items)
-      : super(AvailableFiltersStateInitial(items));
+  AvailableFiltersCubit() : super(AvailableFiltersStateInitial());
+
+  final filtersFactory = const FilterFactory();
 
   @override
   Stream<AvailableFiltersState> get stream => super.stream.doOnListen(() {
         if (state is AvailableFiltersStateInitial) {
-          fetchSortData(items);
+          fetchSortData();
         }
       });
 
-  Future<void> fetchSortData(List<FilterItem> items) async {
+  Future<void> fetchSortData() async {
     try {
+      emit(AvailableFiltersStateWaiting());
+
+      final items = await filtersFactory.availableFilters;
+
       List<FilterItem> _configurableFilters =
           items.where((e) => _configurable.contains(e.name)).toList();
       List<FilterItem> _nonConfigurableFilters =

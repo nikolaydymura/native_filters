@@ -6,20 +6,7 @@ abstract class AvailableFiltersState extends Equatable {
 }
 
 class AvailableFiltersStateInitial extends AvailableFiltersState {
-  final List<FilterItem> items;
-
-  AvailableFiltersStateInitial(this.items);
-  @override
-  List<Object> get props => [];
-}
-
-class AvailableFiltersStateEmpty extends AvailableFiltersState {
-  final String message;
-
-  AvailableFiltersStateEmpty(this.message);
-
-  @override
-  List<Object> get props => [message];
+  AvailableFiltersStateInitial();
 }
 
 class AvailableFiltersStateWaiting extends AvailableFiltersState {}
@@ -38,10 +25,10 @@ class AvailableFiltersStateSucceeded extends AvailableFiltersState {
 }
 
 class AvailableFiltersStateFailed extends AvailableFiltersState {
-  final String errorMessage;
+  final String message;
 
-  AvailableFiltersStateFailed(this.errorMessage);
+  AvailableFiltersStateFailed(this.message);
 
   @override
-  List<Object> get props => [errorMessage];
+  List<Object> get props => [message];
 }
