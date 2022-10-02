@@ -53,22 +53,26 @@ class FilterFactory {
   }
 
   Future<List<FilterItem>> get availableFilters async {
+    String dataCI = await rootBundle.loadString('filters/CIFilters.json');
+    String dataGI = await rootBundle.loadString('filters/CIFilters.json');
+    String dataGPU = await rootBundle.loadString('filters/CIFilters.json');
+    final jsonCI = json.decode(dataCI);
+    final jsonGI = json.decode(dataGI);
+    final jsonGPU = json.decode(dataGPU);
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final filters =
-            await _methodChannel.invokeListMethod<String>('availableFilters');
-        return filters
-                ?.where((e) => !_ciUnsupportedFilters.contains(e))
-                .map((e) => FilterItem._(e, true, true))
-                .toList() ??
-            [];
+        final _filtersJson = FilterItem.fromJsonCI(jsonCI);
+        List<FilterItem> _filters = [];
+        _filters.add(_filtersJson);
+        return _filters;
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
-        return [
-          ..._glFilters.map((e) => FilterItem._(e, true, false)),
-          ..._gpuFilters.map((e) => FilterItem._(e, false, true)),
-          ..._gpuEffects.map((e) => FilterItem._(e, false, true))
-        ];
+        final _filtersJsonGI = FilterItem.fromJsonCI(jsonGI);
+        final _filtersJsonGPU = FilterItem.fromJsonCI(jsonGPU);
+        List<FilterItem> _filters = [];
+        _filters.add(_filtersJsonGI);
+        _filters.add(_filtersJsonGPU);
+        return _filters;
       }
     } catch (error) {
       print(error);
@@ -79,8 +83,38 @@ class FilterFactory {
 
 class FilterItem {
   final String name;
+  final String displayName;
+  final String categories;
   final bool isVideoSupported;
   final bool isImageSupported;
 
-  FilterItem._(this.name, this.isVideoSupported, this.isImageSupported);
+  FilterItem._(this.name, this.displayName, this.categories,
+      this.isVideoSupported, this.isImageSupported);
+
+  factory FilterItem.fromJsonVideo(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['GlAttributeFilterName'],
+        json['GlAttributeFilterDisplayName'],
+        json['GlAttributeFilterCategories'],
+        true,
+        false);
+  }
+
+  factory FilterItem.fromJsonImage(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['GPUAttributeFilterName'],
+        json['GPUAttributeFilterDisplayName'],
+        json['GPUAttributeFilterCategories'],
+        false,
+        true);
+  }
+
+  factory FilterItem.fromJsonCI(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['CIAttributeFilterName'],
+        json['CIAttributeFilterDisplayName'],
+        json['CIAttributeFilterCategories'],
+        true,
+        true);
+  }
 }
