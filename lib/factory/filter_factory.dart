@@ -53,29 +53,32 @@ class FilterFactory {
   }
 
   Future<List<FilterItem>> get availableFilters async {
-    String dataCI = await File('filters/CIFilters.json')
-        .readAsString()
-        .then((String contents) => contents);
-
-    String dataGI = await File('filters/CIFilters.json')
-        .readAsString()
-        .then((String contents) => contents);
-    String dataGPU = await File('filters/CIFilters.json')
-        .readAsString()
-        .then((String contents) => contents);
+    /*String dataCI =
+        await rootBundle.loadString('assets/filters/CIFilters.json');
+    print(dataCI.toString());
+    String dataGI =
+        await rootBundle.loadString('assets/filters/GlFilters.json');
+    String dataGPU =
+        await rootBundle.loadString('assets/filters/GPUImageFilters.json');
     final jsonCI = json.decode(dataCI);
     final jsonGI = json.decode(dataGI);
-    final jsonGPU = json.decode(dataGPU);
+    final jsonGPU = json.decode(dataGPU);*/
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final _filtersJson = FilterItem.fromJsonCI(jsonCI);
+        final jsonCI =
+            await _parseJsonFromAssets('assets/filters/CIFilters.json');
+        final _filtersJson = FilterItem._fromJsonCI(jsonCI);
         List<FilterItem> _filters = [];
         _filters.add(_filtersJson);
         return _filters;
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
-        final _filtersJsonGI = FilterItem.fromJsonCI(jsonGI);
-        final _filtersJsonGPU = FilterItem.fromJsonCI(jsonGPU);
+        final jsonGI =
+            await _parseJsonFromAssets('assets/filters/GlFilters.json');
+        final jsonGPU =
+            await _parseJsonFromAssets('assets/filters/GPUImageFilters.json');
+        final _filtersJsonGI = FilterItem._fromJsonVideo(jsonGI);
+        final _filtersJsonGPU = FilterItem._fromJsonImage(jsonGPU);
         List<FilterItem> _filters = [];
         _filters.add(_filtersJsonGI);
         _filters.add(_filtersJsonGPU);
@@ -85,6 +88,12 @@ class FilterFactory {
       print(error);
     }
     return [];
+  }
+
+  Future<Map<String, dynamic>> _parseJsonFromAssets(String assetsPath) async {
+    return rootBundle
+        .loadString(assetsPath)
+        .then((jsonStr) => jsonDecode(jsonStr));
   }
 }
 
@@ -98,7 +107,7 @@ class FilterItem {
   FilterItem._(this.name, this.displayName, this.categories,
       this.isVideoSupported, this.isImageSupported);
 
-  factory FilterItem.fromJsonVideo(Map<String, dynamic> json) {
+  factory FilterItem._fromJsonVideo(Map<String, dynamic> json) {
     return FilterItem._(
         json['GlAttributeFilterName'],
         json['GlAttributeFilterDisplayName'],
@@ -107,7 +116,7 @@ class FilterItem {
         false);
   }
 
-  factory FilterItem.fromJsonImage(Map<String, dynamic> json) {
+  factory FilterItem._fromJsonImage(Map<String, dynamic> json) {
     return FilterItem._(
         json['GPUAttributeFilterName'],
         json['GPUAttributeFilterDisplayName'],
@@ -116,7 +125,7 @@ class FilterItem {
         true);
   }
 
-  factory FilterItem.fromJsonCI(Map<String, dynamic> json) {
+  factory FilterItem._fromJsonCI(Map<String, dynamic> json) {
     return FilterItem._(
         json['CIAttributeFilterName'],
         json['CIAttributeFilterDisplayName'],
