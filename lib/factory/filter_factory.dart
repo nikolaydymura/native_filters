@@ -53,16 +53,6 @@ class FilterFactory {
   }
 
   Future<List<FilterItem>> get availableFilters async {
-    /*String dataCI =
-        await rootBundle.loadString('assets/filters/CIFilters.json');
-    print(dataCI.toString());
-    String dataGI =
-        await rootBundle.loadString('assets/filters/GlFilters.json');
-    String dataGPU =
-        await rootBundle.loadString('assets/filters/GPUImageFilters.json');
-    final jsonCI = json.decode(dataCI);
-    final jsonGI = json.decode(dataGI);
-    final jsonGPU = json.decode(dataGPU);*/
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
         final jsonCI =
