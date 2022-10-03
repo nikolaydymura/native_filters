@@ -5,6 +5,7 @@ class _GPUImageFilterGroup implements FilterGroup {
   static final String _jpg = '.jpg';
   static final String _jpeg = '.jpeg';
   static final String _mp4 = '.mp4';
+  static final String _mov = '.mov';
 
   final int keyId;
   final MethodChannel _methodChannel;
@@ -73,7 +74,7 @@ class _GPUImageFilterGroup implements FilterGroup {
   }
 
   bool _isVideo(String name) {
-    return name.endsWith(_mp4) == true;
+    return name.endsWith(_mp4) == true || name.endsWith(_mov);
   }
 
   @override
