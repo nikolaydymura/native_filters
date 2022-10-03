@@ -53,9 +53,16 @@ class FilterFactory {
   }
 
   Future<List<FilterItem>> get availableFilters async {
-    String dataCI = await rootBundle.loadString('filters/CIFilters.json');
-    String dataGI = await rootBundle.loadString('filters/CIFilters.json');
-    String dataGPU = await rootBundle.loadString('filters/CIFilters.json');
+    String dataCI = await File('filters/CIFilters.json')
+        .readAsString()
+        .then((String contents) => contents);
+
+    String dataGI = await File('filters/CIFilters.json')
+        .readAsString()
+        .then((String contents) => contents);
+    String dataGPU = await File('filters/CIFilters.json')
+        .readAsString()
+        .then((String contents) => contents);
     final jsonCI = json.decode(dataCI);
     final jsonGI = json.decode(dataGI);
     final jsonGPU = json.decode(dataGPU);
