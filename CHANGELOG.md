@@ -50,3 +50,7 @@
 ## 0.0.11+alpha - 23 Sep 2022
 
 * Improved iOS image processing performance
+
+## 0.0.12+alpha - 4 Oct 2022
+
+* Fixed path for cuba data

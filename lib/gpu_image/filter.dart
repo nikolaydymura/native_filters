@@ -186,6 +186,9 @@ class _GPUImageFilter extends Filter {
     if (method == null){
       return;
     }
+    if (value is File) {
+      return group._setValue(this, method, value.path);
+    }
     return group._setValue(this, method, value);
   }
 }

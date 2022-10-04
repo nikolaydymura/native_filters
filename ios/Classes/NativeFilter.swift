@@ -299,9 +299,8 @@ class NativeFilter: NSObject {
                 }
                 let asset = pluginRegistrar.lookupKey(forAsset: name)
 
-                guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
-                    return result(FlutterError.init())
-                }
+                let path = Bundle.main.path(forResource: asset, ofType: nil) ?? name
+                
                 guard let image = UIImage(contentsOfFile: path) else {
                     return result(FlutterError.init())
                 }

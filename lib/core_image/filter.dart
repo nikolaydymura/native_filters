@@ -136,6 +136,9 @@ class _CIFilter extends Filter {
 
   @override
   Future<void> setAttributeValue(String key, dynamic value) {
+    if (value is File) {
+      return group._setValue(this, key, value.path);
+    }
     return group._setValue(this, key, value);
   }
 
