@@ -40,6 +40,14 @@ extension CIImage {
             nil)
         
         guard let type = uti?.takeRetainedValue() else {
+            if pathExtension == "jpg" || pathExtension == "jpeg" {
+                if let file = output {
+                    try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    return nil
+                } else {
+                    return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                }
+            }
             return nil
         }
         

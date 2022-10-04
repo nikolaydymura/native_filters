@@ -34,7 +34,8 @@ part 'widgets/video_preview.dart';
 Uint8List lutPngToNSData(int size, Uint8List bitmap, int width, int height) {
   const floatSize = 4;
 
-  List<double> cubeData = List.filled(size * size * size * 4 * floatSize, 0);
+  final amount = size * size * size * 4 * floatSize;
+  List<double> cubeData = List.filled(amount, 0);
   final rowCount = width ~/ 64;
   final columnCount = height ~/ 64;
   var z = 0;
@@ -67,5 +68,5 @@ Uint8List lutPngToNSData(int size, Uint8List bitmap, int width, int height) {
 
   final cubeDataRaw = Float32List.fromList(cubeData).buffer.asUint8List();
 
-  return cubeDataRaw.sublist(0, size * size * size * 4 * floatSize);
+  return cubeDataRaw.sublist(0, amount);
 }
