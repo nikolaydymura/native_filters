@@ -233,4 +233,19 @@ class _CIFilter extends Filter {
     final values = value.map((e) => [e.x, e.y]).expand((e) => e);
     return group._setValue(this, key, values);
   }
+
+  @override
+  Future<void> setNSData(String key, Uint8List data) {
+    return group._setValue(this, key, data);
+  }
+
+  @override
+  Future<void> setNSDataAsset(String key, String name) {
+    return group._setValue(this, key, name);
+  }
+
+  @override
+  Future<void> setNSDataFile(String key, File file) {
+    return group._setValue(this, key, file.path);
+  }
 }

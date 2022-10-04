@@ -295,16 +295,20 @@ class NativeFilter: NSObject {
                 return result(nil)
             } else if attrClass == "NSData" {
                 guard let name = args[2] as? String else {
-                     return result(FlutterError.init())
+                    guard let data = args[2] as? FlutterStandardTypedData else {
+                        return result(FlutterError.init())
+                    }
+                    filters[index].setValue(data.data, forKey: key)
+                    return result(nil)
                 }
                 let asset = pluginRegistrar.lookupKey(forAsset: name)
 
                 let path = Bundle.main.path(forResource: asset, ofType: nil) ?? name
                 
-                guard let image = UIImage(contentsOfFile: path) else {
+                guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
                     return result(FlutterError.init())
                 }
-                let data = colorCubeFilterFromLUT(image: image, size: 64);
+                
                 filters[index].setValue(data, forKey: key)
                 return result(nil)
             }

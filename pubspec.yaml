@@ -1,6 +1,6 @@
 name: native_filters
 description: A package that allows you to use a native Core Image and GPUImage filters.
-version: 0.0.12+alpha
+version: 0.0.14+alpha
 homepage: https://github.com/nikolaydymura/native_filters
 repository: https://github.com/nikolaydymura/native_filters
 
@@ -19,8 +19,6 @@ dependencies:
   equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
-  rxdart: ^0.27.5
 
 dev_dependencies:
   flutter_test:

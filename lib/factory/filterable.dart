@@ -64,4 +64,10 @@ abstract class Filter extends Filterable {
   /// For GPUImage filters can be applied for all attributes that have GPUAttributeClass equals to PointF[]
   /// For Core Image filters can be applied for all attributes that have CIAttributeClass equals to CIVector and and CIAttributeType equals to CIAttributeTypeRectangle
   Future<void> setPointArrayValue(String key, List<Point> value);
+
+  Future<void> setNSDataFile(String key, File path);
+
+  Future<void> setNSDataAsset(String key, String name);
+
+  Future<void> setNSData(String key, Uint8List data);
 }
