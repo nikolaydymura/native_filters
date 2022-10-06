@@ -1,4 +1,4 @@
-const ciFilters = [
+const List<Map<String, dynamic>> ciFilters = [
   {
     "inputTime": {
       "CIAttributeClass": "NSNumber",

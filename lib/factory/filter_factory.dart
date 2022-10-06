@@ -55,16 +55,16 @@ class FilterFactory {
   Future<List<FilterItem>> get availableFilters async {
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final jsonImageCI = giFilters.where((element) {
-          final List<String> items = element["CICategoryStillImage"];
+        final jsonCI = ciFilters.where((element) {
+          final List<String> items = element["CIAttributeFilterCategories"];
           if (items.contains('ClCategoryVideo') ||
               items.contains('CICategoryStillImage')) return true;
           return false;
         }).toList();
         List<FilterItem> _filters = [];
 
-        for (int i = 0; i < jsonImageCI.length; i++) {
-          final _filtersJsonCI = FilterItem._fromJsonImage(jsonImageCI[i]);
+        for (int i = 0; i < jsonCI.length; i++) {
+          final _filtersJsonCI = FilterItem._fromJsonImage(jsonCI[i]);
           _filters.add(_filtersJsonCI);
         }
         return _filters;
