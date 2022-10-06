@@ -55,23 +55,43 @@ class FilterFactory {
   Future<List<FilterItem>> get availableFilters async {
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final jsonCI =
-            await _parseJsonFromAssets('assets/filters/CIFilters.json');
-        final _filtersJson = FilterItem._fromJsonCI(jsonCI);
+        final jsonImageCI = giFilters.where((element) {
+          final List<String> items = element["CICategoryStillImage"];
+          if (items.contains('ClCategoryVideo') ||
+              items.contains('CICategoryStillImage')) return true;
+          return false;
+        }).toList();
         List<FilterItem> _filters = [];
-        _filters.add(_filtersJson);
+
+        for (int i = 0; i < jsonImageCI.length; i++) {
+          final _filtersJsonCI = FilterItem._fromJsonImage(jsonImageCI[i]);
+          _filters.add(_filtersJsonCI);
+        }
         return _filters;
       }
-      if (defaultTargetPlatform == TargetPlatform.android) {
-        final jsonGI =
-            await _parseJsonFromAssets('assets/filters/GlFilters.json');
-        final jsonGPU =
-            await _parseJsonFromAssets('assets/filters/GPUImageFilters.json');
-        final _filtersJsonGI = FilterItem._fromJsonVideo(jsonGI);
-        final _filtersJsonGPU = FilterItem._fromJsonImage(jsonGPU);
+      if (defaultTargetPlatform == TargetPlatform.android ||
+          defaultTargetPlatform == TargetPlatform.windows) {
+        final jsonGI = giFilters.where((element) {
+          final List<String> items = element["GlAttributeFilterCategories"];
+          if (items.contains('GlCategoryVideo')) return true;
+          return false;
+        }).toList();
+        final jsonGPU = gpuImageFilters.where((element) {
+          final List<String> items = element["GPUAttributeFilterCategories"];
+          if (items.contains('GPUCategoryImage')) return true;
+          return false;
+        }).toList();
         List<FilterItem> _filters = [];
-        _filters.add(_filtersJsonGI);
-        _filters.add(_filtersJsonGPU);
+
+        for (int i = 0; i < jsonGPU.length; i++) {
+          final _filtersJsonGPU = FilterItem._fromJsonImage(jsonGPU[i]);
+          _filters.add(_filtersJsonGPU);
+        }
+        for (int i = 0; i < jsonGI.length; i++) {
+          final _filtersJsonGI = FilterItem._fromJsonVideo(jsonGI[i]);
+          _filters.add(_filtersJsonGI);
+        }
+
         return _filters;
       }
     } catch (error) {
@@ -79,18 +99,12 @@ class FilterFactory {
     }
     return [];
   }
-
-  Future<Map<String, dynamic>> _parseJsonFromAssets(String assetsPath) async {
-    return rootBundle
-        .loadString(assetsPath)
-        .then((jsonStr) => jsonDecode(jsonStr));
-  }
 }
 
 class FilterItem {
   final String name;
   final String displayName;
-  final String categories;
+  final List<String> categories;
   final bool isVideoSupported;
   final bool isImageSupported;
 
