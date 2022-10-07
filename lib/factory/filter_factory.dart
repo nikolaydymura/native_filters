@@ -55,20 +55,44 @@ class FilterFactory {
   Future<List<FilterItem>> get availableFilters async {
     try {
       if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final filters =
-            await _methodChannel.invokeListMethod<String>('availableFilters');
-        return filters
-                ?.where((e) => !_ciUnsupportedFilters.contains(e))
-                .map((e) => FilterItem._(e, true, true))
-                .toList() ??
-            [];
+        final jsonCI = ciFilters.where((element) {
+          final List<String> items = element["CIAttributeFilterCategories"];
+          if (items.contains('ClCategoryVideo') ||
+              items.contains('CICategoryStillImage')) return true;
+          return false;
+        }).toList();
+        List<FilterItem> _filters = [];
+
+        for (int i = 0; i < jsonCI.length; i++) {
+          final _filtersJsonCI = FilterItem._fromJsonImage(jsonCI[i]);
+          _filters.add(_filtersJsonCI);
+        }
+        return _filters;
       }
-      if (defaultTargetPlatform == TargetPlatform.android) {
-        return [
-          ..._glFilters.map((e) => FilterItem._(e, true, false)),
-          ..._gpuFilters.map((e) => FilterItem._(e, false, true)),
-          ..._gpuEffects.map((e) => FilterItem._(e, false, true))
-        ];
+      if (defaultTargetPlatform == TargetPlatform.android ||
+          defaultTargetPlatform == TargetPlatform.windows) {
+        final jsonGI = giFilters.where((element) {
+          final List<String> items = element["GlAttributeFilterCategories"];
+          if (items.contains('GlCategoryVideo')) return true;
+          return false;
+        }).toList();
+        final jsonGPU = gpuImageFilters.where((element) {
+          final List<String> items = element["GPUAttributeFilterCategories"];
+          if (items.contains('GPUCategoryImage')) return true;
+          return false;
+        }).toList();
+        List<FilterItem> _filters = [];
+
+        for (int i = 0; i < jsonGPU.length; i++) {
+          final _filtersJsonGPU = FilterItem._fromJsonImage(jsonGPU[i]);
+          _filters.add(_filtersJsonGPU);
+        }
+        for (int i = 0; i < jsonGI.length; i++) {
+          final _filtersJsonGI = FilterItem._fromJsonVideo(jsonGI[i]);
+          _filters.add(_filtersJsonGI);
+        }
+
+        return _filters;
       }
     } catch (error) {
       print(error);
@@ -79,8 +103,38 @@ class FilterFactory {
 
 class FilterItem {
   final String name;
+  final String displayName;
+  final List<String> categories;
   final bool isVideoSupported;
   final bool isImageSupported;
 
-  FilterItem._(this.name, this.isVideoSupported, this.isImageSupported);
+  FilterItem._(this.name, this.displayName, this.categories,
+      this.isVideoSupported, this.isImageSupported);
+
+  factory FilterItem._fromJsonVideo(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['GlAttributeFilterName'],
+        json['GlAttributeFilterDisplayName'],
+        json['GlAttributeFilterCategories'],
+        true,
+        false);
+  }
+
+  factory FilterItem._fromJsonImage(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['GPUAttributeFilterName'],
+        json['GPUAttributeFilterDisplayName'],
+        json['GPUAttributeFilterCategories'],
+        false,
+        true);
+  }
+
+  factory FilterItem._fromJsonCI(Map<String, dynamic> json) {
+    return FilterItem._(
+        json['CIAttributeFilterName'],
+        json['CIAttributeFilterDisplayName'],
+        json['CIAttributeFilterCategories'],
+        true,
+        true);
+  }
 }
