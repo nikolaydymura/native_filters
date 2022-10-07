@@ -186,6 +186,26 @@ class _GPUImageFilter extends Filter {
     if (method == null){
       return;
     }
+    if (value is File) {
+      return group._setValue(this, method, value.path);
+    }
     return group._setValue(this, method, value);
   }
+
+  @override
+  Future<void> setNSData(String key, Uint8List data) {
+    throw UnsupportedError('Not available in Android');
+  }
+
+  @override
+  Future<void> setNSDataAsset(String key, String name) {
+    throw UnsupportedError('Not available in Android');
+  }
+
+  @override
+  Future<void> setNSDataFile(String key, File path) {
+    throw UnsupportedError('Not available in Android');
+  }
+
+
 }

@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -45,11 +48,16 @@ class _FilterResultState extends State<FilterResultScreen> {
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
     if (widget.filter.name == 'CIColorCube') {
-      await widget.filter.setNumValue('inputCubeDimension', 64);
-      await widget.filter.setAttributeValue(
-        'inputCubeData',
-        'filters/filter_lut_3.png',
-      );
+      const size = 64;
+      await widget.filter.setNumValue('inputCubeDimension', size);
+
+      ByteData data = await rootBundle.load('filters/filter_lut_3.png');
+      Uint8List bytes = data.buffer.asUint8List();
+      img.Image? photo = img.decodeImage(bytes);
+      final bitmap = photo!.getBytes(format: img.Format.argb);
+      final lutData = lutPngToNSData(64, bitmap, photo.width, photo.height);
+
+      await widget.filter.setNSData('inputCubeData', lutData);
     } else if (widget.filter.name == 'GlLookUpTableFilter') {
       await widget.filter
           .setAttributeValue('inputCubeData', 'filters/lookup_sample.png');
