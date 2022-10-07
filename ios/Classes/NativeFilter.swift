@@ -40,6 +40,14 @@ extension CIImage {
             nil)
         
         guard let type = uti?.takeRetainedValue() else {
+            if pathExtension == "jpg" || pathExtension == "jpeg" {
+                if let file = output {
+                    try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    return nil
+                } else {
+                    return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                }
+            }
             return nil
         }
         
@@ -295,17 +303,20 @@ class NativeFilter: NSObject {
                 return result(nil)
             } else if attrClass == "NSData" {
                 guard let name = args[2] as? String else {
-                     return result(FlutterError.init())
+                    guard let data = args[2] as? FlutterStandardTypedData else {
+                        return result(FlutterError.init())
+                    }
+                    filters[index].setValue(data.data, forKey: key)
+                    return result(nil)
                 }
                 let asset = pluginRegistrar.lookupKey(forAsset: name)
 
-                guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
+                let path = Bundle.main.path(forResource: asset, ofType: nil) ?? name
+                
+                guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
                     return result(FlutterError.init())
                 }
-                guard let image = UIImage(contentsOfFile: path) else {
-                    return result(FlutterError.init())
-                }
-                let data = colorCubeFilterFromLUT(image: image, size: 64);
+                
                 filters[index].setValue(data, forKey: key)
                 return result(nil)
             }
