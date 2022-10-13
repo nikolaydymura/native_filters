@@ -1,428 +1,430 @@
-const List<Map<String, dynamic>> gpuImageFilters = [
+part of native_filters;
+
+const List<Map<String, dynamic>> _kGPUImageFilters = [
   {
-    "GPUAttributeFilterName": "GPUImage3x3ConvolutionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImage3x3ConvolutionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImage3x3ConvolutionFilter",
+    "AttributeFilterDisplayName": "GPUImage3x3ConvolutionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImage3x3TextureSamplingFilter",
-    "GPUAttributeFilterDisplayName": "GPUImage3x3TextureSamplingFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImage3x3TextureSamplingFilter",
+    "AttributeFilterDisplayName": "GPUImage3x3TextureSamplingFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageAddBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageAddBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageAddBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageAddBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageAlphaBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageAlphaBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageAlphaBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageAlphaBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageBilateralBlurFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageBilateralBlurFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageBilateralBlurFilter",
+    "AttributeFilterDisplayName": "GPUImageBilateralBlurFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageBoxBlurFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageBoxBlurFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageBoxBlurFilter",
+    "AttributeFilterDisplayName": "GPUImageBoxBlurFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageBrightnessFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageBrightnessFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageBrightnessFilter",
+    "AttributeFilterDisplayName": "GPUImageBrightnessFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageBulgeDistortionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageBulgeDistortionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageBulgeDistortionFilter",
+    "AttributeFilterDisplayName": "GPUImageBulgeDistortionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageCGAColorspaceFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageCGAColorspaceFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageCGAColorspaceFilter",
+    "AttributeFilterDisplayName": "GPUImageCGAColorspaceFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageChromaKeyBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageChromaKeyBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageChromaKeyBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageChromaKeyBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorBalanceFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorBalanceFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorBalanceFilter",
+    "AttributeFilterDisplayName": "GPUImageColorBalanceFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageColorBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorBurnBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorBurnBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorBurnBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageColorBurnBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorDodgeBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorDodgeBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorDodgeBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageColorDodgeBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorInvertFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorInvertFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorInvertFilter",
+    "AttributeFilterDisplayName": "GPUImageColorInvertFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageColorMatrixFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageColorMatrixFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageColorMatrixFilter",
+    "AttributeFilterDisplayName": "GPUImageColorMatrixFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageContrastFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageContrastFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageContrastFilter",
+    "AttributeFilterDisplayName": "GPUImageContrastFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageCrosshatchFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageCrosshatchFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageCrosshatchFilter",
+    "AttributeFilterDisplayName": "GPUImageCrosshatchFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDarkenBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageDarkenBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageDarkenBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageDarkenBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDifferenceBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageDifferenceBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageDifferenceBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageDifferenceBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDilationFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageDilationFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageDilationFilter",
+    "AttributeFilterDisplayName": "GPUImageDilationFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDirectionalSobelEdgeDetectionFilter",
-    "GPUAttributeFilterDisplayName":
+    "AttributeFilterName": "GPUImageDirectionalSobelEdgeDetectionFilter",
+    "AttributeFilterDisplayName":
         "GPUImageDirectionalSobelEdgeDetectionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDissolveBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageDissolveBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageDissolveBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageDissolveBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageDivideBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageDivideBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageDivideBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageDivideBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageEmbossFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageEmbossFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageEmbossFilter",
+    "AttributeFilterDisplayName": "GPUImageEmbossFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageExclusionBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageExclusionBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageExclusionBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageExclusionBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageExposureFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageExposureFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageExposureFilter",
+    "AttributeFilterDisplayName": "GPUImageExposureFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageFalseColorFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageFalseColorFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageFalseColorFilter",
+    "AttributeFilterDisplayName": "GPUImageFalseColorFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageGammaFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageGammaFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageGammaFilter",
+    "AttributeFilterDisplayName": "GPUImageGammaFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageGaussianBlurFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageGaussianBlurFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageGaussianBlurFilter",
+    "AttributeFilterDisplayName": "GPUImageGaussianBlurFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageGlassSphereFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageGlassSphereFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageGlassSphereFilter",
+    "AttributeFilterDisplayName": "GPUImageGlassSphereFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageGrayscaleFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageGrayscaleFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageGrayscaleFilter",
+    "AttributeFilterDisplayName": "GPUImageGrayscaleFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHalftoneFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHalftoneFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHalftoneFilter",
+    "AttributeFilterDisplayName": "GPUImageHalftoneFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHardLightBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHardLightBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHardLightBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageHardLightBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHazeFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHazeFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHazeFilter",
+    "AttributeFilterDisplayName": "GPUImageHazeFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHighlightShadowFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHighlightShadowFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHighlightShadowFilter",
+    "AttributeFilterDisplayName": "GPUImageHighlightShadowFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHueBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHueBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHueBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageHueBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageHueFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageHueFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageHueFilter",
+    "AttributeFilterDisplayName": "GPUImageHueFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageKuwaharaFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageKuwaharaFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageKuwaharaFilter",
+    "AttributeFilterDisplayName": "GPUImageKuwaharaFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLaplacianFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLaplacianFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLaplacianFilter",
+    "AttributeFilterDisplayName": "GPUImageLaplacianFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLevelsFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLevelsFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLevelsFilter",
+    "AttributeFilterDisplayName": "GPUImageLevelsFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLightenBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLightenBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLightenBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageLightenBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLinearBurnBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLinearBurnBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLinearBurnBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageLinearBurnBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLookupFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLookupFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLookupFilter",
+    "AttributeFilterDisplayName": "GPUImageLookupFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLuminanceFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLuminanceFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLuminanceFilter",
+    "AttributeFilterDisplayName": "GPUImageLuminanceFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLuminanceThresholdFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLuminanceThresholdFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLuminanceThresholdFilter",
+    "AttributeFilterDisplayName": "GPUImageLuminanceThresholdFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageLuminosityBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageLuminosityBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageLuminosityBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageLuminosityBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageMixBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageMixBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageMixBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageMixBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageMonochromeFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageMonochromeFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageMonochromeFilter",
+    "AttributeFilterDisplayName": "GPUImageMonochromeFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageMultiplyBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageMultiplyBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageMultiplyBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageMultiplyBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageNonMaximumSuppressionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageNonMaximumSuppressionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageNonMaximumSuppressionFilter",
+    "AttributeFilterDisplayName": "GPUImageNonMaximumSuppressionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageNormalBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageNormalBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageNormalBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageNormalBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageOpacityFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageOpacityFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageOpacityFilter",
+    "AttributeFilterDisplayName": "GPUImageOpacityFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageOverlayBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageOverlayBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageOverlayBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageOverlayBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImagePixelationFilter",
-    "GPUAttributeFilterDisplayName": "GPUImagePixelationFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImagePixelationFilter",
+    "AttributeFilterDisplayName": "GPUImagePixelationFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImagePosterizeFilter",
-    "GPUAttributeFilterDisplayName": "GPUImagePosterizeFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImagePosterizeFilter",
+    "AttributeFilterDisplayName": "GPUImagePosterizeFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageRGBDilationFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageRGBDilationFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageRGBDilationFilter",
+    "AttributeFilterDisplayName": "GPUImageRGBDilationFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageRGBFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageRGBFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageRGBFilter",
+    "AttributeFilterDisplayName": "GPUImageRGBFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSaturationBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSaturationBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSaturationBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageSaturationBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSaturationFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSaturationFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSaturationFilter",
+    "AttributeFilterDisplayName": "GPUImageSaturationFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageScreenBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageScreenBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageScreenBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageScreenBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSepiaToneFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSepiaToneFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSepiaToneFilter",
+    "AttributeFilterDisplayName": "GPUImageSepiaToneFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSharpenFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSharpenFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSharpenFilter",
+    "AttributeFilterDisplayName": "GPUImageSharpenFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSketchFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSketchFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSketchFilter",
+    "AttributeFilterDisplayName": "GPUImageSketchFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSmoothToonFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSmoothToonFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSmoothToonFilter",
+    "AttributeFilterDisplayName": "GPUImageSmoothToonFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSobelEdgeDetectionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSobelEdgeDetectionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSobelEdgeDetectionFilter",
+    "AttributeFilterDisplayName": "GPUImageSobelEdgeDetectionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSobelThresholdFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSobelThresholdFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSobelThresholdFilter",
+    "AttributeFilterDisplayName": "GPUImageSobelThresholdFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSoftLightBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSoftLightBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSoftLightBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageSoftLightBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSolarizeFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSolarizeFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSolarizeFilter",
+    "AttributeFilterDisplayName": "GPUImageSolarizeFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSourceOverBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSourceOverBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSourceOverBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageSourceOverBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSphereRefractionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSphereRefractionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSphereRefractionFilter",
+    "AttributeFilterDisplayName": "GPUImageSphereRefractionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSubtractBlendFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSubtractBlendFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSubtractBlendFilter",
+    "AttributeFilterDisplayName": "GPUImageSubtractBlendFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageSwirlFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageSwirlFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageSwirlFilter",
+    "AttributeFilterDisplayName": "GPUImageSwirlFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageThresholdEdgeDetectionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageThresholdEdgeDetectionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageThresholdEdgeDetectionFilter",
+    "AttributeFilterDisplayName": "GPUImageThresholdEdgeDetectionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageToneCurveFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageToneCurveFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageToneCurveFilter",
+    "AttributeFilterDisplayName": "GPUImageToneCurveFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageToonFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageToonFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageToonFilter",
+    "AttributeFilterDisplayName": "GPUImageToonFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageTransformFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageTransformFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageTransformFilter",
+    "AttributeFilterDisplayName": "GPUImageTransformFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageTwoInputFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageTwoInputFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageTwoInputFilter",
+    "AttributeFilterDisplayName": "GPUImageTwoInputFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageTwoPassFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageTwoPassFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageTwoPassFilter",
+    "AttributeFilterDisplayName": "GPUImageTwoPassFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageTwoPassTextureSamplingFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageTwoPassTextureSamplingFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageTwoPassTextureSamplingFilter",
+    "AttributeFilterDisplayName": "GPUImageTwoPassTextureSamplingFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageVibranceFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageVibranceFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageVibranceFilter",
+    "AttributeFilterDisplayName": "GPUImageVibranceFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageVignetteFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageVignetteFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageVignetteFilter",
+    "AttributeFilterDisplayName": "GPUImageVignetteFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageWeakPixelInclusionFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageWeakPixelInclusionFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageWeakPixelInclusionFilter",
+    "AttributeFilterDisplayName": "GPUImageWeakPixelInclusionFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageWhiteBalanceFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageWhiteBalanceFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageWhiteBalanceFilter",
+    "AttributeFilterDisplayName": "GPUImageWhiteBalanceFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   },
   {
-    "GPUAttributeFilterName": "GPUImageZoomBlurFilter",
-    "GPUAttributeFilterDisplayName": "GPUImageZoomBlurFilter",
-    "GPUAttributeFilterCategories": ['GPUCategoryImage']
+    "AttributeFilterName": "GPUImageZoomBlurFilter",
+    "AttributeFilterDisplayName": "GPUImageZoomBlurFilter",
+    "AttributeFilterCategories": ['CategoryStillImage']
   }
 ];

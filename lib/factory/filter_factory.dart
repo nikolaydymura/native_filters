@@ -52,89 +52,82 @@ class FilterFactory {
     }
   }
 
-  Future<List<FilterItem>> get availableFilters async {
-    try {
-      if (defaultTargetPlatform == TargetPlatform.iOS) {
-        final jsonCI = ciFilters.where((element) {
-          final List<String> items = element["CIAttributeFilterCategories"];
-          if (items.contains('ClCategoryVideo') ||
-              items.contains('CICategoryStillImage')) return true;
-          return false;
-        }).toList();
-        List<FilterItem> _filters = [];
+  static Iterable<FilterItem> get availableFilters {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      return _kCoreImageFilters.where((element) {
+        final List<String> items = element["AttributeFilterCategories"];
+        return items.contains('CategoryVideo') ||
+            items.contains('CategoryStillImage');
+      }).map(FilterItem._fromJson);
+    }
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      final videos = _kGPUVideoFilters.where((element) {
+        final List<String> items = element["AttributeFilterCategories"];
+        return items.contains('CategoryVideo');
+      }).map(FilterItem._fromJson);
 
-        for (int i = 0; i < jsonCI.length; i++) {
-          final _filtersJsonCI = FilterItem._fromJsonImage(jsonCI[i]);
-          _filters.add(_filtersJsonCI);
-        }
-        return _filters;
-      }
-      if (defaultTargetPlatform == TargetPlatform.android ||
-          defaultTargetPlatform == TargetPlatform.windows) {
-        final jsonGI = giFilters.where((element) {
-          final List<String> items = element["GlAttributeFilterCategories"];
-          if (items.contains('GlCategoryVideo')) return true;
-          return false;
-        }).toList();
-        final jsonGPU = gpuImageFilters.where((element) {
-          final List<String> items = element["GPUAttributeFilterCategories"];
-          if (items.contains('GPUCategoryImage')) return true;
-          return false;
-        }).toList();
-        List<FilterItem> _filters = [];
+      final images = _kGPUImageFilters.where((element) {
+        final List<String> items = element["AttributeFilterCategories"];
+        return items.contains('CategoryStillImage');
+      }).map(FilterItem._fromJson);
 
-        for (int i = 0; i < jsonGPU.length; i++) {
-          final _filtersJsonGPU = FilterItem._fromJsonImage(jsonGPU[i]);
-          _filters.add(_filtersJsonGPU);
-        }
-        for (int i = 0; i < jsonGI.length; i++) {
-          final _filtersJsonGI = FilterItem._fromJsonVideo(jsonGI[i]);
-          _filters.add(_filtersJsonGI);
-        }
-
-        return _filters;
-      }
-    } catch (error) {
-      print(error);
+      return CombinedIterableView([videos, images]);
     }
     return [];
+  }
+
+  static Iterable<FilterInput>? filterAttributes({required String filterName}) {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      final filter = _kCoreImageFilters
+          .firstWhereOrNull((e) => e['AttributeFilterName'] == filterName);
+      return filter?.entries
+          .where((e) => e.key.startsWith('input') && e.key != 'inputImage')
+          .map(FilterInput._fromEntry);
+    }
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      final filter = [..._kGPUImageFilters, ..._kGPUVideoFilters]
+          .firstWhereOrNull((e) => e['AttributeFilterName'] == filterName);
+      return filter?.entries
+          .where((e) => e.key.startsWith('input') && e.key != 'inputImage')
+          .map(FilterInput._fromEntry);
+    }
+    return null;
   }
 }
 
 class FilterItem {
   final String name;
   final String displayName;
-  final List<String> categories;
-  final bool isVideoSupported;
-  final bool isImageSupported;
+  final Set<String> categories;
+  final Set<String> inputs;
 
-  FilterItem._(this.name, this.displayName, this.categories,
-      this.isVideoSupported, this.isImageSupported);
+  bool get isVideoSupported => categories.contains('CategoryVideo');
 
-  factory FilterItem._fromJsonVideo(Map<String, dynamic> json) {
+  bool get isImageSupported => categories.contains('CategoryStillImage');
+
+  bool get isConfigurable => inputs.isNotEmpty;
+
+  FilterItem._(this.name, this.displayName, this.categories, this.inputs);
+
+  factory FilterItem._fromJson(Map<String, dynamic> json) {
     return FilterItem._(
-        json['GlAttributeFilterName'],
-        json['GlAttributeFilterDisplayName'],
-        json['GlAttributeFilterCategories'],
-        true,
-        false);
+        json['AttributeFilterName'],
+        json['AttributeFilterDisplayName'],
+        json['AttributeFilterCategories'].toSet(),
+        json.keys
+            .where((e) => e.startsWith('input'))
+            .whereNot((e) => e == 'inputImage')
+            .toSet());
   }
+}
 
-  factory FilterItem._fromJsonImage(Map<String, dynamic> json) {
-    return FilterItem._(
-        json['GPUAttributeFilterName'],
-        json['GPUAttributeFilterDisplayName'],
-        json['GPUAttributeFilterCategories'],
-        false,
-        true);
-  }
+class FilterInput {
+  final String name;
+  final Map<String, dynamic> data;
 
-  factory FilterItem._fromJsonCI(Map<String, dynamic> json) {
-    return FilterItem._(
-        json['CIAttributeFilterName'],
-        json['CIAttributeFilterDisplayName'],
-        json['CIAttributeFilterCategories'],
-        true,
-        true);
+  FilterInput._(this.name, this.data);
+
+  factory FilterInput._fromEntry(MapEntry<String, dynamic> json) {
+    return FilterInput._(json.key, Map<String, dynamic>.from(json.value));
   }
 }

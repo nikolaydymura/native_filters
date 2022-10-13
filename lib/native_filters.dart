@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -13,11 +14,15 @@ part 'core_image/filter.dart';
 
 part 'core_image/filter_group.dart';
 
-part 'core_image/metadata.dart';
-
 part 'factory/filter_factory.dart';
 
 part 'factory/filterable.dart';
+
+part 'factory/filters/ci_filters.dart';
+
+part 'factory/filters/gl_filters.dart';
+
+part 'factory/filters/gpu_image_filters.dart';
 
 part 'gpu_image/filter.dart';
 
@@ -36,8 +41,8 @@ Uint8List lutPngToNSData(int size, Uint8List bitmap, int width, int height) {
 
   final amount = size * size * size * 4 * floatSize;
   List<double> cubeData = List.filled(amount, 0);
-  final rowCount = width ~/ 64;
-  final columnCount = height ~/ 64;
+  final rowCount = width ~/ size;
+  final columnCount = height ~/ size;
   var z = 0;
   var bitmapOffset = 0;
   for (int i = 0; i < rowCount; i++) {
@@ -45,10 +50,10 @@ Uint8List lutPngToNSData(int size, Uint8List bitmap, int width, int height) {
       var tmp = z;
       for (int j = 0; j < columnCount; j++) {
         for (int x = 0; x < size; x++) {
-          final alpha = bitmap[bitmapOffset] / 255.0;
-          final red = bitmap[bitmapOffset + 1] / 255.0;
-          final green = bitmap[bitmapOffset + 2] / 255.0;
-          final blue = bitmap[bitmapOffset + 3] / 255.0;
+          final alpha = bitmap[bitmapOffset].toDouble() / 255.0;
+          final red = bitmap[bitmapOffset + 1].toDouble() / 255.0;
+          final green = bitmap[bitmapOffset + 2].toDouble() / 255.0;
+          final blue = bitmap[bitmapOffset + 3].toDouble() / 255.0;
 
           final dataOffset = (z * size * size + y * size + x) * 4;
 
@@ -62,7 +67,6 @@ Uint8List lutPngToNSData(int size, Uint8List bitmap, int width, int height) {
       }
       z = tmp;
     }
-
     z += columnCount;
   }
 

@@ -1,4 +1,6 @@
-const List<Map<String, dynamic>> ciFilters = [
+part of native_filters;
+
+const List<Map<String, dynamic>> _kCoreImageFilters = [
   {
     "inputTime": {
       "CIAttributeClass": "NSNumber",
@@ -35,8 +37,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAccordionFoldTransition",
-    "CIAttributeFilterDisplayName": "Accordion Fold Transition",
+    "AttributeFilterName": "CIAccordionFoldTransition",
+    "AttributeFilterDisplayName": "Accordion Fold Transition",
     "inputBottomHeight": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -44,10 +46,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputFoldShadowAmount": {
@@ -62,17 +64,17 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Addition",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Addition",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAdditionCompositing",
+    "AttributeFilterName": "CIAdditionCompositing",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -88,11 +90,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Affine Clamp",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Affine Clamp",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -102,7 +104,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAffineClamp",
+    "AttributeFilterName": "CIAffineClamp",
     "inputTransform": {
       "CIAttributeClass": "NSValue",
       "CIAttributeDefault": "CGAffineTransform: {{1, 0, 0, 1}, {0, 0}}",
@@ -112,11 +114,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Affine Tile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Affine Tile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -126,7 +128,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAffineTile",
+    "AttributeFilterName": "CIAffineTile",
     "inputTransform": {
       "CIAttributeClass": "NSValue",
       "CIAttributeDefault": "CGAffineTransform: {{1, 0, 0, 1}, {0, 0}}",
@@ -136,11 +138,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Affine Transform",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Affine Transform",
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -150,7 +152,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAffineTransform",
+    "AttributeFilterName": "CIAffineTransform",
     "inputTransform": {
       "CIAttributeClass": "NSValue",
       "CIAttributeDefault": "CGAffineTransform: {{1, 0, 0, 1}, {0, 0}}",
@@ -161,14 +163,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Average",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Area Average",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAreaAverage",
+    "AttributeFilterName": "CIAreaAverage",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -186,7 +188,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Histogram",
+    "AttributeFilterDisplayName": "Area Histogram",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -194,7 +196,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAreaHistogram",
+    "AttributeFilterName": "CIAreaHistogram",
     "inputScale": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -218,10 +220,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 10,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputExtent": {
@@ -234,14 +236,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Maximum",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Area Maximum",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAreaMaximum",
+    "AttributeFilterName": "CIAreaMaximum",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -259,14 +261,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Maximum Alpha",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Area Maximum Alpha",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAreaMaximumAlpha",
+    "AttributeFilterName": "CIAreaMaximumAlpha",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -284,7 +286,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Minimum",
+    "AttributeFilterDisplayName": "Area Minimum",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -292,13 +294,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAreaMinimum",
+    "AttributeFilterName": "CIAreaMinimum",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 640, 80],
@@ -309,7 +311,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Minimum Alpha",
+    "AttributeFilterDisplayName": "Area Minimum Alpha",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -317,36 +319,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAreaMinimumAlpha",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIAreaMinimumAlpha",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputExtent": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [0, 0, 640, 80],
-      "CIAttributeDescription":
-          "A rectangle that specifies the subregion of the image that you want to process.",
-      "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
-    }
-  },
-  {
-    "CIAttributeFilterDisplayName": "Area Min and Max",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIAreaMinMax",
-    "CIAttributeFilterCategories": [
-      "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputExtent": {
@@ -359,7 +336,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Area Min and Max Red",
+    "AttributeFilterDisplayName": "Area Min and Max",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -367,11 +344,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIAreaMinMaxRed",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIAreaMinMax",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputExtent": {
@@ -384,18 +361,43 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Attributed Text Image Generator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Area Min and Max Red",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIAreaMinMaxRed",
+    "AttributeFilterCategories": [
+      "CICategoryReduction",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputExtent": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [0, 0, 640, 80],
+      "CIAttributeDescription":
+          "A rectangle that specifies the subregion of the image that you want to process.",
+      "CIAttributeDisplayName": "Extent",
+      "CIAttributeType": "CIAttributeTypeRectangle"
+    }
+  },
+  {
+    "AttributeFilterDisplayName": "Attributed Text Image Generator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputText": {
       "CIAttributeClass": "NSAttributedString",
       "CIAttributeDisplayName": "Text"
     },
-    "CIAttributeFilterName": "CIAttributedTextImageGenerator",
+    "AttributeFilterName": "CIAttributedTextImageGenerator",
     "inputScaleFactor": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -417,7 +419,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMax": 1,
       "CIAttributeSliderMin": 0
     },
-    "CIAttributeFilterDisplayName": "Aztec Code Generator",
+    "AttributeFilterDisplayName": "Aztec Code Generator",
     "inputCorrectionLevel": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 23,
@@ -428,12 +430,12 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMax": 95,
       "CIAttributeSliderMin": 5
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIAztecCodeGenerator",
+    "AttributeFilterName": "CIAztecCodeGenerator",
     "inputLayers": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDescription":
@@ -451,20 +453,20 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Barcode Generator",
+    "AttributeFilterDisplayName": "Barcode Generator",
     "inputBarcodeDescriptor": {
       "CIAttributeClass": "CIBarcodeDescriptor",
       "CIAttributeDescription":
           "The CIBarcodeDescription object to generate an image for.",
       "CIAttributeDisplayName": "Barcode Descriptor"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBarcodeGenerator"
+    "AttributeFilterName": "CIBarcodeGenerator"
   },
   {
     "inputTime": {
@@ -513,12 +515,12 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 2,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIBarsSwipeTransition",
-    "CIAttributeFilterDisplayName": "Bars Swipe Transition",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIBarsSwipeTransition",
+    "AttributeFilterDisplayName": "Bars Swipe Transition",
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBarOffset": {
@@ -545,7 +547,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterDisplayName": "Bicubic Scale Transform",
+    "AttributeFilterDisplayName": "Bicubic Scale Transform",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -553,10 +555,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
@@ -584,7 +586,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIBicubicScaleTransform",
+    "AttributeFilterName": "CIBicubicScaleTransform",
     "inputAspectRatio": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -605,7 +607,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Mask Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Blend With Alpha Mask",
+    "AttributeFilterDisplayName": "Blend With Alpha Mask",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -613,13 +615,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBlendWithAlphaMask",
+    "AttributeFilterName": "CIBlendWithAlphaMask",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -628,7 +630,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Blend With Blue Mask",
+    "AttributeFilterDisplayName": "Blend With Blue Mask",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -636,10 +638,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputMaskImage": {
@@ -648,7 +650,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Mask Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIBlendWithBlueMask",
+    "AttributeFilterName": "CIBlendWithBlueMask",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -664,7 +666,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Mask Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Blend With Mask",
+    "AttributeFilterDisplayName": "Blend With Mask",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -678,13 +680,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBlendWithMask"
+    "AttributeFilterName": "CIBlendWithMask"
   },
   {
     "inputMaskImage": {
@@ -693,7 +695,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Mask Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Blend With Red Mask",
+    "AttributeFilterDisplayName": "Blend With Red Mask",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -707,16 +709,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBlendWithRedMask"
+    "AttributeFilterName": "CIBlendWithRedMask"
   },
   {
-    "CIAttributeFilterDisplayName": "Bloom",
+    "AttributeFilterDisplayName": "Bloom",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -724,13 +726,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBloom",
+    "AttributeFilterName": "CIBloom",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -757,7 +759,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Bokeh Blur",
+    "AttributeFilterDisplayName": "Bokeh Blur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -765,13 +767,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBokehBlur",
+    "AttributeFilterName": "CIBokehBlur",
     "inputSoftness": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -820,7 +822,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Box Blur",
+    "AttributeFilterDisplayName": "Box Blur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -828,13 +830,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIBoxBlur",
+    "AttributeFilterName": "CIBoxBlur",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -848,7 +850,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Bump Distortion",
+    "AttributeFilterDisplayName": "Bump Distortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -856,10 +858,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -873,7 +875,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -1,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIBumpDistortion",
+    "AttributeFilterName": "CIBumpDistortion",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 300,
@@ -895,7 +897,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Bump Distortion Linear",
+    "AttributeFilterDisplayName": "Bump Distortion Linear",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -914,10 +916,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -931,7 +933,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIBumpDistortionLinear",
+    "AttributeFilterName": "CIBumpDistortionLinear",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 300,
@@ -954,7 +956,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Lens Correction for AVC",
+    "AttributeFilterDisplayName": "Lens Correction for AVC",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -962,11 +964,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CICameraCalibrationLensCorrection",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CICameraCalibrationLensCorrection",
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputUseInverseLookUpTable": {
@@ -985,7 +987,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Checkerboard",
+    "AttributeFilterDisplayName": "Checkerboard",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -994,10 +996,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputColor0": {
@@ -1006,7 +1008,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "A color to use for the first set of squares.",
       "CIAttributeDisplayName": "Color 1"
     },
-    "CIAttributeFilterName": "CICheckerboardGenerator",
+    "AttributeFilterName": "CICheckerboardGenerator",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 80,
@@ -1036,7 +1038,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Circle Splash Distortion",
+    "AttributeFilterDisplayName": "Circle Splash Distortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1044,13 +1046,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CICircleSplashDistortion",
+    "AttributeFilterName": "CICircleSplashDistortion",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 150,
@@ -1072,11 +1074,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Circular Screen",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Circular Screen",
+    "AttributeFilterCategories": [
       "CICategoryHalftoneEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -1086,7 +1088,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CICircularScreen",
+    "AttributeFilterName": "CICircularScreen",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 6,
@@ -1120,7 +1122,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Circular Wrap Distortion",
+    "AttributeFilterDisplayName": "Circular Wrap Distortion",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -1131,10 +1133,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -1144,7 +1146,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CICircularWrap",
+    "AttributeFilterName": "CICircularWrap",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 150,
@@ -1166,7 +1168,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Clamp",
+    "AttributeFilterDisplayName": "Clamp",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1174,11 +1176,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIClamp",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIClamp",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputExtent": {
@@ -1258,8 +1260,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeType": "CIAttributeTypeScalar",
       "CIUIParameterSet": ":CIUISetIntermediate"
     },
-    "CIAttributeFilterName": "CICMYKHalftone",
-    "CIAttributeFilterDisplayName": "CMYK Halftone",
+    "AttributeFilterName": "CICMYKHalftone",
+    "AttributeFilterDisplayName": "CMYK Halftone",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -1268,10 +1270,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryHalftoneEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
@@ -1288,13 +1290,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterDisplayName": "Code 128 Barcode Generator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Code 128 Barcode Generator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CICode128BarcodeGenerator",
+    "AttributeFilterName": "CICode128BarcodeGenerator",
     "inputMessage": {
       "CIAttributeClass": "NSData",
       "CIAttributeDescription": "The message to encode in the Code 128 Barcode",
@@ -1319,7 +1321,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "The second input image for differencing.",
       "CIAttributeDisplayName": "Image2"
     },
-    "CIAttributeFilterDisplayName": "Color Absolute Difference",
+    "AttributeFilterDisplayName": "Color Absolute Difference",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1327,27 +1329,27 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorAbsoluteDifference",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorAbsoluteDifference",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Color Blend Mode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Color Blend Mode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorBlendMode",
+    "AttributeFilterName": "CIColorBlendMode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1363,7 +1365,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Burn Blend Mode",
+    "AttributeFilterDisplayName": "Color Burn Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1371,11 +1373,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorBurnBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorBurnBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -1388,7 +1390,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Clamp",
+    "AttributeFilterDisplayName": "Color Clamp",
     "inputMaxComponents": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [1, 1, 1, 1],
@@ -1402,13 +1404,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorClamp",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorClamp",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputMinComponents": {
@@ -1431,7 +1433,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -1,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterDisplayName": "Color Controls",
+    "AttributeFilterDisplayName": "Color Controls",
     "inputSaturation": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -1444,15 +1446,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorControls",
+    "AttributeFilterName": "CIColorControls",
     "inputContrast": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -1481,16 +1483,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Red Coefficients",
       "CIAttributeIdentity": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "Color Cross Polynomial",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Color Cross Polynomial",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorCrossPolynomial",
+    "AttributeFilterName": "CIColorCrossPolynomial",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1523,7 +1525,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 2,
       "CIAttributeType": "CIAttributeTypeCount"
     },
-    "CIAttributeFilterDisplayName": "Color Cube",
+    "AttributeFilterDisplayName": "Color Cube",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1531,7 +1533,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorCube",
+    "AttributeFilterName": "CIColorCube",
     "inputCubeData": {
       "CIAttributeClass": "NSData",
       "CIAttributeDefault": {
@@ -1546,12 +1548,12 @@ const List<Map<String, dynamic>> ciFilters = [
         "bytes": "0x00000000 00000000 00000000 0000803f ... 0000803f 0000803f"
       }
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
@@ -1585,8 +1587,8 @@ const List<Map<String, dynamic>> ciFilters = [
         "bytes": "0x00000000 00000000 00000000 0000803f ... 0000803f 0000803f"
       }
     },
-    "CIAttributeFilterName": "CIColorCubesMixedWithMask",
-    "CIAttributeFilterDisplayName": "Color Cubes Mixed With Mask",
+    "AttributeFilterName": "CIColorCubesMixedWithMask",
+    "AttributeFilterDisplayName": "Color Cubes Mixed With Mask",
     "inputCube1Data": {
       "CIAttributeClass": "NSData",
       "CIAttributeDefault": {
@@ -1605,12 +1607,12 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeClass": "NSObject",
       "CIAttributeDisplayName": "Color Space"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -1631,7 +1633,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 2,
       "CIAttributeType": "CIAttributeTypeCount"
     },
-    "CIAttributeFilterDisplayName": "Color Cube with ColorSpace",
+    "AttributeFilterDisplayName": "Color Cube with ColorSpace",
     "inputCubeData": {
       "CIAttributeClass": "NSData",
       "CIAttributeDefault": {
@@ -1650,7 +1652,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeClass": "NSObject",
       "CIAttributeDisplayName": "Color Space"
     },
-    "CIAttributeFilterName": "CIColorCubeWithColorSpace",
+    "AttributeFilterName": "CIColorCubeWithColorSpace",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1658,17 +1660,17 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Color Curves",
+    "AttributeFilterDisplayName": "Color Curves",
     "inputColorSpace": {
       "CIAttributeClass": "NSObject",
       "CIAttributeDisplayName": "Color Space"
@@ -1678,13 +1680,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [0, 1],
       "CIAttributeDisplayName": "Curves Domain"
     },
-    "CIAttributeFilterName": "CIColorCurves",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorCurves",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -1704,7 +1706,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Dodge Blend Mode",
+    "AttributeFilterDisplayName": "Color Dodge Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1712,15 +1714,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorDodgeBlendMode",
+    "AttributeFilterName": "CIColorDodgeBlendMode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -1729,7 +1731,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Invert",
+    "AttributeFilterDisplayName": "Color Invert",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1737,18 +1739,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorInvert"
+    "AttributeFilterName": "CIColorInvert"
   },
   {
-    "CIAttributeFilterDisplayName": "Color Map",
+    "AttributeFilterDisplayName": "Color Map",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1756,15 +1758,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorMap",
+    "AttributeFilterName": "CIColorMap",
     "inputGradientImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1798,8 +1800,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Red Vector",
       "CIAttributeIdentity": [1, 0, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "Color Matrix",
-    "CIAttributeFilterName": "CIColorMatrix",
+    "AttributeFilterDisplayName": "Color Matrix",
+    "AttributeFilterName": "CIColorMatrix",
     "inputAVector": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 0, 1],
@@ -1808,10 +1810,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Alpha Vector",
       "CIAttributeIdentity": [0, 0, 0, 1]
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -1833,7 +1835,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Monochrome",
+    "AttributeFilterDisplayName": "Color Monochrome",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1841,13 +1843,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorMonochrome",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorMonochrome",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputColor": {
@@ -1879,7 +1881,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Red Coefficients",
       "CIAttributeIdentity": [0, 1, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "Color Polynomial",
+    "AttributeFilterDisplayName": "Color Polynomial",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1887,13 +1889,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorPolynomial",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorPolynomial",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputGreenCoefficients": {
@@ -1919,7 +1921,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Posterize",
+    "AttributeFilterDisplayName": "Color Posterize",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1927,15 +1929,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColorPosterize",
+    "AttributeFilterName": "CIColorPosterize",
     "inputLevels": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 6,
@@ -1950,7 +1952,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Threshold",
+    "AttributeFilterDisplayName": "Color Threshold",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1958,13 +1960,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorThreshold",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorThreshold",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputThreshold": {
@@ -1977,7 +1979,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Color Threshold Otsu",
+    "AttributeFilterDisplayName": "Color Threshold Otsu",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -1985,18 +1987,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIColorThresholdOtsu",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIColorThresholdOtsu",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Column Average",
+    "AttributeFilterDisplayName": "Column Average",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2004,13 +2006,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIColumnAverage",
+    "AttributeFilterName": "CIColumnAverage",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 640, 80],
@@ -2021,7 +2023,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Comic Effect",
+    "AttributeFilterDisplayName": "Comic Effect",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2029,23 +2031,23 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIComicEffect",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIComicEffect",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Constant Color",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Constant Color",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIConstantColorGenerator",
+    "AttributeFilterName": "CIConstantColorGenerator",
     "inputColor": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x60000113f870 (1 0 0 1) devicergb>",
@@ -2061,7 +2063,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Weights",
       "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "3 by 3 Convolution",
+    "AttributeFilterDisplayName": "3 by 3 Convolution",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2069,11 +2071,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIConvolution3X3",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIConvolution3X3",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBias": {
@@ -2142,7 +2144,7 @@ const List<Map<String, dynamic>> ciFilters = [
         0
       ]
     },
-    "CIAttributeFilterDisplayName": "5 by 5 Convolution",
+    "AttributeFilterDisplayName": "5 by 5 Convolution",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2150,308 +2152,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIConvolution5X5",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIConvolution5X5",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputBias": {
-      "CIAttributeClass": "NSNumber",
-      "CIAttributeDefault": 0,
-      "CIAttributeDisplayName": "Bias",
-      "CIAttributeIdentity": 0
-    }
-  },
-  {
-    "inputWeights": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "CIAttributeDisplayName": "Weights",
-      "CIAttributeIdentity": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "CIAttributeFilterDisplayName": "7 by 7 Convolution",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIConvolution7X7",
-    "CIAttributeFilterCategories": [
-      "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputBias": {
-      "CIAttributeClass": "NSNumber",
-      "CIAttributeDefault": 0,
-      "CIAttributeDisplayName": "Bias",
-      "CIAttributeIdentity": 0
-    }
-  },
-  {
-    "inputWeights": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
-      "CIAttributeDisplayName": "Weights",
-      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
-    },
-    "CIAttributeFilterDisplayName": "Horizontal 9 Convolution",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIConvolution9Horizontal",
-    "CIAttributeFilterCategories": [
-      "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputBias": {
-      "CIAttributeClass": "NSNumber",
-      "CIAttributeDefault": 0,
-      "CIAttributeDisplayName": "Bias",
-      "CIAttributeIdentity": 0
-    }
-  },
-  {
-    "inputWeights": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
-      "CIAttributeDisplayName": "Weights",
-      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
-    },
-    "CIAttributeFilterDisplayName": "Vertical 9 Convolution",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIConvolution9Vertical",
-    "CIAttributeFilterCategories": [
-      "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputBias": {
-      "CIAttributeClass": "NSNumber",
-      "CIAttributeDefault": 0,
-      "CIAttributeDisplayName": "Bias",
-      "CIAttributeIdentity": 0
-    }
-  },
-  {
-    "inputWeights": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
-      "CIAttributeDisplayName": "Weights",
-      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
-    },
-    "CIAttributeFilterDisplayName": "3 by 3 RGB Convolution",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIConvolutionRGB3X3",
-    "CIAttributeFilterCategories": [
-      "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryBuiltIn"
-    ],
-    "inputBias": {
-      "CIAttributeClass": "NSNumber",
-      "CIAttributeDefault": 0,
-      "CIAttributeDisplayName": "Bias",
-      "CIAttributeIdentity": 0
-    }
-  },
-  {
-    "inputWeights": {
-      "CIAttributeClass": "CIVector",
-      "CIAttributeDefault": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "CIAttributeDisplayName": "Weights",
-      "CIAttributeIdentity": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "CIAttributeFilterDisplayName": "5 by 5 RGB Convolution",
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CIConvolutionRGB5X5",
-    "CIAttributeFilterCategories": [
-      "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBias": {
@@ -2568,7 +2273,7 @@ const List<Map<String, dynamic>> ciFilters = [
         0
       ]
     },
-    "CIAttributeFilterDisplayName": "7 by 7 RGB Convolution",
+    "AttributeFilterDisplayName": "7 by 7 Convolution",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2576,11 +2281,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIConvolutionRGB7X7",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIConvolution7X7",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBias": {
@@ -2597,7 +2302,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Weights",
       "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "Horizontal 9 RGB Convolution",
+    "AttributeFilterDisplayName": "Horizontal 9 Convolution",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2605,11 +2310,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIConvolutionRGB9Horizontal",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIConvolution9Horizontal",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBias": {
@@ -2626,7 +2331,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Weights",
       "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
     },
-    "CIAttributeFilterDisplayName": "Vertical 9 RGB Convolution",
+    "AttributeFilterDisplayName": "Vertical 9 Convolution",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2634,11 +2339,308 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIConvolutionRGB9Vertical",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIConvolution9Vertical",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputBias": {
+      "CIAttributeClass": "NSNumber",
+      "CIAttributeDefault": 0,
+      "CIAttributeDisplayName": "Bias",
+      "CIAttributeIdentity": 0
+    }
+  },
+  {
+    "inputWeights": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
+      "CIAttributeDisplayName": "Weights",
+      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
+    },
+    "AttributeFilterDisplayName": "3 by 3 RGB Convolution",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIConvolutionRGB3X3",
+    "AttributeFilterCategories": [
+      "CICategoryStylize",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputBias": {
+      "CIAttributeClass": "NSNumber",
+      "CIAttributeDefault": 0,
+      "CIAttributeDisplayName": "Bias",
+      "CIAttributeIdentity": 0
+    }
+  },
+  {
+    "inputWeights": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "CIAttributeDisplayName": "Weights",
+      "CIAttributeIdentity": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "AttributeFilterDisplayName": "5 by 5 RGB Convolution",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIConvolutionRGB5X5",
+    "AttributeFilterCategories": [
+      "CICategoryStylize",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputBias": {
+      "CIAttributeClass": "NSNumber",
+      "CIAttributeDefault": 0,
+      "CIAttributeDisplayName": "Bias",
+      "CIAttributeIdentity": 0
+    }
+  },
+  {
+    "inputWeights": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "CIAttributeDisplayName": "Weights",
+      "CIAttributeIdentity": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "AttributeFilterDisplayName": "7 by 7 RGB Convolution",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIConvolutionRGB7X7",
+    "AttributeFilterCategories": [
+      "CICategoryStylize",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputBias": {
+      "CIAttributeClass": "NSNumber",
+      "CIAttributeDefault": 0,
+      "CIAttributeDisplayName": "Bias",
+      "CIAttributeIdentity": 0
+    }
+  },
+  {
+    "inputWeights": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
+      "CIAttributeDisplayName": "Weights",
+      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
+    },
+    "AttributeFilterDisplayName": "Horizontal 9 RGB Convolution",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIConvolutionRGB9Horizontal",
+    "AttributeFilterCategories": [
+      "CICategoryStylize",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryBuiltIn"
+    ],
+    "inputBias": {
+      "CIAttributeClass": "NSNumber",
+      "CIAttributeDefault": 0,
+      "CIAttributeDisplayName": "Bias",
+      "CIAttributeIdentity": 0
+    }
+  },
+  {
+    "inputWeights": {
+      "CIAttributeClass": "CIVector",
+      "CIAttributeDefault": [0, 0, 0, 0, 1, 0, 0, 0, 0],
+      "CIAttributeDisplayName": "Weights",
+      "CIAttributeIdentity": [0, 0, 0, 0, 1, 0, 0, 0, 0]
+    },
+    "AttributeFilterDisplayName": "Vertical 9 RGB Convolution",
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CIConvolutionRGB9Vertical",
+    "AttributeFilterCategories": [
+      "CICategoryStylize",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBias": {
@@ -2704,8 +2706,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CICopyMachineTransition",
-    "CIAttributeFilterDisplayName": "Copy Machine",
+    "AttributeFilterName": "CICopyMachineTransition",
+    "AttributeFilterDisplayName": "Copy Machine",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -2714,10 +2716,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Extent",
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputOpacity": {
@@ -2734,13 +2736,13 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "CoreML Model Filter",
-    "CIAttributeFilterCategories": [
-      "CICategoryStillImage",
+    "AttributeFilterDisplayName": "CoreML Model Filter",
+    "AttributeFilterCategories": [
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryStylize"
     ],
-    "CIAttributeFilterName": "CICoreMLModelFilter",
+    "AttributeFilterName": "CICoreMLModelFilter",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2776,7 +2778,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Crop",
+    "AttributeFilterDisplayName": "Crop",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2803,16 +2805,16 @@ const List<Map<String, dynamic>> ciFilters = [
       ],
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterName": "CICrop",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CICrop",
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Crystallize",
+    "AttributeFilterDisplayName": "Crystallize",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -2820,11 +2822,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CICrystallize",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CICrystallize",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -2849,7 +2851,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Darken Blend Mode",
+    "AttributeFilterDisplayName": "Darken Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -2863,11 +2865,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIDarkenBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIDarkenBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -2890,7 +2892,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeClass": "AVCameraCalibrationData",
       "CIAttributeDisplayName": "Calibration Data"
     },
-    "CIAttributeFilterName": "CIDepthBlurEffect",
+    "AttributeFilterName": "CIDepthBlurEffect",
     "inputChinPositions": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [-1, -1],
@@ -2961,13 +2963,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeClass": "CGImageMetadataRef",
       "CIAttributeDisplayName": "Aux Data Metadata"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterDisplayName": "Depth Blur Effect",
+    "AttributeFilterDisplayName": "Depth Blur Effect",
     "inputFocusRect": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDisplayName": "Focus Rectangle",
@@ -3010,8 +3012,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Point 1",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterName": "CIDepthOfField",
-    "CIAttributeFilterDisplayName": "Depth of Field",
+    "AttributeFilterName": "CIDepthOfField",
+    "AttributeFilterDisplayName": "Depth of Field",
     "inputUnsharpMaskRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 2.5,
@@ -3031,10 +3033,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputUnsharpMaskIntensity": {
@@ -3058,7 +3060,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Depth To Disparity",
+    "AttributeFilterDisplayName": "Depth To Disparity",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3066,16 +3068,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDepthToDisparity"
+    "AttributeFilterName": "CIDepthToDisparity"
   },
   {
-    "CIAttributeFilterDisplayName": "Difference Blend Mode",
+    "AttributeFilterDisplayName": "Difference Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -3089,18 +3091,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDifferenceBlendMode"
+    "AttributeFilterName": "CIDifferenceBlendMode"
   },
   {
-    "CIAttributeFilterDisplayName": "Disc Blur",
+    "AttributeFilterDisplayName": "Disc Blur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3108,13 +3110,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDiscBlur",
+    "AttributeFilterName": "CIDiscBlur",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 8,
@@ -3154,8 +3156,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Mask Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIDisintegrateWithMaskTransition",
-    "CIAttributeFilterDisplayName": "Disintegrate With Mask",
+    "AttributeFilterName": "CIDisintegrateWithMaskTransition",
+    "AttributeFilterDisplayName": "Disintegrate With Mask",
     "inputShadowOffset": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, -10],
@@ -3177,10 +3179,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputShadowRadius": {
@@ -3202,7 +3204,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Disparity To Depth",
+    "AttributeFilterDisplayName": "Disparity To Depth",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3210,16 +3212,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIDisparityToDepth",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIDisparityToDepth",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Displacement Distortion",
+    "AttributeFilterDisplayName": "Displacement Distortion",
     "inputDisplacementImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3233,13 +3235,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDisplacementDistortion",
+    "AttributeFilterName": "CIDisplacementDistortion",
     "inputScale": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 50,
@@ -3254,7 +3256,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Dissolve",
+    "AttributeFilterDisplayName": "Dissolve",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3268,15 +3270,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Target Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDissolveTransition",
+    "AttributeFilterName": "CIDissolveTransition",
     "inputTime": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3292,7 +3294,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Dither",
+    "AttributeFilterDisplayName": "Dither",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3300,11 +3302,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIDither",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIDither",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputIntensity": {
@@ -3327,7 +3329,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Divide Blend Mode",
+    "AttributeFilterDisplayName": "Divide Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3335,18 +3337,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDivideBlendMode"
+    "AttributeFilterName": "CIDivideBlendMode"
   },
   {
-    "CIAttributeFilterDisplayName": "Document Enhancer",
+    "AttributeFilterDisplayName": "Document Enhancer",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3354,7 +3356,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIDocumentEnhancer",
+    "AttributeFilterName": "CIDocumentEnhancer",
     "inputAmount": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -3366,10 +3368,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
@@ -3384,14 +3386,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Dot Screen",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Dot Screen",
+    "AttributeFilterCategories": [
       "CICategoryHalftoneEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIDotScreen",
+    "AttributeFilterName": "CIDotScreen",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3444,8 +3446,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Inset Point 1",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterName": "CIDroste",
-    "CIAttributeFilterDisplayName": "Droste",
+    "AttributeFilterName": "CIDroste",
+    "AttributeFilterDisplayName": "Droste",
     "inputRotation": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3479,10 +3481,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Inset Point 0",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputZoom": {
@@ -3496,7 +3498,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Edge Preserve Upsample Filter",
+    "AttributeFilterDisplayName": "Edge Preserve Upsample Filter",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3512,11 +3514,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIEdgePreserveUpsampleFilter",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIEdgePreserveUpsampleFilter",
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -3535,7 +3537,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Edges",
+    "AttributeFilterDisplayName": "Edges",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3543,13 +3545,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIEdges",
+    "AttributeFilterName": "CIEdges",
     "inputIntensity": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -3564,7 +3566,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Edge Work",
+    "AttributeFilterDisplayName": "Edge Work",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3572,11 +3574,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIEdgeWork",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIEdgeWork",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -3592,7 +3594,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Eightfold Reflected Tile",
+    "AttributeFilterDisplayName": "Eightfold Reflected Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3610,11 +3612,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIEightfoldReflectedTile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIEightfoldReflectedTile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputWidth": {
@@ -3644,7 +3646,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Exclusion Blend Mode",
+    "AttributeFilterDisplayName": "Exclusion Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3652,15 +3654,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIExclusionBlendMode"
+    "AttributeFilterName": "CIExclusionBlendMode"
   },
   {
     "inputEV": {
@@ -3674,11 +3676,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -10,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterDisplayName": "Exposure Adjust",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Exposure Adjust",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn",
@@ -3691,10 +3693,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIExposureAdjust"
+    "AttributeFilterName": "CIExposureAdjust"
   },
   {
-    "CIAttributeFilterDisplayName": "False Color",
+    "AttributeFilterDisplayName": "False Color",
     "inputColor0": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x60000111f270 (0.3 0 0 1) devicergb>",
@@ -3709,15 +3711,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIFalseColor",
+    "AttributeFilterName": "CIFalseColor",
     "inputColor1": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x60000111f240 (1 0.9 0.8 1) devicergb>",
@@ -3772,7 +3774,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeTime"
     },
-    "CIAttributeFilterName": "CIFlashTransition",
+    "AttributeFilterName": "CIFlashTransition",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -3780,7 +3782,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Extent",
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterDisplayName": "Flash",
+    "AttributeFilterDisplayName": "Flash",
     "inputFadeThreshold": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.85,
@@ -3823,10 +3825,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
@@ -3842,7 +3844,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Fourfold Reflected Tile",
+    "AttributeFilterDisplayName": "Fourfold Reflected Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3860,10 +3862,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputWidth": {
@@ -3877,7 +3879,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIFourfoldReflectedTile",
+    "AttributeFilterName": "CIFourfoldReflectedTile",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -3888,7 +3890,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Fourfold Rotated Tile",
+    "AttributeFilterDisplayName": "Fourfold Rotated Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3906,13 +3908,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIFourfoldRotatedTile",
+    "AttributeFilterName": "CIFourfoldRotatedTile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -3945,7 +3947,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Fourfold Translated Tile",
+    "AttributeFilterDisplayName": "Fourfold Translated Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -3963,10 +3965,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputWidth": {
@@ -3980,7 +3982,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIFourfoldTranslatedTile",
+    "AttributeFilterName": "CIFourfoldTranslatedTile",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -3991,7 +3993,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Gabor Gradients",
+    "AttributeFilterDisplayName": "Gabor Gradients",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -3999,16 +4001,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIGaborGradients",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIGaborGradients",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Gamma Adjust",
+    "AttributeFilterDisplayName": "Gamma Adjust",
     "inputPower": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -4027,18 +4029,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIGammaAdjust"
+    "AttributeFilterName": "CIGammaAdjust"
   },
   {
-    "CIAttributeFilterDisplayName": "Gaussian Blur",
+    "AttributeFilterDisplayName": "Gaussian Blur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4046,13 +4048,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIGaussianBlur",
+    "AttributeFilterName": "CIGaussianBlur",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -4067,7 +4069,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Gaussian Gradient",
+    "AttributeFilterDisplayName": "Gaussian Gradient",
     "inputColor1": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x6000011187e0 (0 0 0 0) devicergb>",
@@ -4082,13 +4084,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Color 1",
       "CIAttributeType": "CIAttributeTypeColor"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGradient",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIGaussianGradient",
+    "AttributeFilterName": "CIGaussianGradient",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 300,
@@ -4109,7 +4111,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Glass Distortion",
+    "AttributeFilterDisplayName": "Glass Distortion",
     "inputTexture": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "A texture to apply to the source image.",
@@ -4123,10 +4125,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -4141,7 +4143,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.01,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIGlassDistortion",
+    "AttributeFilterName": "CIGlassDistortion",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -4152,7 +4154,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Glass Lozenge",
+    "AttributeFilterDisplayName": "Glass Lozenge",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4160,13 +4162,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIGlassLozenge",
+    "AttributeFilterName": "CIGlassLozenge",
     "inputPoint1": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [350, 150],
@@ -4208,7 +4210,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Glide Reflected Tile",
+    "AttributeFilterDisplayName": "Glide Reflected Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -4219,10 +4221,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -4232,7 +4234,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIGlideReflectedTile",
+    "AttributeFilterName": "CIGlideReflectedTile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -4254,7 +4256,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Gloom",
+    "AttributeFilterDisplayName": "Gloom",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4262,13 +4264,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIGloom",
+    "AttributeFilterName": "CIGloom",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -4295,7 +4297,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Guided Filter",
+    "AttributeFilterDisplayName": "Guided Filter",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4303,10 +4305,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputGuideImage": {
@@ -4322,7 +4324,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": "1e-09",
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIGuidedFilter",
+    "AttributeFilterName": "CIGuidedFilter",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -4340,7 +4342,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Hard Light Blend Mode",
+    "AttributeFilterDisplayName": "Hard Light Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4348,18 +4350,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHardLightBlendMode"
+    "AttributeFilterName": "CIHardLightBlendMode"
   },
   {
-    "CIAttributeFilterDisplayName": "Hatched Screen",
+    "AttributeFilterDisplayName": "Hatched Screen",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -4370,10 +4372,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryHalftoneEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -4383,7 +4385,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIHatchedScreen",
+    "AttributeFilterName": "CIHatchedScreen",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 6,
@@ -4415,7 +4417,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Height Field From Mask",
+    "AttributeFilterDisplayName": "Height Field From Mask",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4423,13 +4425,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHeightFieldFromMask",
+    "AttributeFilterName": "CIHeightFieldFromMask",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -4444,7 +4446,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Hexagonal Pixelate",
+    "AttributeFilterDisplayName": "Hexagonal Pixelate",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4452,10 +4454,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -4470,7 +4472,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIHexagonalPixellate",
+    "AttributeFilterName": "CIHexagonalPixellate",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -4481,7 +4483,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Highlight and Shadow Adjust",
+    "AttributeFilterDisplayName": "Highlight and Shadow Adjust",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4489,13 +4491,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHighlightShadowAdjust",
+    "AttributeFilterName": "CIHighlightShadowAdjust",
     "inputHighlightAmount": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -4535,14 +4537,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Histogram Display",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Histogram Display",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHistogramDisplayFilter",
+    "AttributeFilterName": "CIHistogramDisplayFilter",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4588,7 +4590,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Hole Distortion",
+    "AttributeFilterDisplayName": "Hole Distortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4596,11 +4598,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIHoleDistortion",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIHoleDistortion",
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -4625,7 +4627,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Hue Adjust",
+    "AttributeFilterDisplayName": "Hue Adjust",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -4637,15 +4639,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHueAdjust",
+    "AttributeFilterName": "CIHueAdjust",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4661,16 +4663,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Hue Blend Mode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Hue Blend Mode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHueBlendMode",
+    "AttributeFilterName": "CIHueBlendMode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4680,7 +4682,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Hue\/Saturation\/Value Gradient",
+    "AttributeFilterDisplayName": "Hue\/Saturation\/Value Gradient",
     "inputColorSpace": {
       "CIAttributeClass": "NSObject",
       "CIAttributeDefault":
@@ -4689,13 +4691,13 @@ const List<Map<String, dynamic>> ciFilters = [
           "The CGColorSpaceRef that the color wheel should be generated in.",
       "CIAttributeDisplayName": "Color Space"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGradient",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIHueSaturationValueGradient",
+    "AttributeFilterName": "CIHueSaturationValueGradient",
     "inputDither": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -4735,7 +4737,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Kaleidoscope",
+    "AttributeFilterDisplayName": "Kaleidoscope",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -4746,13 +4748,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIKaleidoscope",
+    "AttributeFilterName": "CIKaleidoscope",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -4795,8 +4797,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Focal Length",
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIKeystoneCorrectionCombined",
-    "CIAttributeFilterDisplayName": "Combined Keystone Correction",
+    "AttributeFilterName": "CIKeystoneCorrectionCombined",
+    "AttributeFilterDisplayName": "Combined Keystone Correction",
     "inputTopRight": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
@@ -4815,10 +4817,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Top Left",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -4844,8 +4846,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Focal Length",
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIKeystoneCorrectionHorizontal",
-    "CIAttributeFilterDisplayName": "Horizontal Keystone Correction",
+    "AttributeFilterName": "CIKeystoneCorrectionHorizontal",
+    "AttributeFilterDisplayName": "Horizontal Keystone Correction",
     "inputTopRight": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
@@ -4864,10 +4866,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Top Left",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -4893,8 +4895,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Focal Length",
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIKeystoneCorrectionVertical",
-    "CIAttributeFilterDisplayName": "Vertical Keystone Correction",
+    "AttributeFilterName": "CIKeystoneCorrectionVertical",
+    "AttributeFilterDisplayName": "Vertical Keystone Correction",
     "inputTopRight": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
@@ -4913,10 +4915,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Top Left",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -4951,8 +4953,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeCount"
     },
-    "CIAttributeFilterName": "CIKMeans",
-    "CIAttributeFilterDisplayName": "KMeans",
+    "AttributeFilterName": "CIKMeans",
+    "AttributeFilterDisplayName": "KMeans",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 640, 80],
@@ -4982,29 +4984,29 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeBoolean"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Lab ∆E",
+    "AttributeFilterDisplayName": "Lab ∆E",
     "inputImage2": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The second input image for comparison.",
       "CIAttributeDisplayName": "Image2"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CILabDeltaE",
+    "AttributeFilterName": "CILabDeltaE",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5014,14 +5016,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Lanczos Scale Transform",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Lanczos Scale Transform",
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CILanczosScaleTransform",
+    "AttributeFilterName": "CILanczosScaleTransform",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5095,8 +5097,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CILenticularHaloGenerator",
-    "CIAttributeFilterDisplayName": "Lenticular Halo",
+    "AttributeFilterName": "CILenticularHaloGenerator",
+    "AttributeFilterDisplayName": "Lenticular Halo",
     "inputHaloOverlap": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.77,
@@ -5125,10 +5127,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputHaloRadius": {
@@ -5143,7 +5145,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Lighten Blend Mode",
+    "AttributeFilterDisplayName": "Lighten Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5151,11 +5153,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILightenBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CILightenBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5168,7 +5170,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Light Tunnel Distortion",
+    "AttributeFilterDisplayName": "Light Tunnel Distortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5176,11 +5178,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILightTunnel",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CILightTunnel",
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -5212,7 +5214,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Linear Burn Blend Mode",
+    "AttributeFilterDisplayName": "Linear Burn Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5220,11 +5222,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILinearBurnBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CILinearBurnBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5237,7 +5239,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Linear Dodge Blend Mode",
+    "AttributeFilterDisplayName": "Linear Dodge Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5245,11 +5247,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILinearDodgeBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CILinearDodgeBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5262,14 +5264,14 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Linear Gradient",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Linear Gradient",
+    "AttributeFilterCategories": [
       "CICategoryGradient",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CILinearGradient",
+    "AttributeFilterName": "CILinearGradient",
     "inputColor0": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001111a40 (1 1 1 1) devicergb>",
@@ -5302,7 +5304,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Linear Light Blend Mode",
+    "AttributeFilterDisplayName": "Linear Light Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5310,11 +5312,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILinearLightBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CILinearLightBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5327,11 +5329,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Linear to sRGB Tone Curve",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Linear to sRGB Tone Curve",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5343,7 +5345,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILinearToSRGBToneCurve"
+    "AttributeFilterName": "CILinearToSRGBToneCurve"
   },
   {
     "inputImage": {
@@ -5389,8 +5391,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CILineOverlay",
-    "CIAttributeFilterDisplayName": "Line Overlay",
+    "AttributeFilterName": "CILineOverlay",
+    "AttributeFilterDisplayName": "Line Overlay",
     "inputEdgeIntensity": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -5415,15 +5417,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBuiltIn",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryStylize"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Line Screen",
+    "AttributeFilterDisplayName": "Line Screen",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -5434,13 +5436,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryHalftoneEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CILineScreen",
+    "AttributeFilterName": "CILineScreen",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5480,17 +5482,17 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Luminosity Blend Mode",
+    "AttributeFilterDisplayName": "Luminosity Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -5502,17 +5504,17 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CILuminosityBlendMode"
+    "AttributeFilterName": "CILuminosityBlendMode"
   },
   {
-    "CIAttributeFilterDisplayName": "Masked Variable Blur",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Masked Variable Blur",
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMaskedVariableBlur",
+    "AttributeFilterName": "CIMaskedVariableBlur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5537,13 +5539,13 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Mask to Alpha",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Mask to Alpha",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -5553,16 +5555,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMaskToAlpha"
+    "AttributeFilterName": "CIMaskToAlpha"
   },
   {
-    "CIAttributeFilterDisplayName": "Maximum Component",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Maximum Component",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -5572,20 +5574,20 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMaximumComponent"
+    "AttributeFilterName": "CIMaximumComponent"
   },
   {
-    "CIAttributeFilterDisplayName": "Maximum",
+    "AttributeFilterDisplayName": "Maximum",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
@@ -5598,14 +5600,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMaximumCompositing"
+    "AttributeFilterName": "CIMaximumCompositing"
   },
   {
-    "CIAttributeFilterDisplayName": "Median",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Median",
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -5615,7 +5617,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMedianFilter"
+    "AttributeFilterName": "CIMedianFilter"
   },
   {
     "inputMesh": {
@@ -5624,14 +5626,14 @@ const List<Map<String, dynamic>> ciFilters = [
           "An array of line segments stored as an array of CIVectors each containing a start point and end point.",
       "CIAttributeDisplayName": "Mesh"
     },
-    "CIAttributeFilterDisplayName": "Mesh Generator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Mesh Generator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMeshGenerator",
+    "AttributeFilterName": "CIMeshGenerator",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1.5,
@@ -5650,13 +5652,13 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Minimum Component",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Minimum Component",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -5666,14 +5668,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMinimumComponent"
+    "AttributeFilterName": "CIMinimumComponent"
   },
   {
-    "CIAttributeFilterDisplayName": "Minimum",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Minimum",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
@@ -5686,7 +5688,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMinimumCompositing",
+    "AttributeFilterName": "CIMinimumCompositing",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -5701,11 +5703,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Mix",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Mix",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputAmount": {
@@ -5725,7 +5727,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMix"
+    "AttributeFilterName": "CIMix"
   },
   {
     "inputTargetImage": {
@@ -5768,8 +5770,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 100,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIModTransition",
-    "CIAttributeFilterDisplayName": "Mod",
+    "AttributeFilterName": "CIModTransition",
+    "AttributeFilterDisplayName": "Mod",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -5778,10 +5780,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -5804,7 +5806,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Morphology Gradient",
+    "AttributeFilterDisplayName": "Morphology Gradient",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5812,11 +5814,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMorphologyGradient",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIMorphologyGradient",
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -5833,7 +5835,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Morphology Maximum",
+    "AttributeFilterDisplayName": "Morphology Maximum",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5841,11 +5843,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMorphologyMaximum",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIMorphologyMaximum",
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -5861,7 +5863,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Morphology Minimum",
+    "AttributeFilterDisplayName": "Morphology Minimum",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -5869,11 +5871,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIMorphologyMinimum",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIMorphologyMinimum",
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -5889,7 +5891,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Morphology Rectangle Maximum",
+    "AttributeFilterDisplayName": "Morphology Rectangle Maximum",
     "inputHeight": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 5,
@@ -5909,13 +5911,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMorphologyRectangleMaximum",
+    "AttributeFilterName": "CIMorphologyRectangleMaximum",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 5,
@@ -5930,7 +5932,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Morphology Rectangle Minimum",
+    "AttributeFilterDisplayName": "Morphology Rectangle Minimum",
     "inputHeight": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 5,
@@ -5950,13 +5952,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMorphologyRectangleMinimum",
+    "AttributeFilterName": "CIMorphologyRectangleMinimum",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 5,
@@ -5971,7 +5973,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Motion Blur",
+    "AttributeFilterDisplayName": "Motion Blur",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -5990,13 +5992,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMotionBlur",
+    "AttributeFilterName": "CIMotionBlur",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 20,
@@ -6017,7 +6019,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Multiply Blend Mode",
+    "AttributeFilterDisplayName": "Multiply Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6025,15 +6027,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMultiplyBlendMode"
+    "AttributeFilterName": "CIMultiplyBlendMode"
   },
   {
     "inputBackgroundImage": {
@@ -6042,7 +6044,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Multiply",
+    "AttributeFilterDisplayName": "Multiply",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6050,29 +6052,29 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIMultiplyCompositing"
+    "AttributeFilterName": "CIMultiplyCompositing"
   },
   {
-    "CIAttributeFilterDisplayName": "Nine Part Stretched",
+    "AttributeFilterDisplayName": "Nine Part Stretched",
     "inputGrowAmount": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [100, 100],
       "CIAttributeDisplayName": "Grow Amount",
       "CIAttributeType": "CIAttributeTypeOffset"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -6082,7 +6084,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CINinePartStretched",
+    "AttributeFilterName": "CINinePartStretched",
     "inputBreakpoint0": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [50, 50],
@@ -6101,7 +6103,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Nine Part Tiled",
+    "AttributeFilterDisplayName": "Nine Part Tiled",
     "inputGrowAmount": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [100, 100],
@@ -6124,10 +6126,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeBoolean"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBreakpoint0": {
@@ -6138,7 +6140,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Breakpoint0",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterName": "CINinePartTiled",
+    "AttributeFilterName": "CINinePartTiled",
     "inputBreakpoint1": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -6149,7 +6151,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Noise Reduction",
+    "AttributeFilterDisplayName": "Noise Reduction",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6157,13 +6159,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CINoiseReduction",
+    "AttributeFilterName": "CINoiseReduction",
     "inputSharpness": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.4,
@@ -6190,7 +6192,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Op Tile",
+    "AttributeFilterDisplayName": "Op Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -6208,10 +6210,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -6237,7 +6239,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIOpTile",
+    "AttributeFilterName": "CIOpTile",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -6254,7 +6256,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Overlay Blend Mode",
+    "AttributeFilterDisplayName": "Overlay Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6262,15 +6264,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIOverlayBlendMode"
+    "AttributeFilterName": "CIOverlayBlendMode"
   },
   {
     "inputTargetImage": {
@@ -6302,7 +6304,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterName": "CIPageCurlTransition",
+    "AttributeFilterName": "CIPageCurlTransition",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -6310,7 +6312,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Extent",
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterDisplayName": "Page Curl",
+    "AttributeFilterDisplayName": "Page Curl",
     "inputShadingImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6324,10 +6326,10 @@ const List<Map<String, dynamic>> ciFilters = [
           "The image that appears on the back of the source image, as the page curls to reveal the target image.",
       "CIAttributeDisplayName": "Backside Image"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -6408,7 +6410,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeTime"
     },
-    "CIAttributeFilterName": "CIPageCurlWithShadowTransition",
+    "AttributeFilterName": "CIPageCurlWithShadowTransition",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 0, 0],
@@ -6416,17 +6418,17 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Extent",
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterDisplayName": "Page Curl With Shadow",
+    "AttributeFilterDisplayName": "Page Curl With Shadow",
     "inputBacksideImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image that appears on the back of the source image, as the page curls to reveal the target image.",
       "CIAttributeDisplayName": "Backside Image"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -6471,14 +6473,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPaletteCentroid",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPaletteCentroid",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterDisplayName": "Palette Centroid"
+    "AttributeFilterDisplayName": "Palette Centroid"
   },
   {
     "inputPerceptual": {
@@ -6491,7 +6493,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeMin": 0,
       "CIAttributeType": "CIAttributeTypeBoolean"
     },
-    "CIAttributeFilterDisplayName": "Palettize",
+    "AttributeFilterDisplayName": "Palettize",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6499,11 +6501,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPalettize",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPalettize",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputPaletteImage": {
@@ -6542,14 +6544,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIParallelogramTile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIParallelogramTile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterDisplayName": "Parallelogram Tile",
+    "AttributeFilterDisplayName": "Parallelogram Tile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -6621,8 +6623,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMax": 583,
       "CIAttributeSliderMin": 56
     },
-    "CIAttributeFilterName": "CIPDF417BarcodeGenerator",
-    "CIAttributeFilterDisplayName": "PDF417 Barcode Generator",
+    "AttributeFilterName": "CIPDF417BarcodeGenerator",
+    "AttributeFilterDisplayName": "PDF417 Barcode Generator",
     "inputMessage": {
       "CIAttributeClass": "NSData",
       "CIAttributeDescription": "The message to encode in the PDF417 Barcode",
@@ -6656,10 +6658,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMax": 90,
       "CIAttributeSliderMin": 3
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputCompactStyle": {
@@ -6694,10 +6696,10 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Person Segmentation",
-    "CIAttributeFilterCategories": [
-      "CICategoryVideo",
-      "CICategoryStillImage",
+    "AttributeFilterDisplayName": "Person Segmentation",
+    "AttributeFilterCategories": [
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryStylize"
     ],
@@ -6708,7 +6710,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPersonSegmentation",
+    "AttributeFilterName": "CIPersonSegmentation",
     "inputQualityLevel": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDescription":
@@ -6724,8 +6726,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPerspectiveCorrection",
-    "CIAttributeFilterDisplayName": "Perspective Correction",
+    "AttributeFilterName": "CIPerspectiveCorrection",
+    "AttributeFilterDisplayName": "Perspective Correction",
     "inputTopRight": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [646, 507],
@@ -6756,10 +6758,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Top Left",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -6772,11 +6774,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Perspective Rotate",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Perspective Rotate",
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -6794,7 +6796,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Focal Length",
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CIPerspectiveRotate",
+    "AttributeFilterName": "CIPerspectiveRotate",
     "inputRoll": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -6821,7 +6823,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Perspective Tile",
+    "AttributeFilterDisplayName": "Perspective Tile",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6829,11 +6831,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPerspectiveTile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPerspectiveTile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -6866,7 +6868,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Perspective Transform",
+    "AttributeFilterDisplayName": "Perspective Transform",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6874,13 +6876,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIPerspectiveTransform",
+    "AttributeFilterName": "CIPerspectiveTransform",
     "inputBottomLeft": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [155, 153],
@@ -6920,8 +6922,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPerspectiveTransformWithExtent",
-    "CIAttributeFilterDisplayName": "Perspective Transform with Extent",
+    "AttributeFilterName": "CIPerspectiveTransformWithExtent",
+    "AttributeFilterDisplayName": "Perspective Transform with Extent",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -6948,10 +6950,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Top Left",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputBottomLeft": {
@@ -6962,13 +6964,13 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Chrome",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Chrome",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -6979,10 +6981,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectChrome"
+    "AttributeFilterName": "CIPhotoEffectChrome"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Fade",
+    "AttributeFilterDisplayName": "Photo Effect Fade",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -6990,25 +6992,25 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectFade",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPhotoEffectFade",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Instant",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Instant",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7019,16 +7021,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectInstant"
+    "AttributeFilterName": "CIPhotoEffectInstant"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Mono",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Mono",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7039,16 +7041,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectMono"
+    "AttributeFilterName": "CIPhotoEffectMono"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Noir",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Noir",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7059,16 +7061,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectNoir"
+    "AttributeFilterName": "CIPhotoEffectNoir"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Process",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Process",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7079,16 +7081,16 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectProcess"
+    "AttributeFilterName": "CIPhotoEffectProcess"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Tonal",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Photo Effect Tonal",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7099,10 +7101,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectTonal"
+    "AttributeFilterName": "CIPhotoEffectTonal"
   },
   {
-    "CIAttributeFilterDisplayName": "Photo Effect Transfer",
+    "AttributeFilterDisplayName": "Photo Effect Transfer",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7110,19 +7112,19 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPhotoEffectTransfer",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPhotoEffectTransfer",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Pinch Distortion",
+    "AttributeFilterDisplayName": "Pinch Distortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7130,13 +7132,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIPinchDistortion",
+    "AttributeFilterName": "CIPinchDistortion",
     "inputScale": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.5,
@@ -7171,7 +7173,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Pin Light Blend Mode",
+    "AttributeFilterDisplayName": "Pin Light Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7179,11 +7181,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPinLightBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPinLightBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -7196,7 +7198,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Pixelate",
+    "AttributeFilterDisplayName": "Pixelate",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7204,11 +7206,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPixellate",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPixellate",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputScale": {
@@ -7232,7 +7234,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Pointillize",
+    "AttributeFilterDisplayName": "Pointillize",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7240,11 +7242,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIPointillize",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIPointillize",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -7269,16 +7271,16 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "QR Code Generator",
+    "AttributeFilterDisplayName": "QR Code Generator",
     "inputCorrectionLevel": {
       "CIAttributeClass": "NSString",
       "CIAttributeDefault": "M",
       "CIAttributeDescription": "QR Code correction level L, M, Q, or H.",
       "CIAttributeDisplayName": "Correction Level"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputMessage": {
@@ -7286,10 +7288,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "The message to encode in the QR Code",
       "CIAttributeDisplayName": "Message"
     },
-    "CIAttributeFilterName": "CIQRCodeGenerator"
+    "AttributeFilterName": "CIQRCodeGenerator"
   },
   {
-    "CIAttributeFilterDisplayName": "Radial Gradient",
+    "AttributeFilterDisplayName": "Radial Gradient",
     "inputRadius1": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -7301,10 +7303,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGradient",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputCenter": {
@@ -7333,7 +7335,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Color 1",
       "CIAttributeType": "CIAttributeTypeColor"
     },
-    "CIAttributeFilterName": "CIRadialGradient",
+    "AttributeFilterName": "CIRadialGradient",
     "inputColor1": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001108a80 (0 0 0 1) devicergb>",
@@ -7343,12 +7345,12 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Random Generator",
-    "CIAttributeFilterName": "CIRandomGenerator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Random Generator",
+    "AttributeFilterName": "CIRandomGenerator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ]
   },
@@ -7382,8 +7384,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 10,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIRippleTransition",
-    "CIAttributeFilterDisplayName": "Ripple",
+    "AttributeFilterName": "CIRippleTransition",
+    "AttributeFilterDisplayName": "Ripple",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -7419,10 +7421,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7434,13 +7436,13 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Rounded Rectangle Generator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Rounded Rectangle Generator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIRoundedRectangleGenerator",
+    "AttributeFilterName": "CIRoundedRectangleGenerator",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 10,
@@ -7468,11 +7470,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Row Average",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Row Average",
+    "AttributeFilterCategories": [
       "CICategoryReduction",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7482,7 +7484,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIRowAverage",
+    "AttributeFilterName": "CIRowAverage",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 640, 80],
@@ -7493,7 +7495,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Saliency Map Filter",
+    "AttributeFilterDisplayName": "Saliency Map Filter",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7501,20 +7503,20 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISaliencyMapFilter",
-    "CIAttributeFilterCategories": [
-      "CICategoryVideo",
-      "CICategoryStillImage",
+    "AttributeFilterName": "CISaliencyMapFilter",
+    "AttributeFilterCategories": [
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryStylize"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Sample Nearest",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Sample Nearest",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7524,10 +7526,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISampleNearest"
+    "AttributeFilterName": "CISampleNearest"
   },
   {
-    "CIAttributeFilterDisplayName": "Saturation Blend Mode",
+    "AttributeFilterDisplayName": "Saturation Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -7541,28 +7543,28 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISaturationBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISaturationBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Screen Blend Mode",
+    "AttributeFilterDisplayName": "Screen Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -7574,10 +7576,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIScreenBlendMode"
+    "AttributeFilterName": "CIScreenBlendMode"
   },
   {
-    "CIAttributeFilterDisplayName": "Sepia Tone",
+    "AttributeFilterDisplayName": "Sepia Tone",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7585,13 +7587,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISepiaTone",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISepiaTone",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn",
       "CICategoryXMPSerializable"
     ],
@@ -7616,11 +7618,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Shading Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterDisplayName": "Shaded Material",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Shaded Material",
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7641,10 +7643,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.5,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CIShadedMaterial"
+    "AttributeFilterName": "CIShadedMaterial"
   },
   {
-    "CIAttributeFilterDisplayName": "Sharpen Luminance",
+    "AttributeFilterDisplayName": "Sharpen Luminance",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -7652,11 +7654,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISharpenLuminance",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISharpenLuminance",
+    "AttributeFilterCategories": [
       "CICategorySharpen",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputSharpness": {
@@ -7692,11 +7694,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Sixfold Reflected Tile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Sixfold Reflected Tile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7706,7 +7708,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISixfoldReflectedTile",
+    "AttributeFilterName": "CISixfoldReflectedTile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -7738,11 +7740,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Sixfold Rotated Tile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Sixfold Rotated Tile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -7752,7 +7754,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISixfoldRotatedTile",
+    "AttributeFilterName": "CISixfoldRotatedTile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -7782,7 +7784,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Point 0",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterDisplayName": "Smooth Linear Gradient",
+    "AttributeFilterDisplayName": "Smooth Linear Gradient",
     "inputColor0": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x6000011fcc90 (1 1 1 1) devicergb>",
@@ -7790,11 +7792,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Color 1",
       "CIAttributeType": "CIAttributeTypeColor"
     },
-    "CIAttributeFilterName": "CISmoothLinearGradient",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISmoothLinearGradient",
+    "AttributeFilterCategories": [
       "CICategoryGradient",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputPoint1": {
@@ -7814,7 +7816,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Soft Light Blend Mode",
+    "AttributeFilterDisplayName": "Soft Light Blend Mode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -7828,18 +7830,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISoftLightBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISoftLightBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Source Atop",
+    "AttributeFilterDisplayName": "Source Atop",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -7853,37 +7855,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISourceAtopCompositing",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISourceAtopCompositing",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
-      "CICategoryInterlaced",
-      "CICategoryNonSquarePixels",
-      "CICategoryHighDynamicRange",
-      "CICategoryBuiltIn"
-    ]
-  },
-  {
-    "CIAttributeFilterDisplayName": "Source In",
-    "inputBackgroundImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription": "The image to use as a background image.",
-      "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
-    },
-    "CIAttributeFilterName": "CISourceInCompositing",
-    "CIAttributeFilterCategories": [
-      "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
@@ -7891,7 +7867,7 @@ const List<Map<String, dynamic>> ciFilters = [
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Source Out",
+    "AttributeFilterDisplayName": "Source In",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -7905,11 +7881,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISourceOutCompositing",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISourceInCompositing",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
@@ -7917,7 +7893,7 @@ const List<Map<String, dynamic>> ciFilters = [
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Source Over",
+    "AttributeFilterDisplayName": "Source Out",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -7931,11 +7907,37 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISourceOverCompositing",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISourceOutCompositing",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
+      "CICategoryInterlaced",
+      "CICategoryNonSquarePixels",
+      "CICategoryHighDynamicRange",
+      "CICategoryBuiltIn"
+    ]
+  },
+  {
+    "AttributeFilterDisplayName": "Source Over",
+    "inputBackgroundImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription": "The image to use as a background image.",
+      "CIAttributeDisplayName": "Background Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "inputImage": {
+      "CIAttributeClass": "CIImage",
+      "CIAttributeDescription":
+          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
+      "CIAttributeDisplayName": "Image",
+      "CIAttributeType": "CIAttributeTypeImage"
+    },
+    "AttributeFilterName": "CISourceOverCompositing",
+    "AttributeFilterCategories": [
+      "CICategoryCompositeOperation",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryHighDynamicRange",
@@ -8016,8 +8018,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterDisplayName": "Spot Color",
-    "CIAttributeFilterName": "CISpotColor",
+    "AttributeFilterDisplayName": "Spot Color",
+    "AttributeFilterName": "CISpotColor",
     "inputContrast2": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.98,
@@ -8036,10 +8038,10 @@ const List<Map<String, dynamic>> ciFilters = [
           "A replacement color for the first color range.",
       "CIAttributeDisplayName": "Replacement Color 1"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBuiltIn",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryStylize"
     ],
     "inputCenterColor3": {
@@ -8105,8 +8107,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.001,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CISpotLight",
-    "CIAttributeFilterDisplayName": "Spot Light",
+    "AttributeFilterName": "CISpotLight",
+    "AttributeFilterDisplayName": "Spot Light",
     "inputBrightness": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 3,
@@ -8118,10 +8120,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryStylize",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputLightPosition": {
@@ -8133,7 +8135,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "sRGB Tone Curve to Linear",
+    "AttributeFilterDisplayName": "sRGB Tone Curve to Linear",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8141,11 +8143,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISRGBToneCurveToLinear",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CISRGBToneCurveToLinear",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -8180,8 +8182,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.5,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterDisplayName": "Star Shine",
-    "CIAttributeFilterName": "CIStarShineGenerator",
+    "AttributeFilterDisplayName": "Star Shine",
+    "AttributeFilterName": "CIStarShineGenerator",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -8210,10 +8212,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -8239,7 +8241,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Straighten",
+    "AttributeFilterDisplayName": "Straighten",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -8250,10 +8252,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -8263,10 +8265,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIStraightenFilter"
+    "AttributeFilterName": "CIStraightenFilter"
   },
   {
-    "CIAttributeFilterDisplayName": "Stretch Crop",
+    "AttributeFilterDisplayName": "Stretch Crop",
     "inputCenterStretchAmount": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0.25,
@@ -8279,13 +8281,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIStretchCrop",
+    "AttributeFilterName": "CIStretchCrop",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8322,18 +8324,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterDisplayName": "Stripes",
+    "AttributeFilterDisplayName": "Stripes",
     "inputColor0": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x6000011f7270 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "A color to use for the odd stripes.",
       "CIAttributeDisplayName": "Color 1"
     },
-    "CIAttributeFilterName": "CIStripesGenerator",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIStripesGenerator",
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputSharpness": {
@@ -8365,11 +8367,11 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Subtract Blend Mode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Subtract Blend Mode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -8381,7 +8383,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CISubtractBlendMode",
+    "AttributeFilterName": "CISubtractBlendMode",
     "inputBackgroundImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
@@ -8420,8 +8422,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeScalar"
     },
-    "CIAttributeFilterName": "CISunbeamsGenerator",
-    "CIAttributeFilterDisplayName": "Sunbeams",
+    "AttributeFilterName": "CISunbeamsGenerator",
+    "AttributeFilterDisplayName": "Sunbeams",
     "inputCenter": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -8453,10 +8455,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputMaxStriationRadius": {
@@ -8518,8 +8520,8 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": 0.1,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterName": "CISwipeTransition",
-    "CIAttributeFilterDisplayName": "Swipe",
+    "AttributeFilterName": "CISwipeTransition",
+    "AttributeFilterDisplayName": "Swipe",
     "inputExtent": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0, 300, 300],
@@ -8527,10 +8529,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Extent",
       "CIAttributeType": "CIAttributeTypeRectangle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTransition",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputOpacity": {
@@ -8553,7 +8555,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Temperature and Tint",
+    "AttributeFilterDisplayName": "Temperature and Tint",
     "inputTargetNeutral": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [6500, 0],
@@ -8575,30 +8577,30 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CITemperatureAndTint"
+    "AttributeFilterName": "CITemperatureAndTint"
   },
   {
-    "CIAttributeFilterDisplayName": "Text Image Generator",
+    "AttributeFilterDisplayName": "Text Image Generator",
     "inputFontName": {
       "CIAttributeClass": "NSString",
       "CIAttributeDefault": "HelveticaNeue",
       "CIAttributeDisplayName": "Font Name"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryGenerator",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CITextImageGenerator",
+    "AttributeFilterName": "CITextImageGenerator",
     "inputScaleFactor": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -8623,7 +8625,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Thermal",
+    "AttributeFilterDisplayName": "Thermal",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8631,15 +8633,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIThermal"
+    "AttributeFilterName": "CIThermal"
   },
   {
     "inputImage": {
@@ -8684,26 +8686,26 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": [1, 1],
       "CIAttributeType": "CIAttributeTypeOffset"
     },
-    "CIAttributeFilterDisplayName": "Tone Curve",
-    "CIAttributeFilterName": "CIToneCurve",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Tone Curve",
+    "AttributeFilterName": "CIToneCurve",
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ]
   },
   {
-    "CIAttributeFilterDisplayName": "Torus Lens Distortion",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Torus Lens Distortion",
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CITorusLensDistortion",
+    "AttributeFilterName": "CITorusLensDistortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8754,7 +8756,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Triangle Kaleidoscope",
+    "AttributeFilterDisplayName": "Triangle Kaleidoscope",
     "inputPoint": {
       "CIAttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
@@ -8763,10 +8765,10 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Point",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputImage": {
@@ -8776,7 +8778,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CITriangleKaleidoscope",
+    "AttributeFilterName": "CITriangleKaleidoscope",
     "inputSize": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 700,
@@ -8807,7 +8809,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Triangle Tile",
+    "AttributeFilterDisplayName": "Triangle Tile",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -8825,13 +8827,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CITriangleTile",
+    "AttributeFilterName": "CITriangleTile",
     "inputWidth": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 100,
@@ -8862,14 +8864,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -3.141592653589793,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterDisplayName": "Twelvefold Reflected Tile",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Twelvefold Reflected Tile",
+    "AttributeFilterCategories": [
       "CICategoryTileEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CITwelvefoldReflectedTile",
+    "AttributeFilterName": "CITwelvefoldReflectedTile",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8898,7 +8900,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Twirl Distortion",
+    "AttributeFilterDisplayName": "Twirl Distortion",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 3.141592653589793,
@@ -8917,11 +8919,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CITwirlDistortion",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CITwirlDistortion",
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
     "inputRadius": {
@@ -8946,7 +8948,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Unsharp Mask",
+    "AttributeFilterDisplayName": "Unsharp Mask",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -8954,13 +8956,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategorySharpen",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIUnsharpMask",
+    "AttributeFilterName": "CIUnsharpMask",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 2.5,
@@ -8987,7 +8989,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Vibrance",
+    "AttributeFilterDisplayName": "Vibrance",
     "inputAmount": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 0,
@@ -9007,18 +9009,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIVibrance"
+    "AttributeFilterName": "CIVibrance"
   },
   {
-    "CIAttributeFilterDisplayName": "Vignette",
+    "AttributeFilterDisplayName": "Vignette",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9026,14 +9028,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIVignette",
+    "AttributeFilterName": "CIVignette",
     "inputRadius": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
@@ -9067,15 +9069,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Center",
       "CIAttributeType": "CIAttributeTypePosition"
     },
-    "CIAttributeFilterDisplayName": "Vignette Effect",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterDisplayName": "Vignette Effect",
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIVignetteEffect",
+    "AttributeFilterName": "CIVignetteEffect",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9117,7 +9119,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Vivid Light Blend Mode",
+    "AttributeFilterDisplayName": "Vivid Light Blend Mode",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9125,11 +9127,11 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterName": "CIVividLightBlendMode",
-    "CIAttributeFilterCategories": [
+    "AttributeFilterName": "CIVividLightBlendMode",
+    "AttributeFilterCategories": [
       "CICategoryCompositeOperation",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
@@ -9142,7 +9144,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "Vortex Distortion",
+    "AttributeFilterDisplayName": "Vortex Distortion",
     "inputAngle": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 56.54866776461628,
@@ -9153,13 +9155,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -94.24777960769379,
       "CIAttributeType": "CIAttributeTypeAngle"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryDistortionEffect",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIVortexDistortion",
+    "AttributeFilterName": "CIVortexDistortion",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9189,7 +9191,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "White Point Adjust",
+    "AttributeFilterDisplayName": "White Point Adjust",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9197,15 +9199,15 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorAdjustment",
-      "CICategoryVideo",
-      "CICategoryStillImage",
+      "CategoryVideo",
+      "CategoryStillImage",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIWhitePointAdjust",
+    "AttributeFilterName": "CIWhitePointAdjust",
     "inputColor": {
       "CIAttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x6000011fe220 (1 1 1 1) devicergb>",
@@ -9216,7 +9218,7 @@ const List<Map<String, dynamic>> ciFilters = [
     }
   },
   {
-    "CIAttributeFilterDisplayName": "X-Ray",
+    "AttributeFilterDisplayName": "X-Ray",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":
@@ -9224,18 +9226,18 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryColorEffect",
-      "CICategoryVideo",
+      "CategoryVideo",
       "CICategoryInterlaced",
       "CICategoryNonSquarePixels",
-      "CICategoryStillImage",
+      "CategoryStillImage",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIXRay"
+    "AttributeFilterName": "CIXRay"
   },
   {
-    "CIAttributeFilterDisplayName": "Zoom Blur",
+    "AttributeFilterDisplayName": "Zoom Blur",
     "inputAmount": {
       "CIAttributeClass": "NSNumber",
       "CIAttributeDefault": 20,
@@ -9247,13 +9249,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeSliderMin": -200,
       "CIAttributeType": "CIAttributeTypeDistance"
     },
-    "CIAttributeFilterCategories": [
+    "AttributeFilterCategories": [
       "CICategoryBlur",
-      "CICategoryStillImage",
-      "CICategoryVideo",
+      "CategoryStillImage",
+      "CategoryVideo",
       "CICategoryBuiltIn"
     ],
-    "CIAttributeFilterName": "CIZoomBlur",
+    "AttributeFilterName": "CIZoomBlur",
     "inputImage": {
       "CIAttributeClass": "CIImage",
       "CIAttributeDescription":

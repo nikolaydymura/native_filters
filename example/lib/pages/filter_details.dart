@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
+
 import 'filter_preview.dart';
 import 'filter_result.dart';
 
@@ -20,7 +21,7 @@ class FilterDetailsScreen extends StatefulWidget {
 class _FilterDetailsState extends State<FilterDetailsScreen> {
   Filter? _filter;
 
-  Map<String, Map<String, String>> _details = {};
+  List<FilterInput> _details = [];
 
   final List<String> _platformPreviews = ['Image Preview', 'Video Preview'];
 
@@ -111,7 +112,9 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
   Future<void> _loadFilterInfo() async {
     _filter = await widget.factory.create(widget.filter.name);
-    _details = await _filter?.attributes ?? {};
+    _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
+            ?.toList() ??
+        [];
 
     if (!mounted) return;
 
@@ -121,12 +124,12 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   List<Widget> get _filtersInfo {
     List<Widget> items = [];
 
-    for (var key in _details.keys) {
+    for (var input in _details) {
       items.add(
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            key,
+            input.name,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -135,16 +138,16 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
           ),
         ),
       );
-      final data = _details[key];
-      if (data?['AttributeClass'] == 'num') {
-        items.add(_NumField(name: key, filter: _filter!, attribute: data!));
+      final data = input.data;
+      if (data['AttributeClass'] == 'num') {
+        items.add(_NumField(name: input.name, filter: _filter!, attribute: data));
       }
-      items.addAll(_attributeDetails(data!));
+      items.addAll(_attributeDetails(data));
     }
     return items;
   }
 
-  List<Widget> _attributeDetails(Map<String, String> items) {
+  List<Widget> _attributeDetails(Map<String, dynamic> items) {
     return items
         .map(
           (key, value) => MapEntry(
@@ -158,7 +161,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
               ),
             ),
             Text(
-              value,
+              value.toString(),
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
           ),
@@ -172,7 +175,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
 class _NumField extends StatefulWidget {
   final String name;
-  final Map<String, String> attribute;
+  final Map<String, dynamic> attribute;
   final Filter filter;
 
   const _NumField({

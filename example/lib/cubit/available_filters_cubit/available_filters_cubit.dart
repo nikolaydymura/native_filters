@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:native_filters/native_filters.dart';
+import 'package:collection/collection.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'available_filters_state.dart';
@@ -17,16 +18,16 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
         }
       });
 
-  Future<void> fetchSortData() async {
+  void fetchSortData()  {
     try {
       emit(AvailableFiltersStateWaiting());
 
-      final items = await filtersFactory.availableFilters;
+      final items = FilterFactory.availableFilters;
 
       List<FilterItem> _configurableFilters =
-          items.where((e) => _configurable.contains(e.name)).toList();
+          items.where((e) => e.isConfigurable).toList();
       List<FilterItem> _nonConfigurableFilters =
-          items.where((e) => _nonConfigurable.contains(e.name)).toList();
+          items.whereNot((e) => e.isConfigurable).toList();
 
       emit(
         AvailableFiltersStateSucceeded(
