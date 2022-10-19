@@ -47,7 +47,8 @@ class FilterConfigurationBuilder {
           argumentName == 'inputAVector' ||
           argumentName == 'inputBiasVector' ||
           argumentName == 'inputBlueCoefficients' ||
-          argumentName == 'inputBVector') {
+          argumentName == 'inputBVector' ||
+          argumentName == 'inputCompactionMode') {
         if (attribute == null) {
           return Future.error('$attribute is not acceptable for $argumentName');
         }
@@ -97,11 +98,12 @@ class FilterConfigurationBuilder {
         }
       }
       if (argumentName == 'inputAmount' ||
-          attribute['CIAttributeType'] == 'inputAperture' ||
-          attribute['CIAttributeType'] == 'inputB' ||
-          attribute['CIAttributeType'] == 'inputBarcodeHeight' ||
-          attribute['CIAttributeType'] == 'inputC' ||
-          attribute['CIAttributeType'] == 'inputCenterStretchAmount') {
+          argumentName == 'inputAperture' ||
+          argumentName == 'inputB' ||
+          argumentName == 'inputBarcodeHeight' ||
+          argumentName == 'inputC' ||
+          argumentName == 'inputCenterStretchAmount' ||
+          argumentName == 'inputCompactStyle') {
         if (attribute == null) {
           return Future.error('$attribute is not acceptable for $argumentName');
         }
@@ -192,7 +194,11 @@ class FilterConfigurationBuilder {
       if (argumentName == 'inputAspectRatio' ||
           argumentName == 'inputBarOffset' ||
           argumentName == 'inputBrightness' ||
-          argumentName == 'inputCloseness1') {
+          argumentName == 'inputCloseness1' ||
+          argumentName == 'inputCloseness2' ||
+          argumentName == 'inputCloseness3' ||
+          argumentName == 'inputCompression' ||
+          argumentName == 'inputConcentration') {
         if (attribute == null) {
           return Future.error('$attribute is not acceptable for $argumentName');
         }
@@ -316,13 +322,40 @@ class FilterConfigurationBuilder {
 
       if (argumentName == 'inputCenterColor1' ||
           argumentName == 'inputCenterColor2' ||
-          argumentName == 'inputCenterColor3') {
+          argumentName == 'inputCenterColor3' ||
+          argumentName == 'inputColor0' ||
+          argumentName == 'inputColor1') {
         if (attribute == null) {
           return Future.error('$attribute is not acceptable for $argumentName');
         }
         if (attribute['CIAttributeClass'] != 'CIColor') {
           return Future.error(
               '${attribute['CIAttributeClass']} is not CIColor format');
+        }
+      }
+
+      if (argumentName == 'inputColor') {
+        if (attribute == null) {
+          return Future.error('$attribute is not acceptable for $argumentName');
+        }
+        if (attribute['CIAttributeClass'] != 'CIColor') {
+          return Future.error(
+              '${attribute['CIAttributeClass']} is not CIColor format');
+        }
+
+        if (attribute['CIAttributeType'] != 'CIAttributeTypeOpaqueColor') {
+          return Future.error(
+              '${attribute['CIAttributeType']} is not CIAttributeTypeOpaqueColor format');
+        }
+      }
+
+      if (argumentName == 'inputColorSpace') {
+        if (attribute == null) {
+          return Future.error('$attribute is not acceptable for $argumentName');
+        }
+        if (attribute['CIAttributeClass'] != 'NSObject') {
+          return Future.error(
+              '${attribute['CIAttributeClass']} is not NSObject format');
         }
       }
 
