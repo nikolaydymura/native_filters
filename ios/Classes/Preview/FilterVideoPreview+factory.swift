@@ -2,10 +2,10 @@ import Flutter
 
 public class FilterVideoPreviewFactory : NSObject, FlutterPlatformViewFactory {
     let registrar: FlutterPluginRegistrar
-    let factory: NativeFilterFactory
+    let factory: ImageVideoFilterFactory
     let id: String = "FilterVideoPreview"
 
-    init(registrar: FlutterPluginRegistrar, factory: NativeFilterFactory) {
+    init(registrar: FlutterPluginRegistrar, factory: ImageVideoFilterFactory) {
         self.registrar = registrar
         self.factory = factory
     }

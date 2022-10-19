@@ -1,22 +1,16 @@
 part of native_filters;
 
 class _GPUImageFilter extends Filter {
-  final String name;
-  final int index;
-  final _GPUImageFilterGroup group;
+  final FilterGroup group;
 
-  _GPUImageFilter(this.name, this.index, this.group);
+  _GPUImageFilter(super.name, super.id, this.group);
 
-  Future<Map<String, Map<String, String>>> get attributes async {
-    final gpuAttributes = _gpuAttributes[name];
-    if (gpuAttributes == null) {
-      return Map.identity();
-    }
-    final attributes = Map.of(gpuAttributes);
+  Map<String, Map<String, String>> get attributes  {
+    final attributes = super.attributes;
 
     attributes.removeWhere(
         (key, value) => value['GPUAttributeClass'] == 'InputStream');
-    return Future.value(attributes.map((key, attribute) {
+    return attributes.map((key, attribute) {
       final value = Map.of(attribute);
       if (value['GPUAttributeClass'] == 'float' ||
           value['GPUAttributeClass'] == 'int') {
@@ -35,7 +29,7 @@ class _GPUImageFilter extends Filter {
         value['AttributeClass'] = 'List<Point>';
       }
       return MapEntry(key, value);
-    }));
+    });
   }
 
   @override
@@ -43,12 +37,6 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> export(File output) => group.export(output);
-
-  @override
-  Future<List<String>> get inputKeys async {
-    final attrs = await attributes;
-    return attrs.keys.toList();
-  }
 
   @override
   Future<void> setAssetSource(String name) => group.setAssetSource(name);
@@ -61,7 +49,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setNumValue(String key, num value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -78,7 +66,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setBoolValue(String key, bool value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -95,7 +83,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setColorValue(String key, Color value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -116,7 +104,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setPointValue(String key, Point value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -134,7 +122,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setDoubleArrayValue(String key, List<double> value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -160,7 +148,7 @@ class _GPUImageFilter extends Filter {
 
   @override
   Future<void> setPointArrayValue(String key, List<Point> value) async {
-    final properties = (await attributes)[key];
+    final properties = (attributes)[key];
     if (properties == null) {
       return Future.error('$key is not acceptable for $name');
     }
@@ -177,34 +165,21 @@ class _GPUImageFilter extends Filter {
   }
 
   @override
-  Future<void> setAttributeValue(String key, dynamic value) async {
-    final properties = (await attributes)[key];
-    if (properties == null) {
-      return Future.error('$key is not acceptable for $name');
-    }
-    final method = properties['GPUAttributeMethod'];
-    if (method == null){
-      return;
-    }
-    if (value is File) {
-      return group._setValue(this, method, value.path);
-    }
-    return group._setValue(this, method, value);
+  Future<void> setBitmap(String key, Uint8List data) async {
+    await FilterFactory._api.setDataValue(InputDataValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: data));
   }
 
   @override
-  Future<void> setNSData(String key, Uint8List data) {
-    throw UnsupportedError('Not available in Android');
+  Future<void> setBitmapAsset(String key, String name) async {
+    await FilterFactory._api.setDataSourceValue(InputDataSourceValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: name));
   }
 
   @override
-  Future<void> setNSDataAsset(String key, String name) {
-    throw UnsupportedError('Not available in Android');
-  }
-
-  @override
-  Future<void> setNSDataFile(String key, File path) {
-    throw UnsupportedError('Not available in Android');
+  Future<void> setBitmapFile(String key, File file) async {
+    await FilterFactory._api.setDataSourceValue(InputDataSourceValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: file.path));
   }
 
 

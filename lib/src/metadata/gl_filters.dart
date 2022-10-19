@@ -4,22 +4,55 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlBilateralFilter",
     "AttributeFilterDisplayName": "GlBilateralFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputTexelWidthOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputTexelHeightOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputBlurSize": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlBoxBlurFilter",
     "AttributeFilterDisplayName": "GlBoxBlurFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputTexelWidthOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputTexelHeightOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputBlurSize": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlBrightnessFilter",
     "AttributeFilterDisplayName": "GlBrightnessFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputBrightness": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlBulgeDistortionFilter",
     "AttributeFilterDisplayName": "GlBulgeDistortionFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputCenterX": {
+      "CIAttributeClass": "float",
+    },
+    "inputCenterY": {
+      "CIAttributeClass": "float",
+    },
+    "inputRadius": {
+      "CIAttributeClass": "float",
+    },
+    "inputScale": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlCGAColorspaceFilter",
@@ -29,27 +62,51 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlContrastFilter",
     "AttributeFilterDisplayName": "GlContrastFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputContrast": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlCrosshatchFilter",
     "AttributeFilterDisplayName": "GlCrosshatchFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputCrossHatchSpacing": {
+      "CIAttributeClass": "float",
+    },
+    "inputLineWidth": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlExposureFilter",
     "AttributeFilterDisplayName": "GlExposureFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputExposure": {
+      "CIAttributeClass": "float",
+    }
   },
   {
     "AttributeFilterName": "GlGammaFilter",
     "AttributeFilterDisplayName": "GlGammaFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputGamma": {
+      "CIAttributeClass": "float",
+    }
   },
   {
     "AttributeFilterName": "GlGaussianBlurFilter",
     "AttributeFilterDisplayName": "GlGaussianBlurFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputTexelWidthOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputTexelHeightOffset": {
+      "CIAttributeClass": "float",
+    },
+    "inputBlurSize": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlGrayScaleFilter",
@@ -59,22 +116,40 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlHalftoneFilter",
     "AttributeFilterDisplayName": "GlHalftoneFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputFractionalWidthOfAPixel": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlHazeFilter",
     "AttributeFilterDisplayName": "GlHazeFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputDistance": {
+      "CIAttributeClass": "float",
+    },
+    "inputSlope": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlHighlightShadowFilter",
     "AttributeFilterDisplayName": "GlHighlightShadowFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputShadows": {
+      "CIAttributeClass": "float",
+    },
+    "inputHighlights": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlHueFilter",
     "AttributeFilterDisplayName": "GlHueFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputHue": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlInvertFilter",
@@ -84,7 +159,10 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlLookUpTableFilter",
     "AttributeFilterDisplayName": "GlLookUpTableFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputLut": {
+      "CIAttributeClass": "CIImage",
+    },
   },
   {
     "AttributeFilterName": "GlLuminanceFilter",
@@ -94,17 +172,26 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlLuminanceThresholdFilter",
     "AttributeFilterDisplayName": "GlLuminanceThresholdFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputThreshold": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlMonochromeFilter",
     "AttributeFilterDisplayName": "GlMonochromeFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputIntensity": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlOpacityFilter",
     "AttributeFilterDisplayName": "GlOpacityFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
+    "AttributeFilterCategories": ["CategoryVideo"],
+    "inputOpacity": {
+      "CIAttributeClass": "float",
+    },
   },
   {
     "AttributeFilterName": "GlOverlayFilter",

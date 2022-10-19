@@ -1,21 +1,13 @@
 part of native_filters;
 
 class _CIFilter extends Filter {
-  final String name;
-  final int index;
-  final _CIFilterGroup group;
+  final FilterGroup group;
   Map<String, Map<String, String>>? _attributes;
 
-  _CIFilter(this.name, this.index, this.group);
+  _CIFilter(super.name, super.id, this.group);
 
-  Future<List<String>> get inputKeys => group._inputKeys(this);
-
-  Future<Map<String, Map<String, String>>> get attributes async {
-    List<String> inputKeys = await this.inputKeys;
-    Map<String, Map<String, String>> attributes = Map();
-    for (var key in inputKeys) {
-      attributes[key] = await group._inputKeyDetails(this, key);
-    }
+  Map<String, Map<String, String>> get attributes  {
+    Map<String, Map<String, String>> attributes = super.attributes;
     attributes.removeWhere((key, value) =>
         value['CIAttributeClass'] == 'CIImage');
 
@@ -72,7 +64,7 @@ class _CIFilter extends Filter {
   Future<void> setNumValue(String key, num value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -112,14 +104,15 @@ class _CIFilter extends Filter {
         return Future.error('$value must be less than $max');
       }
     }
-    return group._setValue(this, key, value);
+    await FilterFactory._api.setNumberValue(InputNumberValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: value.toDouble()));
   }
 
   @override
   Future<void> setBoolValue(String key, bool value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -131,22 +124,15 @@ class _CIFilter extends Filter {
     if (properties['CIAttributeType'] != 'CIAttributeTypeBoolean') {
       return Future.error('$key is not bool format');
     }
-    return group._setValue(this, key, value);
-  }
-
-  @override
-  Future<void> setAttributeValue(String key, dynamic value) {
-    if (value is File) {
-      return group._setValue(this, key, value.path);
-    }
-    return group._setValue(this, key, value);
+    await FilterFactory._api.setNumberValue(InputNumberValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: value ? 1.0 : 0.0));
   }
 
   @override
   Future<void> setColorValue(String key, Color value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -156,19 +142,20 @@ class _CIFilter extends Filter {
     if (type != 'CIColor') {
       return Future.error('$key is not $type format');
     }
-    return group._setValue(this, key, [
+    await FilterFactory._api.setNumberListValue(InputNumberListValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: [
       value.red / 255.0,
       value.green / 255.0,
       value.blue / 255.0,
       value.alpha / 255.0
-    ]);
+    ]));
   }
 
   @override
   Future<void> setDoubleArrayValue(String key, List<double> value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -186,14 +173,15 @@ class _CIFilter extends Filter {
         value.length != 3) {
       return Future.error('Must be 3 elements in list');
     }
-    return group._setValue(this, key, value);
+    await FilterFactory._api.setNumberListValue(InputNumberListValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: value));
   }
 
   @override
   Future<void> setPointValue(String key, Point value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -207,14 +195,15 @@ class _CIFilter extends Filter {
         properties['CIAttributeType'] != 'CIAttributeTypeOffset') {
       return Future.error('$key is not CIVector format');
     }
-    return group._setValue(this, key, [value.x, value.y]);
+    await FilterFactory._api.setNumberListValue(InputNumberListValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: [value.x.toDouble(), value.y.toDouble()]));
   }
 
   @override
   Future<void> setPointArrayValue(String key, List<Point> value) async {
     var attributes = _attributes;
     if (attributes == null) {
-      attributes = await this.attributes;
+      attributes = this.attributes;
     }
     final properties = attributes[key];
     if (properties == null) {
@@ -230,22 +219,26 @@ class _CIFilter extends Filter {
     if (value.length != 2) {
       return Future.error('Must be 2 elements in list');
     }
-    final values = value.map((e) => [e.x, e.y]).expand((e) => e);
-    return group._setValue(this, key, values);
+    final values = value.map((e) => [e.x, e.y]).expand((e) => e).map((e) => e.toDouble()).toList();
+    await FilterFactory._api.setNumberListValue(InputNumberListValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: values));
   }
 
   @override
-  Future<void> setNSData(String key, Uint8List data) {
-    return group._setValue(this, key, data);
+  Future<void> setNSData(String key, Uint8List data) async {
+    await FilterFactory._api.setDataValue(InputDataValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: data));
   }
 
   @override
-  Future<void> setNSDataAsset(String key, String name) {
-    return group._setValue(this, key, name);
+  Future<void> setNSDataAsset(String key, String name) async {
+    await FilterFactory._api.setDataSourceValue(InputDataSourceValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: name));
   }
 
   @override
-  Future<void> setNSDataFile(String key, File file) {
-    return group._setValue(this, key, file.path);
+  Future<void> setNSDataFile(String key, File file) async {
+    await FilterFactory._api.setDataSourceValue(InputDataSourceValueMessage(
+        filterId: group.id, filterIndex: id, key: key, value: file.path));
   }
 }

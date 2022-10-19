@@ -10,25 +10,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-part 'core_image/filter.dart';
+import 'src/messages/messages.g.dart';
 
-part 'core_image/filter_group.dart';
+part 'core_image/filter.dart';
 
 part 'factory/filter_factory.dart';
 
 part 'factory/filterable.dart';
 
-part 'factory/filters/ci_filters.dart';
+part 'src/metadata/ci_filters.dart';
 
-part 'factory/filters/gl_filters.dart';
+part 'src/metadata/gl_filters.dart';
 
-part 'factory/filters/gpu_image_filters.dart';
+part 'src/metadata/gpu_image_filters.dart';
 
 part 'gpu_image/filter.dart';
-
-part 'gpu_image/filter_group.dart';
-
-part 'gpu_image/metadata.dart';
 
 part 'widgets/base_preview.dart';
 

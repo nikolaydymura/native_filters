@@ -1,54 +1,50 @@
 part of native_filters;
 
 class FilterFactory {
-  static const MethodChannel _methodChannel =
-      const MethodChannel('FilterFactory');
+  static ImageVideoFilterFactoryApi _api = ImageVideoFilterFactoryApi();
+  static FilterFactory _instance = FilterFactory._();
+  int _idSequence = 0;
 
-  const FilterFactory();
+  FilterFactory._();
 
-  Future<Filter?> create(String name) async {
-    final group = await createGroup();
+  factory FilterFactory() => _instance;
+
+  Future<Filter> create(String name) async {
     try {
-      final filter = await group.addFilter(name);
-      return filter;
+      final message = await _api.createFilter(
+          CreateFilterMessage(filterId: _idSequence++, name: name));
+      final group = FilterGroup._(message.filterId);
+      if (Platform.isIOS) {
+        final filter = _CIFilter(name, 0, group);
+        return filter;
+      } else if (Platform.isAndroid) {
+        final filter = _GPUImageFilter(name, 0, group);
+        return filter;
+      }
     } catch (error) {
-      await dispose(group);
+      debugPrint(error.toString());
+      rethrow;
     }
-    return null;
+    throw UnsupportedError('Operation not permitted on $defaultTargetPlatform');
   }
 
   Future<FilterGroup> createGroup() async {
     try {
-      final index = await _methodChannel.invokeMethod('create');
-      if (defaultTargetPlatform == TargetPlatform.iOS) {
-        return _CIFilterGroup(index);
-      }
-      if (defaultTargetPlatform == TargetPlatform.android) {
-        return _GPUImageFilterGroup(index);
-      }
+      final message = await _api
+          .createFilterGroup(CreateFilterGroupMessage(filterId: _idSequence++));
+      return FilterGroup._(message.filterId);
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
       rethrow;
     }
-    throw UnsupportedError('$defaultTargetPlatform');
   }
 
   Future<void> dispose(Filterable filter) async {
     try {
-      if (filter is _CIFilterGroup) {
-        return await _methodChannel.invokeMethod('dispose', filter.keyId);
-      }
-      if (filter is _CIFilter) {
-        return await _methodChannel.invokeMethod('dispose', filter.group.keyId);
-      }
-      if (filter is _GPUImageFilterGroup) {
-        return await _methodChannel.invokeMethod('dispose', filter.keyId);
-      }
-      if (filter is _GPUImageFilter) {
-        return await _methodChannel.invokeMethod('dispose', filter.group.keyId);
-      }
+      await _api.dispose(FilterMessage(filterId: filter.id));
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
+      rethrow;
     }
   }
 
