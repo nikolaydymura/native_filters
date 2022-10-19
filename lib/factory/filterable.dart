@@ -70,4 +70,14 @@ abstract class Filter extends Filterable {
   Future<void> setNSDataAsset(String key, String name);
 
   Future<void> setNSData(String key, Uint8List data);
+
+  Future<void> updateConfiguration(FilterConfigurationBuilder builder) async {
+    final filterAttributes = ciFilters
+        .firstWhereOrNull((item) => item['CIAttributeFilterName'] == name);
+
+    if (filterAttributes == null) {
+      throw 'There are no filters';
+    }
+    builder.validate(filterAttributes);
+  }
 }

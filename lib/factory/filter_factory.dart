@@ -64,7 +64,7 @@ class FilterFactory {
         List<FilterItem> _filters = [];
 
         for (int i = 0; i < jsonCI.length; i++) {
-          final _filtersJsonCI = FilterItem._fromJsonImage(jsonCI[i]);
+          final _filtersJsonCI = FilterItem._fromJsonCI(jsonCI[i]);
           _filters.add(_filtersJsonCI);
         }
         return _filters;

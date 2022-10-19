@@ -9,6 +9,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'factory/filter_configuration_builder.dart';
+import 'factory/filters/ci_filters.dart';
+import 'factory/filters/gi_filters.dart';
+import 'factory/filters/gpu_image_filters.dart';
+
+import 'package:collection/collection.dart';
+
 part 'core_image/filter.dart';
 
 part 'core_image/filter_group.dart';
