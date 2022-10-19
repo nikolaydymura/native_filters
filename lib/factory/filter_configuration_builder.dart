@@ -4,367 +4,11 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
+const minimum = -2 ^ 31;
+const maximum = 2 ^ 31 - 1;
+
 class FilterConfigurationBuilder {
   final Map<String, dynamic> _params = {};
-
-  Future<void> validate(Map<String, dynamic> filterAttributes) async {
-    var passedCount = 0;
-    for (final argumentName in _params.keys) {
-      final attribute = filterAttributes[argumentName];
-
-      final valueParams = _params[argumentName];
-
-      //TODO: change attribute link
-      if (argumentName == 'inputAcuteAngle') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-        if (attribute['CIAttributeType'] == 'CIAttributeTypeAngle') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeAngle format');
-        }
-        if (attribute['CIAttributeSliderMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeSliderMax'] ?? '');
-
-          if (attribute['CIAttributeSliderMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeSliderMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeSliderMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeSliderMin'] ?? '');
-
-          if (attribute['CIAttributeSliderMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-      }
-      if (argumentName == 'inputAlphaCoefficients' ||
-          argumentName == 'inputAVector' ||
-          argumentName == 'inputBiasVector' ||
-          argumentName == 'inputBlueCoefficients' ||
-          argumentName == 'inputBVector' ||
-          argumentName == 'inputCompactionMode') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIVector') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIVector format');
-        }
-      }
-      if (argumentName == 'inputAlwaysSpecifyCompaction') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-
-        if (attribute['CIAttributeSliderMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeSliderMax'] ?? '');
-
-          if (attribute['CIAttributeSliderMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeSliderMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeSliderMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeSliderMin'] ?? '');
-
-          if (attribute['CIAttributeSliderMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-        if (attribute['CIAttributeMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeMax'] ?? '');
-
-          if (attribute['CIAttributeMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeMin'] ?? '');
-
-          if (attribute['CIAttributeMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-      }
-      if (argumentName == 'inputAmount' ||
-          argumentName == 'inputAperture' ||
-          argumentName == 'inputB' ||
-          argumentName == 'inputBarcodeHeight' ||
-          argumentName == 'inputC' ||
-          argumentName == 'inputCenterStretchAmount' ||
-          argumentName == 'inputCompactStyle') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-        if (attribute['CIAttributeType'] == 'CIAttributeTypeScalar') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeScalar format');
-        }
-        if (attribute['CIAttributeSliderMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeSliderMax'] ?? '');
-
-          if (attribute['CIAttributeSliderMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeSliderMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeSliderMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeSliderMin'] ?? '');
-
-          if (attribute['CIAttributeSliderMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-        if (attribute['CIAttributeMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeMax'] ?? '');
-
-          if (attribute['CIAttributeMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeMin'] ?? '');
-
-          if (attribute['CIAttributeMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-      }
-
-      if (argumentName == 'inputAngle') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-        if (attribute['CIAttributeType'] == 'CIAttributeTypeAngle') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeAngle format');
-        }
-        if (attribute['CIAttributeSliderMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeSliderMax'] ?? '');
-
-          if (attribute['CIAttributeSliderMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeSliderMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeSliderMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeSliderMin'] ?? '');
-
-          if (attribute['CIAttributeSliderMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-        if (attribute['CIAttributeMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeMax'] ?? '');
-
-          if (attribute['CIAttributeMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeMin'] ?? '');
-
-          if (attribute['CIAttributeMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-      }
-
-      if (argumentName == 'inputAspectRatio' ||
-          argumentName == 'inputBarOffset' ||
-          argumentName == 'inputBrightness' ||
-          argumentName == 'inputCloseness1' ||
-          argumentName == 'inputCloseness2' ||
-          argumentName == 'inputCloseness3' ||
-          argumentName == 'inputCompression' ||
-          argumentName == 'inputConcentration') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-        if (attribute['CIAttributeType'] == 'CIAttributeTypeScalar') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeScalar format');
-        }
-        if (attribute['CIAttributeSliderMax'] != null) {
-          final max = double.parse(valueParams['CIAttributeSliderMax'] ?? '');
-
-          if (attribute['CIAttributeSliderMax'] > max) {
-            return Future.error(
-                '${attribute['CIAttributeSliderMax']} must be more than $max');
-          }
-        }
-        if (attribute['CIAttributeSliderMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeSliderMin'] ?? '');
-
-          if (attribute['CIAttributeSliderMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-
-        if (attribute['CIAttributeMin'] != null) {
-          final min = double.parse(valueParams['CIAttributeMin'] ?? '');
-
-          if (attribute['CIAttributeMin'] < min) {
-            return Future.error('$attribute must be more than $min');
-          }
-        }
-      }
-
-      if (argumentName == 'inputAuxDataMetadata') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CGImageMetadataRef') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CGImageMetadataRef format');
-        }
-      }
-
-      if (argumentName == 'inputAVCameraCalibrationData' ||
-          argumentName == 'inputCalibrationData') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'AVCameraCalibrationData') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not AVCameraCalibrationData format');
-        }
-      }
-
-      if (argumentName == 'inputBackgroundImage') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIImage') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIImage format');
-        }
-
-        if (attribute['CIAttributeType'] != 'CIAttributeTypeImage') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeImage format');
-        }
-      }
-
-      if (argumentName == 'inputBacksideImage') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIImage') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIImage format');
-        }
-      }
-
-      if (argumentName == 'inputBarcodeDescriptor') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIBarcodeDescriptor') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIBarcodeDescriptor format');
-        }
-      }
-
-      if (argumentName == 'inputBias') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSNumber') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not number format');
-        }
-      }
-
-      if (argumentName == 'inputBottomLeft' ||
-          argumentName == 'inputBottomRight' ||
-          argumentName == 'inputBreakpoint0' ||
-          argumentName == 'inputBreakpoint1' ||
-          argumentName == 'inputCenter' ||
-          argumentName == 'inputChinPositions') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIVector') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIVector format');
-        }
-        if (attribute['CIAttributeType'] != 'CIAttributeTypePosition') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypePosition format');
-        }
-      }
-
-      if (argumentName == 'inputCenterColor1' ||
-          argumentName == 'inputCenterColor2' ||
-          argumentName == 'inputCenterColor3' ||
-          argumentName == 'inputColor0' ||
-          argumentName == 'inputColor1') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIColor') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIColor format');
-        }
-      }
-
-      if (argumentName == 'inputColor') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'CIColor') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not CIColor format');
-        }
-
-        if (attribute['CIAttributeType'] != 'CIAttributeTypeOpaqueColor') {
-          return Future.error(
-              '${attribute['CIAttributeType']} is not CIAttributeTypeOpaqueColor format');
-        }
-      }
-
-      if (argumentName == 'inputColorSpace') {
-        if (attribute == null) {
-          return Future.error('$attribute is not acceptable for $argumentName');
-        }
-        if (attribute['CIAttributeClass'] != 'NSObject') {
-          return Future.error(
-              '${attribute['CIAttributeClass']} is not NSObject format');
-        }
-      }
-
-      passedCount++;
-    }
-    if (passedCount != _params.length) {
-      throw 'You passed extra parameters';
-    }
-  }
 
   void setBitmap(String key, Uint8List data) {
     _params[key] = data;
@@ -439,4 +83,52 @@ class FilterConfigurationBuilder {
   }
 
   Map<String, dynamic> get params => Map.of(_params);
+
+  void validate(Map<String, dynamic> filterAttributes) {
+    for (final argumentName in params.entries) {
+      final key = argumentName.key;
+
+      final value = argumentName.value;
+
+      final Map<String, dynamic>? attribute = filterAttributes[key];
+
+      if (attribute == null) {
+        throw 'Attribute $key is not acceptable for ${filterAttributes.keys}';
+      }
+
+      final attributeType = attribute['CIAttributeClass'];
+
+      if (attributeType == 'NSNumber') {
+        if (value is bool) {
+          continue;
+        }
+        if (value is num) {
+          final min = attribute['CIAttributeSliderMin'] ?? minimum;
+          final max = attribute['CIAttributeSliderMax'] ?? maximum;
+          if ((min != null && value >= min) && (max != null && value <= max)) {
+            continue;
+          }
+          throw '$value is not in range ${attribute['CIAttributeSliderMin']} - ${attribute['CIAttributeSliderMax']}';
+        }
+        throw '$value is not  number format';
+      } else if (attributeType == 'CIAttributeTypeBoolean') {
+        if (value is bool) {
+          continue;
+        }
+        throw '$value is not  bool format';
+      } else if (attributeType == 'CIColor') {
+        if (value.red != null &&
+            value.red is num &&
+            value.green != null &&
+            value.green is num &&
+            value.blue != null &&
+            value.blue is num &&
+            value.alpha != null &&
+            value.alpha is num) {
+          continue;
+        }
+        throw '$key is not $attributeType format';
+      } else if (attributeType == 'NSValue' && attributeType == 'CIVector') {}
+    }
+  }
 }
