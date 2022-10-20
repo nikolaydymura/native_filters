@@ -60,7 +60,7 @@ class _FilterResultState extends State<FilterResultScreen> {
       await widget.filter.setNSData('inputCubeData', lutData);
     } else if (widget.filter.name == 'GlLookUpTableFilter') {
       await widget.filter
-          .setAttributeValue('inputCubeData', 'filters/lookup_sample.png');
+          .setBitmapAsset('inputCubeData', 'filters/lookup_sample.png');
     }
     await widget.filter.setAssetSource(asset);
     final watch = Stopwatch();

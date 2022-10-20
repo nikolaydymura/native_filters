@@ -5,7 +5,7 @@ import AVFoundation
 class FilterVideoPreview: NSObject, FlutterPlatformView {
     let methodChannel: FlutterMethodChannel
     let registrar: FlutterPluginRegistrar
-    let filtersFactory: NativeFilterFactory
+    let filtersFactory: ImageVideoFilterFactory
     
     var playerViewController:AVPlayerViewController?
     
@@ -13,7 +13,7 @@ class FilterVideoPreview: NSObject, FlutterPlatformView {
     
     var selectedFilter: NativeFilter?
 
-    init(frame: CGRect, registrar: FlutterPluginRegistrar, id: Int64, factory: NativeFilterFactory) {
+    init(frame: CGRect, registrar: FlutterPluginRegistrar, id: Int64, factory: ImageVideoFilterFactory) {
         methodChannel = FlutterMethodChannel(
             name: "FilterVideoPreview_\(id)",
             binaryMessenger: registrar.messenger()
