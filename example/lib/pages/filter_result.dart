@@ -57,6 +57,12 @@ class _FilterResultState extends State<FilterResultScreen> {
       final bitmap = photo!.getBytes(format: img.Format.argb);
       final lutData = lutPngToNSData(64, bitmap, photo.width, photo.height);
 
+      ByteData data1 = await rootBundle.load('filters/filter_lut_3.data');
+      Uint8List bytes1 = data.buffer.asUint8List();
+      //for(var i =0; i< lutData.length; i ++){
+        //print('i=$i, ${lutData[i]}==${bytes1[i]} = ${lutData[i] == bytes1[i]}');
+      //}
+
       await widget.filter.setNSData('inputCubeData', lutData);
     } else if (widget.filter.name == 'GlLookUpTableFilter') {
       await widget.filter

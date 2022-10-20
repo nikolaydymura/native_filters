@@ -102,6 +102,36 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable FLTFilterMessage *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface FLTPreviewCreateMessage ()
++ (FLTPreviewCreateMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewCreateMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTPreviewFilterMessage ()
++ (FLTPreviewFilterMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewFilterMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTPreviewSourceMessage ()
++ (FLTPreviewSourceMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewSourceMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTPreviewPlayMessage ()
++ (FLTPreviewPlayMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewPlayMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTPreviewPauseMessage ()
++ (FLTPreviewPauseMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewPauseMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTPreviewDisposeMessage ()
++ (FLTPreviewDisposeMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTPreviewDisposeMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 
 @implementation FLTCreateFilterGroupMessage
 + (instancetype)makeWithFilterId:(NSNumber *)filterId {
@@ -499,6 +529,136 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 - (NSDictionary *)toMap {
   return @{
     @"filterId" : (self.filterId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewCreateMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId {
+  FLTPreviewCreateMessage* pigeonResult = [[FLTPreviewCreateMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  return pigeonResult;
+}
++ (FLTPreviewCreateMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewCreateMessage *pigeonResult = [[FLTPreviewCreateMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewCreateMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewCreateMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewFilterMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId
+    filterId:(NSNumber *)filterId {
+  FLTPreviewFilterMessage* pigeonResult = [[FLTPreviewFilterMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  pigeonResult.filterId = filterId;
+  return pigeonResult;
+}
++ (FLTPreviewFilterMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewFilterMessage *pigeonResult = [[FLTPreviewFilterMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  pigeonResult.filterId = GetNullableObject(dict, @"filterId");
+  NSAssert(pigeonResult.filterId != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewFilterMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
+    @"filterId" : (self.filterId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewSourceMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId
+    path:(NSString *)path {
+  FLTPreviewSourceMessage* pigeonResult = [[FLTPreviewSourceMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  pigeonResult.path = path;
+  return pigeonResult;
+}
++ (FLTPreviewSourceMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewSourceMessage *pigeonResult = [[FLTPreviewSourceMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  pigeonResult.path = GetNullableObject(dict, @"path");
+  NSAssert(pigeonResult.path != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewSourceMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewSourceMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
+    @"path" : (self.path ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewPlayMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId {
+  FLTPreviewPlayMessage* pigeonResult = [[FLTPreviewPlayMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  return pigeonResult;
+}
++ (FLTPreviewPlayMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewPlayMessage *pigeonResult = [[FLTPreviewPlayMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewPlayMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewPlayMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewPauseMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId {
+  FLTPreviewPauseMessage* pigeonResult = [[FLTPreviewPauseMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  return pigeonResult;
+}
++ (FLTPreviewPauseMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewPauseMessage *pigeonResult = [[FLTPreviewPauseMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewPauseMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewPauseMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTPreviewDisposeMessage
++ (instancetype)makeWithTextureId:(NSNumber *)textureId {
+  FLTPreviewDisposeMessage* pigeonResult = [[FLTPreviewDisposeMessage alloc] init];
+  pigeonResult.textureId = textureId;
+  return pigeonResult;
+}
++ (FLTPreviewDisposeMessage *)fromMap:(NSDictionary *)dict {
+  FLTPreviewDisposeMessage *pigeonResult = [[FLTPreviewDisposeMessage alloc] init];
+  pigeonResult.textureId = GetNullableObject(dict, @"textureId");
+  NSAssert(pigeonResult.textureId != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTPreviewDisposeMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewDisposeMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"textureId" : (self.textureId ?: [NSNull null]),
   };
 }
 @end
@@ -921,6 +1081,214 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
         FLTFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api disposeFilter:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+}
+@interface FLTVideoPreviewApiCodecReader : FlutterStandardReader
+@end
+@implementation FLTVideoPreviewApiCodecReader
+- (nullable id)readValueOfType:(UInt8)type 
+{
+  switch (type) {
+    case 128:     
+      return [FLTPreviewCreateMessage fromMap:[self readValue]];
+    
+    case 129:     
+      return [FLTPreviewDisposeMessage fromMap:[self readValue]];
+    
+    case 130:     
+      return [FLTPreviewFilterMessage fromMap:[self readValue]];
+    
+    case 131:     
+      return [FLTPreviewPauseMessage fromMap:[self readValue]];
+    
+    case 132:     
+      return [FLTPreviewPlayMessage fromMap:[self readValue]];
+    
+    case 133:     
+      return [FLTPreviewSourceMessage fromMap:[self readValue]];
+    
+    default:    
+      return [super readValueOfType:type];
+    
+  }
+}
+@end
+
+@interface FLTVideoPreviewApiCodecWriter : FlutterStandardWriter
+@end
+@implementation FLTVideoPreviewApiCodecWriter
+- (void)writeValue:(id)value 
+{
+  if ([value isKindOfClass:[FLTPreviewCreateMessage class]]) {
+    [self writeByte:128];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTPreviewDisposeMessage class]]) {
+    [self writeByte:129];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTPreviewFilterMessage class]]) {
+    [self writeByte:130];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTPreviewPauseMessage class]]) {
+    [self writeByte:131];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTPreviewPlayMessage class]]) {
+    [self writeByte:132];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTPreviewSourceMessage class]]) {
+    [self writeByte:133];
+    [self writeValue:[value toMap]];
+  } else 
+{
+    [super writeValue:value];
+  }
+}
+@end
+
+@interface FLTVideoPreviewApiCodecReaderWriter : FlutterStandardReaderWriter
+@end
+@implementation FLTVideoPreviewApiCodecReaderWriter
+- (FlutterStandardWriter *)writerWithData:(NSMutableData *)data {
+  return [[FLTVideoPreviewApiCodecWriter alloc] initWithData:data];
+}
+- (FlutterStandardReader *)readerWithData:(NSData *)data {
+  return [[FLTVideoPreviewApiCodecReader alloc] initWithData:data];
+}
+@end
+
+
+NSObject<FlutterMessageCodec> *FLTVideoPreviewApiGetCodec() {
+  static FlutterStandardMessageCodec *sSharedObject = nil;
+  static dispatch_once_t sPred = 0;
+  dispatch_once(&sPred, ^{
+    FLTVideoPreviewApiCodecReaderWriter *readerWriter = [[FLTVideoPreviewApiCodecReaderWriter alloc] init];
+    sSharedObject = [FlutterStandardMessageCodec codecWithReaderWriter:readerWriter];
+  });
+  return sSharedObject;
+}
+
+void FLTVideoPreviewApiSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FLTVideoPreviewApi> *api) {
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.create"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(create:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(create:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        FlutterError *error;
+        FLTPreviewCreateMessage *output = [api create:&error];
+        callback(wrapResult(output, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.setFilter"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setFilter:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(setFilter:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTPreviewFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setFilter:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.setSource"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setSource:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(setSource:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTPreviewSourceMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setSource:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.play"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(play:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(play:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTPreviewPlayMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api play:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.pause"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(pause:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(pause:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTPreviewPauseMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api pause:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.VideoPreviewApi.dispose"
+        binaryMessenger:binaryMessenger
+        codec:FLTVideoPreviewApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(dispose:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(dispose:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTPreviewDisposeMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api dispose:arg_msg error:&error];
         callback(wrapResult(nil, error));
       }];
     }

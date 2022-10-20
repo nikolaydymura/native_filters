@@ -988,6 +988,270 @@ public class Messages {
     }
   }
 
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewCreateMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewCreateMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      public @NonNull PreviewCreateMessage build() {
+        PreviewCreateMessage pigeonReturn = new PreviewCreateMessage();
+        pigeonReturn.setTextureId(textureId);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      return toMapResult;
+    }
+    static @NonNull PreviewCreateMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewCreateMessage pigeonResult = new PreviewCreateMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewFilterMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    private @NonNull Long filterId;
+    public @NonNull Long getFilterId() { return filterId; }
+    public void setFilterId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"filterId\" is null.");
+      }
+      this.filterId = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewFilterMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      private @Nullable Long filterId;
+      public @NonNull Builder setFilterId(@NonNull Long setterArg) {
+        this.filterId = setterArg;
+        return this;
+      }
+      public @NonNull PreviewFilterMessage build() {
+        PreviewFilterMessage pigeonReturn = new PreviewFilterMessage();
+        pigeonReturn.setTextureId(textureId);
+        pigeonReturn.setFilterId(filterId);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      toMapResult.put("filterId", filterId);
+      return toMapResult;
+    }
+    static @NonNull PreviewFilterMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewFilterMessage pigeonResult = new PreviewFilterMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      Object filterId = map.get("filterId");
+      pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewSourceMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    private @NonNull String path;
+    public @NonNull String getPath() { return path; }
+    public void setPath(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"path\" is null.");
+      }
+      this.path = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewSourceMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      private @Nullable String path;
+      public @NonNull Builder setPath(@NonNull String setterArg) {
+        this.path = setterArg;
+        return this;
+      }
+      public @NonNull PreviewSourceMessage build() {
+        PreviewSourceMessage pigeonReturn = new PreviewSourceMessage();
+        pigeonReturn.setTextureId(textureId);
+        pigeonReturn.setPath(path);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      toMapResult.put("path", path);
+      return toMapResult;
+    }
+    static @NonNull PreviewSourceMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewSourceMessage pigeonResult = new PreviewSourceMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      Object path = map.get("path");
+      pigeonResult.setPath((String)path);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewPlayMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewPlayMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      public @NonNull PreviewPlayMessage build() {
+        PreviewPlayMessage pigeonReturn = new PreviewPlayMessage();
+        pigeonReturn.setTextureId(textureId);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      return toMapResult;
+    }
+    static @NonNull PreviewPlayMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewPlayMessage pigeonResult = new PreviewPlayMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewPauseMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewPauseMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      public @NonNull PreviewPauseMessage build() {
+        PreviewPauseMessage pigeonReturn = new PreviewPauseMessage();
+        pigeonReturn.setTextureId(textureId);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      return toMapResult;
+    }
+    static @NonNull PreviewPauseMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewPauseMessage pigeonResult = new PreviewPauseMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class PreviewDisposeMessage {
+    private @NonNull Long textureId;
+    public @NonNull Long getTextureId() { return textureId; }
+    public void setTextureId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"textureId\" is null.");
+      }
+      this.textureId = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private PreviewDisposeMessage() {}
+    public static final class Builder {
+      private @Nullable Long textureId;
+      public @NonNull Builder setTextureId(@NonNull Long setterArg) {
+        this.textureId = setterArg;
+        return this;
+      }
+      public @NonNull PreviewDisposeMessage build() {
+        PreviewDisposeMessage pigeonReturn = new PreviewDisposeMessage();
+        pigeonReturn.setTextureId(textureId);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      return toMapResult;
+    }
+    static @NonNull PreviewDisposeMessage fromMap(@NonNull Map<String, Object> map) {
+      PreviewDisposeMessage pigeonResult = new PreviewDisposeMessage();
+      Object textureId = map.get("textureId");
+      pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
+      return pigeonResult;
+    }
+  }
+
   public interface Result<T> {
     void success(T result);
     void error(Throwable error);
@@ -1476,6 +1740,227 @@ public class Messages {
               ArrayList<Object> args = (ArrayList<Object>)message;
               assert args != null;
               FilterMessage msgArg = (FilterMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.dispose(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+    }
+  }
+  private static class VideoPreviewApiCodec extends StandardMessageCodec {
+    public static final VideoPreviewApiCodec INSTANCE = new VideoPreviewApiCodec();
+    private VideoPreviewApiCodec() {}
+    @Override
+    protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
+      switch (type) {
+        case (byte)128:         
+          return PreviewCreateMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)129:         
+          return PreviewDisposeMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)130:         
+          return PreviewFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)131:         
+          return PreviewPauseMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)132:         
+          return PreviewPlayMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)133:         
+          return PreviewSourceMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        default:        
+          return super.readValueOfType(type, buffer);
+        
+      }
+    }
+    @Override
+    protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value)     {
+      if (value instanceof PreviewCreateMessage) {
+        stream.write(128);
+        writeValue(stream, ((PreviewCreateMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewDisposeMessage) {
+        stream.write(129);
+        writeValue(stream, ((PreviewDisposeMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewFilterMessage) {
+        stream.write(130);
+        writeValue(stream, ((PreviewFilterMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewPauseMessage) {
+        stream.write(131);
+        writeValue(stream, ((PreviewPauseMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewPlayMessage) {
+        stream.write(132);
+        writeValue(stream, ((PreviewPlayMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewSourceMessage) {
+        stream.write(133);
+        writeValue(stream, ((PreviewSourceMessage) value).toMap());
+      } else 
+{
+        super.writeValue(stream, value);
+      }
+    }
+  }
+
+  /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
+  public interface VideoPreviewApi {
+    @NonNull PreviewCreateMessage create();
+    void setFilter(@NonNull PreviewFilterMessage msg);
+    void setSource(@NonNull PreviewSourceMessage msg);
+    void play(@NonNull PreviewPlayMessage msg);
+    void pause(@NonNull PreviewPauseMessage msg);
+    void dispose(@NonNull PreviewDisposeMessage msg);
+
+    /** The codec used by VideoPreviewApi. */
+    static MessageCodec<Object> getCodec() {
+      return       VideoPreviewApiCodec.INSTANCE;    }
+    /**Sets up an instance of `VideoPreviewApi` to handle messages through the `binaryMessenger`. */
+    static void setup(BinaryMessenger binaryMessenger, VideoPreviewApi api) {
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.create", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              PreviewCreateMessage output = api.create();
+              wrapped.put("result", output);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.setFilter", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              PreviewFilterMessage msgArg = (PreviewFilterMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.setFilter(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.setSource", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              PreviewSourceMessage msgArg = (PreviewSourceMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.setSource(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.play", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              PreviewPlayMessage msgArg = (PreviewPlayMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.play(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.pause", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              PreviewPauseMessage msgArg = (PreviewPauseMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.pause(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.VideoPreviewApi.dispose", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              PreviewDisposeMessage msgArg = (PreviewDisposeMessage)args.get(0);
               if (msgArg == null) {
                 throw new NullPointerException("msgArg unexpectedly null.");
               }

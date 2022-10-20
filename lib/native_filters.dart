@@ -3,7 +3,6 @@ library native_filters;
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +11,7 @@ import 'package:flutter/services.dart';
 
 import 'src/messages/messages.g.dart';
 
-part 'core_image/filter.dart';
-
-part 'factory/filter_factory.dart';
-
-part 'factory/filterable.dart';
+part 'src/factory/filter_factory.dart';
 
 part 'src/metadata/ci_filters.dart';
 
@@ -24,11 +19,11 @@ part 'src/metadata/gl_filters.dart';
 
 part 'src/metadata/gpu_image_filters.dart';
 
-part 'gpu_image/filter.dart';
+part 'src/filters/filter_group.dart';
 
-part 'widgets/base_preview.dart';
+part 'src/filters/filterable.dart';
 
-part 'widgets/image_preview.dart';
+part 'src/filters/filter.dart';
 
 part 'widgets/video_preview.dart';
 

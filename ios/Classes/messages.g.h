@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTInputDataValueMessage;
 @class FLTInputDataSourceValueMessage;
 @class FLTFilterMessage;
+@class FLTPreviewCreateMessage;
+@class FLTPreviewFilterMessage;
+@class FLTPreviewSourceMessage;
+@class FLTPreviewPlayMessage;
+@class FLTPreviewPauseMessage;
+@class FLTPreviewDisposeMessage;
 
 @interface FLTCreateFilterGroupMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -170,6 +176,52 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSNumber * filterId;
 @end
 
+@interface FLTPreviewCreateMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId;
+@property(nonatomic, strong) NSNumber * textureId;
+@end
+
+@interface FLTPreviewFilterMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId
+    filterId:(NSNumber *)filterId;
+@property(nonatomic, strong) NSNumber * textureId;
+@property(nonatomic, strong) NSNumber * filterId;
+@end
+
+@interface FLTPreviewSourceMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId
+    path:(NSString *)path;
+@property(nonatomic, strong) NSNumber * textureId;
+@property(nonatomic, copy) NSString * path;
+@end
+
+@interface FLTPreviewPlayMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId;
+@property(nonatomic, strong) NSNumber * textureId;
+@end
+
+@interface FLTPreviewPauseMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId;
+@property(nonatomic, strong) NSNumber * textureId;
+@end
+
+@interface FLTPreviewDisposeMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSNumber *)textureId;
+@property(nonatomic, strong) NSNumber * textureId;
+@end
+
 /// The codec used by FLTImageVideoFilterFactoryApi.
 NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 
@@ -194,5 +246,20 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 @end
 
 extern void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FLTImageVideoFilterFactoryApi> *_Nullable api);
+
+/// The codec used by FLTVideoPreviewApi.
+NSObject<FlutterMessageCodec> *FLTVideoPreviewApiGetCodec(void);
+
+@protocol FLTVideoPreviewApi
+/// @return `nil` only when `error != nil`.
+- (nullable FLTPreviewCreateMessage *)create:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setFilter:(FLTPreviewFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setSource:(FLTPreviewSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)play:(FLTPreviewPlayMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)pause:(FLTPreviewPauseMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)dispose:(FLTPreviewDisposeMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+@end
+
+extern void FLTVideoPreviewApiSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FLTVideoPreviewApi> *_Nullable api);
 
 NS_ASSUME_NONNULL_END
