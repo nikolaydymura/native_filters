@@ -97,15 +97,18 @@ class FilterGroup extends Filterable {
 
   @override
   Future<Uint8List?> get binaryOutput async {
-    final result = await FilterFactory._api.exportData(FilterMessage(filterId: id));
+    final result =
+        await FilterFactory._api.exportData(FilterMessage(filterId: id));
     return result.data;
   }
 
   Future<void> export(File output) async {
     if (_isVideo(output.path)) {
-      await FilterFactory._api.exportFile(ExportFileMessage(filterId: id, path: output.path, video: true));
+      await FilterFactory._api.exportFile(
+          ExportFileMessage(filterId: id, path: output.path, video: true));
     } else if (_isImage(output.path)) {
-      await FilterFactory._api.exportFile(ExportFileMessage(filterId: id, path: output.path, video: false));
+      await FilterFactory._api.exportFile(
+          ExportFileMessage(filterId: id, path: output.path, video: false));
     } else {
       return Future.error('Not supported');
     }
@@ -210,26 +213,25 @@ abstract class Filter extends Filterable {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
 
-  Future<void> setNSDataAsset(String key, String name){
+  Future<void> setNSDataAsset(String key, String name) {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
 
-  Future<void> setNSData(String key, Uint8List data){
+  Future<void> setNSData(String key, Uint8List data) {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
 
-  Future<void> setBitmapFile(String key, File path){
+  Future<void> setBitmapFile(String key, File path) {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
 
-  Future<void> setBitmapAsset(String key, String name){
+  Future<void> setBitmapAsset(String key, String name) {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
 
-  Future<void> setBitmap(String key, Uint8List data){
+  Future<void> setBitmap(String key, Uint8List data) {
     throw UnsupportedError('Not available in $defaultTargetPlatform');
   }
-  Future<void> setNSData(String key, Uint8List data);
 
   Future<void> updateConfiguration(FilterConfigurationBuilder builder) async {
     final filterAttributes = ciFilters

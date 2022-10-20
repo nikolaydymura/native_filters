@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _filtersFactory = const FilterFactory();
+  final _filtersFactory = FilterFactory();
   Filter? _filter;
   File? _output;
   Uint8List? _data;
