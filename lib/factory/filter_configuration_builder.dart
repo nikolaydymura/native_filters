@@ -128,7 +128,28 @@ class FilterConfigurationBuilder {
           continue;
         }
         throw '$key is not $attributeType format';
-      } else if (attributeType == 'NSValue' && attributeType == 'CIVector') {}
+      } else if (attributeType == 'NSValue') {
+        if (value.length == 6) {
+          continue;
+        }
+        throw 'Must be 6 elements in list';
+      } else if (attributeType == 'CIVector') {
+        if (attribute['CIAttributeType'] == 'CIAttributeTypePosition3') {
+          if (value.length == 3) {
+            continue;
+          }
+          throw 'Must be 3 elements in list';
+        } else if (attribute['CIAttributeType'] == 'CIAttributeTypeRectangle') {
+          if (value.length == 2) {
+            continue;
+          }
+          throw 'Must be 2 elements in list';
+        } else if (attribute['CIAttributeType'] == 'CIAttributeTypePosition' ||
+            attribute['CIAttributeType'] == 'CIAttributeTypeOffset') {
+          continue;
+        }
+        throw '$key is not CIVector format';
+      }
     }
   }
 }
