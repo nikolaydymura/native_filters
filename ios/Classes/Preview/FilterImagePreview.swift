@@ -2,12 +2,12 @@ import Flutter
 
 class FilterImagePreview: NSObject, FlutterPlatformView {
     let methodChannel: FlutterMethodChannel
-    let filtersFactory: NativeFilterFactory
+    let filtersFactory: ImageVideoFilterFactory
     let imageView: UIImageView
     var selectedFilter: NativeFilter?
 
 
-    init(frame: CGRect, registrar: FlutterPluginRegistrar, id: Int64, factory: NativeFilterFactory) {
+    init(frame: CGRect, registrar: FlutterPluginRegistrar, id: Int64, factory: ImageVideoFilterFactory) {
         methodChannel = FlutterMethodChannel(
             name: "FilterImagePreview_\(id)",
             binaryMessenger: registrar.messenger()

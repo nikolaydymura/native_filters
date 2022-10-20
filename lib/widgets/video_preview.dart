@@ -23,6 +23,11 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
         viewType: 'FilterVideoPreview',
         onPlatformViewCreated: _onPlatformViewCreated,
       );
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
+      return AndroidView(
+        viewType: 'FilterVideoPreview',
+        onPlatformViewCreated: _onPlatformViewCreated,
+      );
     }
     return Text(
         '$defaultTargetPlatform is not yet supported by the image view plugin');
@@ -35,17 +40,14 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
     final filter = widget.filter;
     if (filter is _CIFilter) {
       widget.onCreated?.call(
-          new FilterVideoPreviewController._(id, filter.group.keyId));
+          new FilterVideoPreviewController._(id, filter.group.id));
     }
-    if (filter is _CIFilterGroup) {
-      widget.onCreated?.call(new FilterVideoPreviewController._(id, filter.keyId));
+    if (filter is FilterGroup) {
+      widget.onCreated?.call(new FilterVideoPreviewController._(id, filter.id));
     }
     if (filter is _GPUImageFilter) {
       widget.onCreated?.call(
-          new FilterVideoPreviewController._(id, filter.group.keyId));
-    }
-    if (filter is _GPUImageFilterGroup) {
-      widget.onCreated?.call(new FilterVideoPreviewController._(id, filter.keyId));
+          new FilterVideoPreviewController._(id, filter.group.id));
     }
   }
 }
