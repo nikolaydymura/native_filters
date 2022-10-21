@@ -96,22 +96,22 @@ class FilterConfigurationBuilder {
         throw 'Attribute $key is not acceptable for ${filterAttributes.keys}';
       }
 
-      final attributeType = attribute['CIAttributeClass'];
+      final attributeType = attribute['AttributeClass'];
 
       if (attributeType == 'NSNumber') {
         if (value is bool) {
           continue;
         }
         if (value is num) {
-          final min = attribute['CIAttributeSliderMin'] ?? minimum;
-          final max = attribute['CIAttributeSliderMax'] ?? maximum;
+          final min = attribute['AttributeSliderMin'] ?? minimum;
+          final max = attribute['AttributeSliderMax'] ?? maximum;
           if ((min != null && value >= min) && (max != null && value <= max)) {
             continue;
           }
-          throw '$value is not in range ${attribute['CIAttributeSliderMin']} - ${attribute['CIAttributeSliderMax']}';
+          throw '$value is not in range ${attribute['AttributeSliderMin']} - ${attribute['AttributeSliderMax']}';
         }
         throw '$value is not  number format';
-      } else if (attributeType == 'CIAttributeTypeBoolean') {
+      } else if ( attribute['AttributeType'] == 'CIAttributeTypeBoolean') {
         if (value is bool) {
           continue;
         }
@@ -134,23 +134,23 @@ class FilterConfigurationBuilder {
         }
         throw 'Must be 6 elements in list';
       } else if (attributeType == 'CIVector') {
-        if (attribute['CIAttributeType'] == 'CIAttributeTypePosition3') {
+        if (attribute['AttributeType'] == 'CIAttributeTypePosition3') {
           if (value.length == 3) {
             continue;
           }
           throw 'Must be 3 elements in list';
-        } else if (attribute['CIAttributeType'] == 'CIAttributeTypeRectangle') {
+        } else if (attribute['AttributeType'] == 'CIAttributeTypeRectangle') {
           if (value.length == 2) {
             continue;
           }
           throw 'Must be 2 elements in list';
-        } else if (attribute['CIAttributeType'] == 'CIAttributeTypePosition' ||
-            attribute['CIAttributeType'] == 'CIAttributeTypeOffset') {
+        } else if (attribute['AttributeType'] == 'CIAttributeTypePosition' ||
+            attribute['AttributeType'] == 'CIAttributeTypeOffset') {
           continue;
         }
         throw '$key is not CIVector format';
       } else if (attributeType == 'CIImage') {
-        if (attribute['CIAttributeType'] == 'CIAttributeTypeImage') {
+        if (attribute['AttributeType'] == 'CIAttributeTypeImage') {
           continue;
         }
         throw '$key is not CIImage format';

@@ -8,7 +8,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputNumberOfFolds": {
       "AttributeClass": "NSNumber",
@@ -16,20 +16,20 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Number of Folds",
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAccordionFoldTransition",
     "CIAttributeFilterDisplayName": "Accordion Fold Transition",
@@ -38,7 +38,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": 0,
       "CIAttributeDisplayName": "Bottom Height",
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -53,7 +53,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -73,13 +73,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -95,7 +95,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAffineClamp",
     "inputTransform": {
@@ -119,7 +119,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAffineTile",
     "inputTransform": {
@@ -143,7 +143,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAffineTransform",
     "inputTransform": {
@@ -152,7 +152,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "A transform to apply to the image.",
       "CIAttributeDisplayName": "Transform",
       "CIAttributeIdentity": "CGAffineTransform: {{1, 0, 0, 1}, {0, 0}}",
-      "CIAttributeType": "CIAttributeTypeTransform"
+      "AttributeType": "CIAttributeTypeTransform"
     }
   },
   {
@@ -169,7 +169,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputExtent": {
       "AttributeClass": "CIVector",
@@ -177,7 +177,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -187,7 +187,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAreaHistogram",
     "inputScale": {
@@ -198,7 +198,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Scale",
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCount": {
       "AttributeClass": "NSNumber",
@@ -209,7 +209,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 10,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryReduction",
@@ -223,7 +223,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that, after intersection with the image extent, specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -240,7 +240,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputExtent": {
       "AttributeClass": "CIVector",
@@ -248,7 +248,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -265,7 +265,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputExtent": {
       "AttributeClass": "CIVector",
@@ -273,7 +273,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -283,7 +283,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryReduction",
@@ -298,7 +298,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -308,7 +308,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAreaMinimumAlpha",
     "CIAttributeFilterCategories": [
@@ -323,7 +323,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -333,7 +333,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAreaMinMax",
     "CIAttributeFilterCategories": [
@@ -348,7 +348,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -358,7 +358,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIAreaMinMaxRed",
     "CIAttributeFilterCategories": [
@@ -373,7 +373,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -396,7 +396,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 4,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -467,20 +467,20 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -490,7 +490,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -500,7 +500,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 300,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIBarsSwipeTransition",
     "CIAttributeFilterDisplayName": "Bars Swipe Transition",
@@ -518,7 +518,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -531,7 +531,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterDisplayName": "Bicubic Scale Transform",
     "inputImage": {
@@ -539,7 +539,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -558,7 +558,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0.05,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputC": {
       "AttributeClass": "NSNumber",
@@ -569,7 +569,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIBicubicScaleTransform",
     "inputAspectRatio": {
@@ -582,7 +582,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0.5,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -590,7 +590,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "A masking image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Blend With Alpha Mask",
     "inputImage": {
@@ -598,7 +598,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -611,7 +611,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -621,7 +621,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -633,14 +633,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "A masking image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIBlendWithBlueMask",
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -649,21 +649,21 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A grayscale mask. When a mask value is 0.0, the result is the background. When the mask value is 1.0, the result is the image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Blend With Mask",
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -678,21 +678,21 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "A masking image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Blend With Red Mask",
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -709,7 +709,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -728,7 +728,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -740,7 +740,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -750,7 +750,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -766,7 +766,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.4,
       "AttributeSliderMin": 0.25,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRingSize": {
       "AttributeClass": "NSNumber",
@@ -777,7 +777,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -788,7 +788,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputRingAmount": {
       "AttributeClass": "NSNumber",
@@ -799,7 +799,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -809,7 +809,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -827,7 +827,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -837,7 +837,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -854,7 +854,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIBumpDistortion",
     "inputRadius": {
@@ -866,7 +866,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 600,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -874,7 +874,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -888,14 +888,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -912,7 +912,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIBumpDistortionLinear",
     "inputRadius": {
@@ -925,7 +925,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 600,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -933,7 +933,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -943,7 +943,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CICameraCalibrationLensCorrection",
     "CIAttributeFilterCategories": [
@@ -975,7 +975,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGenerator",
@@ -997,7 +997,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Width",
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -1008,7 +1008,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputColor1": {
       "AttributeClass": "CIColor",
@@ -1024,7 +1024,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -1042,7 +1042,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -1050,7 +1050,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -1066,7 +1066,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CICircularScreen",
     "inputWidth": {
@@ -1078,7 +1078,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -1089,7 +1089,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -1097,7 +1097,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the circular screen pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -1110,7 +1110,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -1123,7 +1123,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CICircularWrap",
     "inputRadius": {
@@ -1135,7 +1135,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 600,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -1143,7 +1143,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -1153,7 +1153,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIClamp",
     "CIAttributeFilterCategories": [
@@ -1168,7 +1168,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -1177,7 +1177,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -1187,7 +1187,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -1198,7 +1198,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance",
+      "AttributeType": "CIAttributeTypeDistance",
       "CIUIParameterSet": ":CIUISetBasic"
     },
     "inputWidth": {
@@ -1210,7 +1210,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance",
+      "AttributeType": "CIAttributeTypeDistance",
       "CIUIParameterSet": ":CIUISetBasic"
     },
     "inputUCR": {
@@ -1223,7 +1223,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar",
+      "AttributeType": "CIAttributeTypeScalar",
       "CIUIParameterSet": ":CIUISetIntermediate"
     },
     "inputGCR": {
@@ -1236,7 +1236,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar",
+      "AttributeType": "CIAttributeTypeScalar",
       "CIUIParameterSet": ":CIUISetIntermediate"
     },
     "AttributeFilterName": "CICMYKHalftone",
@@ -1247,7 +1247,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the halftone pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryHalftoneEffect",
@@ -1266,7 +1266,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 20,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterDisplayName": "Code 128 Barcode Generator",
     "CIAttributeFilterCategories": [
@@ -1289,7 +1289,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -1304,7 +1304,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorAbsoluteDifference",
     "CIAttributeFilterCategories": [
@@ -1332,13 +1332,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1348,7 +1348,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorBurnBlendMode",
     "CIAttributeFilterCategories": [
@@ -1363,7 +1363,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1379,7 +1379,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorClamp",
     "CIAttributeFilterCategories": [
@@ -1408,7 +1408,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterDisplayName": "Color Controls",
     "inputSaturation": {
@@ -1421,7 +1421,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -1442,14 +1442,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 4,
       "AttributeSliderMin": 0.25,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1475,7 +1475,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputGreenCoefficients": {
       "AttributeClass": "CIVector",
@@ -1500,7 +1500,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 2,
       "AttributeMax": 64,
       "AttributeMin": 2,
-      "CIAttributeType": "CIAttributeTypeCount"
+      "AttributeType": "CIAttributeTypeCount"
     },
     "CIAttributeFilterDisplayName": "Color Cube",
     "inputImage": {
@@ -1508,7 +1508,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorCube",
     "inputCubeData": {
@@ -1542,13 +1542,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 2,
       "AttributeMax": 64,
       "AttributeMin": 2,
-      "CIAttributeType": "CIAttributeTypeCount"
+      "AttributeType": "CIAttributeTypeCount"
     },
     "inputMaskImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "A masking image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCube0Data": {
       "AttributeClass": "NSData",
@@ -1597,7 +1597,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1608,7 +1608,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 2,
       "AttributeMax": 64,
       "AttributeMin": 2,
-      "CIAttributeType": "CIAttributeTypeCount"
+      "AttributeType": "CIAttributeTypeCount"
     },
     "CIAttributeFilterDisplayName": "Color Cube with ColorSpace",
     "inputCubeData": {
@@ -1635,7 +1635,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -1671,7 +1671,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCurvesData": {
       "AttributeClass": "NSData",
@@ -1689,7 +1689,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -1704,7 +1704,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1714,7 +1714,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -1733,7 +1733,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -1749,7 +1749,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image data from this image transforms the source image values.",
       "CIAttributeDisplayName": "Gradient Image",
-      "CIAttributeType": "CIAttributeTypeGradient"
+      "AttributeType": "CIAttributeTypeGradient"
     }
   },
   {
@@ -1808,7 +1808,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -1818,7 +1818,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorMonochrome",
     "CIAttributeFilterCategories": [
@@ -1835,7 +1835,7 @@ const List<Map<String, dynamic>> ciFilters = [
           "<CIColor 0x600001126c70 (0.6 0.45 0.3 1) devicergb>",
       "CIAttributeDescription": "The monochrome color to apply to the image.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeOpaqueColor"
+      "AttributeType": "CIAttributeTypeOpaqueColor"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -1847,7 +1847,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -1864,7 +1864,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorPolynomial",
     "CIAttributeFilterCategories": [
@@ -1904,7 +1904,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -1925,7 +1925,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 30,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -1935,7 +1935,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorThreshold",
     "CIAttributeFilterCategories": [
@@ -1952,7 +1952,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Threshold",
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -1962,7 +1962,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIColorThresholdOtsu",
     "CIAttributeFilterCategories": [
@@ -1981,7 +1981,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryReduction",
@@ -1996,7 +1996,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -2006,7 +2006,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIComicEffect",
     "CIAttributeFilterCategories": [
@@ -2030,7 +2030,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x60000113f870 (1 0 0 1) devicergb>",
       "CIAttributeDescription": "The color to generate.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     }
   },
   {
@@ -2046,7 +2046,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolution3X3",
     "CIAttributeFilterCategories": [
@@ -2127,7 +2127,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolution5X5",
     "CIAttributeFilterCategories": [
@@ -2256,7 +2256,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolution7X7",
     "CIAttributeFilterCategories": [
@@ -2285,7 +2285,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolution9Horizontal",
     "CIAttributeFilterCategories": [
@@ -2314,7 +2314,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolution9Vertical",
     "CIAttributeFilterCategories": [
@@ -2343,7 +2343,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolutionRGB3X3",
     "CIAttributeFilterCategories": [
@@ -2424,7 +2424,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolutionRGB5X5",
     "CIAttributeFilterCategories": [
@@ -2553,7 +2553,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolutionRGB7X7",
     "CIAttributeFilterCategories": [
@@ -2582,7 +2582,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolutionRGB9Horizontal",
     "CIAttributeFilterCategories": [
@@ -2611,7 +2611,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIConvolutionRGB9Vertical",
     "CIAttributeFilterCategories": [
@@ -2632,21 +2632,21 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001133180 (0.6 1 0.8 1) devicergb>",
       "CIAttributeDescription": "The color of the copier light.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeOpaqueColor"
+      "AttributeType": "CIAttributeTypeOpaqueColor"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -2657,7 +2657,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -2669,7 +2669,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -2680,7 +2680,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 500,
       "AttributeSliderMin": 0.1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CICopyMachineTransition",
     "CIAttributeFilterDisplayName": "Copy Machine",
@@ -2690,7 +2690,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -2708,7 +2708,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 3,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -2724,7 +2724,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputHeadIndex": {
       "AttributeClass": "NSNumber",
@@ -2734,7 +2734,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Head Index",
       "AttributeMax": 10,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeInteger"
+      "AttributeType": "CIAttributeTypeInteger"
     },
     "inputModel": {
       "AttributeClass": "MLModel",
@@ -2750,7 +2750,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Softmax Normalization",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     }
   },
   {
@@ -2760,7 +2760,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputRectangle": {
       "AttributeClass": "CIVector",
@@ -2779,7 +2779,7 @@ const List<Map<String, dynamic>> ciFilters = [
         1.79769e+308,
         1.79769e+308
       ],
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "AttributeFilterName": "CICrop",
     "CIAttributeFilterCategories": [
@@ -2796,7 +2796,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CICrystallize",
     "CIAttributeFilterCategories": [
@@ -2815,7 +2815,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -2823,7 +2823,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -2832,14 +2832,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIDarkenBlendMode",
     "CIAttributeFilterCategories": [
@@ -2856,7 +2856,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [-1, -1],
       "CIAttributeDisplayName": "Nose Positions",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputHairImage": {
       "AttributeClass": "CIImage",
@@ -2873,7 +2873,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [-1, -1],
       "CIAttributeDisplayName": "Chin Positions",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputGainMap": {
       "AttributeClass": "CIImage",
@@ -2886,7 +2886,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputDisparityImage": {
       "AttributeClass": "CIImage",
@@ -2904,7 +2904,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Scale Factor",
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputMatteImage": {
       "AttributeClass": "CIImage",
@@ -2915,14 +2915,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [-1, -1],
       "CIAttributeDisplayName": "Left Eye Positions",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputShape": {
       "AttributeClass": "NSString",
@@ -2932,7 +2932,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [-1, -1],
       "CIAttributeDisplayName": "Right Eye Positions",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputAuxDataMetadata": {
       "AttributeClass": "CGImageMetadataRef",
@@ -2954,7 +2954,7 @@ const List<Map<String, dynamic>> ciFilters = [
         1.79769e+308,
         1.79769e+308
       ],
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "inputAperture": {
       "AttributeClass": "NSNumber",
@@ -2963,7 +2963,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 22,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -2972,19 +2972,19 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputPoint0": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [0, 300],
       "CIAttributeDisplayName": "Point 0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputPoint1": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [300, 300],
       "CIAttributeDisplayName": "Point 1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "AttributeFilterName": "CIDepthOfField",
     "CIAttributeFilterDisplayName": "Depth of Field",
@@ -2995,7 +2995,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputSaturation": {
       "AttributeClass": "NSNumber",
@@ -3005,7 +3005,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -3020,7 +3020,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -3030,7 +3030,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 30,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -3040,7 +3040,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -3056,14 +3056,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -3082,7 +3082,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -3100,7 +3100,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -3108,7 +3108,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -3120,14 +3120,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputMaskImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "An image that defines the shape to use when disintegrating from the source to the target image.",
       "CIAttributeDisplayName": "Mask Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIDisintegrateWithMaskTransition",
     "CIAttributeFilterDisplayName": "Disintegrate With Mask",
@@ -3137,7 +3137,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "The offset of the shadow created by the mask.",
       "CIAttributeDisplayName": "Shadow Offset",
       "CIAttributeIdentity": [0, 0],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputShadowDensity": {
       "AttributeClass": "NSNumber",
@@ -3149,7 +3149,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -3165,14 +3165,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -3182,7 +3182,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIDisparityToDepth",
     "CIAttributeFilterCategories": [
@@ -3205,7 +3205,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -3224,7 +3224,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -3234,13 +3234,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -3261,7 +3261,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     }
   },
   {
@@ -3271,7 +3271,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIDither",
     "CIAttributeFilterCategories": [
@@ -3289,7 +3289,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -3297,7 +3297,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Divide Blend Mode",
     "inputImage": {
@@ -3305,7 +3305,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -3324,7 +3324,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIDocumentEnhancer",
     "inputAmount": {
@@ -3335,7 +3335,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -3353,7 +3353,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Dot Screen",
     "CIAttributeFilterCategories": [
@@ -3368,7 +3368,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -3379,7 +3379,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -3389,7 +3389,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -3397,7 +3397,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the dot screen pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -3406,13 +3406,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputInsetPoint1": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [400, 400],
       "CIAttributeDisplayName": "Inset Point 1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "AttributeFilterName": "CIDroste",
     "CIAttributeFilterDisplayName": "Droste",
@@ -3422,7 +3422,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Rotation",
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputStrands": {
       "AttributeClass": "NSNumber",
@@ -3431,7 +3431,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": -2,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputPeriodicity": {
       "AttributeClass": "NSNumber",
@@ -3440,13 +3440,13 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputInsetPoint0": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [200, 200],
       "CIAttributeDisplayName": "Inset Point 0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -3461,7 +3461,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0.01,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -3471,7 +3471,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputLumaSigma": {
       "AttributeClass": "NSNumber",
@@ -3479,7 +3479,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Luma Sigma",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIEdgePreserveUpsampleFilter",
     "CIAttributeFilterCategories": [
@@ -3500,7 +3500,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Spatial Sigma",
       "AttributeMax": 5,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -3510,7 +3510,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -3529,7 +3529,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -3539,7 +3539,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIEdgeWork",
     "CIAttributeFilterCategories": [
@@ -3557,7 +3557,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 20,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -3570,14 +3570,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIEightfoldReflectedTile",
     "CIAttributeFilterCategories": [
@@ -3595,7 +3595,7 @@ const List<Map<String, dynamic>> ciFilters = [
       
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -3603,7 +3603,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -3611,7 +3611,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Exclusion Blend Mode",
     "inputImage": {
@@ -3619,7 +3619,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -3641,7 +3641,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 10,
       "AttributeSliderMin": -10,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterDisplayName": "Exposure Adjust",
     "CIAttributeFilterCategories": [
@@ -3658,7 +3658,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIExposureAdjust"
   },
@@ -3669,14 +3669,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x60000111f270 (0.3 0 0 1) devicergb>",
       "CIAttributeDescription": "The first color to use for the color ramp.",
       "CIAttributeDisplayName": "Color 1",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -3692,7 +3692,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x60000111f240 (1 0.9 0.8 1) devicergb>",
       "CIAttributeDescription": "The second color to use for the color ramp.",
       "CIAttributeDisplayName": "Color 2",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     }
   },
   {
@@ -3700,7 +3700,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
@@ -3708,14 +3708,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The color of the light rays emanating from the flash.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputStriationStrength": {
       "AttributeClass": "NSNumber",
@@ -3726,7 +3726,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 3,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -3738,7 +3738,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "AttributeFilterName": "CIFlashTransition",
     "inputExtent": {
@@ -3746,7 +3746,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [0, 0, 300, 300],
       "CIAttributeDescription": "The extent of the flash.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "CIAttributeFilterDisplayName": "Flash",
     "inputFadeThreshold": {
@@ -3758,7 +3758,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -3766,7 +3766,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputStriationContrast": {
       "AttributeClass": "NSNumber",
@@ -3777,7 +3777,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputMaxStriationRadius": {
       "AttributeClass": "NSNumber",
@@ -3788,7 +3788,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -3807,7 +3807,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 1.570796326794897,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Fourfold Reflected Tile",
     "inputAngle": {
@@ -3818,14 +3818,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -3842,7 +3842,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIFourfoldReflectedTile",
     "inputCenter": {
@@ -3851,7 +3851,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -3864,14 +3864,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -3889,7 +3889,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -3897,7 +3897,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -3910,7 +3910,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 1.570796326794897,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Fourfold Translated Tile",
     "inputAngle": {
@@ -3921,14 +3921,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -3945,7 +3945,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIFourfoldTranslatedTile",
     "inputCenter": {
@@ -3954,7 +3954,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -3964,7 +3964,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIGaborGradients",
     "CIAttributeFilterCategories": [
@@ -3985,14 +3985,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 1,
       "AttributeSliderMax": 4,
       "AttributeSliderMin": 0.25,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -4011,7 +4011,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -4030,7 +4030,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4040,14 +4040,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x6000011187e0 (0 0 0 0) devicergb>",
       "CIAttributeDescription": "The second color to use in the gradient.",
       "CIAttributeDisplayName": "Color 2",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputColor0": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001118810 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The first color to use in the gradient.",
       "CIAttributeDisplayName": "Color 1",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGradient",
@@ -4064,7 +4064,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -4072,7 +4072,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4081,14 +4081,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "A texture to apply to the source image.",
       "CIAttributeDisplayName": "Texture",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -4106,7 +4106,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 500,
       "AttributeSliderMin": 0.01,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIGlassDistortion",
     "inputCenter": {
@@ -4115,7 +4115,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4125,7 +4125,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -4140,7 +4140,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position that defines the center of the circle at the other end of the lozenge.",
       "CIAttributeDisplayName": "Point 1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -4152,7 +4152,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputRefraction": {
       "AttributeClass": "NSNumber",
@@ -4163,7 +4163,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputPoint0": {
       "AttributeClass": "CIVector",
@@ -4171,7 +4171,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position that defines the center of the circle at one end of the lozenge.",
       "CIAttributeDisplayName": "Point 0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4184,7 +4184,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -4197,7 +4197,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIGlideReflectedTile",
     "inputWidth": {
@@ -4209,7 +4209,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -4217,7 +4217,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4227,7 +4227,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -4246,7 +4246,7 @@ const List<Map<String, dynamic>> ciFilters = [
    
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -4258,7 +4258,7 @@ const List<Map<String, dynamic>> ciFilters = [
      
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4268,7 +4268,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -4287,7 +4287,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Epsilon",
       "AttributeSliderMax": 0.1,
       "AttributeSliderMin": "1e-09",
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIGuidedFilter",
     "inputRadius": {
@@ -4297,7 +4297,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Radius",
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4305,7 +4305,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Hard Light Blend Mode",
     "inputImage": {
@@ -4313,7 +4313,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -4335,7 +4335,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryHalftoneEffect",
@@ -4348,7 +4348,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIHatchedScreen",
     "inputWidth": {
@@ -4359,7 +4359,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -4369,7 +4369,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -4377,7 +4377,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the hatched screen pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4387,7 +4387,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -4406,7 +4406,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 300,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -4416,7 +4416,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -4434,7 +4434,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIHexagonalPixellate",
     "inputCenter": {
@@ -4443,7 +4443,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4453,7 +4453,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -4472,7 +4472,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0.3,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -4483,7 +4483,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputShadowAmount": {
       "AttributeClass": "NSNumber",
@@ -4495,7 +4495,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4512,7 +4512,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputLowLimit": {
       "AttributeClass": "NSNumber",
@@ -4523,7 +4523,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputHighLimit": {
       "AttributeClass": "NSNumber",
@@ -4534,7 +4534,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputHeight": {
       "AttributeClass": "NSNumber",
@@ -4545,7 +4545,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4555,7 +4555,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIHoleDistortion",
     "CIAttributeFilterCategories": [
@@ -4574,7 +4574,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0.01,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -4582,7 +4582,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4596,7 +4596,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -4612,7 +4612,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -4620,7 +4620,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Hue Blend Mode",
     "CIAttributeFilterCategories": [
@@ -4637,7 +4637,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -4664,7 +4664,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 3,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputSoftness": {
       "AttributeClass": "NSNumber",
@@ -4673,7 +4673,7 @@ const List<Map<String, dynamic>> ciFilters = [
      
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -4683,7 +4683,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputValue": {
       "AttributeClass": "NSNumber",
@@ -4692,7 +4692,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -4705,7 +4705,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -4719,7 +4719,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCount": {
       "AttributeClass": "NSNumber",
@@ -4729,7 +4729,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 64,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -4737,7 +4737,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4746,7 +4746,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputFocalLength": {
       "AttributeClass": "NSNumber",
@@ -4754,7 +4754,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "35mm equivalent focal length of the input image.",
       "CIAttributeDisplayName": "Focal Length",
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIKeystoneCorrectionCombined",
     "CIAttributeFilterDisplayName": "Combined Keystone Correction",
@@ -4762,19 +4762,19 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom right coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top left coordinate of the guide.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -4786,7 +4786,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom left coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4795,7 +4795,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputFocalLength": {
       "AttributeClass": "NSNumber",
@@ -4803,7 +4803,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "35mm equivalent focal length of the input image.",
       "CIAttributeDisplayName": "Focal Length",
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIKeystoneCorrectionHorizontal",
     "CIAttributeFilterDisplayName": "Horizontal Keystone Correction",
@@ -4811,19 +4811,19 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom right coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top left coordinate of the guide.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -4835,7 +4835,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom left coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4844,7 +4844,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputFocalLength": {
       "AttributeClass": "NSNumber",
@@ -4852,7 +4852,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "35mm equivalent focal length of the input image.",
       "CIAttributeDisplayName": "Focal Length",
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIKeystoneCorrectionVertical",
     "CIAttributeFilterDisplayName": "Vertical Keystone Correction",
@@ -4860,19 +4860,19 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top right coordinate of the guide.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom right coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The top left coordinate of the guide.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -4884,7 +4884,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDescription": "The bottom left coordinate of the guide.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -4893,7 +4893,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputMeans": {
       "AttributeClass": "CIImage",
@@ -4910,7 +4910,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeMax": 128,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeCount"
+      "AttributeType": "CIAttributeTypeCount"
     },
     "AttributeFilterName": "CIKMeans",
     "CIAttributeFilterDisplayName": "KMeans",
@@ -4920,7 +4920,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "inputPasses": {
       "AttributeClass": "NSNumber",
@@ -4931,7 +4931,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeMax": 20,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeCount"
+      "AttributeType": "CIAttributeTypeCount"
     },
     "inputPerceptual": {
       "AttributeClass": "NSNumber",
@@ -4941,7 +4941,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Perceptual",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     },
     "CIAttributeFilterCategories": [
       "CICategoryReduction",
@@ -4971,7 +4971,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -4988,7 +4988,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputScale": {
       "AttributeClass": "NSNumber",
@@ -5000,7 +5000,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1.5,
       "AttributeSliderMin": 0.05,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputAspectRatio": {
       "AttributeClass": "NSNumber",
@@ -5012,7 +5012,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0.5,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -5025,7 +5025,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 300,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
@@ -5042,7 +5042,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputStriationStrength": {
       "AttributeClass": "NSNumber",
@@ -5053,7 +5053,7 @@ const List<Map<String, dynamic>> ciFilters = [
    
       "AttributeSliderMax": 3,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CILenticularHaloGenerator",
     "CIAttributeFilterDisplayName": "Lenticular Halo",
@@ -5064,7 +5064,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -5072,7 +5072,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the halo.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputStriationContrast": {
       "AttributeClass": "NSNumber",
@@ -5083,7 +5083,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGenerator",
@@ -5099,7 +5099,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -5109,7 +5109,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILightenBlendMode",
     "CIAttributeFilterCategories": [
@@ -5124,7 +5124,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5134,7 +5134,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILightTunnel",
     "CIAttributeFilterCategories": [
@@ -5151,7 +5151,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 500,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputRotation": {
       "AttributeClass": "NSNumber",
@@ -5161,14 +5161,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 1.570796326794897,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [150, 150],
       "CIAttributeDescription": "Center of the light tunnel.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -5178,7 +5178,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILinearBurnBlendMode",
     "CIAttributeFilterCategories": [
@@ -5193,7 +5193,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5203,7 +5203,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILinearDodgeBlendMode",
     "CIAttributeFilterCategories": [
@@ -5218,7 +5218,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5235,7 +5235,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x600001111a40 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The first color to use in the gradient.",
       "CIAttributeDisplayName": "Color 1",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputPoint1": {
       "AttributeClass": "CIVector",
@@ -5243,14 +5243,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The ending position of the gradient -- where the second color begins.",
       "CIAttributeDisplayName": "Point 1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputColor1": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001111a70 (0 0 0 1) devicergb>",
       "CIAttributeDescription": "The second color to use in the gradient.",
       "CIAttributeDisplayName": "Color 2",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputPoint0": {
       "AttributeClass": "CIVector",
@@ -5258,7 +5258,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The starting position of the gradient -- where the first color begins.",
       "CIAttributeDisplayName": "Point 0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -5268,7 +5268,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILinearLightBlendMode",
     "CIAttributeFilterCategories": [
@@ -5283,7 +5283,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5301,7 +5301,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILinearToSRGBToneCurve"
   },
@@ -5311,7 +5311,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputNRNoiseLevel": {
       "AttributeClass": "NSNumber",
@@ -5323,7 +5323,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputContrast": {
       "AttributeClass": "NSNumber",
@@ -5335,7 +5335,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 0.25,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputThreshold": {
       "AttributeClass": "NSNumber",
@@ -5347,7 +5347,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CILineOverlay",
     "CIAttributeFilterDisplayName": "Line Overlay",
@@ -5361,7 +5361,7 @@ const List<Map<String, dynamic>> ciFilters = [
      
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputNRSharpness": {
       "AttributeClass": "NSNumber",
@@ -5373,7 +5373,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBuiltIn",
@@ -5392,7 +5392,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryHalftoneEffect",
@@ -5406,7 +5406,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -5416,7 +5416,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 2,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputSharpness": {
       "AttributeClass": "NSNumber",
@@ -5427,7 +5427,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -5435,7 +5435,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the line screen pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -5444,7 +5444,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -5459,7 +5459,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CILuminosityBlendMode"
   },
@@ -5477,7 +5477,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -5488,7 +5488,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputMask": {
       "AttributeClass": "CIImage",
@@ -5510,7 +5510,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMaskToAlpha"
   },
@@ -5529,7 +5529,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMaximumComponent"
   },
@@ -5539,7 +5539,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -5555,7 +5555,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMaximumCompositing"
   },
@@ -5572,7 +5572,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMedianFilter"
   },
@@ -5599,7 +5599,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
@@ -5623,7 +5623,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMinimumComponent"
   },
@@ -5643,14 +5643,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMinimumCompositing",
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5658,7 +5658,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Mix",
     "CIAttributeFilterCategories": [
@@ -5675,14 +5675,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 1,
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMix"
   },
@@ -5691,7 +5691,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -5703,7 +5703,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -5713,7 +5713,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": -6.283185307179586,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputCompression": {
       "AttributeClass": "NSNumber",
@@ -5724,7 +5724,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 100,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIModTransition",
     "CIAttributeFilterDisplayName": "Mod",
@@ -5734,7 +5734,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -5751,14 +5751,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -5768,7 +5768,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMorphologyGradient",
     "CIAttributeFilterCategories": [
@@ -5787,7 +5787,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -5797,7 +5797,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMorphologyMaximum",
     "CIAttributeFilterCategories": [
@@ -5815,7 +5815,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -5825,7 +5825,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIMorphologyMinimum",
     "CIAttributeFilterCategories": [
@@ -5843,7 +5843,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 50,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -5858,14 +5858,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 49,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeInteger"
+      "AttributeType": "CIAttributeTypeInteger"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -5884,7 +5884,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 49,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeInteger"
+      "AttributeType": "CIAttributeTypeInteger"
     }
   },
   {
@@ -5899,14 +5899,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 49,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeInteger"
+      "AttributeType": "CIAttributeTypeInteger"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -5925,7 +5925,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 49,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeInteger"
+      "AttributeType": "CIAttributeTypeInteger"
     }
   },
   {
@@ -5939,14 +5939,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -5965,7 +5965,7 @@ const List<Map<String, dynamic>> ciFilters = [
    
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     }
   },
   {
@@ -5973,7 +5973,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Multiply Blend Mode",
     "inputImage": {
@@ -5981,7 +5981,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -5998,7 +5998,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Multiply",
     "inputImage": {
@@ -6006,7 +6006,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -6025,7 +6025,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [100, 100],
       "CIAttributeDisplayName": "Grow Amount",
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -6038,7 +6038,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CINinePartStretched",
     "inputBreakpoint0": {
@@ -6047,7 +6047,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "Lower left corner of image to retain before stretching begins.",
       "CIAttributeDisplayName": "Breakpoint0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBreakpoint1": {
       "AttributeClass": "CIVector",
@@ -6055,7 +6055,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "Upper right corner of image to retain after stretching ends.",
       "CIAttributeDisplayName": "Breakpoint1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6064,14 +6064,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [100, 100],
       "CIAttributeDisplayName": "Grow Amount",
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputFlipYTiles": {
       "AttributeClass": "NSNumber",
@@ -6080,7 +6080,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Flip Y Tiles",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -6094,7 +6094,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "Lower left corner of image to retain before tiling begins.",
       "CIAttributeDisplayName": "Breakpoint0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "AttributeFilterName": "CINinePartTiled",
     "inputBreakpoint1": {
@@ -6103,7 +6103,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "Upper right corner of image to retain after tiling ends.",
       "CIAttributeDisplayName": "Breakpoint1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6113,7 +6113,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -6132,7 +6132,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputNoiseLevel": {
       "AttributeClass": "NSNumber",
@@ -6144,7 +6144,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -6157,14 +6157,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -6182,7 +6182,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0.1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -6193,7 +6193,7 @@ const List<Map<String, dynamic>> ciFilters = [
    
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIOpTile",
     "inputCenter": {
@@ -6202,7 +6202,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6210,7 +6210,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Overlay Blend Mode",
     "inputImage": {
@@ -6218,7 +6218,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -6235,7 +6235,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -6247,7 +6247,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -6257,7 +6257,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "AttributeFilterName": "CIPageCurlTransition",
     "inputExtent": {
@@ -6265,7 +6265,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [0, 0, 300, 300],
       "CIAttributeDescription": "The extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "CIAttributeFilterDisplayName": "Page Curl",
     "inputShadingImage": {
@@ -6273,7 +6273,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "An image that looks like a shaded sphere enclosed in a square image.",
       "CIAttributeDisplayName": "Shading Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputBacksideImage": {
       "AttributeClass": "CIImage",
@@ -6295,14 +6295,14 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 400,
       "AttributeSliderMin": 0.01,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -6314,13 +6314,13 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputShadowAmount": {
       "AttributeClass": "NSNumber",
@@ -6330,7 +6330,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -6340,7 +6340,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputShadowExtent": {
       "AttributeClass": "CIVector",
@@ -6348,7 +6348,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The rectagular portion of input image that will cast a shadow.",
       "CIAttributeDisplayName": "Shadow Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "inputTime": {
       "AttributeClass": "NSNumber",
@@ -6360,7 +6360,7 @@ const List<Map<String, dynamic>> ciFilters = [
      
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "AttributeFilterName": "CIPageCurlWithShadowTransition",
     "inputExtent": {
@@ -6368,7 +6368,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [0, 0, 0, 0],
       "CIAttributeDescription": "The extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "CIAttributeFilterDisplayName": "Page Curl With Shadow",
     "inputBacksideImage": {
@@ -6391,14 +6391,14 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 400,
       "AttributeSliderMin": 0.01,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -6410,7 +6410,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Perceptual",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     },
     "inputPaletteImage": {
       "AttributeClass": "CIImage",
@@ -6423,7 +6423,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPaletteCentroid",
     "CIAttributeFilterCategories": [
@@ -6443,7 +6443,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Perceptual",
       "AttributeMax": 1,
       "AttributeMin": 0,
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     },
     "CIAttributeFilterDisplayName": "Palettize",
     "inputImage": {
@@ -6451,7 +6451,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPalettize",
     "CIAttributeFilterCategories": [
@@ -6477,7 +6477,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 1.570796326794897,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -6487,14 +6487,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIParallelogramTile",
     "CIAttributeFilterCategories": [
@@ -6513,7 +6513,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -6521,7 +6521,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6649,7 +6649,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPersonSegmentation",
     "inputQualityLevel": {
@@ -6665,7 +6665,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPerspectiveCorrection",
     "CIAttributeFilterDisplayName": "Perspective Correction",
@@ -6675,7 +6675,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The top right coordinate to be perspective corrected.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
@@ -6683,13 +6683,13 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The bottom right coordinate to be perspective corrected.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputCrop": {
       "AttributeClass": "NSNumber",
       "CIAttributeDefault": 1,
       "CIAttributeDisplayName": "Crop",
-      "CIAttributeType": "CIAttributeTypeBoolean"
+      "AttributeType": "CIAttributeTypeBoolean"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
@@ -6697,7 +6697,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The top left coordinate to be perspective corrected.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -6711,7 +6711,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The bottom left coordinate to be perspective corrected.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6727,7 +6727,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputFocalLength": {
       "AttributeClass": "NSNumber",
@@ -6735,7 +6735,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "35mm equivalent focal length of the input image.",
       "CIAttributeDisplayName": "Focal Length",
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CIPerspectiveRotate",
     "inputRoll": {
@@ -6744,7 +6744,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "Roll angle in radians.",
       "CIAttributeDisplayName": "Roll",
       "CIAttributeIdentity": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputPitch": {
       "AttributeClass": "NSNumber",
@@ -6752,7 +6752,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "Pitch angle in radians.",
       "CIAttributeDisplayName": "Pitch",
       "CIAttributeIdentity": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputYaw": {
       "AttributeClass": "NSNumber",
@@ -6760,7 +6760,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "Yaw angle in radians.",
       "CIAttributeDisplayName": "Yaw",
       "CIAttributeIdentity": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     }
   },
   {
@@ -6770,7 +6770,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPerspectiveTile",
     "CIAttributeFilterCategories": [
@@ -6784,28 +6784,28 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [155, 153],
       "CIAttributeDescription": "The bottom left coordinate of a tile.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [118, 484],
       "CIAttributeDescription": "The top left coordinate of a tile.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [548, 140],
       "CIAttributeDescription": "The bottom right coordinate of a tile.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [646, 507],
       "CIAttributeDescription": "The top right coordinate of a tile.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6815,7 +6815,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -6830,14 +6830,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The bottom left coordinate to map the image to.",
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [118, 484],
       "CIAttributeDescription": "The top left coordinate to map the image to.",
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
@@ -6845,14 +6845,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The bottom right coordinate to map the image to.",
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [646, 507],
       "CIAttributeDescription": "The top right coordinate to map the image to.",
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6861,7 +6861,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPerspectiveTransformWithExtent",
     "CIAttributeFilterDisplayName": "Perspective Transform with Extent",
@@ -6871,25 +6871,25 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "inputBottomRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [548, 140],
       "CIAttributeDisplayName": "Bottom Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopRight": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [646, 507],
       "CIAttributeDisplayName": "Top Right",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputTopLeft": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [118, 484],
       "CIAttributeDisplayName": "Top Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -6901,7 +6901,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [155, 153],
       "CIAttributeDisplayName": "Bottom Left",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -6920,7 +6920,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectChrome"
   },
@@ -6931,7 +6931,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectFade",
     "CIAttributeFilterCategories": [
@@ -6960,7 +6960,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectInstant"
   },
@@ -6980,7 +6980,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectMono"
   },
@@ -7000,7 +7000,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectNoir"
   },
@@ -7020,7 +7020,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectProcess"
   },
@@ -7040,7 +7040,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectTonal"
   },
@@ -7051,7 +7051,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPhotoEffectTransfer",
     "CIAttributeFilterCategories": [
@@ -7071,7 +7071,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -7090,7 +7090,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -7102,7 +7102,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7110,7 +7110,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -7120,7 +7120,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPinLightBlendMode",
     "CIAttributeFilterCategories": [
@@ -7135,7 +7135,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -7145,7 +7145,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPixellate",
     "CIAttributeFilterCategories": [
@@ -7163,7 +7163,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7171,7 +7171,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -7181,7 +7181,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIPointillize",
     "CIAttributeFilterCategories": [
@@ -7200,7 +7200,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7208,7 +7208,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -7242,7 +7242,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGradient",
@@ -7256,7 +7256,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputRadius0": {
       "AttributeClass": "NSNumber",
@@ -7267,14 +7267,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputColor0": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001108a20 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The first color to use in the gradient.",
       "CIAttributeDisplayName": "Color 1",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "AttributeFilterName": "CIRadialGradient",
     "inputColor1": {
@@ -7282,7 +7282,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x600001108a80 (0 0 0 1) devicergb>",
       "CIAttributeDescription": "The second color to use in the gradient.",
       "CIAttributeDisplayName": "Color 2",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     }
   },
   {
@@ -7306,13 +7306,13 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -7322,7 +7322,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 300,
       "AttributeSliderMin": 10,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIRippleTransition",
     "CIAttributeFilterDisplayName": "Ripple",
@@ -7332,14 +7332,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "inputShadingImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "An image that looks like a shaded sphere enclosed in a square image.",
       "CIAttributeDisplayName": "Shading Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputScale": {
       "AttributeClass": "NSNumber",
@@ -7351,7 +7351,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 50,
       "AttributeSliderMin": -50,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7359,7 +7359,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -7372,7 +7372,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -7391,14 +7391,14 @@ const List<Map<String, dynamic>> ciFilters = [
       
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x600001109ce0 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "A color.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "inputExtent": {
       "AttributeClass": "CIVector",
@@ -7406,7 +7406,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that defines the extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -7422,7 +7422,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIRowAverage",
     "inputExtent": {
@@ -7431,7 +7431,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "A rectangle that specifies the subregion of the image that you want to process.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     }
   },
   {
@@ -7441,7 +7441,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISaliencyMapFilter",
     "CIAttributeFilterCategories": [
@@ -7464,7 +7464,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISampleNearest"
   },
@@ -7474,14 +7474,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISaturationBlendMode",
     "CIAttributeFilterCategories": [
@@ -7499,7 +7499,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryCompositeOperation",
@@ -7514,7 +7514,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIScreenBlendMode"
   },
@@ -7525,7 +7525,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISepiaTone",
     "CIAttributeFilterCategories": [
@@ -7547,7 +7547,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -7556,7 +7556,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as the height field. The resulting image has greater heights with lighter shades, and lesser heights (lower areas) with darker shades.",
       "CIAttributeDisplayName": "Shading Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterDisplayName": "Shaded Material",
     "CIAttributeFilterCategories": [
@@ -7570,7 +7570,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputScale": {
       "AttributeClass": "NSNumber",
@@ -7581,7 +7581,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 0.5,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CIShadedMaterial"
   },
@@ -7592,7 +7592,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISharpenLuminance",
     "CIAttributeFilterCategories": [
@@ -7610,7 +7610,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -7620,7 +7620,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 20,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -7632,7 +7632,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Sixfold Reflected Tile",
     "CIAttributeFilterCategories": [
@@ -7646,7 +7646,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISixfoldReflectedTile",
     "inputWidth": {
@@ -7658,7 +7658,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7666,7 +7666,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -7678,7 +7678,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Sixfold Rotated Tile",
     "CIAttributeFilterCategories": [
@@ -7692,7 +7692,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISixfoldRotatedTile",
     "inputWidth": {
@@ -7704,7 +7704,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -7712,7 +7712,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -7722,7 +7722,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The starting position of the gradient -- where the first color begins.",
       "CIAttributeDisplayName": "Point 0",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterDisplayName": "Smooth Linear Gradient",
     "inputColor0": {
@@ -7730,7 +7730,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": "<CIColor 0x6000011fcc90 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The first color to use in the gradient.",
       "CIAttributeDisplayName": "Color 1",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     },
     "AttributeFilterName": "CISmoothLinearGradient",
     "CIAttributeFilterCategories": [
@@ -7745,14 +7745,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The ending position of the gradient -- where the second color begins.",
       "CIAttributeDisplayName": "Point 1",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputColor1": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x6000011fcbd0 (0 0 0 1) devicergb>",
       "CIAttributeDescription": "The second color to use in the gradient.",
       "CIAttributeDisplayName": "Color 2",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     }
   },
   {
@@ -7761,14 +7761,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISoftLightBlendMode",
     "CIAttributeFilterCategories": [
@@ -7786,14 +7786,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISourceAtopCompositing",
     "CIAttributeFilterCategories": [
@@ -7812,14 +7812,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISourceInCompositing",
     "CIAttributeFilterCategories": [
@@ -7838,14 +7838,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISourceOutCompositing",
     "CIAttributeFilterCategories": [
@@ -7864,14 +7864,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISourceOverCompositing",
     "CIAttributeFilterCategories": [
@@ -7898,7 +7898,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCloseness2": {
       "AttributeClass": "NSNumber",
@@ -7909,7 +7909,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 0.5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputContrast1": {
       "AttributeClass": "NSNumber",
@@ -7919,7 +7919,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputReplacementColor2": {
       "AttributeClass": "CIColor",
@@ -7945,7 +7945,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCloseness1": {
       "AttributeClass": "NSNumber",
@@ -7956,7 +7956,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterDisplayName": "Spot Color",
     "AttributeFilterName": "CISpotColor",
@@ -7968,7 +7968,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputReplacementColor1": {
       "AttributeClass": "CIColor",
@@ -8001,7 +8001,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0.5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputReplacementColor3": {
       "AttributeClass": "CIColor",
@@ -8018,7 +8018,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputLightPointsAt": {
       "AttributeClass": "CIVector",
@@ -8026,14 +8026,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position that the spotlight points at.",
       "CIAttributeDisplayName": "Light Points At",
-      "CIAttributeType": "CIAttributeTypePosition3"
+      "AttributeType": "CIAttributeTypePosition3"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x60000110ee50 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The color of the spotlight.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeOpaqueColor"
+      "AttributeType": "CIAttributeTypeOpaqueColor"
     },
     "inputConcentration": {
       "AttributeClass": "NSNumber",
@@ -8045,7 +8045,7 @@ const List<Map<String, dynamic>> ciFilters = [
    
       "AttributeSliderMax": 1.5,
       "AttributeSliderMin": 0.001,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CISpotLight",
     "CIAttributeFilterDisplayName": "Spot Light",
@@ -8058,7 +8058,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterCategories": [
       "CICategoryStylize",
@@ -8071,7 +8071,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [400, 600, 150],
       "CIAttributeDescription": "The x and y position of the spotlight.",
       "CIAttributeDisplayName": "Light Position",
-      "CIAttributeType": "CIAttributeTypePosition3"
+      "AttributeType": "CIAttributeTypePosition3"
     }
   },
   {
@@ -8081,7 +8081,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISRGBToneCurveToLinear",
     "CIAttributeFilterCategories": [
@@ -8110,7 +8110,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCrossWidth": {
       "AttributeClass": "NSNumber",
@@ -8120,7 +8120,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0.5,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterDisplayName": "Star Shine",
     "AttributeFilterName": "CIStarShineGenerator",
@@ -8130,7 +8130,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the star.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputCrossOpacity": {
       "AttributeClass": "NSNumber",
@@ -8141,7 +8141,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0,
       "AttributeSliderMin": -8,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCrossAngle": {
       "AttributeClass": "NSNumber",
@@ -8150,7 +8150,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Cross Angle",
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGenerator",
@@ -8166,7 +8166,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 300,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputEpsilon": {
       "AttributeClass": "NSNumber",
@@ -8177,7 +8177,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 0,
       "AttributeSliderMin": -8,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -8190,7 +8190,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGeometryAdjustment",
@@ -8203,7 +8203,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIStraightenFilter"
   },
@@ -8218,7 +8218,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -8232,7 +8232,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCropAmount": {
       "AttributeClass": "NSNumber",
@@ -8243,14 +8243,14 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputSize": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [1280, 720],
       "CIAttributeDescription": "The size in pixels of the output image.",
       "CIAttributeDisplayName": "Size",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -8260,7 +8260,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the stripe pattern.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterDisplayName": "Stripes",
     "inputColor0": {
@@ -8285,7 +8285,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -8294,7 +8294,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Width",
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputColor1": {
       "AttributeClass": "CIColor",
@@ -8318,14 +8318,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CISubtractBlendMode",
     "inputBackgroundImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -8339,7 +8339,7 @@ const List<Map<String, dynamic>> ciFilters = [
   
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
@@ -8357,7 +8357,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 3,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "AttributeFilterName": "CISunbeamsGenerator",
     "CIAttributeFilterDisplayName": "Sunbeams",
@@ -8367,7 +8367,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the sunbeam pattern",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "inputStriationContrast": {
       "AttributeClass": "NSNumber",
@@ -8379,7 +8379,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputSunRadius": {
       "AttributeClass": "NSNumber",
@@ -8390,7 +8390,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterCategories": [
       "CICategoryGenerator",
@@ -8407,7 +8407,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 10,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -8421,20 +8421,20 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeTime"
+      "AttributeType": "CIAttributeTypeTime"
     },
     "inputTargetImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The target image for a transition.",
       "CIAttributeDisplayName": "Target Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputColor": {
       "AttributeClass": "CIColor",
       "CIAttributeDefault": "<CIColor 0x60000111bf90 (1 1 1 1) devicergb>",
       "CIAttributeDescription": "The color of the swipe.",
       "CIAttributeDisplayName": "Color",
-      "CIAttributeType": "CIAttributeTypeOpaqueColor"
+      "AttributeType": "CIAttributeTypeOpaqueColor"
     },
     "inputAngle": {
       "AttributeClass": "NSNumber",
@@ -8444,7 +8444,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -8454,7 +8454,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0.1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "AttributeFilterName": "CISwipeTransition",
     "CIAttributeFilterDisplayName": "Swipe",
@@ -8463,7 +8463,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [0, 0, 300, 300],
       "CIAttributeDescription": "The extent of the effect.",
       "CIAttributeDisplayName": "Extent",
-      "CIAttributeType": "CIAttributeTypeRectangle"
+      "AttributeType": "CIAttributeTypeRectangle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTransition",
@@ -8480,14 +8480,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -8497,21 +8497,21 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDefault": [6500, 0],
       "CIAttributeDisplayName": "Target Neutral",
       "CIAttributeIdentity": [6500, 0],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputNeutral": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [6500, 0],
       "CIAttributeDisplayName": "Neutral",
       "CIAttributeIdentity": [6500, 0],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -8544,7 +8544,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 4,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputText": {
       "AttributeClass": "NSString",
@@ -8557,7 +8557,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 128,
       "AttributeSliderMin": 9,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -8567,7 +8567,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -8585,42 +8585,42 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputPoint0": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [0, 0],
       "CIAttributeDisplayName": "Point 0",
       "CIAttributeIdentity": [0, 0],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputPoint1": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [0.25, 0.25],
       "CIAttributeDisplayName": "Point 1",
       "CIAttributeIdentity": [0.25, 0.25],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputPoint2": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [0.5, 0.5],
       "CIAttributeDisplayName": "Point 2",
       "CIAttributeIdentity": [0.5, 0.5],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputPoint3": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [0.75, 0.75],
       "CIAttributeDisplayName": "Point 3",
       "CIAttributeIdentity": [0.75, 0.75],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "inputPoint4": {
       "AttributeClass": "CIVector",
       "CIAttributeDefault": [1, 1],
       "CIAttributeDisplayName": "Point 4",
       "CIAttributeIdentity": [1, 1],
-      "CIAttributeType": "CIAttributeTypeOffset"
+      "AttributeType": "CIAttributeTypeOffset"
     },
     "CIAttributeFilterDisplayName": "Tone Curve",
     "AttributeFilterName": "CIToneCurve",
@@ -8647,7 +8647,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -8658,7 +8658,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -8669,7 +8669,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 500,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputRefraction": {
       "AttributeClass": "NSNumber",
@@ -8680,7 +8680,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 5,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -8688,7 +8688,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the torus.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -8699,7 +8699,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the triangular area in the input image.",
       "CIAttributeDisplayName": "Point",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -8712,7 +8712,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CITriangleKaleidoscope",
     "inputSize": {
@@ -8722,7 +8722,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Size",
       "AttributeSliderMax": 1000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputRotation": {
       "AttributeClass": "NSNumber",
@@ -8731,7 +8731,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Rotation",
       "AttributeSliderMax": 6.283185307179586,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputDecay": {
       "AttributeClass": "NSNumber",
@@ -8741,7 +8741,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDisplayName": "Decay",
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -8754,14 +8754,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryTileEffect",
@@ -8778,7 +8778,7 @@ const List<Map<String, dynamic>> ciFilters = [
     
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -8786,7 +8786,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -8798,7 +8798,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 3.141592653589793,
       "AttributeSliderMin": -3.141592653589793,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterDisplayName": "Twelvefold Reflected Tile",
     "CIAttributeFilterCategories": [
@@ -8813,7 +8813,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputWidth": {
       "AttributeClass": "NSNumber",
@@ -8824,7 +8824,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 200,
       "AttributeSliderMin": 1,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -8832,7 +8832,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The x and y position to use as the center of the effect",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -8846,14 +8846,14 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 12.56637061435917,
       "AttributeSliderMin": -12.56637061435917,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CITwirlDistortion",
     "CIAttributeFilterCategories": [
@@ -8872,7 +8872,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 500,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -8880,7 +8880,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -8890,7 +8890,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategorySharpen",
@@ -8909,7 +8909,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 100,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -8921,7 +8921,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -8935,14 +8935,14 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputImage": {
       "AttributeClass": "CIImage",
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -8961,7 +8961,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -8979,7 +8979,7 @@ const List<Map<String, dynamic>> ciFilters = [
  
       "AttributeSliderMax": 2,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -8990,7 +8990,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -9000,7 +9000,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     },
     "CIAttributeFilterDisplayName": "Vignette Effect",
     "CIAttributeFilterCategories": [
@@ -9016,7 +9016,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -9026,7 +9026,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 2000,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputFalloff": {
       "AttributeClass": "NSNumber",
@@ -9035,7 +9035,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     },
     "inputIntensity": {
       "AttributeClass": "NSNumber",
@@ -9046,7 +9046,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 1,
       "AttributeSliderMin": -1,
-      "CIAttributeType": "CIAttributeTypeScalar"
+      "AttributeType": "CIAttributeTypeScalar"
     }
   },
   {
@@ -9056,7 +9056,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "AttributeFilterName": "CIVividLightBlendMode",
     "CIAttributeFilterCategories": [
@@ -9071,7 +9071,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "AttributeClass": "CIImage",
       "CIAttributeDescription": "The image to use as a background image.",
       "CIAttributeDisplayName": "Background Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     }
   },
   {
@@ -9084,7 +9084,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 94.24777960769379,
       "AttributeSliderMin": -94.24777960769379,
-      "CIAttributeType": "CIAttributeTypeAngle"
+      "AttributeType": "CIAttributeTypeAngle"
     },
     "CIAttributeFilterCategories": [
       "CICategoryDistortionEffect",
@@ -9098,7 +9098,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputRadius": {
       "AttributeClass": "NSNumber",
@@ -9110,7 +9110,7 @@ const List<Map<String, dynamic>> ciFilters = [
 
       "AttributeSliderMax": 800,
       "AttributeSliderMin": 0,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -9118,7 +9118,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   },
   {
@@ -9128,7 +9128,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorAdjustment",
@@ -9145,7 +9145,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription": "A color to use as the white point.",
       "CIAttributeDisplayName": "Color",
       "CIAttributeIdentity": "<CIColor 0x6000011fe280 (1 1 1 1) devicergb>",
-      "CIAttributeType": "CIAttributeTypeColor"
+      "AttributeType": "CIAttributeTypeColor"
     }
   },
   {
@@ -9155,7 +9155,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "CIAttributeFilterCategories": [
       "CICategoryColorEffect",
@@ -9178,7 +9178,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeIdentity": 0,
       "AttributeSliderMax": 200,
       "AttributeSliderMin": -200,
-      "CIAttributeType": "CIAttributeTypeDistance"
+      "AttributeType": "CIAttributeTypeDistance"
     },
     "CIAttributeFilterCategories": [
       "CICategoryBlur",
@@ -9192,7 +9192,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
       "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+      "AttributeType": "CIAttributeTypeImage"
     },
     "inputCenter": {
       "AttributeClass": "CIVector",
@@ -9200,7 +9200,7 @@ const List<Map<String, dynamic>> ciFilters = [
       "CIAttributeDescription":
           "The center of the effect as x and y coordinates.",
       "CIAttributeDisplayName": "Center",
-      "CIAttributeType": "CIAttributeTypePosition"
+      "AttributeType": "CIAttributeTypePosition"
     }
   }
 ];
