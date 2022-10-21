@@ -144,3 +144,51 @@ abstract class ImageVideoFilterFactoryApi {
   @ObjCSelector('disposeFilter:')
   void dispose(FilterMessage msg);
 }
+
+class PreviewCreateMessage {
+  PreviewCreateMessage(this.textureId);
+  int textureId;
+}
+
+class PreviewFilterMessage {
+  PreviewFilterMessage(this.textureId, this.filterId);
+  int textureId;
+  int filterId;
+}
+
+class PreviewSourceMessage {
+  PreviewSourceMessage(this.textureId, this.path);
+  int textureId;
+  String path;
+}
+
+class PreviewPlayMessage {
+  PreviewPlayMessage(this.textureId);
+  int textureId;
+}
+
+class PreviewPauseMessage {
+  PreviewPauseMessage(this.textureId);
+  int textureId;
+}
+
+class PreviewDisposeMessage {
+  PreviewDisposeMessage(this.textureId);
+  int textureId;
+}
+
+@HostApi(dartHostTestHandler: 'TestVideoPreviewApi')
+abstract class VideoPreviewApi {
+  @ObjCSelector('create')
+  PreviewCreateMessage create();
+  @ObjCSelector('setFilter:')
+  void setFilter(PreviewFilterMessage msg);
+  @ObjCSelector('setSource:')
+  void setSource(PreviewSourceMessage msg);
+  @ObjCSelector('play:')
+  void play(PreviewPlayMessage msg);
+  @ObjCSelector('pause:')
+  void pause(PreviewPauseMessage msg);
+  @ObjCSelector('dispose:')
+  void dispose(PreviewDisposeMessage msg);
+}

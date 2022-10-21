@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
+import 'dart:io' show Platform;
 
 class FilterPreviewScreen extends StatefulWidget {
   final Filter filter;
-  final bool video;
 
   const FilterPreviewScreen({
     Key? key,
     required this.filter,
-    this.video = false,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _FilterPreviewState();
+  State<StatefulWidget> createState() => _VideoFilterPreviewState();
 }
 
-class _FilterPreviewState extends State<FilterPreviewScreen> {
-  late FilterBasePreviewController _controller;
+class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
+  late VideoPreviewController _controller;
+  bool _ready = Platform.isAndroid;
 
-  String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
+  String get asset => 'videos/Butterfly-209.mp4';
 
   @override
   void initState() {
     super.initState();
-    widget.filter.setAssetSource(asset).then((_) => setState(() {}));
+    if (Platform.isIOS) {
+      VideoPreviewController.initialize()
+          .then((value) => _controller = value)
+          .then((value) => _onContollerCreated(value));
+    }
   }
 
   @override
@@ -45,36 +49,26 @@ class _FilterPreviewState extends State<FilterPreviewScreen> {
         title: Text(widget.filter.name),
       ),
       body: Center(
-        child: widget.video ? videoPreview : imagePreview,
+        child: _ready ? videoPreview : const Offstage(),
       ),
-    );
-  }
-
-  Widget get imagePreview {
-    final watch = Stopwatch();
-    watch.start();
-    return FilterImagePreview(
-      filter: widget.filter,
-      onCreated: (controller) {
-        _controller = controller;
-        _controller.update().then((_) {
-          print('Native view took ${watch.elapsedMilliseconds} milliseconds');
-        }).then(
-          (_) => setState(() {}),
-        );
-      },
     );
   }
 
   Widget get videoPreview {
     return FilterVideoPreview(
-      filter: widget.filter,
+      controller: Platform.isIOS ? _controller : null,
       onCreated: (controller) {
         _controller = controller;
-        _controller.update().then(
-              (_) => setState(() {}),
-            );
+        _onContollerCreated(controller);
       },
     );
+  }
+
+  void _onContollerCreated(VideoPreviewController controller) {
+    controller
+        .setAssetSource(asset)
+        .then((value) => _ready = true)
+        .then((value) => _controller.setFilter(widget.filter))
+        .whenComplete(() => setState(() {}));
   }
 }

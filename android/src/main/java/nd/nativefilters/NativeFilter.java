@@ -1,290 +1,152 @@
 package nd.nativefilters;
 
+import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
+import static android.opengl.GLES20.GL_FRAMEBUFFER;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
-import android.net.Uri;
+import android.opengl.GLES20;
 import android.util.Log;
+import android.util.Pair;
 
-import com.daasuu.gpuv.composer.FillMode;
-import com.daasuu.gpuv.composer.GPUMp4Composer;
+import com.daasuu.gpuv.egl.GlFramebufferObject;
 import com.daasuu.gpuv.egl.filter.GlFilter;
-import com.daasuu.gpuv.egl.filter.GlFilterGroup;
 import com.daasuu.gpuv.egl.filter.GlLookUpTableFilter;
-import com.daasuu.gpuv.egl.filter.GlMonochromeFilter;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry;
-import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
-import jp.co.cyberagent.android.gpuimage.filter.GPUImageLookupFilter;
+
+class GlFilterGroup extends GlFilter {
+
+    private final List<GlFilter> filters;
+
+    private final ArrayList<Pair<GlFilter, GlFramebufferObject>> list = new ArrayList<Pair<GlFilter, GlFramebufferObject>>();
+
+    public GlFilterGroup(final GlFilter... glFilters) {
+        this(Arrays.asList(glFilters));
+    }
+
+    public GlFilterGroup(final List<GlFilter> glFilters) {
+        filters = glFilters;
+    }
+
+    public void addFilter(GlFilter glFilter) {
+        this.filters.add(glFilter);
+    }
+
+    public List<GlFilter> getFilters() {
+        return filters;
+    }
+
+    @Override
+    public void setup() {
+        super.setup();
+
+        if (filters != null) {
+            final int max = filters.size();
+            int count = 0;
+
+            for (final GlFilter shader : filters) {
+                shader.setup();
+                final GlFramebufferObject fbo;
+                if ((count + 1) < max) {
+                    fbo = new GlFramebufferObject();
+                } else {
+                    fbo = null;
+                }
+                list.add(Pair.create(shader, fbo));
+                count++;
+            }
+        }
+    }
+
+    @Override
+    public void release() {
+        for (final Pair<GlFilter, GlFramebufferObject> pair : list) {
+            if (pair.first != null) {
+                pair.first.release();
+            }
+            if (pair.second != null) {
+                pair.second.release();
+            }
+        }
+        list.clear();
+        super.release();
+    }
+
+    @Override
+    public void setFrameSize(final int width, final int height) {
+        super.setFrameSize(width, height);
+
+        for (final Pair<GlFilter, GlFramebufferObject> pair : list) {
+            if (pair.first != null) {
+                pair.first.setFrameSize(width, height);
+            }
+            if (pair.second != null) {
+                pair.second.setup(width, height);
+            }
+        }
+    }
+
+    private int prevTexName;
+
+    @Override
+    public void draw(final int texName, final GlFramebufferObject fbo) {
+        prevTexName = texName;
+        for (final Pair<GlFilter, GlFramebufferObject> pair : list) {
+            if (pair.second != null) {
+                if (pair.first != null) {
+                    pair.second.enable();
+                    GLES20.glClear(GL_COLOR_BUFFER_BIT);
+
+                    pair.first.draw(prevTexName, pair.second);
+                }
+                prevTexName = pair.second.getTexName();
+
+            } else {
+                if (fbo != null) {
+                    fbo.enable();
+                } else {
+                    GLES20.glBindFramebuffer(GL_FRAMEBUFFER, 0);
+                }
+
+                if (pair.first != null) {
+                    pair.first.draw(prevTexName, fbo);
+                }
+            }
+        }
+    }
+
+}
 
 public class NativeFilter implements MethodChannel.MethodCallHandler {
-    @Deprecated
-    private PluginRegistry.Registrar registrar;
     private FlutterPlugin.FlutterPluginBinding binding;
     private final MethodChannel channel;
-    private GPUImageFilterGroup filterGroup;
-    private GlFilterGroup glFilterGroup;
-    private List<GlFilter> glFilters = new ArrayList<>();
-    private File inputFile;
-    private Bitmap inputBitmap;
+    GPUImageFilterGroup filterGroup;
+    GlFilterGroup glFilterGroup;
+    public File inputFile;
+    public Bitmap inputBitmap;
 
     NativeFilter(FlutterPlugin.FlutterPluginBinding binding, int index) {
         this.binding = binding;
-        this.channel = new MethodChannel(binding.getBinaryMessenger(), "GPUFilter-" + index);
-        this.channel.setMethodCallHandler(this);
-    }
-
-    @Deprecated
-    NativeFilter(PluginRegistry.Registrar registrar, int index) {
-        this.registrar = registrar;
-        this.channel = new MethodChannel(registrar.messenger(), "GPUFilter-" + index);
+        this.channel = new MethodChannel(binding.getBinaryMessenger(), "Filter-" + index);
         this.channel.setMethodCallHandler(this);
     }
 
     @Override
     public void onMethodCall(MethodCall call, MethodChannel.Result result) {
-        if (call.method.equals("addFilter")) {
-            try {
-                String name = (String) call.arguments;
-                if (name.startsWith("GPUImage")) {
-                    Class<?> filterClass = Class.forName("jp.co.cyberagent.android.gpuimage.filter." + name);
-                    GPUImageFilter filter = (GPUImageFilter) filterClass.newInstance();
-                    if (filterGroup == null) {
-                        filterGroup = new GPUImageFilterGroup();
-                    }
-                    int index = filterGroup.getFilters().size();
-                    filterGroup.addFilter(filter);
-                    result.success(index);
-                } else if (name.startsWith("Gl")) {
-                    Class<?> filterClass = Class.forName("com.daasuu.gpuv.egl.filter." + name);
-                    if (name.equalsIgnoreCase("GlLookUpTableFilter")) {
-                        result.success(0);
-                    } else {
-                        GlFilter filter = (GlFilter) filterClass.newInstance();
-                        if (glFilterGroup == null) {
-                            glFilters.add(filter);
-                            glFilterGroup = new GlFilterGroup(glFilters);
-                            result.success(0);
-                        } else {
-                            int index = glFilters.size();
-                            glFilters.add(filter);
-                            glFilterGroup = new GlFilterGroup(filter);
-                            result.success(index);
-                        }
-                    }
-                } else {
-                    result.error(call.method + " failed", "Not found", null);
-                }
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("removeFilter")) {
-            try {
-                int index = (int) call.arguments;
-                if (filterGroup != null) {
-                    List<GPUImageFilter> filters = filterGroup.getFilters();
-                    GPUImageFilter filter = filters.remove(index);
-                    filter.destroy();
-                    result.success(null);
-                } else if (glFilterGroup != null) {
-                    GlFilter filter = glFilters.remove(index);
-                    filter.release();
-                    glFilterGroup = new GlFilterGroup(glFilters);
-                    result.success(null);
-                } else {
-                    result.success(null);
-                }
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("getFilter")) {
-            int index = (int) call.arguments;
-            try {
-                if (filterGroup != null) {
-                    List<GPUImageFilter> filters = filterGroup.getFilters();
-                    GPUImageFilter filter = filters.get(index);
-                    result.success(filter.getClass().getSimpleName());
-                } else if (glFilterGroup != null) {
-                    GlFilter filter = glFilters.get(index);
-                    result.success(filter.getClass().getSimpleName());
-                } else {
-                    result.error(call.method + " failed", null, null);
-                }
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("getFiltersCount")) {
-            try {
-                if (filterGroup != null) {
-                    result.success(filterGroup.getFilters().size());
-                } else if (glFilterGroup != null) {
-                    result.success(glFilters.size());
-                } else {
-                    result.error(call.method + " failed", null, null);
-                }
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("setImageAssetSource") || call.method.equals("setVideoAssetSource")) {
-            try {
-                String name = (String) call.arguments;
-                final String asset;
-                final InputStream stream;
-                if (registrar != null) {
-                    asset = registrar.lookupKeyForAsset(name);
-                    stream = registrar.context()
-                            .getAssets().open(asset);
-                } else {
-                    asset = binding.getFlutterAssets().getAssetFilePathByName(name);
-                    stream = binding.getApplicationContext()
-                            .getAssets().open(asset);
-                }
-                if (call.method.equals("setImageAssetSource")) {
-                    inputBitmap = BitmapFactory.decodeStream(stream);
-                    inputFile = null;
-                } else {
-                    if (registrar != null) {
-                        inputFile = new File(registrar.context().getFilesDir(), "tempVideo.mp4");
-                    } else {
-                        inputFile= new File(binding.getApplicationContext().getFilesDir(), "tempVideo.mp4");
-                    }
-
-                    FileOutputStream os = null;
-                    try {
-                        os = new FileOutputStream(inputFile);
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = stream.read(buffer)) > 0) {
-                            os.write(buffer, 0, length);
-                        }
-                    } finally {
-                        stream.close();
-                        os.close();
-                    }
-                    inputBitmap = null;
-                }
-                result.success(null);
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("setImageFileSource") || call.method.equals("setVideoFileSource")) {
-            try {
-                String path = (String) call.arguments;
-
-                inputFile = new File(path);
-                inputBitmap = null;
-                result.success(null);
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("setImageDataSource")) {
-            try {
-                byte[] data = (byte[]) call.arguments;
-
-                inputFile = null;
-                inputBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                result.success(null);
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("exportData")) {
-            try {
-                GPUImage gpuImage = new GPUImage(binding.getApplicationContext());
-                gpuImage.setFilter(filterGroup);
-                if (inputFile != null) {
-                    gpuImage.setImage(inputFile);
-                }
-                if (inputBitmap != null) {
-                    gpuImage.setImage(inputBitmap);
-                }
-                Bitmap decoded = gpuImage.getBitmapWithFilterApplied();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                if (inputFile != null) {
-                    if (inputFile.getName().endsWith(".png")) {
-                        decoded.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                    } else {
-                        decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    }
-                } else {
-                    decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                }
-                result.success(outputStream.toByteArray());
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("exportImage")) {
-            try {
-                String path = (String) call.arguments;
-                GPUImage gpuImage = new GPUImage(binding.getApplicationContext());
-                gpuImage.setFilter(filterGroup);
-                if (inputFile != null) {
-                    gpuImage.setImage(inputFile);
-                }
-                if (inputBitmap != null) {
-                    gpuImage.setImage(inputBitmap);
-                }
-                Bitmap decoded = gpuImage.getBitmapWithFilterApplied();
-                FileOutputStream outputStream = new FileOutputStream(new File(path));
-                if (path.endsWith(".png")) {
-                    decoded.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                } else {
-                    decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                }
-                result.success(null);
-            } catch (Exception e) {
-                Log.e(NativeFilter.class.getSimpleName(), call.method, e);
-                result.error(call.method + " failed", null, e);
-            }
-        } else if (call.method.equals("exportVideo")) {
-            String path = (String) call.arguments;
-            new GPUMp4Composer(inputFile.getAbsolutePath(), path)
-                    .size(1280, 720)
-                    .filter(glFilterGroup)
-                    .listener(new GPUMp4Composer.Listener() {
-                        @Override
-                        public void onProgress(double progress) {
-                            Log.d(NativeFilter.class.getSimpleName(), "onProgress = " + progress);
-                        }
-
-                        @Override
-                        public void onCompleted() {
-                            result.success(null);
-                        }
-
-                        @Override
-                        public void onCanceled() {
-                            result.error(call.method + " canceled", null, null);
-                        }
-
-                        @Override
-                        public void onFailed(Exception e) {
-                            result.error(call.method + " failed", null, e);
-                        }
-                    })
-                    .start();
-        } else if (call.method.startsWith("setValue")) {
+         if (call.method.startsWith("setValue")) {
             try {
                 ArrayList args = (ArrayList) call.arguments;
                 int index = (int) args.get(0);
@@ -293,15 +155,9 @@ public class NativeFilter implements MethodChannel.MethodCallHandler {
                 if (methodName.equalsIgnoreCase("setInputCubeData")) {
                     String name = (String) argument;
                     final InputStream stream;
-                    if (registrar != null) {
-                        final String asset = registrar.lookupKeyForAsset(name);
-                        stream = registrar.context()
-                                .getAssets().open(asset);
-                    } else {
-                        final String asset = binding.getFlutterAssets().getAssetFilePathByName(name);
-                        stream = binding.getApplicationContext()
-                                .getAssets().open(asset);
-                    }
+                    final String asset = binding.getFlutterAssets().getAssetFilePathByName(name);
+                    stream = binding.getApplicationContext()
+                            .getAssets().open(asset);
                     final Bitmap lutBitmap = BitmapFactory.decodeStream(stream);
 
                     glFilterGroup = new GlFilterGroup(new GlLookUpTableFilter(lutBitmap));
@@ -370,7 +226,6 @@ public class NativeFilter implements MethodChannel.MethodCallHandler {
         if (glFilterGroup != null) {
             glFilterGroup.release();
             glFilterGroup = null;
-            glFilters.clear();
         }
     }
 }

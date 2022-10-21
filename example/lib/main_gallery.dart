@@ -41,10 +41,10 @@ class _MyAppState extends State<MyApp> {
     const uuid = Uuid();
     final path = '${directory.path}/${uuid.v4()}.mov';
     if (defaultTargetPlatform == TargetPlatform.iOS) {
-      _filter = await _filtersFactory.create('CIPhotoEffectMono');
+      _filter = await _filtersFactory.createFilter('CIPhotoEffectMono');
     }
     if (defaultTargetPlatform == TargetPlatform.android) {
-      _filter = await _filtersFactory.create('GPUImageFalseColorFilter');
+      _filter = await _filtersFactory.createFilter('GPUImageFalseColorFilter');
     }
     if (filePath != null) {
       await _filter?.setFileSource(File(filePath));

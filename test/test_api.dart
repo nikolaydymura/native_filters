@@ -370,3 +370,168 @@ abstract class TestHostImageVideoFilterFactoryApi {
     }
   }
 }
+
+class _TestVideoPreviewApiCodec extends StandardMessageCodec{
+  const _TestVideoPreviewApiCodec();
+  @override
+  void writeValue(WriteBuffer buffer, Object? value) {
+    if (value is PreviewCreateMessage) {
+      buffer.putUint8(128);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PreviewDisposeMessage) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PreviewFilterMessage) {
+      buffer.putUint8(130);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PreviewPauseMessage) {
+      buffer.putUint8(131);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PreviewPlayMessage) {
+      buffer.putUint8(132);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is PreviewSourceMessage) {
+      buffer.putUint8(133);
+      writeValue(buffer, value.encode());
+    } else 
+{
+      super.writeValue(buffer, value);
+    }
+  }
+  @override
+  Object? readValueOfType(int type, ReadBuffer buffer) {
+    switch (type) {
+      case 128:       
+        return PreviewCreateMessage.decode(readValue(buffer)!);
+      
+      case 129:       
+        return PreviewDisposeMessage.decode(readValue(buffer)!);
+      
+      case 130:       
+        return PreviewFilterMessage.decode(readValue(buffer)!);
+      
+      case 131:       
+        return PreviewPauseMessage.decode(readValue(buffer)!);
+      
+      case 132:       
+        return PreviewPlayMessage.decode(readValue(buffer)!);
+      
+      case 133:       
+        return PreviewSourceMessage.decode(readValue(buffer)!);
+      
+      default:      
+        return super.readValueOfType(type, buffer);
+      
+    }
+  }
+}
+abstract class TestVideoPreviewApi {
+  static const MessageCodec<Object?> codec = _TestVideoPreviewApiCodec();
+
+  PreviewCreateMessage create();
+  void setFilter(PreviewFilterMessage msg);
+  void setSource(PreviewSourceMessage msg);
+  void play(PreviewPlayMessage msg);
+  void pause(PreviewPauseMessage msg);
+  void dispose(PreviewDisposeMessage msg);
+  static void setup(TestVideoPreviewApi? api, {BinaryMessenger? binaryMessenger}) {
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.create', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          // ignore message
+          final PreviewCreateMessage output = api.create();
+          return <Object?, Object?>{'result': output};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.setFilter', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setFilter was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PreviewFilterMessage? arg_msg = (args[0] as PreviewFilterMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setFilter was null, expected non-null PreviewFilterMessage.');
+          api.setFilter(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.setSource', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setSource was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PreviewSourceMessage? arg_msg = (args[0] as PreviewSourceMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setSource was null, expected non-null PreviewSourceMessage.');
+          api.setSource(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.play', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.play was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PreviewPlayMessage? arg_msg = (args[0] as PreviewPlayMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.play was null, expected non-null PreviewPlayMessage.');
+          api.play(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.pause', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.pause was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PreviewPauseMessage? arg_msg = (args[0] as PreviewPauseMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.pause was null, expected non-null PreviewPauseMessage.');
+          api.pause(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPreviewApi.dispose', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.dispose was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final PreviewDisposeMessage? arg_msg = (args[0] as PreviewDisposeMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.dispose was null, expected non-null PreviewDisposeMessage.');
+          api.dispose(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+  }
+}

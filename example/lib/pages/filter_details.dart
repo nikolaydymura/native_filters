@@ -76,26 +76,19 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 );
               },
             ),
-          PopupMenuButton(
-            onSelected: (key) {
-              final isVideo = key == _platformPreviews[1];
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      FilterPreviewScreen(filter: _filter!, video: isVideo),
-                ),
-              );
-            },
-            itemBuilder: (BuildContext context) {
-              return _platformPreviews.map((key) {
-                return PopupMenuItem<String>(
-                  value: key,
-                  child: Text(key),
+          if (widget.filter.isVideoSupported)
+            IconButton(
+              icon: const Icon(Icons.video_label),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        FilterPreviewScreen(filter: _filter!),
+                  ),
                 );
-              }).toList();
-            },
-          ),
+              },
+            ),
         ],
         title: Text(widget.filter.name),
       ),
@@ -111,7 +104,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   }
 
   Future<void> _loadFilterInfo() async {
-    _filter = await widget.factory.create(widget.filter.name);
+    _filter = await widget.factory.createFilter(widget.filter.name);
     _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
             ?.toList() ??
         [];
