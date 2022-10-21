@@ -1,5 +1,5 @@
 precision mediump float;
-uniform mediump sampler2D lutTexture;
+uniform mediump sampler2D inputCubeTexture;
 uniform lowp sampler2D sTexture;
 varying highp vec2 vTextureCoord;
 vec4 sampleAs3DTexture(vec3 uv) {
@@ -12,8 +12,8 @@ vec4 sampleAs3DTexture(vec3 uv) {
     float xOffset = slicePixelSize * 0.5 + uv.x * sliceInnerSize;
     float s0 = xOffset + (zSlice0 * sliceSize);
     float s1 = xOffset + (zSlice1 * sliceSize);
-    vec4 slice0Color = texture2D(lutTexture, vec2(s0, uv.y));
-    vec4 slice1Color = texture2D(lutTexture, vec2(s1, uv.y));
+    vec4 slice0Color = texture2D(inputCubeTexture, vec2(s0, uv.y));
+    vec4 slice1Color = texture2D(inputCubeTexture, vec2(s1, uv.y));
     float zOffset = mod(uv.z * width, 1.0);
     vec4 result = mix(slice0Color, slice1Color, zOffset);
     return result;

@@ -188,35 +188,26 @@ class Filter extends Filterable {
   }
 
   Future<void> setBitmapFile(String key, File file) async {
-    await _api.setDataSourceValue(
-      InputDataSourceValueMessage(
-        filterId: id,
-        filterIndex: index,
-        key: key,
-        value: file.path,
-      ),
-    );
+    await setNSDataFile(key, file);
   }
 
   Future<void> setBitmapAsset(String key, String name) async {
-    await _api.setDataSourceValue(
-      InputDataSourceValueMessage(
-        filterId: id,
-        filterIndex: index,
-        key: key,
-        value: name,
-      ),
-    );
+    await setNSDataAsset(key, name);
   }
 
   Future<void> setBitmap(String key, Uint8List data) async {
-    await _api.setDataValue(
-      InputDataValueMessage(
-        filterId: id,
-        filterIndex: index,
-        key: key,
-        value: data,
-      ),
-    );
+    await setNSData(key, data);
+  }
+
+  Future<void> setCIImageFile(String key, File file) async {
+    await setNSDataFile(key, file);
+  }
+
+  Future<void> setCIImageAsset(String key, String name) async {
+    await setNSDataAsset(key, name);
+  }
+
+  Future<void> setCIImage(String key, Uint8List data) async {
+    await setNSData(key, data);
   }
 }

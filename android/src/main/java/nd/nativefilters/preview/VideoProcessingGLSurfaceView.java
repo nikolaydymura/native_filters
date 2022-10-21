@@ -24,6 +24,8 @@ import android.opengl.GLSurfaceView;
 import android.os.Handler;
 import android.view.Surface;
 import androidx.annotation.Nullable;
+import androidx.core.util.Supplier;
+
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
@@ -95,7 +97,7 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
      */
     @SuppressWarnings("InlinedApi")
     public VideoProcessingGLSurfaceView(
-            Context context, boolean requireSecureContext, VideoProcessor videoProcessor) {
+            Context context, boolean requireSecureContext, Supplier<VideoProcessor> videoProcessor) {
         super(context);
         renderer = new VideoRenderer(videoProcessor);
         mainHandler = new Handler();
@@ -219,7 +221,7 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
 
     private final class VideoRenderer implements GLSurfaceView.Renderer, VideoFrameMetadataListener {
 
-        private final VideoProcessor videoProcessor;
+        private final Supplier<VideoProcessor> videoProcessorSupplier;
         private final AtomicBoolean frameAvailable;
         private final TimedValueQueue<Long> sampleTimestampQueue;
         private final float[] transformMatrix;
@@ -232,8 +234,8 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
         private int height;
         private long frameTimestampUs;
 
-        public VideoRenderer(VideoProcessor videoProcessor) {
-            this.videoProcessor = videoProcessor;
+        public VideoRenderer(Supplier<VideoProcessor> videoProcessorSupplier) {
+            this.videoProcessorSupplier = videoProcessorSupplier;
             frameAvailable = new AtomicBoolean();
             sampleTimestampQueue = new TimedValueQueue<>();
             width = -1;
@@ -263,6 +265,7 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
 
         @Override
         public void onDrawFrame(GL10 gl) {
+            final VideoProcessor videoProcessor = videoProcessorSupplier.get();
             if (videoProcessor == null) {
                 return;
             }
