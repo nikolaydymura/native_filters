@@ -1,38 +1,31 @@
 part of native_filters;
 
 class FilterFactory {
-  static ImageVideoFilterFactoryApi _api = ImageVideoFilterFactoryApi();
-  static FilterFactory _instance = FilterFactory._();
+  static final ImageVideoFilterFactoryApi _api = ImageVideoFilterFactoryApi();
+  static final FilterFactory _instance = FilterFactory._();
   int _idSequence = 0;
 
   FilterFactory._();
 
   factory FilterFactory() => _instance;
 
-  Future<Filter> create(String name) async {
+  Future<Filter> createFilter(String name) async {
     try {
       final message = await _api.createFilter(
-          CreateFilterMessage(filterId: _idSequence++, name: name));
-      final group = FilterGroup._(message.filterId);
-      if (Platform.isIOS) {
-        final filter = _CIFilter(name, 0, group);
-        return filter;
-      } else if (Platform.isAndroid) {
-        final filter = _GPUImageFilter(name, 0, group);
-        return filter;
-      }
+        CreateFilterMessage(filterId: _idSequence++, name: name),
+      );
+      return Filter._(name, message.filterId, 0, _api);
     } catch (error) {
       debugPrint(error.toString());
       rethrow;
     }
-    throw UnsupportedError('Operation not permitted on $defaultTargetPlatform');
   }
 
-  Future<FilterGroup> createGroup() async {
+  Future<FilterGroup> createFilterGroup() async {
     try {
       final message = await _api
           .createFilterGroup(CreateFilterGroupMessage(filterId: _idSequence++));
-      return FilterGroup._(message.filterId);
+      return FilterGroup._(message.filterId, _api);
     } catch (error) {
       debugPrint(error.toString());
       rethrow;
@@ -51,19 +44,19 @@ class FilterFactory {
   static Iterable<FilterItem> get availableFilters {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       return _kCoreImageFilters.where((element) {
-        final List<String> items = element["AttributeFilterCategories"];
+        final List<String> items = element['AttributeFilterCategories'];
         return items.contains('CategoryVideo') ||
             items.contains('CategoryStillImage');
       }).map(FilterItem._fromJson);
     }
     if (defaultTargetPlatform == TargetPlatform.android) {
       final videos = _kGPUVideoFilters.where((element) {
-        final List<String> items = element["AttributeFilterCategories"];
+        final List<String> items = element['AttributeFilterCategories'];
         return items.contains('CategoryVideo');
       }).map(FilterItem._fromJson);
 
       final images = _kGPUImageFilters.where((element) {
-        final List<String> items = element["AttributeFilterCategories"];
+        final List<String> items = element['AttributeFilterCategories'];
         return items.contains('CategoryStillImage');
       }).map(FilterItem._fromJson);
 
@@ -107,13 +100,14 @@ class FilterItem {
 
   factory FilterItem._fromJson(Map<String, dynamic> json) {
     return FilterItem._(
-        json['AttributeFilterName'],
-        json['AttributeFilterDisplayName'],
-        json['AttributeFilterCategories'].toSet(),
-        json.keys
-            .where((e) => e.startsWith('input'))
-            .whereNot((e) => e == 'inputImage')
-            .toSet());
+      json['AttributeFilterName'],
+      json['AttributeFilterDisplayName'],
+      json['AttributeFilterCategories'].toSet(),
+      json.keys
+          .where((e) => e.startsWith('input'))
+          .whereNot((e) => e == 'inputImage')
+          .toSet(),
+    );
   }
 }
 

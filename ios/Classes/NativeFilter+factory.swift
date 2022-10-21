@@ -9,8 +9,8 @@ class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
         self.registrar =  registrar
     }
     
-    subscript(index: Int) -> NativeFilter? {
-        return filters[index as NSNumber]
+    subscript(index: NSNumber) -> NativeFilter? {
+        return filters[index]
     }
     
     func createFilter(_ msg: FLTCreateFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTFilterMessage? {
