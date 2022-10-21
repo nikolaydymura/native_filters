@@ -149,6 +149,11 @@ class FilterConfigurationBuilder {
           continue;
         }
         throw '$key is not CIVector format';
+      } else if (attributeType == 'CIImage') {
+        if (attribute['CIAttributeType'] == 'CIAttributeTypeImage') {
+          continue;
+        }
+        throw '$key is not CIImage format';
       }
     }
   }
