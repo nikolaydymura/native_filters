@@ -112,14 +112,14 @@ class FilterConfigurationBuilder {
           if ((min != null && value >= min) && (max != null && value <= max)) {
             continue;
           }
-          throw '$value is not in range ${attribute['AttributeSliderMin']} - ${attribute['AttributeSliderMax']}';
+          throw '$value is not in a range ${attribute['AttributeSliderMin']} - ${attribute['AttributeSliderMax']}';
         }
         throw '$value is not  number format';
       } else if (attribute['AttributeType'] == 'CIAttributeTypeBoolean') {
         if (value is bool) {
           continue;
         }
-        throw '$value is not  bool format';
+        throw '$value is not a bool format';
       } else if (attributeType == 'CIColor') {
         if (value.red != null &&
             value.red is num &&
@@ -131,33 +131,33 @@ class FilterConfigurationBuilder {
             value.alpha is num) {
           continue;
         }
-        throw '$key is not $attributeType format';
+        throw '$key is not a $attributeType format';
       } else if (attributeType == 'NSValue') {
         if (value.length == 6) {
           continue;
         }
-        throw 'Must be 6 elements in list';
+        throw 'Must be 6 elements in the list';
       } else if (attributeType == 'CIVector') {
         if (attribute['AttributeType'] == 'CIAttributeTypePosition3') {
           if (value.length == 3) {
             continue;
           }
-          throw 'Must be 3 elements in list';
+          throw 'Must be 3 elements in the list';
         } else if (attribute['AttributeType'] == 'CIAttributeTypeRectangle') {
           if (value.length == 2) {
             continue;
           }
-          throw 'Must be 2 elements in list';
+          throw 'Must be 2 elements in the list';
         } else if (attribute['AttributeType'] == 'CIAttributeTypePosition' ||
             attribute['AttributeType'] == 'CIAttributeTypeOffset') {
           continue;
         }
-        throw '$key is not CIVector format';
+        throw '$key is not a CIVector format';
       } else if (attributeType == 'CIImage') {
         if (attribute['AttributeType'] == 'CIAttributeTypeImage') {
           continue;
         }
-        throw '$key is not CIImage format';
+        throw '$key is not a $attributeType format';
       }
     }
   }
