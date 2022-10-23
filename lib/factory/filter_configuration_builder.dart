@@ -103,15 +103,19 @@ class FilterConfigurationBuilder {
           continue;
         }
         if (value is num) {
-          final min = attribute['AttributeSliderMin'] ?? minimum;
-          final max = attribute['AttributeSliderMax'] ?? maximum;
+          final min = attribute['AttributeSliderMin'] ??
+              attribute['AttributeMin'] ??
+              minimum;
+          final max = attribute['AttributeSliderMax'] ??
+              attribute['AttributeMax'] ??
+              maximum;
           if ((min != null && value >= min) && (max != null && value <= max)) {
             continue;
           }
           throw '$value is not in range ${attribute['AttributeSliderMin']} - ${attribute['AttributeSliderMax']}';
         }
         throw '$value is not  number format';
-      } else if ( attribute['AttributeType'] == 'CIAttributeTypeBoolean') {
+      } else if (attribute['AttributeType'] == 'CIAttributeTypeBoolean') {
         if (value is bool) {
           continue;
         }
