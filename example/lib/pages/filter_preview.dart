@@ -3,7 +3,7 @@ import 'package:native_filters/native_filters.dart';
 import 'dart:io' show Platform;
 
 class FilterPreviewScreen extends StatefulWidget {
-  final Filter filter;
+  final Filterable filter;
 
   const FilterPreviewScreen({
     Key? key,
@@ -46,7 +46,7 @@ class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(widget.filter.name),
+        title: const Text('Live Video Preview'),
       ),
       body: Center(
         child: _ready ? videoPreview : const Offstage(),
