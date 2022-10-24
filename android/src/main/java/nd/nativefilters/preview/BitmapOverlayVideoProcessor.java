@@ -128,7 +128,7 @@ final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.Vi
         GlProgram program = checkNotNull(this.program);
         program.setSamplerTexIdUniform("sTexture", frameTexture, /* texUnitIndex= */ 0);
         program.setFloatsUniform("uTexTransform", transformMatrix);
-        program.setSamplerTexIdUniform("lutTexture", textures[0], /* texUnitIndex= */ 1);
+        program.setSamplerTexIdUniform("inputCubeTexture", textures[0], /* texUnitIndex= */ 1);
         program.bindAttributesAndUniforms();
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, /* first= */ 0, /* count= */ 4);
@@ -143,68 +143,6 @@ final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.Vi
     }
 }
 
-final class MonochromeVideoProcessor implements VideoProcessingGLSurfaceView.VideoProcessor {
-
-    private final Context context;
-    private float intensity = 1.0f;
-
-    private GlProgram program;
-
-    public MonochromeVideoProcessor(Context context) {
-        this.context = context.getApplicationContext();
-    }
-
-    @Override
-    public void initialize() {
-        try {
-            program =
-                    new GlProgram(
-                            context,
-                            "monochrome_video_processor_vertex.glsl",
-                            "monochrome_video_processor_fragment.glsl");
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-        program.setBufferAttribute(
-                "aFramePosition",
-                GlUtil.getNormalizedCoordinateBounds(),
-                GlUtil.HOMOGENEOUS_COORDINATE_VECTOR_SIZE);
-        program.setBufferAttribute(
-                "aTexCoords",
-                GlUtil.getTextureCoordinateBounds(),
-                GlUtil.HOMOGENEOUS_COORDINATE_VECTOR_SIZE);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
-    }
-
-    @Override
-    public void setSurfaceSize(int width, int height) {
-    }
-
-    @Override
-    public void draw(int frameTexture, long frameTimestampUs, float[] transformMatrix) {
-        GlUtil.checkGlError();
-
-        // Run the shader program.
-        GlProgram program = checkNotNull(this.program);
-        program.setSamplerTexIdUniform("sTexture", frameTexture, /* texUnitIndex= */ 0);
-        program.setFloatsUniform("uTexTransform", transformMatrix);
-        program.setFloatUniform("intensity", intensity);
-        program.bindAttributesAndUniforms();
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, /* first= */ 0, /* count= */ 4);
-        GlUtil.checkGlError();
-    }
-
-    @Override
-    public void release() {
-        if (program != null) {
-            program.delete();
-        }
-    }
-}
 /* package */ final class BitmapOverlayVideoProcessor
         implements VideoProcessingGLSurfaceView.VideoProcessor {
 

@@ -18,8 +18,9 @@ class FilterGroup extends Filterable {
       final index = _filters.length;
       await FilterFactory._api
           .appendFilter(AppendFilterMessage(name: name, filterId: id));
-      final filter =  Filter._(name, id, index, _api);
+      final filter = Filter._(name, id, index, _api);
       _filters.add(filter);
+      return filter;
     } catch (e) {
       print(e);
     }

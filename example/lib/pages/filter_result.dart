@@ -1,16 +1,13 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image/image.dart' as img;
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart';
 
 class FilterResultScreen extends StatefulWidget {
-  final Filter filter;
+  final Filterable filter;
   final bool video;
 
   const FilterResultScreen({Key? key, required this.filter, this.video = false})
@@ -47,36 +44,15 @@ class _FilterResultState extends State<FilterResultScreen> {
     final path =
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
-    if (widget.filter.name == 'CIColorCube') {
-      const size = 64;
-      await widget.filter.setNumValue('inputCubeDimension', size);
-
-      ByteData data = await rootBundle.load('filters/filter_lut_3.png');
-      Uint8List bytes = data.buffer.asUint8List();
-      img.Image? photo = img.decodeImage(bytes);
-      final bitmap = photo!.getBytes(format: img.Format.argb);
-      final lutData = lutPngToNSData(64, bitmap, photo.width, photo.height);
-
-      ByteData data1 = await rootBundle.load('filters/filter_lut_3.data');
-      Uint8List bytes1 = data.buffer.asUint8List();
-      //for(var i =0; i< lutData.length; i ++){
-        //print('i=$i, ${lutData[i]}==${bytes1[i]} = ${lutData[i] == bytes1[i]}');
-      //}
-
-      await widget.filter.setNSData('inputCubeData', lutData);
-    } else if (widget.filter.name == 'GlLookUpTableFilter') {
-      await widget.filter
-          .setBitmapAsset('inputCubeData', 'filters/lookup_sample.png');
-    }
     await widget.filter.setAssetSource(asset);
     final watch = Stopwatch();
     watch.start();
     if (!widget.video) {
       await widget.filter.binaryOutput;
-      print('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
+      debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
     }
     await widget.filter.export(_output);
-    print('Exporting file took ${watch.elapsedMilliseconds} milliseconds');
+    debugPrint('Exporting file took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {
       _prepareVideo();
     }
@@ -115,7 +91,7 @@ class _FilterResultState extends State<FilterResultScreen> {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(widget.filter.name),
+        title: const Text('Processed result'),
       ),
       body: Center(
         child: processing

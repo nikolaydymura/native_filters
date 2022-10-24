@@ -9,22 +9,18 @@ import androidx.annotation.NonNull;
 
 import com.daasuu.gpuv.composer.GPUMp4Composer;
 import com.daasuu.gpuv.egl.filter.GlFilter;
+import com.daasuu.gpuv.egl.filter.GlLookUpTableFilter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
-import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry;
-import jp.co.cyberagent.android.gpuimage.GPUImage;
+import jp.co.cyberagent.android.gpuimage.GPUImageRenderer;
+import jp.co.cyberagent.android.gpuimage.PixelBuffer;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
 import nd.flutter.plugins.ivfilters.Messages;
@@ -64,14 +60,18 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
         } else if (name.startsWith("Gl")) {
             try {
                 Class<?> filterClass = Class.forName("com.daasuu.gpuv.egl.filter." + name);
-                if (!name.equalsIgnoreCase("GlLookUpTableFilter")) {
-                    GlFilter glFilter = (GlFilter) filterClass.newInstance();
-                    if (filter.glFilterGroup == null) {
-                        filter.glFilterGroup = new GlFilterGroup(glFilter);
-                    } else {
-                        filter.glFilterGroup.addFilter(glFilter);
-                    }
+                final GlFilter glFilter;
+                if (name.equalsIgnoreCase("GlLookUpTableFilter")) {
+                    glFilter = new GlLookUpTableFilter(null);
+                } else {
+                    glFilter = (GlFilter) filterClass.newInstance();
                 }
+                if (filter.glFilterGroup == null) {
+                    filter.glFilterGroup = new NativeFilter.GlFilterGroup(glFilter);
+                } else {
+                    filter.glFilterGroup.addFilter(glFilter);
+                }
+
             } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -199,15 +199,18 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
         final int filterId = msg.getFilterId().intValue();
         final NativeFilter filter = filters.get(filterId);
         if (filter != null) {
-            GPUImage gpuImage = new GPUImage(binding.getApplicationContext());
-            gpuImage.setFilter(filter.filterGroup);
-            if (filter.inputFile != null) {
-                gpuImage.setImage(filter.inputFile);
+            GPUImageRenderer renderer = new GPUImageRenderer(filter.filterGroup);
+            Bitmap bitmap = filter.inputBitmap;
+            if (bitmap == null && filter.inputFile != null) {
+                bitmap = BitmapFactory.decodeFile(filter.inputFile.getAbsolutePath());
             }
-            if (filter.inputBitmap != null) {
-                gpuImage.setImage(filter.inputBitmap);
-            }
-            Bitmap decoded = gpuImage.getBitmapWithFilterApplied();
+            renderer.setImageBitmap(bitmap, false);
+            PixelBuffer buffer = new PixelBuffer(bitmap.getWidth(), bitmap.getHeight());
+            buffer.setRenderer(renderer);
+
+            renderer.setFilter(filter.filterGroup);
+
+            final Bitmap decoded = buffer.getBitmap();
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             if (filter.inputFile != null) {
                 if (filter.inputFile.getName().endsWith(".png")) {
@@ -218,6 +221,8 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
             } else {
                 decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             }
+            renderer.deleteImage();
+            buffer.destroy();
             return new Messages.ExportDataMessage.Builder()
                     .setFilterId(msg.getFilterId())
                     .setData(outputStream.toByteArray())
@@ -258,15 +263,19 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                         })
                         .start();
             } else {
-                GPUImage gpuImage = new GPUImage(binding.getApplicationContext());
-                gpuImage.setFilter(filter.filterGroup);
-                if (filter.inputFile != null) {
-                    gpuImage.setImage(filter.inputFile);
+
+                GPUImageRenderer renderer = new GPUImageRenderer(filter.filterGroup);
+                Bitmap bitmap = filter.inputBitmap;
+                if (bitmap == null && filter.inputFile != null) {
+                    bitmap = BitmapFactory.decodeFile(filter.inputFile.getAbsolutePath());
                 }
-                if (filter.inputBitmap != null) {
-                    gpuImage.setImage(filter.inputBitmap);
-                }
-                Bitmap decoded = gpuImage.getBitmapWithFilterApplied();
+                renderer.setImageBitmap(bitmap, false);
+                PixelBuffer buffer = new PixelBuffer(bitmap.getWidth(), bitmap.getHeight());
+                buffer.setRenderer(renderer);
+
+                renderer.setFilter(filter.filterGroup);
+
+                final Bitmap decoded = buffer.getBitmap();
                 try {
                     FileOutputStream outputStream = new FileOutputStream(new File(msg.getPath()));
                     if (filter.inputFile != null) {
@@ -282,6 +291,9 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                 } catch (FileNotFoundException e) {
                     result.error(e);
                     e.printStackTrace();
+                } finally {
+                    renderer.deleteImage();
+                    buffer.destroy();
                 }
             }
         }

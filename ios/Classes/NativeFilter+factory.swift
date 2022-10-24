@@ -254,7 +254,17 @@ extension ImageVideoFilterFactory {
             return
         }
         let filter = container.filters[msg.filterIndex.intValue]
-        filter.setValue(msg.value.data, forKey: msg.key)
+        guard let attributes = filter.attributes[msg.key] as? [AnyHashable: Any] else {
+            return
+        }
+        guard let targetClass = attributes[kCIAttributeClass] as? String else {
+            return
+        }
+        if targetClass == "CIImage" {
+            filter.setValue(CIImage(data: msg.value.data), forKey: msg.key)
+        } else if targetClass == "NSData" {
+            filter.setValue(msg.value.data, forKey: msg.key)
+        }
     }
     
     func setDataSourceValue(_ msg: FLTInputDataSourceValueMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
@@ -275,12 +285,26 @@ extension ImageVideoFilterFactory {
 
         let path = Bundle.main.path(forResource: asset, ofType: nil) ?? msg.value
         
+        guard let attributes = filter.attributes[msg.key] as? [AnyHashable: Any] else {
+            return
+        }
+        guard let targetClass = attributes[kCIAttributeClass] as? String else {
+            return
+        }
+        
+        if targetClass == "CIImage" {
+            filter.setValue(CIImage(contentsOf: URL(fileURLWithPath: path)), forKey: msg.key)
+            return
+        }
+        
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "No data found",
                                               details: nil)
             return
         }
-        filter.setValue(data, forKey: msg.key)
+        if targetClass == "NSData" {
+            filter.setValue(data, forKey: msg.key)
+        }
     }
 }

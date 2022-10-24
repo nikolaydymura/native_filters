@@ -2,7 +2,7 @@ precision lowp float;
 
 varying highp vec2 vTextureCoord;
 uniform lowp sampler2D sTexture;
-uniform float intensity;
+uniform float inputIntensity;
 
 const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
 
@@ -20,5 +20,5 @@ void main() {
     1.0
     );
 
-    gl_FragColor = vec4(mix(textureColor.rgb, outputColor.rgb, intensity), textureColor.a);
+    gl_FragColor = vec4(mix(textureColor.rgb, outputColor.rgb, inputIntensity), textureColor.a);
 }
