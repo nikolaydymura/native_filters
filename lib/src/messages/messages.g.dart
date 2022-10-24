@@ -8,40 +8,16 @@ import 'dart:typed_data' show Float64List, Int32List, Int64List, Uint8List;
 import 'package:flutter/foundation.dart' show ReadBuffer, WriteBuffer;
 import 'package:flutter/services.dart';
 
-class CreateFilterGroupMessage {
-  CreateFilterGroupMessage({
-    required this.filterId,
-  });
-
-  int filterId;
-
-  Object encode() {
-    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
-    pigeonMap['filterId'] = filterId;
-    return pigeonMap;
-  }
-
-  static CreateFilterGroupMessage decode(Object message) {
-    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return CreateFilterGroupMessage(
-      filterId: pigeonMap['filterId']! as int,
-    );
-  }
-}
-
 class CreateFilterMessage {
   CreateFilterMessage({
     required this.name,
-    required this.filterId,
   });
 
   String name;
-  int filterId;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['name'] = name;
-    pigeonMap['filterId'] = filterId;
     return pigeonMap;
   }
 
@@ -49,7 +25,6 @@ class CreateFilterMessage {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return CreateFilterMessage(
       name: pigeonMap['name']! as String,
-      filterId: pigeonMap['filterId']! as int,
     );
   }
 }
@@ -540,56 +515,52 @@ class _ImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is CreateFilterGroupMessage) {
+    if (value is CreateFilterMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is CreateFilterMessage) {
+    if (value is ExportDataMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportDataMessage) {
+    if (value is ExportFileMessage) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportFileMessage) {
+    if (value is FilterMessage) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else 
-    if (value is FilterMessage) {
+    if (value is InputDataMessage) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataMessage) {
+    if (value is InputDataSourceValueMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataSourceValueMessage) {
+    if (value is InputDataValueMessage) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataValueMessage) {
+    if (value is InputNumberListValueMessage) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberListValueMessage) {
+    if (value is InputNumberValueMessage) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberValueMessage) {
+    if (value is InputSourceMessage) {
       buffer.putUint8(138);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputSourceMessage) {
+    if (value is RemoveFilterMessage) {
       buffer.putUint8(139);
       writeValue(buffer, value.encode());
     } else 
-    if (value is RemoveFilterMessage) {
-      buffer.putUint8(140);
-      writeValue(buffer, value.encode());
-    } else 
     if (value is ReplaceFilterMessage) {
-      buffer.putUint8(141);
+      buffer.putUint8(140);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -603,42 +574,39 @@ class _ImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
         return AppendFilterMessage.decode(readValue(buffer)!);
       
       case 129:       
-        return CreateFilterGroupMessage.decode(readValue(buffer)!);
-      
-      case 130:       
         return CreateFilterMessage.decode(readValue(buffer)!);
       
-      case 131:       
+      case 130:       
         return ExportDataMessage.decode(readValue(buffer)!);
       
-      case 132:       
+      case 131:       
         return ExportFileMessage.decode(readValue(buffer)!);
       
-      case 133:       
+      case 132:       
         return FilterMessage.decode(readValue(buffer)!);
       
-      case 134:       
+      case 133:       
         return InputDataMessage.decode(readValue(buffer)!);
       
-      case 135:       
+      case 134:       
         return InputDataSourceValueMessage.decode(readValue(buffer)!);
       
-      case 136:       
+      case 135:       
         return InputDataValueMessage.decode(readValue(buffer)!);
       
-      case 137:       
+      case 136:       
         return InputNumberListValueMessage.decode(readValue(buffer)!);
       
-      case 138:       
+      case 137:       
         return InputNumberValueMessage.decode(readValue(buffer)!);
       
-      case 139:       
+      case 138:       
         return InputSourceMessage.decode(readValue(buffer)!);
       
-      case 140:       
+      case 139:       
         return RemoveFilterMessage.decode(readValue(buffer)!);
       
-      case 141:       
+      case 140:       
         return ReplaceFilterMessage.decode(readValue(buffer)!);
       
       default:      
@@ -684,11 +652,11 @@ class ImageVideoFilterFactoryApi {
     }
   }
 
-  Future<FilterMessage> createFilterGroup(CreateFilterGroupMessage arg_msg) async {
+  Future<FilterMessage> createFilterGroup() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilterGroup', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
-        await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
+        await channel.send(null) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',

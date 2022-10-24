@@ -2,43 +2,34 @@ import Flutter
 
 class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
     
-    private var filters: [NSNumber: NativeFilter] = [:]
+    private var filters: [Int64: NativeFilter] = [:]
     private let registrar: FlutterPluginRegistrar
+    private var filterSequence: Int64 = 0
     
     init(registrar: FlutterPluginRegistrar) {
         self.registrar =  registrar
     }
     
     subscript(index: NSNumber) -> NativeFilter? {
-        return filters[index]
+        return filters[index.int64Value]
     }
     
     func createFilter(_ msg: FLTCreateFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTFilterMessage? {
-        if filters[msg.filterId] == nil {
-            filters[msg.filterId] = NativeFilter(name: msg.name)
-            return FLTFilterMessage.make(withFilterId: msg.filterId)
-        } else {
-            error.pointee = FlutterError.init(code: "image-video-filter",
-                                              message: "Filter with current id already created",
-                                              details: nil)
-            return nil
-        }
+        let filterId = filterSequence
+        filterSequence += 1
+        filters[filterId] = NativeFilter(name: msg.name)
+        return FLTFilterMessage.make(withFilterId: NSNumber(value: filterId))
     }
     
-    func createFilterGroup(_ msg: FLTCreateFilterGroupMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTFilterMessage? {
-        if filters[msg.filterId] == nil {
-            filters[msg.filterId] = NativeFilter()
-            return FLTFilterMessage.make(withFilterId: msg.filterId)
-        } else {
-            error.pointee = FlutterError.init(code: "image-video-filter",
-                                              message: "Filter group with current id already created",
-                                              details: nil)
-            return nil
-        }
+    func createFilterGroup(_ error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTFilterMessage? {
+        let filterId = filterSequence
+        filterSequence += 1
+        filters[filterId] = NativeFilter()
+        return FLTFilterMessage.make(withFilterId: NSNumber(value: filterId))
     }
     
     func appendFilter(_ msg: FLTAppendFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -54,7 +45,7 @@ class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
     }
     
     func removeFilter(_ msg: FLTRemoveFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>)  {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -64,7 +55,7 @@ class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
     }
     
     func replaceFilter(_ msg: FLTReplaceFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -80,7 +71,7 @@ class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
     }
     
     func disposeFilter(_ msg: FLTFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard filters.removeValue(forKey: msg.filterId) != nil else {
+        guard filters.removeValue(forKey: msg.filterId.int64Value) != nil else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -91,7 +82,7 @@ class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
 
 extension ImageVideoFilterFactory {
     func setInputData(_ msg: FLTInputDataMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -101,7 +92,7 @@ extension ImageVideoFilterFactory {
     }
     
     func setInputSource(_ msg: FLTInputSourceMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -135,7 +126,7 @@ extension ImageVideoFilterFactory {
 
 extension ImageVideoFilterFactory {
     func exportData(_ msg: FLTFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTExportDataMessage? {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -151,7 +142,7 @@ extension ImageVideoFilterFactory {
     }
     
     func exportFile(_ msg: FLTExportFileMessage, completion: @escaping (FlutterError?) -> Void) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             completion(FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil))
@@ -187,7 +178,7 @@ extension ImageVideoFilterFactory {
 
 extension ImageVideoFilterFactory {
     func setNumberValue(_ msg: FLTInputNumberValueMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -204,7 +195,7 @@ extension ImageVideoFilterFactory {
     }
     
     func setNumberListValue(_ msg: FLTInputNumberListValueMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -241,7 +232,7 @@ extension ImageVideoFilterFactory {
     }
     
     func setDataValue(_ msg: FLTInputDataValueMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
@@ -268,7 +259,7 @@ extension ImageVideoFilterFactory {
     }
     
     func setDataSourceValue(_ msg: FLTInputDataSourceValueMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let container = filters[msg.filterId] else {
+        guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)

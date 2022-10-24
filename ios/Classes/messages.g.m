@@ -32,11 +32,6 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 
 
-@interface FLTCreateFilterGroupMessage ()
-+ (FLTCreateFilterGroupMessage *)fromMap:(NSDictionary *)dict;
-+ (nullable FLTCreateFilterGroupMessage *)nullableFromMap:(NSDictionary *)dict;
-- (NSDictionary *)toMap;
-@end
 @interface FLTCreateFilterMessage ()
 + (FLTCreateFilterMessage *)fromMap:(NSDictionary *)dict;
 + (nullable FLTCreateFilterMessage *)nullableFromMap:(NSDictionary *)dict;
@@ -133,47 +128,22 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 - (NSDictionary *)toMap;
 @end
 
-@implementation FLTCreateFilterGroupMessage
-+ (instancetype)makeWithFilterId:(NSNumber *)filterId {
-  FLTCreateFilterGroupMessage* pigeonResult = [[FLTCreateFilterGroupMessage alloc] init];
-  pigeonResult.filterId = filterId;
-  return pigeonResult;
-}
-+ (FLTCreateFilterGroupMessage *)fromMap:(NSDictionary *)dict {
-  FLTCreateFilterGroupMessage *pigeonResult = [[FLTCreateFilterGroupMessage alloc] init];
-  pigeonResult.filterId = GetNullableObject(dict, @"filterId");
-  NSAssert(pigeonResult.filterId != nil, @"");
-  return pigeonResult;
-}
-+ (nullable FLTCreateFilterGroupMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTCreateFilterGroupMessage fromMap:dict] : nil; }
-- (NSDictionary *)toMap {
-  return @{
-    @"filterId" : (self.filterId ?: [NSNull null]),
-  };
-}
-@end
-
 @implementation FLTCreateFilterMessage
-+ (instancetype)makeWithName:(NSString *)name
-    filterId:(NSNumber *)filterId {
++ (instancetype)makeWithName:(NSString *)name {
   FLTCreateFilterMessage* pigeonResult = [[FLTCreateFilterMessage alloc] init];
   pigeonResult.name = name;
-  pigeonResult.filterId = filterId;
   return pigeonResult;
 }
 + (FLTCreateFilterMessage *)fromMap:(NSDictionary *)dict {
   FLTCreateFilterMessage *pigeonResult = [[FLTCreateFilterMessage alloc] init];
   pigeonResult.name = GetNullableObject(dict, @"name");
   NSAssert(pigeonResult.name != nil, @"");
-  pigeonResult.filterId = GetNullableObject(dict, @"filterId");
-  NSAssert(pigeonResult.filterId != nil, @"");
   return pigeonResult;
 }
 + (nullable FLTCreateFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTCreateFilterMessage fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
     @"name" : (self.name ?: [NSNull null]),
-    @"filterId" : (self.filterId ?: [NSNull null]),
   };
 }
 @end
@@ -673,42 +643,39 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
       return [FLTAppendFilterMessage fromMap:[self readValue]];
     
     case 129:     
-      return [FLTCreateFilterGroupMessage fromMap:[self readValue]];
-    
-    case 130:     
       return [FLTCreateFilterMessage fromMap:[self readValue]];
     
-    case 131:     
+    case 130:     
       return [FLTExportDataMessage fromMap:[self readValue]];
     
-    case 132:     
+    case 131:     
       return [FLTExportFileMessage fromMap:[self readValue]];
     
-    case 133:     
+    case 132:     
       return [FLTFilterMessage fromMap:[self readValue]];
     
-    case 134:     
+    case 133:     
       return [FLTInputDataMessage fromMap:[self readValue]];
     
-    case 135:     
+    case 134:     
       return [FLTInputDataSourceValueMessage fromMap:[self readValue]];
     
-    case 136:     
+    case 135:     
       return [FLTInputDataValueMessage fromMap:[self readValue]];
     
-    case 137:     
+    case 136:     
       return [FLTInputNumberListValueMessage fromMap:[self readValue]];
     
-    case 138:     
+    case 137:     
       return [FLTInputNumberValueMessage fromMap:[self readValue]];
     
-    case 139:     
+    case 138:     
       return [FLTInputSourceMessage fromMap:[self readValue]];
     
-    case 140:     
+    case 139:     
       return [FLTRemoveFilterMessage fromMap:[self readValue]];
     
-    case 141:     
+    case 140:     
       return [FLTReplaceFilterMessage fromMap:[self readValue]];
     
     default:    
@@ -727,56 +694,52 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTCreateFilterGroupMessage class]]) {
+  if ([value isKindOfClass:[FLTCreateFilterMessage class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTCreateFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTExportDataMessage class]]) {
     [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTExportDataMessage class]]) {
+  if ([value isKindOfClass:[FLTExportFileMessage class]]) {
     [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTExportFileMessage class]]) {
+  if ([value isKindOfClass:[FLTFilterMessage class]]) {
     [self writeByte:132];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataMessage class]]) {
     [self writeByte:133];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataSourceValueMessage class]]) {
     [self writeByte:134];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataSourceValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataValueMessage class]]) {
     [self writeByte:135];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputNumberListValueMessage class]]) {
     [self writeByte:136];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputNumberListValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputNumberValueMessage class]]) {
     [self writeByte:137];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputNumberValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputSourceMessage class]]) {
     [self writeByte:138];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputSourceMessage class]]) {
+  if ([value isKindOfClass:[FLTRemoveFilterMessage class]]) {
     [self writeByte:139];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTRemoveFilterMessage class]]) {
-    [self writeByte:140];
-    [self writeValue:[value toMap]];
-  } else 
   if ([value isKindOfClass:[FLTReplaceFilterMessage class]]) {
-    [self writeByte:141];
+    [self writeByte:140];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -835,12 +798,10 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
         binaryMessenger:binaryMessenger
         codec:FLTImageVideoFilterFactoryApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(createFilterGroup:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(createFilterGroup:error:)", api);
+      NSCAssert([api respondsToSelector:@selector(createFilterGroup:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(createFilterGroup:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        NSArray *args = message;
-        FLTCreateFilterGroupMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
-        FLTFilterMessage *output = [api createFilterGroup:arg_msg error:&error];
+        FLTFilterMessage *output = [api createFilterGroup:&error];
         callback(wrapResult(output, error));
       }];
     }

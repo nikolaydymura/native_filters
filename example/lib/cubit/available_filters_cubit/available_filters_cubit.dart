@@ -29,7 +29,7 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
             e.name == 'CIColorMonochrome' ||
             e.name == 'GPUMonochrome' ||
             e.name == 'GlMonochrome' ||
-            e.name == 'GPULookuptableFilter' ||
+            e.name == 'GPUImageLookupFilter' ||
             e.name == 'GlLookUpTableFilter';
       }).toList();
 
