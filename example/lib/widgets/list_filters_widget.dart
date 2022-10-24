@@ -29,7 +29,7 @@ class ListFiltersWidget extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => FilterDetailsScreen(
                   filter: item,
-                  factory:  FilterFactory(),
+                  factory: FilterFactory(),
                 ),
               ),
             );
