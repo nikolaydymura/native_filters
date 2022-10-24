@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/available_filters_cubit/available_filters_cubit.dart';
 import '../widgets/list_filters_widget.dart';
-import 'favourites_page.dart';
 
 class FilterListScreen extends StatelessWidget {
   const FilterListScreen({Key? key, required this.title}) : super(key: key);
@@ -47,7 +46,7 @@ class FilterListScreen extends StatelessWidget {
             if (state is AvailableFiltersStateSucceeded) {
               return TabBarView(
                 children: <Widget>[
-                  const FavoritesPage(),
+                  ListFiltersWidget(items: state.favouritesFilters),
                   ListFiltersWidget(items: state.configurableFilters),
                   ListFiltersWidget(items: state.nonConfigurableFilters),
                   const Center(child: Text('in developing')),
