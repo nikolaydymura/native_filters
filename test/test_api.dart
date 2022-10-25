@@ -19,56 +19,52 @@ class _TestHostImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is CreateFilterGroupMessage) {
+    if (value is CreateFilterMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is CreateFilterMessage) {
+    if (value is ExportDataMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportDataMessage) {
+    if (value is ExportFileMessage) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportFileMessage) {
+    if (value is FilterMessage) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else 
-    if (value is FilterMessage) {
+    if (value is InputDataMessage) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataMessage) {
+    if (value is InputDataSourceValueMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataSourceValueMessage) {
+    if (value is InputDataValueMessage) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataValueMessage) {
+    if (value is InputNumberListValueMessage) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberListValueMessage) {
+    if (value is InputNumberValueMessage) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberValueMessage) {
+    if (value is InputSourceMessage) {
       buffer.putUint8(138);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputSourceMessage) {
+    if (value is RemoveFilterMessage) {
       buffer.putUint8(139);
       writeValue(buffer, value.encode());
     } else 
-    if (value is RemoveFilterMessage) {
-      buffer.putUint8(140);
-      writeValue(buffer, value.encode());
-    } else 
     if (value is ReplaceFilterMessage) {
-      buffer.putUint8(141);
+      buffer.putUint8(140);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -82,42 +78,39 @@ class _TestHostImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
         return AppendFilterMessage.decode(readValue(buffer)!);
       
       case 129:       
-        return CreateFilterGroupMessage.decode(readValue(buffer)!);
-      
-      case 130:       
         return CreateFilterMessage.decode(readValue(buffer)!);
       
-      case 131:       
+      case 130:       
         return ExportDataMessage.decode(readValue(buffer)!);
       
-      case 132:       
+      case 131:       
         return ExportFileMessage.decode(readValue(buffer)!);
       
-      case 133:       
+      case 132:       
         return FilterMessage.decode(readValue(buffer)!);
       
-      case 134:       
+      case 133:       
         return InputDataMessage.decode(readValue(buffer)!);
       
-      case 135:       
+      case 134:       
         return InputDataSourceValueMessage.decode(readValue(buffer)!);
       
-      case 136:       
+      case 135:       
         return InputDataValueMessage.decode(readValue(buffer)!);
       
-      case 137:       
+      case 136:       
         return InputNumberListValueMessage.decode(readValue(buffer)!);
       
-      case 138:       
+      case 137:       
         return InputNumberValueMessage.decode(readValue(buffer)!);
       
-      case 139:       
+      case 138:       
         return InputSourceMessage.decode(readValue(buffer)!);
       
-      case 140:       
+      case 139:       
         return RemoveFilterMessage.decode(readValue(buffer)!);
       
-      case 141:       
+      case 140:       
         return ReplaceFilterMessage.decode(readValue(buffer)!);
       
       default:      
@@ -130,7 +123,7 @@ abstract class TestHostImageVideoFilterFactoryApi {
   static const MessageCodec<Object?> codec = _TestHostImageVideoFilterFactoryApiCodec();
 
   FilterMessage createFilter(CreateFilterMessage msg);
-  FilterMessage createFilterGroup(CreateFilterGroupMessage msg);
+  FilterMessage createFilterGroup();
   void appendFilter(AppendFilterMessage msg);
   void removeFilter(RemoveFilterMessage msg);
   void replaceFilter(ReplaceFilterMessage msg);
@@ -167,11 +160,8 @@ abstract class TestHostImageVideoFilterFactoryApi {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilterGroup was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final CreateFilterGroupMessage? arg_msg = (args[0] as CreateFilterGroupMessage?);
-          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilterGroup was null, expected non-null CreateFilterGroupMessage.');
-          final FilterMessage output = api.createFilterGroup(arg_msg!);
+          // ignore message
+          final FilterMessage output = api.createFilterGroup();
           return <Object?, Object?>{'result': output};
         });
       }

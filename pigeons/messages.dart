@@ -18,15 +18,10 @@ import 'package:pigeon/pigeon.dart';
   ),
   copyrightHeader: 'pigeons/copyright.txt',
 ))
-class CreateFilterGroupMessage {
-  CreateFilterGroupMessage(this.filterId);
-  int filterId;
-}
 
 class CreateFilterMessage {
-  CreateFilterMessage(this.filterId, this.name);
+  CreateFilterMessage(this.name);
   String name;
-  int filterId;
 }
 
 class AppendFilterMessage {
@@ -116,8 +111,8 @@ class FilterMessage {
 abstract class ImageVideoFilterFactoryApi {
   @ObjCSelector('createFilter:')
   FilterMessage createFilter(CreateFilterMessage msg);
-  @ObjCSelector('createFilterGroup:')
-  FilterMessage createFilterGroup(CreateFilterGroupMessage msg);
+  @ObjCSelector('createFilterGroup')
+  FilterMessage createFilterGroup();
   @ObjCSelector('appendFilter:')
   void appendFilter(AppendFilterMessage msg);
   @ObjCSelector('removeFilter:')

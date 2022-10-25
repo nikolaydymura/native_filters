@@ -13,12 +13,17 @@ class FilterListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: Center(child: Text(title)),
           bottom: const TabBar(
             tabs: <Widget>[
+              Tab(
+                icon: Icon(
+                  Icons.favorite,
+                ),
+              ),
               Tab(
                 icon: Icon(
                   Icons.amp_stories,
@@ -41,6 +46,7 @@ class FilterListScreen extends StatelessWidget {
             if (state is AvailableFiltersStateSucceeded) {
               return TabBarView(
                 children: <Widget>[
+                  ListFiltersWidget(items: state.favouritesFilters),
                   ListFiltersWidget(items: state.configurableFilters),
                   ListFiltersWidget(items: state.nonConfigurableFilters),
                   const Center(child: Text('in developing')),

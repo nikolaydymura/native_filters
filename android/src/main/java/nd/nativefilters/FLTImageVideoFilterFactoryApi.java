@@ -27,6 +27,7 @@ import nd.flutter.plugins.ivfilters.Messages;
 
 public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterFactoryApi {
     private final SparseArray<NativeFilter> filters = new SparseArray<>();
+    private int filterSequence = 0;
     private FlutterPlugin.FlutterPluginBinding binding;
 
     FLTImageVideoFilterFactoryApi(FlutterPlugin.FlutterPluginBinding binding) {
@@ -40,7 +41,8 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
     @NonNull
     @Override
     public Messages.FilterMessage createFilter(@NonNull Messages.CreateFilterMessage msg) {
-        int filterId = msg.getFilterId().intValue();
+        int filterId = filterSequence;
+        filterSequence++;
         NativeFilter filter = new NativeFilter(binding, filterId);
 
         String name = msg.getName();
@@ -77,16 +79,17 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
             }
         }
         filters.append(filterId, filter);
-        return new Messages.FilterMessage.Builder().setFilterId(msg.getFilterId()).build();
+        return new Messages.FilterMessage.Builder().setFilterId((long) filterId).build();
     }
 
     @NonNull
     @Override
-    public Messages.FilterMessage createFilterGroup(@NonNull Messages.CreateFilterGroupMessage msg) {
-        int filterId = msg.getFilterId().intValue();
+    public Messages.FilterMessage createFilterGroup() {
+        int filterId = filterSequence;
+        filterSequence++;
         NativeFilter filter = new NativeFilter(binding, filterId);
         filters.append(filterId, filter);
-        return new Messages.FilterMessage.Builder().setFilterId(msg.getFilterId()).build();
+        return new Messages.FilterMessage.Builder().setFilterId((long) filterId).build();
     }
 
     @Override

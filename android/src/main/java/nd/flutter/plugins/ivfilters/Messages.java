@@ -25,44 +25,6 @@ import java.util.HashMap;
 public class Messages {
 
   /** Generated class from Pigeon that represents data sent in messages. */
-  public static class CreateFilterGroupMessage {
-    private @NonNull Long filterId;
-    public @NonNull Long getFilterId() { return filterId; }
-    public void setFilterId(@NonNull Long setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"filterId\" is null.");
-      }
-      this.filterId = setterArg;
-    }
-
-    /**Constructor is private to enforce null safety; use Builder. */
-    private CreateFilterGroupMessage() {}
-    public static final class Builder {
-      private @Nullable Long filterId;
-      public @NonNull Builder setFilterId(@NonNull Long setterArg) {
-        this.filterId = setterArg;
-        return this;
-      }
-      public @NonNull CreateFilterGroupMessage build() {
-        CreateFilterGroupMessage pigeonReturn = new CreateFilterGroupMessage();
-        pigeonReturn.setFilterId(filterId);
-        return pigeonReturn;
-      }
-    }
-    @NonNull Map<String, Object> toMap() {
-      Map<String, Object> toMapResult = new HashMap<>();
-      toMapResult.put("filterId", filterId);
-      return toMapResult;
-    }
-    static @NonNull CreateFilterGroupMessage fromMap(@NonNull Map<String, Object> map) {
-      CreateFilterGroupMessage pigeonResult = new CreateFilterGroupMessage();
-      Object filterId = map.get("filterId");
-      pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
-      return pigeonResult;
-    }
-  }
-
-  /** Generated class from Pigeon that represents data sent in messages. */
   public static class CreateFilterMessage {
     private @NonNull String name;
     public @NonNull String getName() { return name; }
@@ -73,15 +35,6 @@ public class Messages {
       this.name = setterArg;
     }
 
-    private @NonNull Long filterId;
-    public @NonNull Long getFilterId() { return filterId; }
-    public void setFilterId(@NonNull Long setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"filterId\" is null.");
-      }
-      this.filterId = setterArg;
-    }
-
     /**Constructor is private to enforce null safety; use Builder. */
     private CreateFilterMessage() {}
     public static final class Builder {
@@ -90,30 +43,21 @@ public class Messages {
         this.name = setterArg;
         return this;
       }
-      private @Nullable Long filterId;
-      public @NonNull Builder setFilterId(@NonNull Long setterArg) {
-        this.filterId = setterArg;
-        return this;
-      }
       public @NonNull CreateFilterMessage build() {
         CreateFilterMessage pigeonReturn = new CreateFilterMessage();
         pigeonReturn.setName(name);
-        pigeonReturn.setFilterId(filterId);
         return pigeonReturn;
       }
     }
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("name", name);
-      toMapResult.put("filterId", filterId);
       return toMapResult;
     }
     static @NonNull CreateFilterMessage fromMap(@NonNull Map<String, Object> map) {
       CreateFilterMessage pigeonResult = new CreateFilterMessage();
       Object name = map.get("name");
       pigeonResult.setName((String)name);
-      Object filterId = map.get("filterId");
-      pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
       return pigeonResult;
     }
   }
@@ -1266,42 +1210,39 @@ public class Messages {
           return AppendFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)129:         
-          return CreateFilterGroupMessage.fromMap((Map<String, Object>) readValue(buffer));
-        
-        case (byte)130:         
           return CreateFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)131:         
+        case (byte)130:         
           return ExportDataMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)132:         
+        case (byte)131:         
           return ExportFileMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)133:         
+        case (byte)132:         
           return FilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)134:         
+        case (byte)133:         
           return InputDataMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)135:         
+        case (byte)134:         
           return InputDataSourceValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)136:         
+        case (byte)135:         
           return InputDataValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)137:         
+        case (byte)136:         
           return InputNumberListValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)138:         
+        case (byte)137:         
           return InputNumberValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)139:         
+        case (byte)138:         
           return InputSourceMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)140:         
+        case (byte)139:         
           return RemoveFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
-        case (byte)141:         
+        case (byte)140:         
           return ReplaceFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -1315,56 +1256,52 @@ public class Messages {
         stream.write(128);
         writeValue(stream, ((AppendFilterMessage) value).toMap());
       } else 
-      if (value instanceof CreateFilterGroupMessage) {
-        stream.write(129);
-        writeValue(stream, ((CreateFilterGroupMessage) value).toMap());
-      } else 
       if (value instanceof CreateFilterMessage) {
-        stream.write(130);
+        stream.write(129);
         writeValue(stream, ((CreateFilterMessage) value).toMap());
       } else 
       if (value instanceof ExportDataMessage) {
-        stream.write(131);
+        stream.write(130);
         writeValue(stream, ((ExportDataMessage) value).toMap());
       } else 
       if (value instanceof ExportFileMessage) {
-        stream.write(132);
+        stream.write(131);
         writeValue(stream, ((ExportFileMessage) value).toMap());
       } else 
       if (value instanceof FilterMessage) {
-        stream.write(133);
+        stream.write(132);
         writeValue(stream, ((FilterMessage) value).toMap());
       } else 
       if (value instanceof InputDataMessage) {
-        stream.write(134);
+        stream.write(133);
         writeValue(stream, ((InputDataMessage) value).toMap());
       } else 
       if (value instanceof InputDataSourceValueMessage) {
-        stream.write(135);
+        stream.write(134);
         writeValue(stream, ((InputDataSourceValueMessage) value).toMap());
       } else 
       if (value instanceof InputDataValueMessage) {
-        stream.write(136);
+        stream.write(135);
         writeValue(stream, ((InputDataValueMessage) value).toMap());
       } else 
       if (value instanceof InputNumberListValueMessage) {
-        stream.write(137);
+        stream.write(136);
         writeValue(stream, ((InputNumberListValueMessage) value).toMap());
       } else 
       if (value instanceof InputNumberValueMessage) {
-        stream.write(138);
+        stream.write(137);
         writeValue(stream, ((InputNumberValueMessage) value).toMap());
       } else 
       if (value instanceof InputSourceMessage) {
-        stream.write(139);
+        stream.write(138);
         writeValue(stream, ((InputSourceMessage) value).toMap());
       } else 
       if (value instanceof RemoveFilterMessage) {
-        stream.write(140);
+        stream.write(139);
         writeValue(stream, ((RemoveFilterMessage) value).toMap());
       } else 
       if (value instanceof ReplaceFilterMessage) {
-        stream.write(141);
+        stream.write(140);
         writeValue(stream, ((ReplaceFilterMessage) value).toMap());
       } else 
 {
@@ -1376,7 +1313,7 @@ public class Messages {
   /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
   public interface ImageVideoFilterFactoryApi {
     @NonNull FilterMessage createFilter(@NonNull CreateFilterMessage msg);
-    @NonNull FilterMessage createFilterGroup(@NonNull CreateFilterGroupMessage msg);
+    @NonNull FilterMessage createFilterGroup();
     void appendFilter(@NonNull AppendFilterMessage msg);
     void removeFilter(@NonNull RemoveFilterMessage msg);
     void replaceFilter(@NonNull ReplaceFilterMessage msg);
@@ -1427,13 +1364,7 @@ public class Messages {
           channel.setMessageHandler((message, reply) -> {
             Map<String, Object> wrapped = new HashMap<>();
             try {
-              ArrayList<Object> args = (ArrayList<Object>)message;
-              assert args != null;
-              CreateFilterGroupMessage msgArg = (CreateFilterGroupMessage)args.get(0);
-              if (msgArg == null) {
-                throw new NullPointerException("msgArg unexpectedly null.");
-              }
-              FilterMessage output = api.createFilterGroup(msgArg);
+              FilterMessage output = api.createFilterGroup();
               wrapped.put("result", output);
             }
             catch (Error | RuntimeException exception) {

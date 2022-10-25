@@ -9,7 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FLTCreateFilterGroupMessage;
 @class FLTCreateFilterMessage;
 @class FLTAppendFilterMessage;
 @class FLTRemoveFilterMessage;
@@ -30,20 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTPreviewPauseMessage;
 @class FLTPreviewDisposeMessage;
 
-@interface FLTCreateFilterGroupMessage : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithFilterId:(NSNumber *)filterId;
-@property(nonatomic, strong) NSNumber * filterId;
-@end
-
 @interface FLTCreateFilterMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithName:(NSString *)name
-    filterId:(NSNumber *)filterId;
++ (instancetype)makeWithName:(NSString *)name;
 @property(nonatomic, copy) NSString * name;
-@property(nonatomic, strong) NSNumber * filterId;
 @end
 
 @interface FLTAppendFilterMessage : NSObject
@@ -229,7 +219,7 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 /// @return `nil` only when `error != nil`.
 - (nullable FLTFilterMessage *)createFilter:(FLTCreateFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
-- (nullable FLTFilterMessage *)createFilterGroup:(FLTCreateFilterGroupMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable FLTFilterMessage *)createFilterGroup:(FlutterError *_Nullable *_Nonnull)error;
 - (void)appendFilter:(FLTAppendFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)removeFilter:(FLTRemoveFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)replaceFilter:(FLTReplaceFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;

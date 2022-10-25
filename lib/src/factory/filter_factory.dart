@@ -3,7 +3,6 @@ part of native_filters;
 class FilterFactory {
   static final ImageVideoFilterFactoryApi _api = ImageVideoFilterFactoryApi();
   static final FilterFactory _instance = FilterFactory._();
-  int _idSequence = 0;
 
   FilterFactory._();
 
@@ -12,7 +11,7 @@ class FilterFactory {
   Future<Filter> createFilter(String name) async {
     try {
       final message = await _api.createFilter(
-        CreateFilterMessage(filterId: _idSequence++, name: name),
+        CreateFilterMessage(name: name),
       );
       return Filter._(name, message.filterId, 0, _api);
     } catch (error) {
@@ -23,8 +22,7 @@ class FilterFactory {
 
   Future<FilterGroup> createFilterGroup() async {
     try {
-      final message = await _api
-          .createFilterGroup(CreateFilterGroupMessage(filterId: _idSequence++));
+      final message = await _api.createFilterGroup();
       return FilterGroup._(message.filterId, _api);
     } catch (error) {
       debugPrint(error.toString());
