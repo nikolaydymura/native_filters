@@ -15,11 +15,15 @@ class AvailableFiltersStateSucceeded extends AvailableFiltersState {
   final List<FilterItem> favouritesFilters;
   final List<FilterItem> configurableFilters;
   final List<FilterItem> nonConfigurableFilters;
+  final List<FilterItem> videoSupportedFilters;
+  final List<FilterItem> imageSupportedFilters;
 
   AvailableFiltersStateSucceeded(
     this.favouritesFilters,
     this.configurableFilters,
     this.nonConfigurableFilters,
+    this.videoSupportedFilters,
+    this.imageSupportedFilters,
   );
 
   @override
