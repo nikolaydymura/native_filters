@@ -1,6 +1,7 @@
 library native_filters;
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
