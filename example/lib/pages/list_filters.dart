@@ -49,8 +49,8 @@ class FilterListScreen extends StatelessWidget {
                   ListFiltersWidget(items: state.favouritesFilters),
                   ListFiltersWidget(items: state.configurableFilters),
                   ListFiltersWidget(items: state.nonConfigurableFilters),
-                  const Center(child: Text('in developing')),
-                  const Center(child: Text('in developing')),
+                  ListFiltersWidget(items: state.videoSupportedFilters),
+                  ListFiltersWidget(items: state.imageSupportedFilters),
                 ],
               );
             } else if (state is AvailableFiltersStateFailed) {
