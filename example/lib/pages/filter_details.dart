@@ -145,6 +145,11 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
           'inputCubeData',
           'filters/lookup_sample.png',
         );
+      } else if (widget.filter.name == 'GPUImageLookupFilter') {
+        await filter.setBitmapAsset(
+          'inputCubeData',
+          'filters/lookup_sample.png',
+        );
       }
       _filter = filter;
     }
