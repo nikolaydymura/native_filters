@@ -27,8 +27,8 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
       List<FilterItem> _favoritesFilters = items.where((e) {
         return e.name == 'CIColorCube' ||
             e.name == 'CIColorMonochrome' ||
-            e.name == 'GPUMonochrome' ||
-            e.name == 'GlMonochrome' ||
+            e.name == 'GPUImageMonochromeFilter' ||
+            e.name == 'GlMonochromeFilter' ||
             e.name == 'GPUImageLookupFilter' ||
             e.name == 'GlLookUpTableFilter';
       }).toList();
@@ -37,13 +37,18 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
           items.where((e) => e.isConfigurable).toList();
       List<FilterItem> _nonConfigurableFilters =
           items.whereNot((e) => e.isConfigurable).toList();
+      List<FilterItem> _videoSupportedFilters =
+          items.whereNot((e) => e.isVideoSupported).toList();
+      List<FilterItem> _imageSupportedFilters =
+          items.whereNot((e) => e.isImageSupported).toList();
 
       emit(
         AvailableFiltersStateSucceeded(
-          _favoritesFilters,
-          _configurableFilters,
-          _nonConfigurableFilters,
-        ),
+            _favoritesFilters,
+            _configurableFilters,
+            _nonConfigurableFilters,
+            _videoSupportedFilters,
+            _imageSupportedFilters),
       );
     } catch (e) {
       emit(AvailableFiltersStateFailed(e.toString()));

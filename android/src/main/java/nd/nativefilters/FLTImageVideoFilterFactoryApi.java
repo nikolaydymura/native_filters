@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import jp.co.cyberagent.android.gpuimage.GPUImageRenderer;
 import jp.co.cyberagent.android.gpuimage.PixelBuffer;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageLookupFilter;
 import nd.flutter.plugins.ivfilters.Messages;
 
 public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterFactoryApi {
@@ -314,12 +316,48 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
 
     @Override
     public void setDataValue(@NonNull Messages.InputDataValueMessage msg) {
-
+        final int filterId = msg.getFilterId().intValue();
+        final NativeFilter filter = filters.get(filterId);
+        if (msg.getKey().equalsIgnoreCase("inputCubeData")) {
+            byte[] bytes = msg.getValue();
+            final Bitmap lutBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            if (filter.glFilterGroup != null && !filter.glFilterGroup.getFilters().isEmpty()) {
+                GlLookUpTableFilter glFilter = new GlLookUpTableFilter(lutBitmap);
+                filter.glFilterGroup.getFilters().set(msg.getFilterIndex().intValue(), glFilter);
+            } else if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
+                GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
+                imageFilter.setBitmap(lutBitmap);
+            }
+        }
     }
 
     @Override
     public void setDataSourceValue(@NonNull Messages.InputDataSourceValueMessage msg) {
+        try {
+            final int filterId = msg.getFilterId().intValue();
+            final NativeFilter filter = filters.get(filterId);
+            if (msg.getKey().equalsIgnoreCase("inputCubeData")) {
+                final Bitmap lutBitmap;
+                final String asset = binding.getFlutterAssets().getAssetFilePathByName(msg.getValue());
+                if (asset != null) {
+                    final InputStream stream = binding.getApplicationContext()
+                            .getAssets().open(asset);
 
+                    lutBitmap = BitmapFactory.decodeStream(stream);
+                } else {
+                    lutBitmap = BitmapFactory.decodeFile(msg.getValue());
+                }
+                if (filter.glFilterGroup != null && !filter.glFilterGroup.getFilters().isEmpty()) {
+                    GlLookUpTableFilter glFilter = new GlLookUpTableFilter(lutBitmap);
+                    filter.glFilterGroup.getFilters().set(msg.getFilterIndex().intValue(), glFilter);
+                } else if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
+                    GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
+                    imageFilter.setBitmap(lutBitmap);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
