@@ -27,8 +27,13 @@ class AvailableFiltersStateSucceeded extends AvailableFiltersState {
   );
 
   @override
-  List<Object> get props =>
-      [favouritesFilters, configurableFilters, nonConfigurableFilters];
+  List<Object> get props => [
+        favouritesFilters,
+        configurableFilters,
+        nonConfigurableFilters,
+        videoSupportedFilters,
+        imageSupportedFilters,
+      ];
 }
 
 class AvailableFiltersStateFailed extends AvailableFiltersState {

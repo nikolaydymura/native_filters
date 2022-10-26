@@ -37,6 +37,7 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
           items.where((e) => e.isConfigurable).toList();
       List<FilterItem> _nonConfigurableFilters =
           items.whereNot((e) => e.isConfigurable).toList();
+
       List<FilterItem> _videoSupportedFilters =
           items.whereNot((e) => e.isVideoSupported).toList();
       List<FilterItem> _imageSupportedFilters =
@@ -54,5 +55,73 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
     } catch (e) {
       emit(AvailableFiltersStateFailed(e.toString()));
     }
+  }
+
+  bool verifiedFilters(String name) {
+    final List<String> _verified = [
+      "GPUImageAlphaBlendFilter",
+      "GPUImageCGAColorspaceFilter",
+      "GPUImageColorBlendFilter",
+      "GPUImageColorInvertFilter",
+      "GPUImageDilationFilter",
+      "GPUImageDirectionalSobelEdgeDetectionFilter",
+      "GPUImageDissolveBlendFilter",
+      "GPUImageDivideBlendFilter",
+      "GPUImageGrayscaleFilter",
+      "GPUImageNonMaximumSuppressionFilter",
+      "GPUImageHueBlendFilter",
+      "GPUImageLuminanceFilter",
+      "GPUImageOverlayBlendFilter",
+      "GPUImageRGBDilationFilter",
+      "GPUImageSaturationBlendFilter",
+      "GPUImageSepiaToneFilter",
+      "GPUImageSketchFilter",
+      "GPUImageSoftLightBlendFilter",
+      "GPUImageWeakPixelInclusionFilter",
+      "GPUImageBoxBlurFilter",
+      "GPUImageBulgeDistortionFilter",
+      "GPUImageContrastFilter",
+      "GPUImageCrosshatchFilter",
+      "GPUImageEmbossFilter",
+      "GPUImageExposureFilter",
+      "GPUImageFalseColorFilter",
+      "GPUImageGaussianBlurFilter",
+      "GPUImageGlassSphereFilter",
+      "GPUImageHalftoneFilter",
+      "GPUImageHazeFilter",
+      "GPUImageHueFilter",
+      "GPUImageKuwaharaFilter",
+      "GPUImageLaplacianFilter",
+      "GPUImageLookupFilter",
+      "GPUImageLuminanceThresholdFilter",
+      "GPUImageMonochromeFilter",
+      "GPUImageSmoothToonFilter",
+      "GPUImageSobelEdgeDetectionFilter",
+      "GPUImageSobelThresholdFilter",
+      "GPUImageSolarizeFilter",
+      "GPUImageSphereRefractionFilter",
+      "GPUImageSwirlFilter",
+      "GPUImageThresholdEdgeDetectionFilter",
+      "GPUImageToonFilter",
+      "GPUImageVignetteFilter",
+      "GPUImageZoomBlurFilter",
+      "GlCGAColorspaceFilter",
+      "GlGrayScaleFilter",
+      "GlInvertFilter",
+      "GlLuminanceFilter",
+      "GlOverlayFilter",
+      "GlSepiaFilter",
+      "GlSolarizeFilter",
+      "GlSphereRefractionFilter",
+      "GlSwirlFilter",
+      "GlVignetteFilter",
+      "GlWeakPixelInclusionFilter",
+      "GlWhiteBalanceFilter",
+      "GlZoomBlurFilter",
+    ];
+    if (_verified.contains(name)) {
+      return true;
+    }
+    return false;
   }
 }
