@@ -18,8 +18,8 @@ class ListFiltersWidget extends StatelessWidget {
           title: Text(item.name),
           subtitle: Row(
             children: [
-              if (item.isImageSupported) const Icon(Icons.photo),
               if (item.isVideoSupported) const Icon(Icons.video_call),
+              if (item.isImageSupported) const Icon(Icons.photo),
             ],
           ),
           trailing: const Icon(Icons.navigate_next),

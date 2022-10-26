@@ -26,7 +26,7 @@ class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
     if (Platform.isIOS) {
       VideoPreviewController.initialize()
           .then((value) => _controller = value)
-          .then((value) => _onContollerCreated(value));
+          .then((value) => _onControllerCreated(value));
     }
   }
 
@@ -59,12 +59,12 @@ class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
       controller: Platform.isIOS ? _controller : null,
       onCreated: (controller) {
         _controller = controller;
-        _onContollerCreated(controller);
+        _onControllerCreated(controller);
       },
     );
   }
 
-  void _onContollerCreated(VideoPreviewController controller) {
+  void _onControllerCreated(VideoPreviewController controller) {
     controller
         .setAssetSource(asset)
         .then((value) => _ready = true)

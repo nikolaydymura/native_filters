@@ -44,11 +44,12 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
 
       emit(
         AvailableFiltersStateSucceeded(
-            _favoritesFilters,
-            _configurableFilters,
-            _nonConfigurableFilters,
-            _videoSupportedFilters,
-            _imageSupportedFilters),
+          _favoritesFilters,
+          _configurableFilters,
+          _nonConfigurableFilters,
+          _videoSupportedFilters,
+          _imageSupportedFilters,
+        ),
       );
     } catch (e) {
       emit(AvailableFiltersStateFailed(e.toString()));
