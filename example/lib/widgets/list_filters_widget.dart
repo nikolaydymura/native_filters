@@ -24,6 +24,9 @@ class ListFiltersWidget extends StatelessWidget {
                 children: [
                   if (item.isVideoSupported) const Icon(Icons.video_call),
                   if (item.isImageSupported) const Icon(Icons.photo),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   if (context
                       .read<AvailableFiltersCubit>()
                       .verifiedFilters(item.name))
