@@ -797,7 +797,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       'CIAttributeDisplayName': 'Image',
       'CIAttributeType': 'CIAttributeTypeImage'
     },
-    'inputOpacity': {
+    'inputSaturation': {
       'AttributeClass': 'float',
       'AttributeDefault': 1.0,
       'AttributeSliderMax': 2.0,
@@ -877,7 +877,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageSobelThresholdFilter",
+    "AttributeFilterName": "GPUSobelThreshold",
     "AttributeFilterDisplayName": "GPUImageSobelThresholdFilter",
     "AttributeFilterCategories": ["CategoryStillImage"],
     "inputImage": {
@@ -887,6 +887,10 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       "CIAttributeDisplayName": "Image",
       "CIAttributeType": "CIAttributeTypeImage"
     },
+    'inputThreshold': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.9,
+    }
   },
   {
     "AttributeFilterName": "GPUImageSoftLightBlendFilter",
