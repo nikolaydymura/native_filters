@@ -905,16 +905,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageSolarizeFilter",
-    "AttributeFilterDisplayName": "GPUImageSolarizeFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUSolarize',
+    'AttributeFilterDisplayName': 'GPUImageSolarizeFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputThreshold': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.5,
+    }
   },
   {
     "AttributeFilterName": "GPUImageSourceOverBlendFilter",
