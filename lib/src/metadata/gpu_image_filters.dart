@@ -1,6 +1,6 @@
 part of native_filters;
 
-const List<Map<String, dynamic>> _kGPUImageFilters = [
+final List<Map<String, dynamic>> _kGPUImageFilters = [
   {
     "AttributeFilterName": "GPUImage3x3ConvolutionFilter",
     "AttributeFilterDisplayName": "GPUImage3x3ConvolutionFilter",
