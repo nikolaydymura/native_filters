@@ -23,20 +23,25 @@ class FilterListScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.favorite,
                 ),
+                text: 'Favourites',
               ),
               Tab(
                 icon: Icon(
                   Icons.amp_stories,
                 ),
+                text: 'Filters',
               ),
               Tab(
                 icon: Icon(Icons.amp_stories_outlined),
+                text: 'Effects',
               ),
               Tab(
                 icon: Icon(Icons.videocam),
+                text: 'Video',
               ),
               Tab(
                 icon: Icon(Icons.image),
+                text: 'Image',
               ),
             ],
           ),
