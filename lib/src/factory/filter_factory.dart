@@ -74,12 +74,14 @@ class FilterFactory {
     if (defaultTargetPlatform == TargetPlatform.android) {
       final videos = _kGPUVideoFilters.where((element) {
         final List<String> items = element['AttributeFilterCategories'];
-        return items.contains('CategoryVideo');
+        return items.contains('CategoryVideo') ||
+            items.contains('CategoryStillImage');
       }).map(FilterItem._fromJson);
 
       final images = _kGPUImageFilters.where((element) {
         final List<String> items = element['AttributeFilterCategories'];
-        return items.contains('CategoryStillImage');
+        return items.contains('CategoryVideo') ||
+            items.contains('CategoryStillImage');
       }).map(FilterItem._fromJson);
 
       return CombinedIterableView([videos, images]);

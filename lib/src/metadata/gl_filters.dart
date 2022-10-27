@@ -52,41 +52,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlContrastFilter",
-    "AttributeFilterDisplayName": "GlContrastFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputContrast": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
-    "AttributeFilterName": "GlCrosshatchFilter",
-    "AttributeFilterDisplayName": "GlCrosshatchFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputCrossHatchSpacing": {
-      "CIAttributeClass": "float",
-    },
-    "inputLineWidth": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
-    "AttributeFilterName": "GlExposureFilter",
-    "AttributeFilterDisplayName": "GlExposureFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputExposure": {
-      "CIAttributeClass": "float",
-    }
-  },
-  {
-    "AttributeFilterName": "GlGammaFilter",
-    "AttributeFilterDisplayName": "GlGammaFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputGamma": {
-      "CIAttributeClass": "float",
-    }
-  },
-  {
     "AttributeFilterName": "GlGaussianBlurFilter",
     "AttributeFilterDisplayName": "GlGaussianBlurFilter",
     "AttributeFilterCategories": ["CategoryVideo"],
@@ -110,17 +75,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterDisplayName": "GlHalftoneFilter",
     "AttributeFilterCategories": ["CategoryVideo"],
     "inputFractionalWidthOfAPixel": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
-    "AttributeFilterName": "GlHazeFilter",
-    "AttributeFilterDisplayName": "GlHazeFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputDistance": {
-      "CIAttributeClass": "float",
-    },
-    "inputSlope": {
       "CIAttributeClass": "float",
     },
   },

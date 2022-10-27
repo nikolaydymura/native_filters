@@ -200,28 +200,42 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageContrastFilter",
-    "AttributeFilterDisplayName": "GPUImageContrastFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUContrast',
+    'AttributeFilterDisplayName': 'GPUContrastFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputContrast': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 4.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
-    "AttributeFilterName": "GPUImageCrosshatchFilter",
-    "AttributeFilterDisplayName": "GPUImageCrosshatchFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUCrosshatchFilter',
+    'AttributeFilterDisplayName': 'GPUCrosshatchFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCrossHatchSpacing': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.03,
+    },
+    'inputLineWidth': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.003,
+    }
   },
   {
     "AttributeFilterName": "GPUImageDarkenBlendFilter",
@@ -320,16 +334,22 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageExposureFilter",
-    "AttributeFilterDisplayName": "GPUImageExposureFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUExposureFilter',
+    'AttributeFilterDisplayName': 'GPUExposureFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputExposure': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.0,
+      'AttributeSliderMax': 10.0,
+      'AttributeSliderMin': -10.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageFalseColorFilter",
@@ -344,16 +364,22 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageGammaFilter",
-    "AttributeFilterDisplayName": "GPUImageGammaFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUGammaFilter',
+    'AttributeFilterDisplayName': 'GPUGammaFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputGamma': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.2,
+      'AttributeSliderMax': 3.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageGaussianBlurFilter",
@@ -416,16 +442,28 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageHazeFilter",
-    "AttributeFilterDisplayName": "GPUImageHazeFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUHaze',
+    'AttributeFilterDisplayName': 'GPUHazeFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputDistance': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.2,
+      'AttributeSliderMax': 0.3,
+      'AttributeSliderMin': -0.3,
+    },
+    'inputSlope': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.0,
+      'AttributeSliderMax': 0.3,
+      'AttributeSliderMin': -0.3,
+    }
   },
   {
     "AttributeFilterName": "GPUImageHighlightShadowFilter",
@@ -1123,12 +1161,6 @@ const Map<String, Map<String, Map<String, String>>> _gpuAttributes = {
       'GPUAttributeMethod': 'setColorMatrix'
     }
   },
-  'GPUImageContrastFilter': {
-    'Contrast': {
-      'GPUAttributeClass': 'float',
-      'GPUAttributeMethod': 'setContrast'
-    }
-  },
   'GPUImageCrosshatchFilter': {
     'CrossHatchSpacing': {
       'GPUAttributeClass': 'float',
@@ -1196,13 +1228,6 @@ const Map<String, Map<String, Map<String, String>>> _gpuAttributes = {
       'GPUAttributeClass': 'float',
       'GPUAttributeMethod': 'setFractionalWidthOfAPixel'
     }
-  },
-  'GPUImageHazeFilter': {
-    'Distance': {
-      'GPUAttributeClass': 'float',
-      'GPUAttributeMethod': 'setDistance'
-    },
-    'Slope': {'GPUAttributeClass': 'float', 'GPUAttributeMethod': 'setSlope'}
   },
   'GPUImageHighlightShadowFilter': {
     'Highlights': {

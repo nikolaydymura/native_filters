@@ -27,7 +27,6 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
       List<FilterItem> _favoritesFilters = items.where((e) {
         return e.name.toLowerCase().contains('monochrome') ||
             e.name.toLowerCase().contains('cube') ||
-            e.name.toLowerCase().contains('brightness') ||
             e.name.toLowerCase().contains('lookup');
       }).toList();
 
@@ -36,9 +35,9 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
       List<FilterItem> _nonConfigurableFilters =
           items.whereNot((e) => e.isConfigurable).toList();
       List<FilterItem> _videoSupportedFilters =
-          items.whereNot((e) => e.isVideoSupported).toList();
+          items.where((e) => e.isVideoSupported).toList();
       List<FilterItem> _imageSupportedFilters =
-          items.whereNot((e) => e.isImageSupported).toList();
+          items.where((e) => e.isImageSupported).toList();
 
       emit(
         AvailableFiltersStateSucceeded(
