@@ -3,7 +3,7 @@
              uniform sampler2D inputImageTexture;
              uniform sampler2D inputImageTexture2; // lookup texture
            
-             uniform lowp float inputItensity;
+             uniform lowp float inputIntensity;
            
              void main()
              {
@@ -31,5 +31,5 @@
                  lowp vec4 newColor2 = texture2D(inputImageTexture2, texPos2);
                 
                  lowp vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
-                 gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputItensity);
+                 gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
              };
