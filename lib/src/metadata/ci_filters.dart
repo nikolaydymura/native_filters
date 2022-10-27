@@ -6679,9 +6679,7 @@ const List<Map<String, dynamic>> _kCoreImageFilters = [
       "CIAttributeDescription":
           "The preferred aspect ratio of the generated barcode",
       "CIAttributeDisplayName": "Preferred Aspect Ratio",
-      "CIAttributeMax": 9223372036854775807,
       "CIAttributeMin": 0,
-      "CIAttributeSliderMax": 9223372036854775807,
       "CIAttributeSliderMin": 0
     },
     "inputMaxHeight": {

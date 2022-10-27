@@ -52,3 +52,72 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
     }
   }
 }
+
+final List<String> _verified = [
+  'GPUImageAlphaBlendFilter',
+  'GPUImageCGAColorspaceFilter',
+  'GPUImageColorBlendFilter',
+  'GPUImageColorInvertFilter',
+  'GPUImageDilationFilter',
+  'GPUImageDirectionalSobelEdgeDetectionFilter',
+  'GPUImageDissolveBlendFilter',
+  'GPUImageDivideBlendFilter',
+  'GPUImageGrayscaleFilter',
+  'GPUImageNonMaximumSuppressionFilter',
+  'GPUImageHueBlendFilter',
+  'GPUImageLuminanceFilter',
+  'GPUImageOverlayBlendFilter',
+  'GPUImageRGBDilationFilter',
+  'GPUImageSaturationBlendFilter',
+  'GPUImageSepiaToneFilter',
+  'GPUImageSketchFilter',
+  'GPUImageSoftLightBlendFilter',
+  'GPUImageWeakPixelInclusionFilter',
+  'GPUImageBoxBlurFilter',
+  'GPUImageBulgeDistortionFilter',
+  'GPUImageContrastFilter',
+  'GPUImageCrosshatchFilter',
+  'GPUImageEmbossFilter',
+  'GPUImageExposureFilter',
+  'GPUImageFalseColorFilter',
+  'GPUImageGaussianBlurFilter',
+  'GPUImageGlassSphereFilter',
+  'GPUImageHalftoneFilter',
+  'GPUImageHazeFilter',
+  'GPUImageHueFilter',
+  'GPUImageKuwaharaFilter',
+  'GPUImageLaplacianFilter',
+  'GPUImageLuminanceThresholdFilter',
+  'GPUImageMonochromeFilter',
+  'GPUImageSmoothToonFilter',
+  'GPUImageSobelEdgeDetectionFilter',
+  'GPUImageSobelThresholdFilter',
+  'GPUImageSolarizeFilter',
+  'GPUImageSphereRefractionFilter',
+  'GPUImageSwirlFilter',
+  'GPUImageThresholdEdgeDetectionFilter',
+  'GPUImageToonFilter',
+  'GPUImageVignetteFilter',
+  'GPUImageZoomBlurFilter',
+  'GlCGAColorspaceFilter',
+  'GlGrayScaleFilter',
+  'GlInvertFilter',
+  'GlLuminanceFilter',
+  'GlOverlayFilter',
+  'GlSepiaFilter',
+  'GlSolarizeFilter',
+  'GlSphereRefractionFilter',
+  'GlSwirlFilter',
+  'GlVignetteFilter',
+  'GlWeakPixelInclusionFilter',
+  'GlWhiteBalanceFilter',
+  'GlZoomBlurFilter',
+];
+
+@Deprecated('Should be removed after filters verified')
+bool isFilterVerified(String name) {
+  if (_verified.contains(name)) {
+    return true;
+  }
+  return false;
+}
