@@ -707,7 +707,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       'CIAttributeDisplayName': 'Image',
       'CIAttributeType': 'CIAttributeTypeImage'
     },
-    'inputIntensity': {
+    'inputOpacity': {
       'AttributeClass': 'float',
       'AttributeDefault': 1.0,
     }
