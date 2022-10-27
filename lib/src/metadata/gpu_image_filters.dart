@@ -993,16 +993,24 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageToonFilter",
-    "AttributeFilterDisplayName": "GPUImageToonFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUToon',
+    'AttributeFilterDisplayName': 'GPUImageToonFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputThreshold': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.2,
+    },
+    'inputQuantizationLevels': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 10.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageTransformFilter",
