@@ -79,25 +79,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlHighlightShadowFilter",
-    "AttributeFilterDisplayName": "GlHighlightShadowFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputShadows": {
-      "CIAttributeClass": "float",
-    },
-    "inputHighlights": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
-    "AttributeFilterName": "GlHueFilter",
-    "AttributeFilterDisplayName": "GlHueFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputHue": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlInvertFilter",
     "AttributeFilterDisplayName": "GlInvertFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
@@ -124,14 +105,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlOpacityFilter",
-    "AttributeFilterDisplayName": "GlOpacityFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputOpacity": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlOverlayFilter",
     "AttributeFilterDisplayName": "GlOverlayFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
@@ -152,11 +125,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlSaturationFilter",
-    "AttributeFilterDisplayName": "GlSaturationFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlSepiaFilter",
     "AttributeFilterDisplayName": "GlSepiaFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
@@ -164,11 +132,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlSharpenFilter",
     "AttributeFilterDisplayName": "GlSharpenFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
-    "AttributeFilterName": "GlSolarizeFilter",
-    "AttributeFilterDisplayName": "GlSolarizeFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
@@ -197,11 +160,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlVibranceFilter",
-    "AttributeFilterDisplayName": "GlVibranceFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlVignetteFilter",
     "AttributeFilterDisplayName": "GlVignetteFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
@@ -214,11 +172,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlWeakPixelInclusionFilter",
     "AttributeFilterDisplayName": "GlWeakPixelInclusionFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
-    "AttributeFilterName": "GlWhiteBalanceFilter",
-    "AttributeFilterDisplayName": "GlWhiteBalanceFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
