@@ -492,7 +492,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
   {
     'AttributeFilterName': 'GPUHue',
     'AttributeFilterDisplayName': 'GPUHueFilter',
-    'AttributeFilterCategories': ['CategoryStillImage'],
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
     'inputImage': {
       'CIAttributeClass': 'CIImage',
       'CIAttributeDescription':
