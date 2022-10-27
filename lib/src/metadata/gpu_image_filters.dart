@@ -574,15 +574,19 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageLookupFilter",
-    "AttributeFilterDisplayName": "GPUImageLookupFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPULookup',
+    'AttributeFilterDisplayName': 'GPUImageLookupFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    },
+    'inputItensity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
     },
   },
   {
