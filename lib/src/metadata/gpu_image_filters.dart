@@ -697,16 +697,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageOpacityFilter",
-    "AttributeFilterDisplayName": "GPUImageOpacityFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUOpacity',
+    'AttributeFilterDisplayName': 'GPUImageOpacityFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputIntensity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageOverlayBlendFilter",

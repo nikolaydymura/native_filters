@@ -105,14 +105,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlOpacityFilter",
-    "AttributeFilterDisplayName": "GlOpacityFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputOpacity": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlOverlayFilter",
     "AttributeFilterDisplayName": "GlOverlayFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
