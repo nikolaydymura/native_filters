@@ -90,11 +90,11 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlHueFilter",
-    "AttributeFilterDisplayName": "GlHueFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputHue": {
-      "CIAttributeClass": "float",
+    'AttributeFilterName': 'GlHueFilter',
+    'AttributeFilterDisplayName': 'GlHueFilter',
+    'AttributeFilterCategories': ['CategoryVideo'],
+    'inputHue': {
+      'CIAttributeClass': 'float',
     },
   },
   {
