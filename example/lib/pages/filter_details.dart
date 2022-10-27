@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:image/image.dart' as img;
 
+import '../widgets/input_number_widget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
 
@@ -24,6 +25,7 @@ class FilterDetailsScreen extends StatefulWidget {
 
 class _FilterDetailsState extends State<FilterDetailsScreen> {
   Filterable? _filter;
+  Filter? _filters;
 
   List<FilterInput> _details = [];
 
@@ -167,16 +169,25 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
     for (var input in _details) {
       items.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(
-            input.name,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Colors.black,
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                input.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
             ),
-          ),
+            const Spacer(),
+            InputNumberWidget(
+              name: widget.filter.name,
+              filter: _filters,
+            ),
+          ],
         ),
       );
       final data = input.data;
@@ -208,63 +219,5 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         .map((e) => [e.key, e.value])
         .expand((element) => element)
         .toList();
-  }
-}
-
-class _NumField extends StatefulWidget {
-  final String name;
-  final Map<String, dynamic> attribute;
-  final Filter filter;
-
-  const _NumField({
-    Key? key,
-    required this.name,
-    required this.filter,
-    required this.attribute,
-  }) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _NumFieldState();
-}
-
-class _NumFieldState extends State<_NumField> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              onSubmitted: (String value) async {
-                await widget.filter.setNumValue(widget.name, num.parse(value));
-              },
-            ),
-          ),
-          TextButton(
-            child: const Text('apply'),
-            onPressed: () async {
-              await widget.filter
-                  .setNumValue(widget.name, num.parse(_controller.text));
-            },
-          ),
-        ],
-      ),
-    );
   }
 }
