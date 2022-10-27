@@ -19,6 +19,12 @@ import 'package:pigeon/pigeon.dart';
   copyrightHeader: 'pigeons/copyright.txt',
 ))
 
+class CreateShaderFilterMessage {
+  CreateShaderFilterMessage(this.shader, this.params);
+  String shader;
+  Map<String?, Map<String?, Object?>?> params;
+}
+
 class CreateFilterMessage {
   CreateFilterMessage(this.name);
   String name;
@@ -28,6 +34,13 @@ class AppendFilterMessage {
   AppendFilterMessage(this.filterId, this.name);
   String name;
   int filterId;
+}
+
+class AppendShaderFilterMessage {
+  AppendShaderFilterMessage(this.filterId, this.shader, this.params);
+  int filterId;
+  String shader;
+  Map<String?, Map<String?, Object?>?> params;
 }
 
 class RemoveFilterMessage {
@@ -111,10 +124,14 @@ class FilterMessage {
 abstract class ImageVideoFilterFactoryApi {
   @ObjCSelector('createFilter:')
   FilterMessage createFilter(CreateFilterMessage msg);
+  @ObjCSelector('createShaderFilter:')
+  FilterMessage createShaderFilter(CreateShaderFilterMessage msg);
   @ObjCSelector('createFilterGroup')
   FilterMessage createFilterGroup();
   @ObjCSelector('appendFilter:')
   void appendFilter(AppendFilterMessage msg);
+  @ObjCSelector('appendShaderFilter:')
+  void appendShaderFilter(AppendShaderFilterMessage msg);
   @ObjCSelector('removeFilter:')
   void removeFilter(RemoveFilterMessage msg);
   @ObjCSelector('replaceFilter:')

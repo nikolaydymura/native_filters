@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class FLTCreateShaderFilterMessage;
 @class FLTCreateFilterMessage;
 @class FLTAppendFilterMessage;
+@class FLTAppendShaderFilterMessage;
 @class FLTRemoveFilterMessage;
 @class FLTReplaceFilterMessage;
 @class FLTInputSourceMessage;
@@ -29,6 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTPreviewPauseMessage;
 @class FLTPreviewDisposeMessage;
 
+@interface FLTCreateShaderFilterMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithShader:(NSString *)shader
+    params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params;
+@property(nonatomic, copy) NSString * shader;
+@property(nonatomic, strong) NSDictionary<NSString *, NSDictionary<NSString *, id> *> * params;
+@end
+
 @interface FLTCreateFilterMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
@@ -43,6 +54,17 @@ NS_ASSUME_NONNULL_BEGIN
     filterId:(NSNumber *)filterId;
 @property(nonatomic, copy) NSString * name;
 @property(nonatomic, strong) NSNumber * filterId;
+@end
+
+@interface FLTAppendShaderFilterMessage : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithFilterId:(NSNumber *)filterId
+    shader:(NSString *)shader
+    params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params;
+@property(nonatomic, strong) NSNumber * filterId;
+@property(nonatomic, copy) NSString * shader;
+@property(nonatomic, strong) NSDictionary<NSString *, NSDictionary<NSString *, id> *> * params;
 @end
 
 @interface FLTRemoveFilterMessage : NSObject
@@ -219,8 +241,11 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 /// @return `nil` only when `error != nil`.
 - (nullable FLTFilterMessage *)createFilter:(FLTCreateFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
+- (nullable FLTFilterMessage *)createShaderFilter:(FLTCreateShaderFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+/// @return `nil` only when `error != nil`.
 - (nullable FLTFilterMessage *)createFilterGroup:(FlutterError *_Nullable *_Nonnull)error;
 - (void)appendFilter:(FLTAppendFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)appendShaderFilter:(FLTAppendShaderFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)removeFilter:(FLTRemoveFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)replaceFilter:(FLTReplaceFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setInputData:(FLTInputDataMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;

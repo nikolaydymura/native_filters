@@ -32,6 +32,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 
 
+@interface FLTCreateShaderFilterMessage ()
++ (FLTCreateShaderFilterMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTCreateShaderFilterMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 @interface FLTCreateFilterMessage ()
 + (FLTCreateFilterMessage *)fromMap:(NSDictionary *)dict;
 + (nullable FLTCreateFilterMessage *)nullableFromMap:(NSDictionary *)dict;
@@ -40,6 +45,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @interface FLTAppendFilterMessage ()
 + (FLTAppendFilterMessage *)fromMap:(NSDictionary *)dict;
 + (nullable FLTAppendFilterMessage *)nullableFromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
+@interface FLTAppendShaderFilterMessage ()
++ (FLTAppendShaderFilterMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTAppendShaderFilterMessage *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
 @interface FLTRemoveFilterMessage ()
@@ -128,6 +138,31 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 - (NSDictionary *)toMap;
 @end
 
+@implementation FLTCreateShaderFilterMessage
++ (instancetype)makeWithShader:(NSString *)shader
+    params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params {
+  FLTCreateShaderFilterMessage* pigeonResult = [[FLTCreateShaderFilterMessage alloc] init];
+  pigeonResult.shader = shader;
+  pigeonResult.params = params;
+  return pigeonResult;
+}
++ (FLTCreateShaderFilterMessage *)fromMap:(NSDictionary *)dict {
+  FLTCreateShaderFilterMessage *pigeonResult = [[FLTCreateShaderFilterMessage alloc] init];
+  pigeonResult.shader = GetNullableObject(dict, @"shader");
+  NSAssert(pigeonResult.shader != nil, @"");
+  pigeonResult.params = GetNullableObject(dict, @"params");
+  NSAssert(pigeonResult.params != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTCreateShaderFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTCreateShaderFilterMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"shader" : (self.shader ?: [NSNull null]),
+    @"params" : (self.params ?: [NSNull null]),
+  };
+}
+@end
+
 @implementation FLTCreateFilterMessage
 + (instancetype)makeWithName:(NSString *)name {
   FLTCreateFilterMessage* pigeonResult = [[FLTCreateFilterMessage alloc] init];
@@ -169,6 +204,36 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   return @{
     @"name" : (self.name ?: [NSNull null]),
     @"filterId" : (self.filterId ?: [NSNull null]),
+  };
+}
+@end
+
+@implementation FLTAppendShaderFilterMessage
++ (instancetype)makeWithFilterId:(NSNumber *)filterId
+    shader:(NSString *)shader
+    params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params {
+  FLTAppendShaderFilterMessage* pigeonResult = [[FLTAppendShaderFilterMessage alloc] init];
+  pigeonResult.filterId = filterId;
+  pigeonResult.shader = shader;
+  pigeonResult.params = params;
+  return pigeonResult;
+}
++ (FLTAppendShaderFilterMessage *)fromMap:(NSDictionary *)dict {
+  FLTAppendShaderFilterMessage *pigeonResult = [[FLTAppendShaderFilterMessage alloc] init];
+  pigeonResult.filterId = GetNullableObject(dict, @"filterId");
+  NSAssert(pigeonResult.filterId != nil, @"");
+  pigeonResult.shader = GetNullableObject(dict, @"shader");
+  NSAssert(pigeonResult.shader != nil, @"");
+  pigeonResult.params = GetNullableObject(dict, @"params");
+  NSAssert(pigeonResult.params != nil, @"");
+  return pigeonResult;
+}
++ (nullable FLTAppendShaderFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTAppendShaderFilterMessage fromMap:dict] : nil; }
+- (NSDictionary *)toMap {
+  return @{
+    @"filterId" : (self.filterId ?: [NSNull null]),
+    @"shader" : (self.shader ?: [NSNull null]),
+    @"params" : (self.params ?: [NSNull null]),
   };
 }
 @end
@@ -643,39 +708,45 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
       return [FLTAppendFilterMessage fromMap:[self readValue]];
     
     case 129:     
-      return [FLTCreateFilterMessage fromMap:[self readValue]];
+      return [FLTAppendShaderFilterMessage fromMap:[self readValue]];
     
     case 130:     
-      return [FLTExportDataMessage fromMap:[self readValue]];
+      return [FLTCreateFilterMessage fromMap:[self readValue]];
     
     case 131:     
-      return [FLTExportFileMessage fromMap:[self readValue]];
+      return [FLTCreateShaderFilterMessage fromMap:[self readValue]];
     
     case 132:     
-      return [FLTFilterMessage fromMap:[self readValue]];
+      return [FLTExportDataMessage fromMap:[self readValue]];
     
     case 133:     
-      return [FLTInputDataMessage fromMap:[self readValue]];
+      return [FLTExportFileMessage fromMap:[self readValue]];
     
     case 134:     
-      return [FLTInputDataSourceValueMessage fromMap:[self readValue]];
+      return [FLTFilterMessage fromMap:[self readValue]];
     
     case 135:     
-      return [FLTInputDataValueMessage fromMap:[self readValue]];
+      return [FLTInputDataMessage fromMap:[self readValue]];
     
     case 136:     
-      return [FLTInputNumberListValueMessage fromMap:[self readValue]];
+      return [FLTInputDataSourceValueMessage fromMap:[self readValue]];
     
     case 137:     
-      return [FLTInputNumberValueMessage fromMap:[self readValue]];
+      return [FLTInputDataValueMessage fromMap:[self readValue]];
     
     case 138:     
-      return [FLTInputSourceMessage fromMap:[self readValue]];
+      return [FLTInputNumberListValueMessage fromMap:[self readValue]];
     
     case 139:     
-      return [FLTRemoveFilterMessage fromMap:[self readValue]];
+      return [FLTInputNumberValueMessage fromMap:[self readValue]];
     
     case 140:     
+      return [FLTInputSourceMessage fromMap:[self readValue]];
+    
+    case 141:     
+      return [FLTRemoveFilterMessage fromMap:[self readValue]];
+    
+    case 142:     
       return [FLTReplaceFilterMessage fromMap:[self readValue]];
     
     default:    
@@ -694,52 +765,60 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTCreateFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTAppendShaderFilterMessage class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTExportDataMessage class]]) {
+  if ([value isKindOfClass:[FLTCreateFilterMessage class]]) {
     [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTExportFileMessage class]]) {
+  if ([value isKindOfClass:[FLTCreateShaderFilterMessage class]]) {
     [self writeByte:131];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTExportDataMessage class]]) {
     [self writeByte:132];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataMessage class]]) {
+  if ([value isKindOfClass:[FLTExportFileMessage class]]) {
     [self writeByte:133];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataSourceValueMessage class]]) {
+  if ([value isKindOfClass:[FLTFilterMessage class]]) {
     [self writeByte:134];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputDataValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataMessage class]]) {
     [self writeByte:135];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputNumberListValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataSourceValueMessage class]]) {
     [self writeByte:136];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputNumberValueMessage class]]) {
+  if ([value isKindOfClass:[FLTInputDataValueMessage class]]) {
     [self writeByte:137];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTInputSourceMessage class]]) {
+  if ([value isKindOfClass:[FLTInputNumberListValueMessage class]]) {
     [self writeByte:138];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTRemoveFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTInputNumberValueMessage class]]) {
     [self writeByte:139];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTReplaceFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTInputSourceMessage class]]) {
     [self writeByte:140];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTRemoveFilterMessage class]]) {
+    [self writeByte:141];
+    [self writeValue:[value toMap]];
+  } else 
+  if ([value isKindOfClass:[FLTReplaceFilterMessage class]]) {
+    [self writeByte:142];
     [self writeValue:[value toMap]];
   } else 
 {
@@ -794,6 +873,26 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.createShaderFilter"
+        binaryMessenger:binaryMessenger
+        codec:FLTImageVideoFilterFactoryApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(createShaderFilter:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(createShaderFilter:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTCreateShaderFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        FLTFilterMessage *output = [api createShaderFilter:arg_msg error:&error];
+        callback(wrapResult(output, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
         initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilterGroup"
         binaryMessenger:binaryMessenger
         codec:FLTImageVideoFilterFactoryApiGetCodec()];
@@ -822,6 +921,26 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
         FLTAppendFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api appendFilter:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.appendShaderFilter"
+        binaryMessenger:binaryMessenger
+        codec:FLTImageVideoFilterFactoryApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(appendShaderFilter:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(appendShaderFilter:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTAppendShaderFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api appendShaderFilter:arg_msg error:&error];
         callback(wrapResult(nil, error));
       }];
     }

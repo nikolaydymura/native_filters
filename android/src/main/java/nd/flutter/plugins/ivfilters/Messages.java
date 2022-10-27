@@ -25,6 +25,62 @@ import java.util.HashMap;
 public class Messages {
 
   /** Generated class from Pigeon that represents data sent in messages. */
+  public static class CreateShaderFilterMessage {
+    private @NonNull String shader;
+    public @NonNull String getShader() { return shader; }
+    public void setShader(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"shader\" is null.");
+      }
+      this.shader = setterArg;
+    }
+
+    private @NonNull Map<String, Map<String, Object>> params;
+    public @NonNull Map<String, Map<String, Object>> getParams() { return params; }
+    public void setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"params\" is null.");
+      }
+      this.params = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private CreateShaderFilterMessage() {}
+    public static final class Builder {
+      private @Nullable String shader;
+      public @NonNull Builder setShader(@NonNull String setterArg) {
+        this.shader = setterArg;
+        return this;
+      }
+      private @Nullable Map<String, Map<String, Object>> params;
+      public @NonNull Builder setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
+        this.params = setterArg;
+        return this;
+      }
+      public @NonNull CreateShaderFilterMessage build() {
+        CreateShaderFilterMessage pigeonReturn = new CreateShaderFilterMessage();
+        pigeonReturn.setShader(shader);
+        pigeonReturn.setParams(params);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("shader", shader);
+      toMapResult.put("params", params);
+      return toMapResult;
+    }
+    static @NonNull CreateShaderFilterMessage fromMap(@NonNull Map<String, Object> map) {
+      CreateShaderFilterMessage pigeonResult = new CreateShaderFilterMessage();
+      Object shader = map.get("shader");
+      pigeonResult.setShader((String)shader);
+      Object params = map.get("params");
+      pigeonResult.setParams((Map<String, Map<String, Object>>)params);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
   public static class CreateFilterMessage {
     private @NonNull String name;
     public @NonNull String getName() { return name; }
@@ -114,6 +170,80 @@ public class Messages {
       pigeonResult.setName((String)name);
       Object filterId = map.get("filterId");
       pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static class AppendShaderFilterMessage {
+    private @NonNull Long filterId;
+    public @NonNull Long getFilterId() { return filterId; }
+    public void setFilterId(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"filterId\" is null.");
+      }
+      this.filterId = setterArg;
+    }
+
+    private @NonNull String shader;
+    public @NonNull String getShader() { return shader; }
+    public void setShader(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"shader\" is null.");
+      }
+      this.shader = setterArg;
+    }
+
+    private @NonNull Map<String, Map<String, Object>> params;
+    public @NonNull Map<String, Map<String, Object>> getParams() { return params; }
+    public void setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"params\" is null.");
+      }
+      this.params = setterArg;
+    }
+
+    /**Constructor is private to enforce null safety; use Builder. */
+    private AppendShaderFilterMessage() {}
+    public static final class Builder {
+      private @Nullable Long filterId;
+      public @NonNull Builder setFilterId(@NonNull Long setterArg) {
+        this.filterId = setterArg;
+        return this;
+      }
+      private @Nullable String shader;
+      public @NonNull Builder setShader(@NonNull String setterArg) {
+        this.shader = setterArg;
+        return this;
+      }
+      private @Nullable Map<String, Map<String, Object>> params;
+      public @NonNull Builder setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
+        this.params = setterArg;
+        return this;
+      }
+      public @NonNull AppendShaderFilterMessage build() {
+        AppendShaderFilterMessage pigeonReturn = new AppendShaderFilterMessage();
+        pigeonReturn.setFilterId(filterId);
+        pigeonReturn.setShader(shader);
+        pigeonReturn.setParams(params);
+        return pigeonReturn;
+      }
+    }
+    @NonNull Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("filterId", filterId);
+      toMapResult.put("shader", shader);
+      toMapResult.put("params", params);
+      return toMapResult;
+    }
+    static @NonNull AppendShaderFilterMessage fromMap(@NonNull Map<String, Object> map) {
+      AppendShaderFilterMessage pigeonResult = new AppendShaderFilterMessage();
+      Object filterId = map.get("filterId");
+      pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
+      Object shader = map.get("shader");
+      pigeonResult.setShader((String)shader);
+      Object params = map.get("params");
+      pigeonResult.setParams((Map<String, Map<String, Object>>)params);
       return pigeonResult;
     }
   }
@@ -1210,39 +1340,45 @@ public class Messages {
           return AppendFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)129:         
-          return CreateFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return AppendShaderFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)130:         
-          return ExportDataMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return CreateFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)131:         
-          return ExportFileMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return CreateShaderFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)132:         
-          return FilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return ExportDataMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)133:         
-          return InputDataMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return ExportFileMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)134:         
-          return InputDataSourceValueMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return FilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)135:         
-          return InputDataValueMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return InputDataMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)136:         
-          return InputNumberListValueMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return InputDataSourceValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)137:         
-          return InputNumberValueMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return InputDataValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)138:         
-          return InputSourceMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return InputNumberListValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)139:         
-          return RemoveFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return InputNumberValueMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)140:         
+          return InputSourceMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)141:         
+          return RemoveFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+        
+        case (byte)142:         
           return ReplaceFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         default:        
@@ -1256,52 +1392,60 @@ public class Messages {
         stream.write(128);
         writeValue(stream, ((AppendFilterMessage) value).toMap());
       } else 
-      if (value instanceof CreateFilterMessage) {
+      if (value instanceof AppendShaderFilterMessage) {
         stream.write(129);
+        writeValue(stream, ((AppendShaderFilterMessage) value).toMap());
+      } else 
+      if (value instanceof CreateFilterMessage) {
+        stream.write(130);
         writeValue(stream, ((CreateFilterMessage) value).toMap());
       } else 
+      if (value instanceof CreateShaderFilterMessage) {
+        stream.write(131);
+        writeValue(stream, ((CreateShaderFilterMessage) value).toMap());
+      } else 
       if (value instanceof ExportDataMessage) {
-        stream.write(130);
+        stream.write(132);
         writeValue(stream, ((ExportDataMessage) value).toMap());
       } else 
       if (value instanceof ExportFileMessage) {
-        stream.write(131);
+        stream.write(133);
         writeValue(stream, ((ExportFileMessage) value).toMap());
       } else 
       if (value instanceof FilterMessage) {
-        stream.write(132);
+        stream.write(134);
         writeValue(stream, ((FilterMessage) value).toMap());
       } else 
       if (value instanceof InputDataMessage) {
-        stream.write(133);
+        stream.write(135);
         writeValue(stream, ((InputDataMessage) value).toMap());
       } else 
       if (value instanceof InputDataSourceValueMessage) {
-        stream.write(134);
+        stream.write(136);
         writeValue(stream, ((InputDataSourceValueMessage) value).toMap());
       } else 
       if (value instanceof InputDataValueMessage) {
-        stream.write(135);
+        stream.write(137);
         writeValue(stream, ((InputDataValueMessage) value).toMap());
       } else 
       if (value instanceof InputNumberListValueMessage) {
-        stream.write(136);
+        stream.write(138);
         writeValue(stream, ((InputNumberListValueMessage) value).toMap());
       } else 
       if (value instanceof InputNumberValueMessage) {
-        stream.write(137);
+        stream.write(139);
         writeValue(stream, ((InputNumberValueMessage) value).toMap());
       } else 
       if (value instanceof InputSourceMessage) {
-        stream.write(138);
+        stream.write(140);
         writeValue(stream, ((InputSourceMessage) value).toMap());
       } else 
       if (value instanceof RemoveFilterMessage) {
-        stream.write(139);
+        stream.write(141);
         writeValue(stream, ((RemoveFilterMessage) value).toMap());
       } else 
       if (value instanceof ReplaceFilterMessage) {
-        stream.write(140);
+        stream.write(142);
         writeValue(stream, ((ReplaceFilterMessage) value).toMap());
       } else 
 {
@@ -1313,8 +1457,10 @@ public class Messages {
   /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
   public interface ImageVideoFilterFactoryApi {
     @NonNull FilterMessage createFilter(@NonNull CreateFilterMessage msg);
+    @NonNull FilterMessage createShaderFilter(@NonNull CreateShaderFilterMessage msg);
     @NonNull FilterMessage createFilterGroup();
     void appendFilter(@NonNull AppendFilterMessage msg);
+    void appendShaderFilter(@NonNull AppendShaderFilterMessage msg);
     void removeFilter(@NonNull RemoveFilterMessage msg);
     void replaceFilter(@NonNull ReplaceFilterMessage msg);
     void setInputData(@NonNull InputDataMessage msg);
@@ -1359,6 +1505,31 @@ public class Messages {
       }
       {
         BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.createShaderFilter", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              CreateShaderFilterMessage msgArg = (CreateShaderFilterMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              FilterMessage output = api.createShaderFilter(msgArg);
+              wrapped.put("result", output);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilterGroup", getCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
@@ -1390,6 +1561,31 @@ public class Messages {
                 throw new NullPointerException("msgArg unexpectedly null.");
               }
               api.appendFilter(msgArg);
+              wrapped.put("result", null);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.appendShaderFilter", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              AppendShaderFilterMessage msgArg = (AppendShaderFilterMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              api.appendShaderFilter(msgArg);
               wrapped.put("result", null);
             }
             catch (Error | RuntimeException exception) {

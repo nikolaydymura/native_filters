@@ -299,3 +299,13 @@ extension ImageVideoFilterFactory {
         }
     }
 }
+
+extension ImageVideoFilterFactory {
+    func createShaderFilter(_ msg: FLTCreateShaderFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTFilterMessage? {
+        return nil
+    }
+    
+    func appendShaderFilter(_ msg: FLTAppendShaderFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+        
+    }
+}

@@ -17,7 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import jp.co.cyberagent.android.gpuimage.GPUImageRenderer;
@@ -25,6 +27,8 @@ import jp.co.cyberagent.android.gpuimage.PixelBuffer;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageLookupFilter;
+import nd.flutter.plugins.ivfilters.GPUImageDynamicFilter;
+import nd.flutter.plugins.ivfilters.GPUVideoDynamicFilter;
 import nd.flutter.plugins.ivfilters.Messages;
 
 public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterFactoryApi {
@@ -38,6 +42,20 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
 
     public NativeFilter getById(int id) {
         return filters.get(id);
+    }
+
+    @NonNull
+    @Override
+    public Messages.FilterMessage createShaderFilter(@NonNull Messages.CreateShaderFilterMessage msg) {
+        int filterId = filterSequence;
+        filterSequence++;
+
+        NativeFilter filter = new NativeFilter(
+                new GPUImageDynamicFilter(msg.getShader(), msg.getParams()),
+                new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+
+        filters.append(filterId, filter);
+        return new Messages.FilterMessage.Builder().setFilterId((long) filterId).build();
     }
 
     @NonNull
@@ -95,6 +113,25 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
     }
 
     @Override
+    public void appendShaderFilter(@NonNull Messages.AppendShaderFilterMessage msg) {
+        final int filterId = msg.getFilterId().intValue();
+        final NativeFilter filter = filters.get(filterId);
+        if (filter != null) {
+            if (filter.filterGroup == null) {
+                filter.filterGroup = new GPUImageFilterGroup();
+            }
+            GPUImageDynamicFilter gpuFilter = new GPUImageDynamicFilter(msg.getShader(), msg.getParams());
+            filter.filterGroup.addFilter(gpuFilter);
+            GPUVideoDynamicFilter glFilter = new GPUVideoDynamicFilter(msg.getShader(), msg.getParams());
+            if (filter.glFilterGroup == null) {
+                filter.glFilterGroup = new NativeFilter.GlFilterGroup(glFilter);
+            } else {
+                filter.glFilterGroup.addFilter(glFilter);
+            }
+        }
+    }
+
+    @Override
     public void appendFilter(@NonNull Messages.AppendFilterMessage msg) {
         final int filterId = msg.getFilterId().intValue();
         final NativeFilter filter = filters.get(filterId);
@@ -111,6 +148,24 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                     }
                     filter.filterGroup.addFilter(gpuImageFilter);
                 } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else if (name.startsWith("Gl")) {
+                try {
+                    Class<?> filterClass = Class.forName("com.daasuu.gpuv.egl.filter." + name);
+                    final GlFilter glFilter;
+                    if (name.equalsIgnoreCase("GlLookUpTableFilter")) {
+                        glFilter = new GlLookUpTableFilter(null);
+                    } else {
+                        glFilter = (GlFilter) filterClass.newInstance();
+                    }
+                    if (filter.glFilterGroup == null) {
+                        filter.glFilterGroup = new NativeFilter.GlFilterGroup(glFilter);
+                    } else {
+                        filter.glFilterGroup.addFilter(glFilter);
+                    }
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

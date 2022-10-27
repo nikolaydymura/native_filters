@@ -25,12 +25,10 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
       final items = FilterFactory.availableFilters;
 
       List<FilterItem> _favoritesFilters = items.where((e) {
-        return e.name == 'CIColorCube' ||
-            e.name == 'CIColorMonochrome' ||
-            e.name == 'GPUImageMonochromeFilter' ||
-            e.name == 'GlMonochromeFilter' ||
-            e.name == 'GPUImageLookupFilter' ||
-            e.name == 'GlLookUpTableFilter';
+        return e.name.toLowerCase().contains('monochrome') ||
+            e.name.toLowerCase().contains('cube') ||
+            e.name.toLowerCase().contains('brightness') ||
+            e.name.toLowerCase().contains('lookup');
       }).toList();
 
       List<FilterItem> _configurableFilters =

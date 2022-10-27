@@ -8,6 +8,31 @@ import 'dart:typed_data' show Float64List, Int32List, Int64List, Uint8List;
 import 'package:flutter/foundation.dart' show ReadBuffer, WriteBuffer;
 import 'package:flutter/services.dart';
 
+class CreateShaderFilterMessage {
+  CreateShaderFilterMessage({
+    required this.shader,
+    required this.params,
+  });
+
+  String shader;
+  Map<String?, Map<String?, Object?>?> params;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['shader'] = shader;
+    pigeonMap['params'] = params;
+    return pigeonMap;
+  }
+
+  static CreateShaderFilterMessage decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return CreateShaderFilterMessage(
+      shader: pigeonMap['shader']! as String,
+      params: (pigeonMap['params'] as Map<Object?, Object?>?)!.cast<String?, Map<String?, Object?>?>(),
+    );
+  }
+}
+
 class CreateFilterMessage {
   CreateFilterMessage({
     required this.name,
@@ -50,6 +75,35 @@ class AppendFilterMessage {
     return AppendFilterMessage(
       name: pigeonMap['name']! as String,
       filterId: pigeonMap['filterId']! as int,
+    );
+  }
+}
+
+class AppendShaderFilterMessage {
+  AppendShaderFilterMessage({
+    required this.filterId,
+    required this.shader,
+    required this.params,
+  });
+
+  int filterId;
+  String shader;
+  Map<String?, Map<String?, Object?>?> params;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['filterId'] = filterId;
+    pigeonMap['shader'] = shader;
+    pigeonMap['params'] = params;
+    return pigeonMap;
+  }
+
+  static AppendShaderFilterMessage decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return AppendShaderFilterMessage(
+      filterId: pigeonMap['filterId']! as int,
+      shader: pigeonMap['shader']! as String,
+      params: (pigeonMap['params'] as Map<Object?, Object?>?)!.cast<String?, Map<String?, Object?>?>(),
     );
   }
 }
@@ -515,52 +569,60 @@ class _ImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is CreateFilterMessage) {
+    if (value is AppendShaderFilterMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportDataMessage) {
+    if (value is CreateFilterMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ExportFileMessage) {
+    if (value is CreateShaderFilterMessage) {
       buffer.putUint8(131);
       writeValue(buffer, value.encode());
     } else 
-    if (value is FilterMessage) {
+    if (value is ExportDataMessage) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataMessage) {
+    if (value is ExportFileMessage) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataSourceValueMessage) {
+    if (value is FilterMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputDataValueMessage) {
+    if (value is InputDataMessage) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberListValueMessage) {
+    if (value is InputDataSourceValueMessage) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputNumberValueMessage) {
+    if (value is InputDataValueMessage) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else 
-    if (value is InputSourceMessage) {
+    if (value is InputNumberListValueMessage) {
       buffer.putUint8(138);
       writeValue(buffer, value.encode());
     } else 
-    if (value is RemoveFilterMessage) {
+    if (value is InputNumberValueMessage) {
       buffer.putUint8(139);
       writeValue(buffer, value.encode());
     } else 
-    if (value is ReplaceFilterMessage) {
+    if (value is InputSourceMessage) {
       buffer.putUint8(140);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is RemoveFilterMessage) {
+      buffer.putUint8(141);
+      writeValue(buffer, value.encode());
+    } else 
+    if (value is ReplaceFilterMessage) {
+      buffer.putUint8(142);
       writeValue(buffer, value.encode());
     } else 
 {
@@ -574,39 +636,45 @@ class _ImageVideoFilterFactoryApiCodec extends StandardMessageCodec{
         return AppendFilterMessage.decode(readValue(buffer)!);
       
       case 129:       
-        return CreateFilterMessage.decode(readValue(buffer)!);
+        return AppendShaderFilterMessage.decode(readValue(buffer)!);
       
       case 130:       
-        return ExportDataMessage.decode(readValue(buffer)!);
+        return CreateFilterMessage.decode(readValue(buffer)!);
       
       case 131:       
-        return ExportFileMessage.decode(readValue(buffer)!);
+        return CreateShaderFilterMessage.decode(readValue(buffer)!);
       
       case 132:       
-        return FilterMessage.decode(readValue(buffer)!);
+        return ExportDataMessage.decode(readValue(buffer)!);
       
       case 133:       
-        return InputDataMessage.decode(readValue(buffer)!);
+        return ExportFileMessage.decode(readValue(buffer)!);
       
       case 134:       
-        return InputDataSourceValueMessage.decode(readValue(buffer)!);
+        return FilterMessage.decode(readValue(buffer)!);
       
       case 135:       
-        return InputDataValueMessage.decode(readValue(buffer)!);
+        return InputDataMessage.decode(readValue(buffer)!);
       
       case 136:       
-        return InputNumberListValueMessage.decode(readValue(buffer)!);
+        return InputDataSourceValueMessage.decode(readValue(buffer)!);
       
       case 137:       
-        return InputNumberValueMessage.decode(readValue(buffer)!);
+        return InputDataValueMessage.decode(readValue(buffer)!);
       
       case 138:       
-        return InputSourceMessage.decode(readValue(buffer)!);
+        return InputNumberListValueMessage.decode(readValue(buffer)!);
       
       case 139:       
-        return RemoveFilterMessage.decode(readValue(buffer)!);
+        return InputNumberValueMessage.decode(readValue(buffer)!);
       
       case 140:       
+        return InputSourceMessage.decode(readValue(buffer)!);
+      
+      case 141:       
+        return RemoveFilterMessage.decode(readValue(buffer)!);
+      
+      case 142:       
         return ReplaceFilterMessage.decode(readValue(buffer)!);
       
       default:      
@@ -628,6 +696,33 @@ class ImageVideoFilterFactoryApi {
   Future<FilterMessage> createFilter(CreateFilterMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.ImageVideoFilterFactoryApi.createFilter', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else if (replyMap['result'] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (replyMap['result'] as FilterMessage?)!;
+    }
+  }
+
+  Future<FilterMessage> createShaderFilter(CreateShaderFilterMessage arg_msg) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.ImageVideoFilterFactoryApi.createShaderFilter', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -682,6 +777,28 @@ class ImageVideoFilterFactoryApi {
   Future<void> appendFilter(AppendFilterMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.ImageVideoFilterFactoryApi.appendFilter', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> appendShaderFilter(AppendShaderFilterMessage arg_msg) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.ImageVideoFilterFactoryApi.appendShaderFilter', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
     if (replyMap == null) {

@@ -40,6 +40,12 @@ public class NativeFilter implements MethodChannel.MethodCallHandler {
         this.channel = new MethodChannel(binding.getBinaryMessenger(), "Filter-" + index);
         this.channel.setMethodCallHandler(this);
     }
+    NativeFilter(GPUImageFilter imageFilter, GlFilter videoFilter) {
+        this.filterGroup = new GPUImageFilterGroup();
+        this.filterGroup.addFilter(imageFilter);
+        this.glFilterGroup = new GlFilterGroup(videoFilter);
+        this.channel = null;
+    }
 
     @Override
     public void onMethodCall(MethodCall call, MethodChannel.Result result) {

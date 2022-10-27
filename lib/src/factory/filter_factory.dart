@@ -10,6 +10,30 @@ class FilterFactory {
 
   Future<Filter> createFilter(String name) async {
     try {
+      if (Platform.isAndroid) {
+        try {
+          final body = await rootBundle.loadString(
+            'packages/native_filters/shaders/${name}_fragment.glsl',
+          );
+          final data = _kGPUImageFilters
+              .firstWhere((element) => element['AttributeFilterName'] == name);
+          final params = <String, Map<String, Object>>{};
+          data.forEach((key, value) {
+            if (key.startsWith('input') && key != 'inputImage'){
+              params[key] = Map<String, Object>.from(value);
+            }
+          });
+          final message = await _api.createShaderFilter(
+            CreateShaderFilterMessage(
+              shader: body,
+              params: params,
+            ),
+          );
+          return Filter._(name, message.filterId, 0, _api);
+        } catch(e, trace) {
+          debugPrintStack(stackTrace: trace);
+        }
+      }
       final message = await _api.createFilter(
         CreateFilterMessage(name: name),
       );

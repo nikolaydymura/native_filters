@@ -74,16 +74,22 @@ const List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageBrightnessFilter",
-    "AttributeFilterDisplayName": "GPUImageBrightnessFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUBrightness',
+    'AttributeFilterDisplayName': 'GPUBrightnessFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputBrightness': {
+      'AttributeDefault': 0.0,
+      'AttributeClass': 'float',
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': -1.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageBulgeDistortionFilter",
@@ -578,16 +584,27 @@ const List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageMonochromeFilter",
-    "AttributeFilterDisplayName": "GPUImageMonochromeFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUMonochrome',
+    'AttributeFilterDisplayName': 'GPUMonochromeFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'AttributeClass': 'Bitmap',
+      'AttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'AttributeDisplayName': 'Image',
+      'AttributeType': 'CIAttributeTypeImage'
     },
+    'inputColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.6, 0.45, 0.3, 1.0]),
+    },
+    'inputIntensity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageMultiplyBlendFilter",
@@ -1052,13 +1069,6 @@ const Map<String, Map<String, Map<String, String>>> _gpuAttributes = {
       'GPUAttributeMethod': 'setBlurSize'
     }
   },
-  'GPUImageBrightnessFilter': {
-    'Brightness': {
-      'GPUAttributeDefault': '0.0',
-      'GPUAttributeClass': 'float',
-      'GPUAttributeMethod': 'setBrightness'
-    }
-  },
   'GPUImageBulgeDistortionFilter': {
     'AspectRatio': {
       'GPUAttributeClass': 'float',
@@ -1227,17 +1237,6 @@ const Map<String, Map<String, Map<String, String>>> _gpuAttributes = {
     'Threshold': {
       'GPUAttributeClass': 'float',
       'GPUAttributeMethod': 'setThreshold'
-    }
-  },
-  'GPUImageMonochromeFilter': {
-    'Color': {
-      'GPUAttributeType': 'vec3',
-      'GPUAttributeClass': 'float[]',
-      'GPUAttributeMethod': 'setColor'
-    },
-    'Intensity': {
-      'GPUAttributeClass': 'float',
-      'GPUAttributeMethod': 'setIntensity'
     }
   },
   'GPUImageOpacityFilter': {

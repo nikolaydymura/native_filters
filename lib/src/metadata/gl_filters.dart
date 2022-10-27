@@ -30,14 +30,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlBrightnessFilter",
-    "AttributeFilterDisplayName": "GlBrightnessFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputBrightness": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlBulgeDistortionFilter",
     "AttributeFilterDisplayName": "GlBulgeDistortionFilter",
     "AttributeFilterCategories": ["CategoryVideo"],
@@ -174,14 +166,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterDisplayName": "GlLuminanceThresholdFilter",
     "AttributeFilterCategories": ["CategoryVideo"],
     "inputThreshold": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
-    "AttributeFilterName": "GlMonochromeFilter",
-    "AttributeFilterDisplayName": "GlMonochromeFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputIntensity": {
       "CIAttributeClass": "float",
     },
   },
