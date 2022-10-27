@@ -175,11 +175,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlWhiteBalanceFilter",
-    "AttributeFilterDisplayName": "GlWhiteBalanceFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlZoomBlurFilter",
     "AttributeFilterDisplayName": "GlZoomBlurFilter",
     "AttributeFilterCategories": ["CategoryVideo"]

@@ -1101,16 +1101,24 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageWhiteBalanceFilter",
-    "AttributeFilterDisplayName": "GPUImageWhiteBalanceFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUWhiteBalance',
+    'AttributeFilterDisplayName': 'GPUImageWhiteBalanceFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputTemperature': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 5000.0,
+    },
+    'inputTint': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 10.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageZoomBlurFilter",
