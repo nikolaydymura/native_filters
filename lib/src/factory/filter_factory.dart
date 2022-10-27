@@ -19,7 +19,7 @@ class FilterFactory {
               .firstWhere((element) => element['AttributeFilterName'] == name);
           final params = <String, Map<String, Object>>{};
           data.forEach((key, value) {
-            if (key.startsWith('input') && key != 'inputImage'){
+            if (key.startsWith('input') && key != 'inputImage') {
               params[key] = Map<String, Object>.from(value);
             }
           });
@@ -30,7 +30,7 @@ class FilterFactory {
             ),
           );
           return Filter._(name, message.filterId, 0, _api);
-        } catch(e, trace) {
+        } catch (e, trace) {
           debugPrintStack(stackTrace: trace);
         }
       }
@@ -144,4 +144,12 @@ class FilterInput {
   factory FilterInput._fromEntry(MapEntry<String, dynamic> json) {
     return FilterInput._(json.key, Map<String, dynamic>.from(json.value));
   }
+
+  bool get isNum =>
+      data['AttributeClass'] == 'NSNumber' || data['AttributeClass'] == 'float';
+
+  bool get isSliderNum =>
+      isNum &&
+      data['AttributeSliderMax'] != null &&
+      data['AttributeSliderMin'] != null;
 }

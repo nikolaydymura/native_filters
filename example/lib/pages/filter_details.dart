@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:image/image.dart' as img;
 
+import '../widgets/input_number_widget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
 
@@ -23,22 +24,22 @@ class FilterDetailsScreen extends StatefulWidget {
 }
 
 class _FilterDetailsState extends State<FilterDetailsScreen> {
-  Filterable? _filter;
+  late final Filterable _filter;
 
-  List<FilterInput> _details = [];
+  late final List<FilterInput> _details;
 
   @override
   void initState() {
     super.initState();
+    _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
+            ?.toList() ??
+        [];
     _loadFilterInfo();
   }
 
   @override
   void dispose() {
-    final filter = _filter;
-    if (filter != null) {
-      widget.factory.dispose(filter);
-    }
+    widget.factory.dispose(_filter);
     super.dispose();
   }
 
@@ -52,46 +53,60 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
             Navigator.of(context).pop();
           },
         ),
-        actions: <Widget>[
-          if (widget.filter.isVideoSupported)
-            IconButton(
-              icon: const Icon(Icons.videocam),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        FilterResultScreen(filter: _filter!, video: true),
-                  ),
-                );
-              },
-            ),
-          if (widget.filter.isImageSupported)
-            IconButton(
-              icon: const Icon(Icons.image),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FilterResultScreen(filter: _filter!),
-                  ),
-                );
-              },
-            ),
-          if (widget.filter.isVideoSupported)
-            IconButton(
-              icon: const Icon(Icons.video_label),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FilterPreviewScreen(filter: _filter!),
-                  ),
-                );
-              },
-            ),
-        ],
         title: Text(widget.filter.name),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 200),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (widget.filter.isVideoSupported)
+              FloatingActionButton(
+                tooltip: 'Video demo',
+                heroTag: null,
+                child: const Icon(Icons.videocam),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          FilterResultScreen(filter: _filter, video: true),
+                    ),
+                  );
+                },
+              ),
+            if (widget.filter.isImageSupported)
+              FloatingActionButton(
+                tooltip: 'Photo demo',
+                heroTag: null,
+                child: const Icon(Icons.image),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FilterResultScreen(filter: _filter),
+                    ),
+                  );
+                },
+              ),
+            if (widget.filter.isVideoSupported)
+              FloatingActionButton(
+                tooltip: 'Live video demo',
+                heroTag: null,
+                child: const Icon(Icons.video_label),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          FilterPreviewScreen(filter: _filter),
+                    ),
+                  );
+                },
+              ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -127,7 +142,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         await filter?.setNSData('inputCubeData', lutData);
       }
       final previewFilter = await filterGroup.addFilter('CISwipeTransition');
-      print(previewFilter?.index);
       await previewFilter?.setNumValue('inputTime', 0.5);
       await previewFilter?.setCIImageAsset(
         'inputTargetImage',
@@ -153,9 +167,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       }
       _filter = filter;
     }
-    _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
-            ?.toList() ??
-        [];
 
     if (!mounted) return;
 
@@ -164,19 +175,37 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
   List<Widget> get _filtersInfo {
     List<Widget> items = [];
-
     for (var input in _details) {
       items.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(
-            input.name,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Colors.black,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                input.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
             ),
-          ),
+            if (input.isNum)
+              InputNumberWidget(
+                name: input.name,
+                valueChanged: (key, value) async {
+                  final Filter filter;
+                  if (_filter is Filter) {
+                    filter = _filter as Filter;
+                  } else {
+                    final group = _filter as FilterGroup;
+                    filter = group[1];
+                  }
+                  await filter.setNumValue(key, value);
+                },
+              ),
+          ],
         ),
       );
       final data = input.data;
@@ -208,63 +237,5 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         .map((e) => [e.key, e.value])
         .expand((element) => element)
         .toList();
-  }
-}
-
-class _NumField extends StatefulWidget {
-  final String name;
-  final Map<String, dynamic> attribute;
-  final Filter filter;
-
-  const _NumField({
-    Key? key,
-    required this.name,
-    required this.filter,
-    required this.attribute,
-  }) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _NumFieldState();
-}
-
-class _NumFieldState extends State<_NumField> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              onSubmitted: (String value) async {
-                await widget.filter.setNumValue(widget.name, num.parse(value));
-              },
-            ),
-          ),
-          TextButton(
-            child: const Text('apply'),
-            onPressed: () async {
-              await widget.filter
-                  .setNumValue(widget.name, num.parse(_controller.text));
-            },
-          ),
-        ],
-      ),
-    );
   }
 }
