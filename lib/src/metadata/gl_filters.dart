@@ -79,17 +79,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     },
   },
   {
-    "AttributeFilterName": "GlHighlightShadowFilter",
-    "AttributeFilterDisplayName": "GlHighlightShadowFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputShadows": {
-      "CIAttributeClass": "float",
-    },
-    "inputHighlights": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlInvertFilter",
     "AttributeFilterDisplayName": "GlInvertFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
