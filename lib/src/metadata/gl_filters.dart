@@ -125,11 +125,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlSaturationFilter",
-    "AttributeFilterDisplayName": "GlSaturationFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlSepiaFilter",
     "AttributeFilterDisplayName": "GlSepiaFilter",
     "AttributeFilterCategories": ["CategoryVideo"]

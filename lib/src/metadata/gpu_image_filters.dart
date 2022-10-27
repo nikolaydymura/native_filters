@@ -710,6 +710,8 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     'inputOpacity': {
       'AttributeClass': 'float',
       'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
     }
   },
   {
@@ -785,16 +787,22 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageSaturationFilter",
-    "AttributeFilterDisplayName": "GPUImageSaturationFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUSaturation',
+    'AttributeFilterDisplayName': 'GPUImageSaturationFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputOpacity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 2.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageScreenBlendFilter",
