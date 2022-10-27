@@ -160,11 +160,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlVibranceFilter",
-    "AttributeFilterDisplayName": "GlVibranceFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlVignetteFilter",
     "AttributeFilterDisplayName": "GlVignetteFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
