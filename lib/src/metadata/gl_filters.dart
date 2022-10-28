@@ -109,11 +109,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlSphereRefractionFilter",
-    "AttributeFilterDisplayName": "GlSphereRefractionFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlSwirlFilter",
     "AttributeFilterDisplayName": "GlSwirlFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
