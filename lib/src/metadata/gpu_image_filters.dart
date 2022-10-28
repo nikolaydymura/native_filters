@@ -813,16 +813,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImagePixelationFilter",
-    "AttributeFilterDisplayName": "GPUImagePixelationFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUPixelation',
+    'AttributeFilterDisplayName': 'GPUImagePixelationFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputPixel': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImagePosterizeFilter",
