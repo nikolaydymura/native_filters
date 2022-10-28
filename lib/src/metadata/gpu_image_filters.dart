@@ -382,16 +382,26 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     }
   },
   {
-    "AttributeFilterName": "GPUImageFalseColorFilter",
-    "AttributeFilterDisplayName": "GPUImageFalseColorFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUFalseColor',
+    'AttributeFilterDisplayName': 'GPUImageFalseColorFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputFirstColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.5]),
+    },
+    'inputSecondColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 0.0, 0.0]),
+    }
   },
   {
     'AttributeFilterName': 'GPUGammaFilter',
