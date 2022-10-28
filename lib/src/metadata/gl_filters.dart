@@ -71,14 +71,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlHalftoneFilter",
-    "AttributeFilterDisplayName": "GlHalftoneFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputFractionalWidthOfAPixel": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlInvertFilter",
     "AttributeFilterDisplayName": "GlInvertFilter",
     "AttributeFilterCategories": ["CategoryVideo"]

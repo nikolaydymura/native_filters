@@ -473,7 +473,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
   {
     'AttributeFilterName': 'GPUHalftone',
     'AttributeFilterDisplayName': 'GPUImageHalftoneFilter',
-    'AttributeFilterCategories': ['CategoryStillImage'],
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
     'inputImage': {
       'CIAttributeClass': 'CIImage',
       'CIAttributeDescription':
@@ -595,16 +595,41 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageLevelsFilter",
-    "AttributeFilterDisplayName": "GPUImageLevelsFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPULevels',
+    'AttributeFilterDisplayName': 'GPUImageLevelsFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputLevelMinimum': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputLevelMiddle': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    },
+    'inputLevelMaximum': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    },
+    'inputMinOutput': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputMaxOutput': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    }
   },
   {
     "AttributeFilterName": "GPUImageLightenBlendFilter",
