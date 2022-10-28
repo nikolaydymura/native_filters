@@ -89,14 +89,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlLuminanceThresholdFilter",
-    "AttributeFilterDisplayName": "GlLuminanceThresholdFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputThreshold": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlOverlayFilter",
     "AttributeFilterDisplayName": "GlOverlayFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
