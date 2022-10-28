@@ -39,7 +39,7 @@ class _InputNumberWidgetState extends State<InputNumberWidget> {
         children: [
           SizedBox(
             height: 36,
-            width: 94,
+            width: MediaQuery.of(context).size.width * 0.3,
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(

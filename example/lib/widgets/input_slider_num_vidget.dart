@@ -39,13 +39,14 @@ class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double valueSlider = 0;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           SizedBox(
             height: 18,
-            width: 200,
+            width: MediaQuery.of(context).size.width * 0.3,
             child: Slider(
               value: _currentSliderValue,
               min: widget.min,
@@ -55,10 +56,16 @@ class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
                 setState(() {
                   _currentSliderValue = value;
                 });
-                await widget.valueChanged(widget.name, value);
+                valueSlider = value;
               },
             ),
-          )
+          ),
+          TextButton(
+            child: const Text('apply'),
+            onPressed: () async {
+              await widget.valueChanged(widget.name, valueSlider);
+            },
+          ),
         ],
       ),
     );
