@@ -1216,16 +1216,34 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageVignetteFilter",
-    "AttributeFilterDisplayName": "GPUImageVignetteFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUVignette',
+    'AttributeFilterDisplayName': 'GPUImageVignetteFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputVignetteCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.75, 0.5]),
+    },
+    'inputVignetteColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputVignetteStart': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.3,
+    },
+    'inputVignetteEnd': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.75,
+    }
   },
   {
     "AttributeFilterName": "GPUImageWeakPixelInclusionFilter",
