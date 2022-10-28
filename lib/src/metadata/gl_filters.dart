@@ -138,9 +138,4 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterDisplayName": "GlWeakPixelInclusionFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
-  {
-    "AttributeFilterName": "GlZoomBlurFilter",
-    "AttributeFilterDisplayName": "GlZoomBlurFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  }
 ];

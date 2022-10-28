@@ -1278,15 +1278,24 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     }
   },
   {
-    "AttributeFilterName": "GPUImageZoomBlurFilter",
-    "AttributeFilterDisplayName": "GPUImageZoomBlurFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUZoomBlur',
+    'AttributeFilterDisplayName': 'GPUImageZoomBlurFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    },
+    'inputBlurCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputBlurSize': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
     },
   }
 ];
