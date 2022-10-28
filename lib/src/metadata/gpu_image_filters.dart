@@ -434,16 +434,29 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageGlassSphereFilter",
-    "AttributeFilterDisplayName": "GPUImageGlassSphereFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUGlassSphere',
+    'AttributeFilterDisplayName': 'GPUImageGlassSphereFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputRadius': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.25,
+    },
+    'inputRefractiveIndex': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.71,
+    }
   },
   {
     "AttributeFilterName": "GPUImageGrayscaleFilter",
