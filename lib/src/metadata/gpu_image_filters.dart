@@ -133,16 +133,29 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageChromaKeyBlendFilter",
-    "AttributeFilterDisplayName": "GPUImageChromaKeyBlendFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUChromaKeyBlend',
+    'AttributeFilterDisplayName': 'GPUImageChromaKeyBlendFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputThresholdSensitivity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.4,
+    },
+    'inputSmoothing': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.1,
+    },
+    'inputCenter': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 1.0, 0.0]),
+    }
   },
   {
     "AttributeFilterName": "GPUImageColorBalanceFilter",
