@@ -471,16 +471,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageHalftoneFilter",
-    "AttributeFilterDisplayName": "GPUImageHalftoneFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUHalftone',
+    'AttributeFilterDisplayName': 'GPUImageHalftoneFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputFractionalWidthOfPixel': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.01,
+    }
   },
   {
     "AttributeFilterName": "GPUImageHardLightBlendFilter",
