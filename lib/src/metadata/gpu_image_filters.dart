@@ -151,7 +151,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       'AttributeClass': 'float',
       'AttributeDefault': 0.1,
     },
-    'inputCenter': {
+    'inputColorToReplace': {
       'AttributeType': 'vec3',
       'AttributeClass': 'float[]',
       'AttributeDefault': Float32List.fromList([0.0, 1.0, 0.0]),
