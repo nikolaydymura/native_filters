@@ -211,6 +211,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 if (input.isSliderNum)
                   InputSliderNumWidget(
                     name: input.name,
+                    min: input.data['AttributeSliderMin'],
+                    max: input.data['AttributeSliderMax'],
                     valueChanged: (key, value) async {
                       final Filter filter;
                       if (_filter is Filter) {

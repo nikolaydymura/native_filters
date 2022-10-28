@@ -4,12 +4,16 @@ typedef InputNumberChanged = Future<void> Function(String, num);
 
 class InputSliderNumWidget extends StatefulWidget {
   final String name;
+  final double min;
+  final double max;
   final InputNumberChanged valueChanged;
 
   const InputSliderNumWidget({
     Key? key,
     required this.name,
     required this.valueChanged,
+    required this.min,
+    required this.max,
   }) : super(key: key);
 
   @override
@@ -18,11 +22,13 @@ class InputSliderNumWidget extends StatefulWidget {
 
 class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
   late TextEditingController _controller;
+  double _currentSliderValue = 0;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _currentSliderValue;
   }
 
   @override
@@ -33,36 +39,28 @@ class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double _currentSliderValue = 0;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           SizedBox(
-            height: 36,
+            height: 18,
             width: 200,
             child: Slider(
               value: _currentSliderValue,
-              min: 0,
-              max: 10,
-              label: _currentSliderValue.round().toString(),
+              min: widget.min,
+              max: widget.max,
+              label: '${_currentSliderValue.round()}',
               onChanged: (double value) async {
                 setState(() {
                   _currentSliderValue = value;
                 });
-                await _applyValue('$value');
+                await widget.valueChanged(widget.name, value);
               },
             ),
           )
         ],
       ),
     );
-  }
-
-  Future<void> _applyValue(String text) async {
-    final value = num.tryParse(text);
-    if (value != null) {
-      await widget.valueChanged(widget.name, value);
-    }
   }
 }
