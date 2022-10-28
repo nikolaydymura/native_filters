@@ -815,7 +815,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
   {
     'AttributeFilterName': 'GPUPixelation',
     'AttributeFilterDisplayName': 'GPUImagePixelationFilter',
-    'AttributeFilterCategories': ['CategoryStillImage'],
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
     'inputImage': {
       'CIAttributeClass': 'CIImage',
       'CIAttributeDescription':
@@ -853,16 +853,34 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageRGBFilter",
-    "AttributeFilterDisplayName": "GPUImageRGBFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPURGB',
+    'AttributeFilterDisplayName': 'GPUImageRGBFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputRed': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputGreen': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputBlue': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageSaturationBlendFilter",
