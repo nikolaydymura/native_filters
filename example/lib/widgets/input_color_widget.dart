@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 typedef InputNumberChanged = Future<void> Function(String, Color);
 
@@ -47,189 +48,232 @@ class _InputColorWidgetState extends State<InputColorWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
+      child: Row(
         children: [
-          Row(
+          Column(
             children: [
-              SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        const Text(
-                          'R:  ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 60,
-                          child: TextField(
-                            controller: _sliderRedController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: ListView(
+                      padding: const EdgeInsets.all(8),
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            const Text(
+                              'R:  ',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 24,
+                              width: 60,
+                              child: TextField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp(
+                                      '(0?[0-9]{1,2}|1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])',
+                                    ),
+                                  ),
+                                ],
+                                onChanged: ((value) {
+                                  setState(() {
+                                    _currentSliderRed = double.parse(value);
+                                  });
+                                }),
+                                controller: _sliderRedController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 200,
-                          child: Slider(
-                            value: _currentSliderRed,
-                            divisions: 255,
-                            min: 0.0,
-                            max: 255.0,
-                            onChanged: (double value) async {
-                              setState(() {
-                                _currentSliderRed = value.toDouble();
-                                _sliderRedController.text =
-                                    _currentSliderRed.toString();
-                              });
-                            },
-                            label: '${_currentSliderRed.round()}',
-                          ),
-                        ),
+                            SizedBox(
+                              height: 24,
+                              width: 200,
+                              child: Slider(
+                                activeColor: Colors.red,
+                                inactiveColor:
+                                    Color.fromARGB(255, 191, 156, 153),
+                                value: _currentSliderRed,
+                                divisions: 255,
+                                min: 0.0,
+                                max: 255.0,
+                                onChanged: (double value) async {
+                                  setState(() {
+                                    _currentSliderRed = value.toDouble();
+                                    _sliderRedController.text =
+                                        _currentSliderRed.toString();
+                                  });
+                                },
+                                label: '${_currentSliderRed.round()}',
+                              ),
+                            ),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: ListView(
+                      padding: const EdgeInsets.all(8),
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            const Text(
+                              'G:  ',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 24,
+                              width: 60,
+                              child: TextField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp(
+                                      '(0?[0-9]{1,2}|1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])',
+                                    ),
+                                  ),
+                                ],
+                                onChanged: ((value) {
+                                  setState(() {
+                                    _currentSliderGreen = double.parse(value);
+                                  });
+                                }),
+                                controller: _sliderGreenController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24,
+                              width: 200,
+                              child: Slider(
+                                activeColor: Colors.green,
+                                inactiveColor:
+                                    const Color.fromARGB(255, 153, 191, 167),
+                                value: _currentSliderGreen,
+                                divisions: 255,
+                                min: 0.0,
+                                max: 255.0,
+                                onChanged: (double value) async {
+                                  setState(() {
+                                    _currentSliderGreen = value.toDouble();
+                                    _sliderGreenController.text =
+                                        _currentSliderGreen.toString();
+                                  });
+                                },
+                                label: '${_currentSliderGreen.round()}',
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: ListView(
+                      padding: const EdgeInsets.all(8),
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            const Text(
+                              'B:  ',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 24,
+                              width: 60,
+                              child: TextField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp(
+                                      '(0?[0-9]{1,2}|1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])',
+                                    ),
+                                  ),
+                                ],
+                                onChanged: ((value) {
+                                  setState(() {
+                                    _currentSliderBlue = double.parse(value);
+                                  });
+                                }),
+                                controller: _sliderBlueController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24,
+                              width: 200,
+                              child: Slider(
+                                activeColor: Colors.blue,
+                                inactiveColor:
+                                    const Color.fromARGB(255, 153, 183, 191),
+                                value: _currentSliderBlue,
+                                divisions: 255,
+                                min: 0.0,
+                                max: 255.0,
+                                onChanged: (double value) async {
+                                  setState(() {
+                                    _currentSliderBlue = value.toDouble();
+                                    _sliderBlueController.text =
+                                        _currentSliderBlue.toString();
+                                  });
+                                },
+                                label: '${_currentSliderBlue.round()}',
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          Row(
-            children: [
-              SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        const Text(
-                          'G:  ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 60,
-                          child: TextField(
-                            controller: _sliderGreenController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 200,
-                          child: Slider(
-                            value: _currentSliderGreen,
-                            divisions: 255,
-                            min: 0.0,
-                            max: 255.0,
-                            onChanged: (double value) async {
-                              setState(() {
-                                _currentSliderGreen = value.toDouble();
-                                _sliderGreenController.text =
-                                    _currentSliderGreen.toString();
-                              });
-                            },
-                            label: '${_currentSliderGreen.round()}',
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        const Text(
-                          'B:  ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 60,
-                          child: TextField(
-                            controller: _sliderBlueController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24,
-                          width: 200,
-                          child: Slider(
-                            value: _currentSliderBlue,
-                            divisions: 255,
-                            min: 0.0,
-                            max: 255.0,
-                            onChanged: (double value) async {
-                              setState(() {
-                                _currentSliderBlue = value.toDouble();
-                                _sliderBlueController.text =
-                                    _currentSliderBlue.toString();
-                              });
-                            },
-                            label: '${_currentSliderBlue.round()}',
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
+          SizedBox(
+            width: 10,
+            child: TextButton(
+              child: const Text('apply'),
+              onPressed: () async {
+                await _applyValue(_sliderRedController.text,
+                    _sliderGreenController.text, _sliderBlueController.text);
+              },
+            ),
           ),
         ],
       ),
     );
   }
 
-  /*Future<void> _applyValue(String text) async {
-    final value = num.tryParse(text);
-    if (value != null) {
-      await widget.valueChanged(widget.name, value);
-    }
-  }*/
+  Future<void> _applyValue(String red, String green, String blue) async {
+    final valueRed = int.parse(red);
+    final valueGreen = int.parse(red);
+    final valueBlue = int.parse(red);
+
+    final Color value = Color.fromARGB(255, valueRed, valueGreen, valueBlue);
+
+    await widget.valueChanged(widget.name, value);
+  }
 }
-
-
-/*TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              controller: _controller,
-              onSubmitted: (String value) async {
-                await _applyValue(value);
-              },
-            ),
-          ),
-          TextButton(
-            child: const Text('apply'),
-            onPressed: () async {
-              await _applyValue(_controller.text);
-            },*/
