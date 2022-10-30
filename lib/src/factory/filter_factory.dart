@@ -152,4 +152,6 @@ class FilterInput {
       isNum &&
       data['AttributeSliderMax'] != null &&
       data['AttributeSliderMin'] != null;
+
+  bool get isColor => data['AttributeType'] == 'vec3';
 }
