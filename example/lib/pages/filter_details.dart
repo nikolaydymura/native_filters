@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:image/image.dart' as img;
 
+import '../widgets/input_color_widget.dart';
 import '../widgets/input_number_widget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
@@ -177,22 +178,40 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
     List<Widget> items = [];
     for (var input in _details) {
       items.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                input.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.black,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    input.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
+                if (input.isNum)
+                  InputNumberWidget(
+                    name: input.name,
+                    valueChanged: (key, value) async {
+                      final Filter filter;
+                      if (_filter is Filter) {
+                        filter = _filter as Filter;
+                      } else {
+                        final group = _filter as FilterGroup;
+                        filter = group[1];
+                      }
+                      await filter.setNumValue(key, value);
+                    },
+                  ),
+              ],
             ),
-            if (input.isNum)
-              InputNumberWidget(
+            if (input.isColor)
+              InputColorWidget(
                 name: input.name,
                 valueChanged: (key, value) async {
                   final Filter filter;
@@ -202,7 +221,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                     final group = _filter as FilterGroup;
                     filter = group[1];
                   }
-                  await filter.setNumValue(key, value);
+                  await filter.setColorValue(key, value);
                 },
               ),
           ],
