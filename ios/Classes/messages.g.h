@@ -34,8 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FLTCreateShaderFilterMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithShader:(NSString *)shader
++ (instancetype)makeWithVertex:(nullable NSString *)vertex
+    shader:(NSString *)shader
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params;
+@property(nonatomic, copy, nullable) NSString * vertex;
 @property(nonatomic, copy) NSString * shader;
 @property(nonatomic, strong) NSDictionary<NSString *, NSDictionary<NSString *, id> *> * params;
 @end
@@ -60,9 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
+    vertex:(nullable NSString *)vertex
     shader:(NSString *)shader
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params;
 @property(nonatomic, strong) NSNumber * filterId;
+@property(nonatomic, copy, nullable) NSString * vertex;
 @property(nonatomic, copy) NSString * shader;
 @property(nonatomic, strong) NSDictionary<NSString *, NSDictionary<NSString *, id> *> * params;
 @end

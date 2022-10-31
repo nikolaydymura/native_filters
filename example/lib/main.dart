@@ -14,8 +14,20 @@ void main() {
           create: (_) => AvailableFiltersCubit(),
         ),
       ],
-      child:
-      const MaterialApp(home: FilterListScreen(title: 'Filters example')),
+      child: MaterialApp(
+        home: const FilterListScreen(title: 'Filters example'),
+        theme: ThemeData(
+          sliderTheme: const SliderThemeData(
+            showValueIndicator: ShowValueIndicator.always,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            isCollapsed: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }

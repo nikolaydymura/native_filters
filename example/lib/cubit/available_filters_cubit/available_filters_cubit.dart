@@ -26,6 +26,9 @@ class AvailableFiltersCubit extends Cubit<AvailableFiltersState> {
 
       List<FilterItem> _favoritesFilters = items.where((e) {
         return e.name.toLowerCase().contains('monochrome') ||
+            e.name.toLowerCase().contains('brightness') ||
+            e.name.toLowerCase().contains('contrast') ||
+            e.name.toLowerCase().contains('exposure') ||
             e.name.toLowerCase().contains('cube') ||
             e.name.toLowerCase().contains('lookup');
       }).toList();

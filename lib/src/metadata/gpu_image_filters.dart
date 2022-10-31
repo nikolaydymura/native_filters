@@ -364,7 +364,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    'AttributeFilterName': 'GPUExposureFilter',
+    'AttributeFilterName': 'GPUExposure',
     'AttributeFilterDisplayName': 'GPUExposureFilter',
     'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
     'inputImage': {
@@ -658,7 +658,7 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
   {
     'AttributeFilterName': 'GPULookup',
     'AttributeFilterDisplayName': 'GPUImageLookupFilter',
-    'AttributeFilterCategories': ['CategoryStillImage'],
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
     'inputImage': {
       'CIAttributeClass': 'CIImage',
       'CIAttributeDescription':
@@ -670,6 +670,13 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       'AttributeClass': 'float',
       'AttributeDefault': 1.0,
     },
+    'inputTextureCubeData': {
+      'AttributeClass': 'Bitmap',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    }
   },
   {
     "AttributeFilterName": "GPUImageLuminanceFilter",

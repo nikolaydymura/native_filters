@@ -26,6 +26,12 @@ public class Messages {
 
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class CreateShaderFilterMessage {
+    private @Nullable String vertex;
+    public @Nullable String getVertex() { return vertex; }
+    public void setVertex(@Nullable String setterArg) {
+      this.vertex = setterArg;
+    }
+
     private @NonNull String shader;
     public @NonNull String getShader() { return shader; }
     public void setShader(@NonNull String setterArg) {
@@ -47,6 +53,11 @@ public class Messages {
     /**Constructor is private to enforce null safety; use Builder. */
     private CreateShaderFilterMessage() {}
     public static final class Builder {
+      private @Nullable String vertex;
+      public @NonNull Builder setVertex(@Nullable String setterArg) {
+        this.vertex = setterArg;
+        return this;
+      }
       private @Nullable String shader;
       public @NonNull Builder setShader(@NonNull String setterArg) {
         this.shader = setterArg;
@@ -59,6 +70,7 @@ public class Messages {
       }
       public @NonNull CreateShaderFilterMessage build() {
         CreateShaderFilterMessage pigeonReturn = new CreateShaderFilterMessage();
+        pigeonReturn.setVertex(vertex);
         pigeonReturn.setShader(shader);
         pigeonReturn.setParams(params);
         return pigeonReturn;
@@ -66,12 +78,15 @@ public class Messages {
     }
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("vertex", vertex);
       toMapResult.put("shader", shader);
       toMapResult.put("params", params);
       return toMapResult;
     }
     static @NonNull CreateShaderFilterMessage fromMap(@NonNull Map<String, Object> map) {
       CreateShaderFilterMessage pigeonResult = new CreateShaderFilterMessage();
+      Object vertex = map.get("vertex");
+      pigeonResult.setVertex((String)vertex);
       Object shader = map.get("shader");
       pigeonResult.setShader((String)shader);
       Object params = map.get("params");
@@ -185,6 +200,12 @@ public class Messages {
       this.filterId = setterArg;
     }
 
+    private @Nullable String vertex;
+    public @Nullable String getVertex() { return vertex; }
+    public void setVertex(@Nullable String setterArg) {
+      this.vertex = setterArg;
+    }
+
     private @NonNull String shader;
     public @NonNull String getShader() { return shader; }
     public void setShader(@NonNull String setterArg) {
@@ -211,6 +232,11 @@ public class Messages {
         this.filterId = setterArg;
         return this;
       }
+      private @Nullable String vertex;
+      public @NonNull Builder setVertex(@Nullable String setterArg) {
+        this.vertex = setterArg;
+        return this;
+      }
       private @Nullable String shader;
       public @NonNull Builder setShader(@NonNull String setterArg) {
         this.shader = setterArg;
@@ -224,6 +250,7 @@ public class Messages {
       public @NonNull AppendShaderFilterMessage build() {
         AppendShaderFilterMessage pigeonReturn = new AppendShaderFilterMessage();
         pigeonReturn.setFilterId(filterId);
+        pigeonReturn.setVertex(vertex);
         pigeonReturn.setShader(shader);
         pigeonReturn.setParams(params);
         return pigeonReturn;
@@ -232,6 +259,7 @@ public class Messages {
     @NonNull Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("filterId", filterId);
+      toMapResult.put("vertex", vertex);
       toMapResult.put("shader", shader);
       toMapResult.put("params", params);
       return toMapResult;
@@ -240,6 +268,8 @@ public class Messages {
       AppendShaderFilterMessage pigeonResult = new AppendShaderFilterMessage();
       Object filterId = map.get("filterId");
       pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
+      Object vertex = map.get("vertex");
+      pigeonResult.setVertex((String)vertex);
       Object shader = map.get("shader");
       pigeonResult.setShader((String)shader);
       Object params = map.get("params");

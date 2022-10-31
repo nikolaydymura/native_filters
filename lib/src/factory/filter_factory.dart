@@ -25,8 +25,11 @@ class FilterFactory {
           });
           final message = await _api.createShaderFilter(
             CreateShaderFilterMessage(
-              shader: body,
-              params: params,
+                shader: body,
+                params: params,
+                vertex: name == 'GPULookup' ? await rootBundle.loadString(
+                  'packages/native_filters/shaders/GPUTwoInput_vertex.glsl',
+                ) : null,
             ),
           );
           return Filter._(name, message.filterId, 0, _api);

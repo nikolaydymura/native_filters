@@ -3,6 +3,7 @@ package nd.flutter.plugins.ivfilters;
 import static android.opengl.GLES20.GL_FLOAT;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.opengl.GLES20;
 
 import com.daasuu.gpuv.egl.EglUtil;
@@ -15,23 +16,37 @@ import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
+import jp.co.cyberagent.android.gpuimage.util.OpenGlUtils;
+
 public class GPUVideoDynamicFilter extends GlFilter {
 
     private final GPUVideoDynamicFilter.GlFilter filter;
 
-    private final String shader;
     @androidx.annotation.NonNull
     private final Map<String, Map<String, Object>> attributes;
+    public final Map<String, Object> values;
 
-    public GPUVideoDynamicFilter(Context context, Map<String, Map<String, Object>> attributes) throws IOException {
-        this(GlUtil.loadAsset(context, attributes.get("AttributeFilterName") + "_fragment.glsl"), attributes);
-    }
+    private int filterSourceTexture2 = OpenGlUtils.NO_TEXTURE;
+
+    private Bitmap bitmap;
 
     public GPUVideoDynamicFilter(String shader, Map<String, Map<String, Object>> attributes) {
         super();
-        this.shader = shader;
         this.attributes = attributes;
+        this.values = new HashMap<>();
         this.filter = new GPUVideoDynamicFilter.GlFilter(GPUVideoDynamicFilter.GlFilter.DEFAULT_VERTEX_SHADER, shader) {
+            @Override
+            protected void onDraw() {
+                GPUVideoDynamicFilter.this.onDraw();
+            }
+        };
+    }
+
+    public GPUVideoDynamicFilter(String vertex, String shader, Map<String, Map<String, Object>> attributes) {
+        super();
+        this.attributes = attributes;
+        this.values = new HashMap<>();
+        this.filter = new GPUVideoDynamicFilter.GlFilter(vertex, shader) {
             @Override
             protected void onDraw() {
                 GPUVideoDynamicFilter.this.onDraw();
@@ -42,6 +57,9 @@ public class GPUVideoDynamicFilter extends GlFilter {
     @Override
     public void setup() {
         filter.setup();
+        if (filterSourceTexture2 == EglUtil.NO_TEXTURE && bitmap != null) {
+            filterSourceTexture2 = EglUtil.loadTexture(bitmap, EglUtil.NO_TEXTURE, false);
+        }
     }
 
     @Override
@@ -57,29 +75,51 @@ public class GPUVideoDynamicFilter extends GlFilter {
     @Override
     public void onDraw() {
         for (String key : attributes.keySet()) {
-            if (key.startsWith("input")) {
+            if (key.startsWith("input") && !key.startsWith("inputTexture")) {
                 int location = filter.getHandle(key);
                 final Map<String, Object> attribute = (Map<String, Object>) attributes.get(key);
                 String attributeClass = (String) attribute.get("AttributeClass");
                 if (attributeClass.equalsIgnoreCase("float")) {
-                    if (attribute.get("AttributeCurrent") != null) {
-                        GLES20.glUniform1f(location, floatValue(attribute.get("AttributeCurrent")));
+                    final Object current = values.get(key);
+                    if (current != null) {
+                        GLES20.glUniform1f(location, (Float) current);
                     } else {
                         GLES20.glUniform1f(location, floatValue(attribute.get("AttributeDefault")));
                     }
                 } else if (attributeClass.equalsIgnoreCase("float[]")) {
-                    if (attribute.get("AttributeCurrent") != null) {
-                        GLES20.glUniform3fv(location, 1, FloatBuffer.wrap((float[]) attribute.get("AttributeCurrent")));
+                    final Object current = values.get(key);
+                    if (current != null) {
+                        GLES20.glUniform3fv(location, 1, FloatBuffer.wrap((float[]) current));
                     } else {
                         GLES20.glUniform3fv(location, 1, FloatBuffer.wrap((float[]) attribute.get("AttributeDefault")));
                     }
                 }
             }
         }
+        if (bitmap != null) {
+            int offsetDepthMapTextureUniform = filter.getHandle("inputTextureCubeData");
+            GLES20.glActiveTexture(GLES20.GL_TEXTURE3);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, filterSourceTexture2);
+            GLES20.glUniform1i(offsetDepthMapTextureUniform, 3);
+        }
+    }
+
+    public void update(String key, Object value) {
+        final Map<String, Object> attribute = (Map<String, Object>) attributes.get(key);
+        String attributeClass = (String) attribute.get("AttributeClass");
+        if (attributeClass.equalsIgnoreCase("float")) {
+            values.put(key, floatValue(value));
+        } else if (attributeClass.equalsIgnoreCase("float[]")) {
+            values.put(key, value);
+        }
     }
 
     public float floatValue(Object value) {
         return ((Double) value).floatValue();
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     private static class GlFilter {

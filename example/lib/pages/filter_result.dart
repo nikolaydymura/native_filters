@@ -47,10 +47,10 @@ class _FilterResultState extends State<FilterResultScreen> {
     await widget.filter.setAssetSource(asset);
     final watch = Stopwatch();
     watch.start();
-    if (!widget.video) {
+/*    if (!widget.video) {
       await widget.filter.binaryOutput;
       debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
-    }
+    }*/
     await widget.filter.export(_output);
     debugPrint('Exporting file took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {

@@ -160,9 +160,9 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
           'inputCubeData',
           'filters/lookup_sample.png',
         );
-      } else if (widget.filter.name == 'GPUImageLookupFilter') {
+      } else if (widget.filter.name == 'GPULookup') {
         await filter.setBitmapAsset(
-          'inputCubeData',
+          'inputTextureCubeData',
           'filters/lookup_sample.png',
         );
       }
@@ -178,57 +178,54 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
     List<Widget> items = [];
     for (var input in _details) {
       items.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                input.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            input.name,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.black,
             ),
-            Column(
-              children: [
-                if (input.isNum)
-                  InputNumberWidget(
-                    name: input.name,
-                    valueChanged: (key, value) async {
-                      final Filter filter;
-                      if (_filter is Filter) {
-                        filter = _filter as Filter;
-                      } else {
-                        final group = _filter as FilterGroup;
-                        filter = group[1];
-                      }
-                      await filter.setNumValue(key, value);
-                    },
-                  ),
-                if (input.isSliderNum)
-                  InputSliderNumWidget(
-                    name: input.name,
-                    min: input.data['AttributeSliderMin'],
-                    max: input.data['AttributeSliderMax'],
-                    valueChanged: (key, value) async {
-                      final Filter filter;
-                      if (_filter is Filter) {
-                        filter = _filter as Filter;
-                      } else {
-                        final group = _filter as FilterGroup;
-                        filter = group[1];
-                      }
-                      await filter.setNumValue(key, value);
-                    },
-                  ),
-              ],
-            )
-          ],
+          ),
         ),
       );
+      if (input.isSliderNum) {
+        items.add(
+          InputSliderNumWidget(
+            name: input.name,
+            min: input.data['AttributeSliderMin'].toDouble(),
+            max: input.data['AttributeSliderMax'].toDouble(),
+            value: input.data['AttributeDefault'].toDouble(),
+            valueChanged: (key, value) async {
+              final Filter filter;
+              if (_filter is Filter) {
+                filter = _filter as Filter;
+              } else {
+                final group = _filter as FilterGroup;
+                filter = group[0];
+              }
+              await filter.setNumValue(key, value);
+            },
+          ),
+        );
+      } else if (input.isNum) {
+        items.add(
+          InputNumberWidget(
+            name: input.name,
+            valueChanged: (key, value) async {
+              final Filter filter;
+              if (_filter is Filter) {
+                filter = _filter as Filter;
+              } else {
+                final group = _filter as FilterGroup;
+                filter = group[0];
+              }
+              await filter.setNumValue(key, value);
+            },
+          ),
+        );
+      }
       final data = input.data;
       items.addAll(_attributeDetails(data));
     }

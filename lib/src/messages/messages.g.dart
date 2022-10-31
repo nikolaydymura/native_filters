@@ -10,15 +10,18 @@ import 'package:flutter/services.dart';
 
 class CreateShaderFilterMessage {
   CreateShaderFilterMessage({
+    this.vertex,
     required this.shader,
     required this.params,
   });
 
+  String? vertex;
   String shader;
   Map<String?, Map<String?, Object?>?> params;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['vertex'] = vertex;
     pigeonMap['shader'] = shader;
     pigeonMap['params'] = params;
     return pigeonMap;
@@ -27,6 +30,7 @@ class CreateShaderFilterMessage {
   static CreateShaderFilterMessage decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return CreateShaderFilterMessage(
+      vertex: pigeonMap['vertex'] as String?,
       shader: pigeonMap['shader']! as String,
       params: (pigeonMap['params'] as Map<Object?, Object?>?)!.cast<String?, Map<String?, Object?>?>(),
     );
@@ -82,17 +86,20 @@ class AppendFilterMessage {
 class AppendShaderFilterMessage {
   AppendShaderFilterMessage({
     required this.filterId,
+    this.vertex,
     required this.shader,
     required this.params,
   });
 
   int filterId;
+  String? vertex;
   String shader;
   Map<String?, Map<String?, Object?>?> params;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['filterId'] = filterId;
+    pigeonMap['vertex'] = vertex;
     pigeonMap['shader'] = shader;
     pigeonMap['params'] = params;
     return pigeonMap;
@@ -102,6 +109,7 @@ class AppendShaderFilterMessage {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return AppendShaderFilterMessage(
       filterId: pigeonMap['filterId']! as int,
+      vertex: pigeonMap['vertex'] as String?,
       shader: pigeonMap['shader']! as String,
       params: (pigeonMap['params'] as Map<Object?, Object?>?)!.cast<String?, Map<String?, Object?>?>(),
     );

@@ -6,6 +6,7 @@ class InputSliderNumWidget extends StatefulWidget {
   final String name;
   final double min;
   final double max;
+  final double value;
   final InputNumberChanged valueChanged;
 
   const InputSliderNumWidget({
@@ -14,6 +15,7 @@ class InputSliderNumWidget extends StatefulWidget {
     required this.valueChanged,
     required this.min,
     required this.max,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -22,13 +24,13 @@ class InputSliderNumWidget extends StatefulWidget {
 
 class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
   late TextEditingController _controller;
-  double _currentSliderValue = 0;
+  late double _currentSliderValue = widget.value;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
-    _currentSliderValue;
+    _controller.text = _currentSliderValue.toStringAsPrecision(3);
   }
 
   @override
@@ -39,35 +41,54 @@ class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double valueSlider = 0;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
-            height: 18,
-            width: MediaQuery.of(context).size.width * 0.3,
+          Expanded(
+            flex: 5,
             child: Slider(
               value: _currentSliderValue,
               min: widget.min,
               max: widget.max,
-              label: '${_currentSliderValue.round()}',
+              label: _currentSliderValue.toStringAsPrecision(3),
               onChanged: (double value) async {
+                _controller.text = _currentSliderValue.toStringAsPrecision(3);
                 setState(() {
                   _currentSliderValue = value;
                 });
-                valueSlider = value;
+              },
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: TextField(
+              controller: _controller,
+              onChanged: (String value) {
+                final sliderValue = double.tryParse(value);
+                if (sliderValue != null) {
+                  if (sliderValue >= widget.min && sliderValue <= widget.max) {
+                    setState(() {
+                      _currentSliderValue = sliderValue;
+                    });
+                  }
+                }
               },
             ),
           ),
           TextButton(
             child: const Text('apply'),
             onPressed: () async {
-              await widget.valueChanged(widget.name, valueSlider);
+              await _apply();
             },
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _apply() async {
+    await widget.valueChanged(widget.name, _currentSliderValue);
   }
 }

@@ -139,15 +139,18 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @end
 
 @implementation FLTCreateShaderFilterMessage
-+ (instancetype)makeWithShader:(NSString *)shader
++ (instancetype)makeWithVertex:(nullable NSString *)vertex
+    shader:(NSString *)shader
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params {
   FLTCreateShaderFilterMessage* pigeonResult = [[FLTCreateShaderFilterMessage alloc] init];
+  pigeonResult.vertex = vertex;
   pigeonResult.shader = shader;
   pigeonResult.params = params;
   return pigeonResult;
 }
 + (FLTCreateShaderFilterMessage *)fromMap:(NSDictionary *)dict {
   FLTCreateShaderFilterMessage *pigeonResult = [[FLTCreateShaderFilterMessage alloc] init];
+  pigeonResult.vertex = GetNullableObject(dict, @"vertex");
   pigeonResult.shader = GetNullableObject(dict, @"shader");
   NSAssert(pigeonResult.shader != nil, @"");
   pigeonResult.params = GetNullableObject(dict, @"params");
@@ -157,6 +160,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable FLTCreateShaderFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTCreateShaderFilterMessage fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
+    @"vertex" : (self.vertex ?: [NSNull null]),
     @"shader" : (self.shader ?: [NSNull null]),
     @"params" : (self.params ?: [NSNull null]),
   };
@@ -210,10 +214,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 
 @implementation FLTAppendShaderFilterMessage
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
+    vertex:(nullable NSString *)vertex
     shader:(NSString *)shader
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params {
   FLTAppendShaderFilterMessage* pigeonResult = [[FLTAppendShaderFilterMessage alloc] init];
   pigeonResult.filterId = filterId;
+  pigeonResult.vertex = vertex;
   pigeonResult.shader = shader;
   pigeonResult.params = params;
   return pigeonResult;
@@ -222,6 +228,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   FLTAppendShaderFilterMessage *pigeonResult = [[FLTAppendShaderFilterMessage alloc] init];
   pigeonResult.filterId = GetNullableObject(dict, @"filterId");
   NSAssert(pigeonResult.filterId != nil, @"");
+  pigeonResult.vertex = GetNullableObject(dict, @"vertex");
   pigeonResult.shader = GetNullableObject(dict, @"shader");
   NSAssert(pigeonResult.shader != nil, @"");
   pigeonResult.params = GetNullableObject(dict, @"params");
@@ -232,6 +239,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 - (NSDictionary *)toMap {
   return @{
     @"filterId" : (self.filterId ?: [NSNull null]),
+    @"vertex" : (self.vertex ?: [NSNull null]),
     @"shader" : (self.shader ?: [NSNull null]),
     @"params" : (self.params ?: [NSNull null]),
   };

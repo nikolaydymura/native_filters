@@ -20,7 +20,8 @@ import 'package:pigeon/pigeon.dart';
 ))
 
 class CreateShaderFilterMessage {
-  CreateShaderFilterMessage(this.shader, this.params);
+  CreateShaderFilterMessage(this.shader, this.params, {this.vertex});
+  String? vertex;
   String shader;
   Map<String?, Map<String?, Object?>?> params;
 }
@@ -37,8 +38,9 @@ class AppendFilterMessage {
 }
 
 class AppendShaderFilterMessage {
-  AppendShaderFilterMessage(this.filterId, this.shader, this.params);
+  AppendShaderFilterMessage(this.filterId, this.shader, this.params, {this.vertex});
   int filterId;
+  String? vertex;
   String shader;
   Map<String?, Map<String?, Object?>?> params;
 }
