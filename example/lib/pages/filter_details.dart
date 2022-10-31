@@ -78,7 +78,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
-            const Spacer(),
             if (widget.filter.isImageSupported)
               FloatingActionButton(
                 tooltip: 'Photo demo',
@@ -93,7 +92,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
-            const Spacer(),
             if (widget.filter.isVideoSupported)
               FloatingActionButton(
                 tooltip: 'Live video demo',
@@ -109,7 +107,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
-            const Spacer(),
             if (widget.filter.isImageSupported)
               FloatingActionButton(
                 tooltip: 'Photo pickup demo',
@@ -133,7 +130,6 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   }
                 },
               ),
-            const Spacer(),
           ],
         ),
       ),
