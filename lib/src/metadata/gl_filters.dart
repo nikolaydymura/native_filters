@@ -71,14 +71,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlHalftoneFilter",
-    "AttributeFilterDisplayName": "GlHalftoneFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputFractionalWidthOfAPixel": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlInvertFilter",
     "AttributeFilterDisplayName": "GlInvertFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
@@ -97,31 +89,13 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlLuminanceThresholdFilter",
-    "AttributeFilterDisplayName": "GlLuminanceThresholdFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputThreshold": {
-      "CIAttributeClass": "float",
-    },
-  },
-  {
     "AttributeFilterName": "GlOverlayFilter",
     "AttributeFilterDisplayName": "GlOverlayFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlPixelationFilter",
-    "AttributeFilterDisplayName": "GlPixelationFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
     "AttributeFilterName": "GlPosterizeFilter",
     "AttributeFilterDisplayName": "GlPosterizeFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
-    "AttributeFilterName": "GlRGBFilter",
-    "AttributeFilterDisplayName": "GlRGBFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
@@ -132,16 +106,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
   {
     "AttributeFilterName": "GlSharpenFilter",
     "AttributeFilterDisplayName": "GlSharpenFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
-    "AttributeFilterName": "GlSphereRefractionFilter",
-    "AttributeFilterDisplayName": "GlSphereRefractionFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  },
-  {
-    "AttributeFilterName": "GlSwirlFilter",
-    "AttributeFilterDisplayName": "GlSwirlFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
@@ -174,9 +138,4 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterDisplayName": "GlWeakPixelInclusionFilter",
     "AttributeFilterCategories": ["CategoryVideo"]
   },
-  {
-    "AttributeFilterName": "GlZoomBlurFilter",
-    "AttributeFilterDisplayName": "GlZoomBlurFilter",
-    "AttributeFilterCategories": ["CategoryVideo"]
-  }
 ];

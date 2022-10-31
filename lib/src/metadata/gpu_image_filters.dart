@@ -92,16 +92,33 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     }
   },
   {
-    "AttributeFilterName": "GPUImageBulgeDistortionFilter",
-    "AttributeFilterDisplayName": "GPUImageBulgeDistortionFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUBulgeDistortion',
+    'AttributeFilterDisplayName': 'GPUImageBulgeDistortionFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputRadius': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.25,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputScale': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.5,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': -1.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageCGAColorspaceFilter",
@@ -116,16 +133,29 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageChromaKeyBlendFilter",
-    "AttributeFilterDisplayName": "GPUImageChromaKeyBlendFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUChromaKeyBlend',
+    'AttributeFilterDisplayName': 'GPUImageChromaKeyBlendFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputThresholdSensitivity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.4,
+    },
+    'inputSmoothing': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.1,
+    },
+    'inputColorToReplace': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 1.0, 0.0]),
+    }
   },
   {
     "AttributeFilterName": "GPUImageColorBalanceFilter",
@@ -352,16 +382,26 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     }
   },
   {
-    "AttributeFilterName": "GPUImageFalseColorFilter",
-    "AttributeFilterDisplayName": "GPUImageFalseColorFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUFalseColor',
+    'AttributeFilterDisplayName': 'GPUImageFalseColorFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputFirstColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.5]),
+    },
+    'inputSecondColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 0.0, 0.0]),
+    }
   },
   {
     'AttributeFilterName': 'GPUGammaFilter',
@@ -394,16 +434,29 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageGlassSphereFilter",
-    "AttributeFilterDisplayName": "GPUImageGlassSphereFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUGlassSphere',
+    'AttributeFilterDisplayName': 'GPUImageGlassSphereFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputRadius': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.25,
+    },
+    'inputRefractiveIndex': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.71,
+    }
   },
   {
     "AttributeFilterName": "GPUImageGrayscaleFilter",
@@ -418,16 +471,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageHalftoneFilter",
-    "AttributeFilterDisplayName": "GPUImageHalftoneFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUHalftone',
+    'AttributeFilterDisplayName': 'GPUImageHalftoneFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputFractionalWidthOfPixel': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.01,
+    }
   },
   {
     "AttributeFilterName": "GPUImageHardLightBlendFilter",
@@ -538,16 +595,41 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageLevelsFilter",
-    "AttributeFilterDisplayName": "GPUImageLevelsFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPULevels',
+    'AttributeFilterDisplayName': 'GPUImageLevelsFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputLevelMinimum': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputLevelMiddle': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    },
+    'inputLevelMaximum': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    },
+    'inputMinOutput': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputMaxOutput': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([1.0, 1.0, 1.0]),
+    }
   },
   {
     "AttributeFilterName": "GPUImageLightenBlendFilter",
@@ -602,15 +684,19 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageLuminanceThresholdFilter",
-    "AttributeFilterDisplayName": "GPUImageLuminanceThresholdFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPULuminanceThreshold',
+    'AttributeFilterDisplayName': 'GPUImageLuminanceThresholdFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    },
+    'inputThreshold': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.5,
     },
   },
   {
@@ -727,16 +813,20 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImagePixelationFilter",
-    "AttributeFilterDisplayName": "GPUImagePixelationFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUPixelation',
+    'AttributeFilterDisplayName': 'GPUImagePixelationFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputPixel': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImagePosterizeFilter",
@@ -763,16 +853,34 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageRGBFilter",
-    "AttributeFilterDisplayName": "GPUImageRGBFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPURGB',
+    'AttributeFilterDisplayName': 'GPUImageRGBFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputRed': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputGreen': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputBlue': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageSaturationBlendFilter",
@@ -877,15 +985,15 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUSobelThreshold",
-    "AttributeFilterDisplayName": "GPUImageSobelThresholdFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUSobelThreshold',
+    'AttributeFilterDisplayName': 'GPUImageSobelThresholdFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
     'inputThreshold': {
       'AttributeClass': 'float',
@@ -933,16 +1041,31 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageSphereRefractionFilter",
-    "AttributeFilterDisplayName": "GPUImageSphereRefractionFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUSphereRefraction',
+    'AttributeFilterDisplayName': 'GPUImageSphereRefractionFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputRadius': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.25,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputRefractiveIndex': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.71,
+    }
   },
   {
     "AttributeFilterName": "GPUImageSubtractBlendFilter",
@@ -957,16 +1080,32 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageSwirlFilter",
-    "AttributeFilterDisplayName": "GPUImageSwirlFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUSwirl',
+    'AttributeFilterDisplayName': 'GPUImageSwirlFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputRadius': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.5,
+      'AttributeSliderMax': 1.0,
+      'AttributeSliderMin': 0.0,
+    },
+    'inputAngle': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+      'AttributeSliderMin': 0.0,
+    }
   },
   {
     "AttributeFilterName": "GPUImageThresholdEdgeDetectionFilter",
@@ -1077,16 +1216,34 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     },
   },
   {
-    "AttributeFilterName": "GPUImageVignetteFilter",
-    "AttributeFilterDisplayName": "GPUImageVignetteFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUVignette',
+    'AttributeFilterDisplayName': 'GPUImageVignetteFilter',
+    'AttributeFilterCategories': ['CategoryStillImage'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
     },
+    'inputVignetteCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.75, 0.5]),
+    },
+    'inputVignetteColor': {
+      'AttributeType': 'vec3',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.0, 0.0, 0.0]),
+    },
+    'inputVignetteStart': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.3,
+    },
+    'inputVignetteEnd': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 0.75,
+    }
   },
   {
     "AttributeFilterName": "GPUImageWeakPixelInclusionFilter",
@@ -1121,15 +1278,24 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
     }
   },
   {
-    "AttributeFilterName": "GPUImageZoomBlurFilter",
-    "AttributeFilterDisplayName": "GPUImageZoomBlurFilter",
-    "AttributeFilterCategories": ["CategoryStillImage"],
-    "inputImage": {
-      "CIAttributeClass": "CIImage",
-      "CIAttributeDescription":
-          "The image to use as an input image. For filters that also use a background image, this is the foreground image.",
-      "CIAttributeDisplayName": "Image",
-      "CIAttributeType": "CIAttributeTypeImage"
+    'AttributeFilterName': 'GPUZoomBlur',
+    'AttributeFilterDisplayName': 'GPUImageZoomBlurFilter',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+          'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    },
+    'inputBlurCenter': {
+      'AttributeType': 'vec2',
+      'AttributeClass': 'float[]',
+      'AttributeDefault': Float32List.fromList([0.5, 0.5]),
+    },
+    'inputBlurSize': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
     },
   }
 ];
