@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:image/image.dart' as img;
+import 'package:image_picker/image_picker.dart';
 
 import '../widgets/input_number_widget.dart';
 import '../widgets/input_slider_num_vidget.dart';
@@ -58,7 +59,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 200),
+        constraints: const BoxConstraints(maxWidth: 230),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -77,6 +78,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
+            const Spacer(),
             if (widget.filter.isImageSupported)
               FloatingActionButton(
                 tooltip: 'Photo demo',
@@ -91,6 +93,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
+            const Spacer(),
             if (widget.filter.isVideoSupported)
               FloatingActionButton(
                 tooltip: 'Live video demo',
@@ -106,6 +109,31 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
+            const Spacer(),
+            if (widget.filter.isImageSupported)
+              FloatingActionButton(
+                tooltip: 'Photo pickup demo',
+                heroTag: null,
+                child: const Icon(Icons.photo_library),
+                onPressed: () async {
+                  final ImagePicker _picker = ImagePicker();
+                  final XFile? _image =
+                      await _picker.pickImage(source: ImageSource.gallery);
+                  if (_image != null) {
+                    final _imageSource = await _image.readAsBytes();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FilterResultScreen(
+                          filter: _filter,
+                          image: _imageSource,
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            const Spacer(),
           ],
         ),
       ),

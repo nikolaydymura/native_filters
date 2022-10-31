@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,9 +10,14 @@ import 'package:video_player/video_player.dart';
 class FilterResultScreen extends StatefulWidget {
   final Filterable filter;
   final bool video;
+  final Uint8List? image;
 
-  const FilterResultScreen({Key? key, required this.filter, this.video = false})
-      : super(key: key);
+  const FilterResultScreen({
+    Key? key,
+    required this.filter,
+    this.video = false,
+    this.image,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FilterResultState();
@@ -44,7 +50,12 @@ class _FilterResultState extends State<FilterResultScreen> {
     final path =
         '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
     _output = File(path);
-    await widget.filter.setAssetSource(asset);
+    if (widget.image != null) {
+      await widget.filter.setSource(widget.image ?? Uint8List(0));
+    } else {
+      await widget.filter.setAssetSource(asset);
+    }
+
     final watch = Stopwatch();
     watch.start();
 /*    if (!widget.video) {
