@@ -6,6 +6,7 @@ import 'package:native_filters/native_filters.dart';
 import 'package:image/image.dart' as img;
 
 import '../widgets/input_number_widget.dart';
+import '../widgets/input_slider_num_vidget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
 
@@ -191,20 +192,40 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 ),
               ),
             ),
-            if (input.isNum)
-              InputNumberWidget(
-                name: input.name,
-                valueChanged: (key, value) async {
-                  final Filter filter;
-                  if (_filter is Filter) {
-                    filter = _filter as Filter;
-                  } else {
-                    final group = _filter as FilterGroup;
-                    filter = group[1];
-                  }
-                  await filter.setNumValue(key, value);
-                },
-              ),
+            Column(
+              children: [
+                if (input.isNum)
+                  InputNumberWidget(
+                    name: input.name,
+                    valueChanged: (key, value) async {
+                      final Filter filter;
+                      if (_filter is Filter) {
+                        filter = _filter as Filter;
+                      } else {
+                        final group = _filter as FilterGroup;
+                        filter = group[1];
+                      }
+                      await filter.setNumValue(key, value);
+                    },
+                  ),
+                if (input.isSliderNum)
+                  InputSliderNumWidget(
+                    name: input.name,
+                    min: input.data['AttributeSliderMin'],
+                    max: input.data['AttributeSliderMax'],
+                    valueChanged: (key, value) async {
+                      final Filter filter;
+                      if (_filter is Filter) {
+                        filter = _filter as Filter;
+                      } else {
+                        final group = _filter as FilterGroup;
+                        filter = group[1];
+                      }
+                      await filter.setNumValue(key, value);
+                    },
+                  ),
+              ],
+            )
           ],
         ),
       );
