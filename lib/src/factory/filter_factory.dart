@@ -25,16 +25,19 @@ class FilterFactory {
           });
           final message = await _api.createShaderFilter(
             CreateShaderFilterMessage(
-                shader: body,
-                params: params,
-                vertex: name == 'GPULookup' ? await rootBundle.loadString(
-                  'packages/native_filters/shaders/GPUTwoInput_vertex.glsl',
-                ) : null,
+              shader: body,
+              params: params,
+              vertex: name == 'GPULookup'
+                  ? await rootBundle.loadString(
+                      'packages/native_filters/shaders/GPUTwoInput_vertex.glsl',
+                    )
+                  : null,
             ),
           );
           return Filter._(name, message.filterId, 0, _api);
         } catch (e, trace) {
-          debugPrintStack(stackTrace: trace);
+          debugPrint(e.toString());
+          debugPrintStack(label: 'createFilter($name)', stackTrace: trace);
         }
       }
       final message = await _api.createFilter(

@@ -126,7 +126,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       final filter = await filterGroup.addFilter(widget.filter.name);
       if (widget.filter.name == 'CIColorCube') {
         const size = 64;
-        await filter?.setNumValue('inputCubeDimension', size);
+        await filter.setNumValue('inputCubeDimension', size);
 
         ByteData data = await rootBundle.load('filters/filter_lut_3.png');
         Uint8List bytes = data.buffer.asUint8List();
@@ -140,33 +140,39 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         //print('i=$i, ${lutData[i]}==${bytes1[i]} = ${lutData[i] == bytes1[i]}');
         //}
 
-        await filter?.setNSData('inputCubeData', lutData);
+        await filter.setNSData('inputCubeData', lutData);
       }
       final previewFilter = await filterGroup.addFilter('CISwipeTransition');
-      await previewFilter?.setNumValue('inputTime', 0.5);
-      await previewFilter?.setCIImageAsset(
+      await previewFilter.setNumValue('inputTime', 0.5);
+      await previewFilter.setCIImageAsset(
         'inputTargetImage',
         'images/test.jpg',
       );
-      await previewFilter?.setNumValue('inputWidth', 0.0);
+      await previewFilter.setNumValue('inputWidth', 0.0);
       await previewFilter
-          ?.setDoubleArrayValue('inputExtent', [0.0, 0.0, 1200.0, 1788.0]);
-      await previewFilter?.setColorValue('inputColor', Colors.black);
+          .setDoubleArrayValue('inputExtent', [0.0, 0.0, 1200.0, 1788.0]);
+      await previewFilter.setColorValue('inputColor', Colors.black);
       _filter = filterGroup;
     } else {
-      final filter = await widget.factory.createFilter(widget.filter.name);
       if (widget.filter.name == 'GlLookUpTableFilter') {
+        final filter = await widget.factory.createFilter(widget.filter.name);
         await filter.setBitmapAsset(
           'inputCubeData',
           'filters/lookup_sample.png',
         );
+        _filter = filter;
       } else if (widget.filter.name == 'GPULookup') {
+        final filter = await widget.factory.createFilter(widget.filter.name);
         await filter.setBitmapAsset(
           'inputTextureCubeData',
           'filters/lookup_sample.png',
         );
+        _filter = filter;
+      } else {
+        final filterGroup = await widget.factory.createFilterGroup();
+        final filter = await filterGroup.addFilter(widget.filter.name);
+        _filter = filterGroup;
       }
-      _filter = filter;
     }
 
     if (!mounted) return;

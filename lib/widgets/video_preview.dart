@@ -4,7 +4,6 @@ typedef FilterVideoPreviewCreatedCallback = void Function(
   VideoPreviewController controller,
 );
 
-@Deprecated('For demonstration purposes only')
 class FilterVideoPreview extends StatefulWidget {
   final VideoPreviewController? controller;
   final FilterVideoPreviewCreatedCallback? onCreated;
@@ -22,19 +21,13 @@ class _FilterVideoPreviewState extends State<FilterVideoPreview> {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       return Texture(textureId: widget.controller!._textureId);
     } else if (defaultTargetPlatform == TargetPlatform.android) {
-      return AndroidView(
-        viewType: 'FilterVideoPreview',
-        onPlatformViewCreated: _onPlatformViewCreated,
-      );
+      return Texture(textureId: widget.controller!._textureId);
     }
     return Text(
       '$defaultTargetPlatform is not yet supported by the image view plugin',
     );
   }
 
-  void _onPlatformViewCreated(int id) {
-    widget.onCreated?.call(VideoPreviewController._(id));
-  }
 }
 
 class VideoPreviewController {

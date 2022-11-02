@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:native_filters/native_filters.dart';
-import 'dart:io' show Platform;
 
 class FilterPreviewScreen extends StatefulWidget {
   final Filterable filter;
@@ -16,18 +15,16 @@ class FilterPreviewScreen extends StatefulWidget {
 
 class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
   late VideoPreviewController _controller;
-  bool _ready = Platform.isAndroid;
+  bool _ready = false;
 
   String get asset => 'videos/Butterfly-209.mp4';
 
   @override
   void initState() {
     super.initState();
-    if (Platform.isIOS) {
-      VideoPreviewController.initialize()
-          .then((value) => _controller = value)
-          .then((value) => _onContollerCreated(value));
-    }
+    VideoPreviewController.initialize()
+        .then((value) => _controller = value)
+        .then((value) => _onControllerCreated(value));
   }
 
   @override
@@ -56,15 +53,15 @@ class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
 
   Widget get videoPreview {
     return FilterVideoPreview(
-      controller: Platform.isIOS ? _controller : null,
+      controller: _controller,
       onCreated: (controller) {
         _controller = controller;
-        _onContollerCreated(controller);
+        _onControllerCreated(controller);
       },
     );
   }
 
-  void _onContollerCreated(VideoPreviewController controller) {
+  void _onControllerCreated(VideoPreviewController controller) {
     controller
         .setAssetSource(asset)
         .then((value) => _ready = true)
