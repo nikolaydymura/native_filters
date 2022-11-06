@@ -48,8 +48,8 @@ class _FilterPreviewState extends State<ImageShaderFilterPreviewScreen> {
 
   Future<void> _prepare() async {
     final configuration = LookUpShaderConfiguration.lut8x64();
-    await configuration.setImage('images/test.jpg');
-    await configuration.setLUT('filters/FESTIVAL.png');
+    await configuration.setImage(widget.asset!);
+    await configuration.setLUT('filters/filter_lut_5.png');
     _configuration = configuration;
   }
 

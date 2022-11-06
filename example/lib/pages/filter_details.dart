@@ -31,7 +31,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
   late final List<FilterInput> _details;
 
-  String get assetPath => 'images/test1.jpg';
+  String get assetPath => 'images/test.jpg';
+
   String get filterAssetPath => 'filters/filter_lut_5.png';
 
   @override
@@ -120,8 +121,10 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        const ImageShaderFilterPreviewScreen(filter: 'Lookup'),
+                    builder: (context) =>  ImageShaderFilterPreviewScreen(
+                      filter: 'Lookup',
+                      asset: assetPath,
+                    ),
                   ),
                 );
               },
