@@ -9,6 +9,8 @@ import '../widgets/input_number_widget.dart';
 import '../widgets/input_slider_num_vidget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
+import 'image_filter_result.dart';
+import 'image_shader_filter_preview.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final FilterItem filter;
@@ -164,11 +166,14 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       await previewFilter.setNumValue('inputTime', 0.5);
       await previewFilter.setCIImageAsset(
         'inputTargetImage',
-        'images/test.jpg',
+        assetPath,
       );
       await previewFilter.setNumValue('inputWidth', 0.0);
-      await previewFilter
-          .setDoubleArrayValue('inputExtent', [0.0, 0.0, 1200.0, 1788.0]);
+      final asset = await rootBundle.load(assetPath);
+      final image = await decodeImageFromList(asset.buffer.asUint8List());
+
+      await previewFilter.setDoubleArrayValue('inputExtent',
+          [0.0, 0.0, image.width.toDouble(), image.height.toDouble()]);
       await previewFilter.setColorValue('inputColor', Colors.black);
       _filter = filterGroup;
     } else {
@@ -183,7 +188,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         final filter = await widget.factory.createFilter(widget.filter.name);
         await filter.setBitmapAsset(
           'inputTextureCubeData',
-          'filters/lookup_sample.png',
+          filterAssetPath,
         );
         _filter = filter;
       } else {
