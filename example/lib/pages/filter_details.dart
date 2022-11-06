@@ -29,6 +29,9 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
 
   late final List<FilterInput> _details;
 
+  String get assetPath => 'images/test1.jpg';
+  String get filterAssetPath => 'filters/filter_lut_5.png';
+
   @override
   void initState() {
     super.initState();
@@ -58,7 +61,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 200),
+        constraints: const BoxConstraints(maxWidth: 250),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -86,7 +89,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FilterResultScreen(filter: _filter),
+                      builder: (context) => ImageFilterResultScreen(
+                          filter: _filter, asset: assetPath),
                     ),
                   );
                 },
@@ -106,6 +110,20 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   );
                 },
               ),
+            FloatingActionButton(
+              tooltip: 'Photo demo',
+              heroTag: null,
+              child: const Icon(Icons.live_help),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const ImageShaderFilterPreviewScreen(filter: 'Lookup'),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
