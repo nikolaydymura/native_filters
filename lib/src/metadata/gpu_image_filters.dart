@@ -678,6 +678,10 @@ final List<Map<String, dynamic>> _kGPUImageFilters = [
       'AttributeClass': 'float',
       'AttributeDefault': 64.0,
     },
+    'inputColumns': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 8.0,
+    },
     'inputTextureCubeData': {
       'AttributeClass': 'Bitmap',
       'CIAttributeDescription':

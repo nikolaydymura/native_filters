@@ -154,8 +154,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         ByteData data = await rootBundle.load('filters/filter_lut_3.png');
         Uint8List bytes = data.buffer.asUint8List();
         img.Image? photo = img.decodeImage(bytes);
-        final bitmap = photo!.getBytes(format: img.Format.argb);
-        final lutData = lutPngToNSData(64, bitmap, photo.width, photo.height);
+        final bitmap = photo!.getBytes(format: img.Format.rgba);
+        final lutData = lutPngToNSData(size, bitmap, photo.width ~/ size, photo.height ~/ size);
 
         //ByteData data1 = await rootBundle.load('filters/filter_lut_3.data');
         //Uint8List bytes1 = data.buffer.asUint8List();

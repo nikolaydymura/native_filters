@@ -18,7 +18,14 @@ class LookUpShaderConfiguration implements ImageShaderConfiguration {
   final List<double?> _floats;
 
   LookUpShaderConfiguration.lut8x64()
-      : _floats = List<double?>.from([1.0, 8.0, 64.0], growable: false);
+      : _floats = List<double?>.from([1.0, 8.0, 64.0, 8.0], growable: false);
+
+  LookUpShaderConfiguration.lut8x8()
+      : _floats = List<double?>.from([1.0, 8.0, 8.0, 8.0], growable: false);
+
+  LookUpShaderConfiguration.lut16x1()
+      : _floats = List<double?>.from([1.0, 16.0, 1.0, 16.0], growable: false);
+
   final Map<String, int> _textureUniformsLocations = {
     'inputImageTexture': 0,
     'inputTextureCubeData': 1,
