@@ -32,13 +32,12 @@ vec4 sampleAs3DTexture(vec3 texCoord, float size, float numRows, float slicesPer
   vec2 uv = slicePixelSize * 0.5 + texCoord.xy * sliceInnerSize;
   vec4 slice0Color = texture(inputTextureCubeData, slice0Offset + uv);
   vec4 slice1Color = texture(inputTextureCubeData, slice1Offset + uv);
-  return mix(slice0Color, slice1Color, zOffset);
+  return mix(slice0Color, slice1Color, zOffset * inputIntensity);
 }
 
 void main() {
    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
    vec4 textureColor = texture(inputImageTexture, textureCoordinate);
    vec4 newColor = sampleAs3DTexture(textureColor.rgb, inputSize, inputRows, inputColumns);
-   newColor.a = textureColor.a;
-   fragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+   fragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), 0.0);
 }

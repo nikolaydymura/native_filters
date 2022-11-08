@@ -5,6 +5,7 @@ uniform lowp sampler2D inputImageTexture;
 uniform lowp float inputIntensity;
 uniform lowp float inputSize;
 uniform lowp float inputRows;
+uniform lowp float inputColumns;
 
 vec2 computeSliceOffset(float slice, float slicesPerRow, vec2 sliceSize) {
   return sliceSize * vec2(mod(slice, slicesPerRow),
@@ -28,12 +29,11 @@ vec4 sampleAs3DTexture(vec3 texCoord, float size, float numRows, float slicesPer
   vec2 uv = slicePixelSize * 0.5 + texCoord.xy * sliceInnerSize;
   vec4 slice0Color = texture2D(inputTextureCubeData, slice0Offset + uv);
   vec4 slice1Color = texture2D(inputTextureCubeData, slice1Offset + uv);
-  return mix(slice0Color, slice1Color, zOffset);
+  return mix(slice0Color, slice1Color, zOffset * inputIntensity);
 }
 
 void main() {
    vec4 textureColor = texture2D(inputImageTexture, textureCoordinate);
-   vec4 newColor = sampleAs3DTexture(textureColor.rgb, inputSize, inputRows, 8.0);
-   newColor.a = textureColor.a;
-   gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+   vec4 newColor = sampleAs3DTexture(textureColor.rgb, inputSize, inputRows, inputColumns);
+   gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), 0.0);
 }

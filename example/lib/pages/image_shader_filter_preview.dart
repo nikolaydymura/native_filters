@@ -47,13 +47,13 @@ class _FilterPreviewState extends State<ImageShaderFilterPreviewScreen> {
   }
 
   Future<void> _prepare() async {
-    //final configuration = LookUpShaderConfiguration.lut8x64();
+    final configuration = LookUpShaderConfiguration.lut8x64();
     //final configuration = LookUpShaderConfiguration.lut8x8();
-    final configuration = LookUpShaderConfiguration.lut16x1();
+    //final configuration = LookUpShaderConfiguration.lut16x1();
     await configuration.setImage(widget.asset!);
-    //await configuration.setLUT('filters/filter_lut_5.png');
+    await configuration.setLUT('filters/filter_lut_5.png');
     //await configuration.setLUT('filters/filter_lut_3.png');
-    await configuration.setLUT('filters/lookup_sample.png');
+    //await configuration.setLUT('filters/lookup_sample.png');
     _configuration = configuration;
   }
 
