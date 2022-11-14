@@ -122,7 +122,7 @@ extension NativeFilter {
     }
 }
 
-fileprivate func colorCubeFilterFromLUT(image : UIImage, size: Int) -> NSData? {
+func colorCubeFilterFromLUT(image : UIImage, size: Int) -> NSData? {
 
     let lutImage    = image.cgImage
     let lutWidth    = lutImage!.width

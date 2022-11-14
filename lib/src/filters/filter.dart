@@ -154,49 +154,85 @@ class Filter extends Filterable {
     );
   }
 
-  Future<void> setNSData(String key, Uint8List data) async {
+  Future<void> setNSData(String key, Uint8List data, {bool lut8x64 = false, bool process = false}) async {
     await _api.setDataValue(
       InputDataValueMessage(
         filterId: id,
         filterIndex: index,
         key: key,
         value: data,
+        lut8x64: lut8x64,
+        process: process,
       ),
     );
   }
 
-  Future<void> setNSDataAsset(String key, String name) async {
+  Future<void> setNSDataAsset(String key, String name,{bool lut8x64 = false, bool process = false}) async {
     await _api.setDataSourceValue(
       InputDataSourceValueMessage(
         filterId: id,
         filterIndex: index,
         key: key,
         value: name,
+        lut8x64: lut8x64,
+        process: process,
       ),
     );
   }
 
-  Future<void> setNSDataFile(String key, File file) async {
+  Future<void> setNSDataFile(String key, File file,{bool lut8x64 = false, bool process = false}) async {
     await _api.setDataSourceValue(
       InputDataSourceValueMessage(
         filterId: id,
         filterIndex: index,
         key: key,
         value: file.path,
+        lut8x64: lut8x64,
+        process: process,
       ),
     );
   }
 
-  Future<void> setBitmapFile(String key, File file) async {
-    await setNSDataFile(key, file);
+  Future<void> setBitmapFile(
+    String key,
+    File file, {
+    bool lut8x64 = false,
+    bool process = false,
+  }) async {
+    await setNSDataFile(
+      key,
+      file,
+      lut8x64: lut8x64,
+      process: process,
+    );
   }
 
-  Future<void> setBitmapAsset(String key, String name) async {
-    await setNSDataAsset(key, name);
+  Future<void> setBitmapAsset(
+    String key,
+    String name, {
+    bool lut8x64 = false,
+    bool process = false,
+  }) async {
+    await setNSDataAsset(
+      key,
+      name,
+      lut8x64: lut8x64,
+      process: process,
+    );
   }
 
-  Future<void> setBitmap(String key, Uint8List data) async {
-    await setNSData(key, data);
+  Future<void> setBitmap(
+    String key,
+    Uint8List data, {
+    bool lut8x64 = false,
+    bool process = false,
+  }) async {
+    await setNSData(
+      key,
+      data,
+      lut8x64: lut8x64,
+      process: process,
+    );
   }
 
   Future<void> setCIImageFile(String key, File file) async {

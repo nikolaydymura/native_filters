@@ -102,19 +102,23 @@ class InputNumberListValueMessage {
 }
 
 class InputDataValueMessage {
-  InputDataValueMessage(this.filterId, this.filterIndex, this.key, this.value);
+  InputDataValueMessage(this.filterId, this.filterIndex, this.key, this.value, this.lut8x64, this.process);
   int filterId;
   int filterIndex;
   String key;
   Uint8List value;
+  bool lut8x64;
+  bool process;
 }
 
 class InputDataSourceValueMessage {
-  InputDataSourceValueMessage(this.filterId, this.filterIndex, this.key, this.value);
+  InputDataSourceValueMessage(this.filterId, this.filterIndex, this.key, this.value, this.lut8x64, this.process);
   int filterId;
   int filterIndex;
   String key;
   String value;
+  bool lut8x64;
+  bool process;
 }
 
 class FilterMessage {

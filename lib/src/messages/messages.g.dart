@@ -354,12 +354,16 @@ class InputDataValueMessage {
     required this.filterIndex,
     required this.key,
     required this.value,
+    required this.lut8x64,
+    required this.process,
   });
 
   int filterId;
   int filterIndex;
   String key;
   Uint8List value;
+  bool lut8x64;
+  bool process;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -367,6 +371,8 @@ class InputDataValueMessage {
     pigeonMap['filterIndex'] = filterIndex;
     pigeonMap['key'] = key;
     pigeonMap['value'] = value;
+    pigeonMap['lut8x64'] = lut8x64;
+    pigeonMap['process'] = process;
     return pigeonMap;
   }
 
@@ -377,6 +383,8 @@ class InputDataValueMessage {
       filterIndex: pigeonMap['filterIndex']! as int,
       key: pigeonMap['key']! as String,
       value: pigeonMap['value']! as Uint8List,
+      lut8x64: pigeonMap['lut8x64']! as bool,
+      process: pigeonMap['process']! as bool,
     );
   }
 }
@@ -387,12 +395,16 @@ class InputDataSourceValueMessage {
     required this.filterIndex,
     required this.key,
     required this.value,
+    required this.lut8x64,
+    required this.process,
   });
 
   int filterId;
   int filterIndex;
   String key;
   String value;
+  bool lut8x64;
+  bool process;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -400,6 +412,8 @@ class InputDataSourceValueMessage {
     pigeonMap['filterIndex'] = filterIndex;
     pigeonMap['key'] = key;
     pigeonMap['value'] = value;
+    pigeonMap['lut8x64'] = lut8x64;
+    pigeonMap['process'] = process;
     return pigeonMap;
   }
 
@@ -410,6 +424,8 @@ class InputDataSourceValueMessage {
       filterIndex: pigeonMap['filterIndex']! as int,
       key: pigeonMap['key']! as String,
       value: pigeonMap['value']! as String,
+      lut8x64: pigeonMap['lut8x64']! as bool,
+      process: pigeonMap['process']! as bool,
     );
   }
 }

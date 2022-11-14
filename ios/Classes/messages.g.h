@@ -165,11 +165,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     filterIndex:(NSNumber *)filterIndex
     key:(NSString *)key
-    value:(FlutterStandardTypedData *)value;
+    value:(FlutterStandardTypedData *)value
+    lut8x64:(NSNumber *)lut8x64
+    process:(NSNumber *)process;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, strong) NSNumber * filterIndex;
 @property(nonatomic, copy) NSString * key;
 @property(nonatomic, strong) FlutterStandardTypedData * value;
+@property(nonatomic, strong) NSNumber * lut8x64;
+@property(nonatomic, strong) NSNumber * process;
 @end
 
 @interface FLTInputDataSourceValueMessage : NSObject
@@ -178,11 +182,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     filterIndex:(NSNumber *)filterIndex
     key:(NSString *)key
-    value:(NSString *)value;
+    value:(NSString *)value
+    lut8x64:(NSNumber *)lut8x64
+    process:(NSNumber *)process;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, strong) NSNumber * filterIndex;
 @property(nonatomic, copy) NSString * key;
 @property(nonatomic, copy) NSString * value;
+@property(nonatomic, strong) NSNumber * lut8x64;
+@property(nonatomic, strong) NSNumber * process;
 @end
 
 @interface FLTFilterMessage : NSObject

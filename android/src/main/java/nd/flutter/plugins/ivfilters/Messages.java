@@ -908,6 +908,24 @@ public class Messages {
       this.value = setterArg;
     }
 
+    private @NonNull Boolean lut8x64;
+    public @NonNull Boolean getLut8x64() { return lut8x64; }
+    public void setLut8x64(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"lut8x64\" is null.");
+      }
+      this.lut8x64 = setterArg;
+    }
+
+    private @NonNull Boolean process;
+    public @NonNull Boolean getProcess() { return process; }
+    public void setProcess(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"process\" is null.");
+      }
+      this.process = setterArg;
+    }
+
     /**Constructor is private to enforce null safety; use Builder. */
     private InputDataValueMessage() {}
     public static final class Builder {
@@ -931,12 +949,24 @@ public class Messages {
         this.value = setterArg;
         return this;
       }
+      private @Nullable Boolean lut8x64;
+      public @NonNull Builder setLut8x64(@NonNull Boolean setterArg) {
+        this.lut8x64 = setterArg;
+        return this;
+      }
+      private @Nullable Boolean process;
+      public @NonNull Builder setProcess(@NonNull Boolean setterArg) {
+        this.process = setterArg;
+        return this;
+      }
       public @NonNull InputDataValueMessage build() {
         InputDataValueMessage pigeonReturn = new InputDataValueMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setFilterIndex(filterIndex);
         pigeonReturn.setKey(key);
         pigeonReturn.setValue(value);
+        pigeonReturn.setLut8x64(lut8x64);
+        pigeonReturn.setProcess(process);
         return pigeonReturn;
       }
     }
@@ -946,6 +976,8 @@ public class Messages {
       toMapResult.put("filterIndex", filterIndex);
       toMapResult.put("key", key);
       toMapResult.put("value", value);
+      toMapResult.put("lut8x64", lut8x64);
+      toMapResult.put("process", process);
       return toMapResult;
     }
     static @NonNull InputDataValueMessage fromMap(@NonNull Map<String, Object> map) {
@@ -958,6 +990,10 @@ public class Messages {
       pigeonResult.setKey((String)key);
       Object value = map.get("value");
       pigeonResult.setValue((byte[])value);
+      Object lut8x64 = map.get("lut8x64");
+      pigeonResult.setLut8x64((Boolean)lut8x64);
+      Object process = map.get("process");
+      pigeonResult.setProcess((Boolean)process);
       return pigeonResult;
     }
   }
@@ -1000,6 +1036,24 @@ public class Messages {
       this.value = setterArg;
     }
 
+    private @NonNull Boolean lut8x64;
+    public @NonNull Boolean getLut8x64() { return lut8x64; }
+    public void setLut8x64(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"lut8x64\" is null.");
+      }
+      this.lut8x64 = setterArg;
+    }
+
+    private @NonNull Boolean process;
+    public @NonNull Boolean getProcess() { return process; }
+    public void setProcess(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"process\" is null.");
+      }
+      this.process = setterArg;
+    }
+
     /**Constructor is private to enforce null safety; use Builder. */
     private InputDataSourceValueMessage() {}
     public static final class Builder {
@@ -1023,12 +1077,24 @@ public class Messages {
         this.value = setterArg;
         return this;
       }
+      private @Nullable Boolean lut8x64;
+      public @NonNull Builder setLut8x64(@NonNull Boolean setterArg) {
+        this.lut8x64 = setterArg;
+        return this;
+      }
+      private @Nullable Boolean process;
+      public @NonNull Builder setProcess(@NonNull Boolean setterArg) {
+        this.process = setterArg;
+        return this;
+      }
       public @NonNull InputDataSourceValueMessage build() {
         InputDataSourceValueMessage pigeonReturn = new InputDataSourceValueMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setFilterIndex(filterIndex);
         pigeonReturn.setKey(key);
         pigeonReturn.setValue(value);
+        pigeonReturn.setLut8x64(lut8x64);
+        pigeonReturn.setProcess(process);
         return pigeonReturn;
       }
     }
@@ -1038,6 +1104,8 @@ public class Messages {
       toMapResult.put("filterIndex", filterIndex);
       toMapResult.put("key", key);
       toMapResult.put("value", value);
+      toMapResult.put("lut8x64", lut8x64);
+      toMapResult.put("process", process);
       return toMapResult;
     }
     static @NonNull InputDataSourceValueMessage fromMap(@NonNull Map<String, Object> map) {
@@ -1050,6 +1118,10 @@ public class Messages {
       pigeonResult.setKey((String)key);
       Object value = map.get("value");
       pigeonResult.setValue((String)value);
+      Object lut8x64 = map.get("lut8x64");
+      pigeonResult.setLut8x64((Boolean)lut8x64);
+      Object process = map.get("process");
+      pigeonResult.setProcess((Boolean)process);
       return pigeonResult;
     }
   }

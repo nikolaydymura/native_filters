@@ -490,12 +490,16 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     filterIndex:(NSNumber *)filterIndex
     key:(NSString *)key
-    value:(FlutterStandardTypedData *)value {
+    value:(FlutterStandardTypedData *)value
+    lut8x64:(NSNumber *)lut8x64
+    process:(NSNumber *)process {
   FLTInputDataValueMessage* pigeonResult = [[FLTInputDataValueMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.filterIndex = filterIndex;
   pigeonResult.key = key;
   pigeonResult.value = value;
+  pigeonResult.lut8x64 = lut8x64;
+  pigeonResult.process = process;
   return pigeonResult;
 }
 + (FLTInputDataValueMessage *)fromMap:(NSDictionary *)dict {
@@ -508,6 +512,10 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   NSAssert(pigeonResult.key != nil, @"");
   pigeonResult.value = GetNullableObject(dict, @"value");
   NSAssert(pigeonResult.value != nil, @"");
+  pigeonResult.lut8x64 = GetNullableObject(dict, @"lut8x64");
+  NSAssert(pigeonResult.lut8x64 != nil, @"");
+  pigeonResult.process = GetNullableObject(dict, @"process");
+  NSAssert(pigeonResult.process != nil, @"");
   return pigeonResult;
 }
 + (nullable FLTInputDataValueMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTInputDataValueMessage fromMap:dict] : nil; }
@@ -517,6 +525,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"filterIndex" : (self.filterIndex ?: [NSNull null]),
     @"key" : (self.key ?: [NSNull null]),
     @"value" : (self.value ?: [NSNull null]),
+    @"lut8x64" : (self.lut8x64 ?: [NSNull null]),
+    @"process" : (self.process ?: [NSNull null]),
   };
 }
 @end
@@ -525,12 +535,16 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     filterIndex:(NSNumber *)filterIndex
     key:(NSString *)key
-    value:(NSString *)value {
+    value:(NSString *)value
+    lut8x64:(NSNumber *)lut8x64
+    process:(NSNumber *)process {
   FLTInputDataSourceValueMessage* pigeonResult = [[FLTInputDataSourceValueMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.filterIndex = filterIndex;
   pigeonResult.key = key;
   pigeonResult.value = value;
+  pigeonResult.lut8x64 = lut8x64;
+  pigeonResult.process = process;
   return pigeonResult;
 }
 + (FLTInputDataSourceValueMessage *)fromMap:(NSDictionary *)dict {
@@ -543,6 +557,10 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   NSAssert(pigeonResult.key != nil, @"");
   pigeonResult.value = GetNullableObject(dict, @"value");
   NSAssert(pigeonResult.value != nil, @"");
+  pigeonResult.lut8x64 = GetNullableObject(dict, @"lut8x64");
+  NSAssert(pigeonResult.lut8x64 != nil, @"");
+  pigeonResult.process = GetNullableObject(dict, @"process");
+  NSAssert(pigeonResult.process != nil, @"");
   return pigeonResult;
 }
 + (nullable FLTInputDataSourceValueMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTInputDataSourceValueMessage fromMap:dict] : nil; }
@@ -552,6 +570,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"filterIndex" : (self.filterIndex ?: [NSNull null]),
     @"key" : (self.key ?: [NSNull null]),
     @"value" : (self.value ?: [NSNull null]),
+    @"lut8x64" : (self.lut8x64 ?: [NSNull null]),
+    @"process" : (self.process ?: [NSNull null]),
   };
 }
 @end
