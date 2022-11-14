@@ -6,7 +6,7 @@ class InputSliderNumWidget extends StatefulWidget {
   final String name;
   final double min;
   final double max;
-  final double value;
+  final double? value;
   final InputNumberChanged valueChanged;
 
   const InputSliderNumWidget({
@@ -15,7 +15,7 @@ class InputSliderNumWidget extends StatefulWidget {
     required this.valueChanged,
     required this.min,
     required this.max,
-    required this.value,
+    this.value,
   }) : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class InputSliderNumWidget extends StatefulWidget {
 
 class _InputSliderNumWidgetState extends State<InputSliderNumWidget> {
   late TextEditingController _controller;
-  late double _currentSliderValue = widget.value;
+  late double _currentSliderValue = widget.value ?? (widget.max + widget.min) / 2;
 
   @override
   void initState() {

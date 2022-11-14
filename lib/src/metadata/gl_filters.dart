@@ -76,14 +76,6 @@ const List<Map<String, dynamic>> _kGPUVideoFilters = [
     "AttributeFilterCategories": ["CategoryVideo"]
   },
   {
-    "AttributeFilterName": "GlLookUpTableFilter",
-    "AttributeFilterDisplayName": "GlLookUpTableFilter",
-    "AttributeFilterCategories": ["CategoryVideo"],
-    "inputLut": {
-      "CIAttributeClass": "CIImage",
-    },
-  },
-  {
     "AttributeFilterName": "GlLuminanceFilter",
     "AttributeFilterDisplayName": "GlLuminanceFilter",
     "AttributeFilterCategories": ["CategoryVideo"]

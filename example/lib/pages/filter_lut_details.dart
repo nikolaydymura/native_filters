@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:native_filters/native_filters.dart';
+import 'package:image/image.dart' as img;
 
 import '../widgets/input_number_widget.dart';
 import '../widgets/input_slider_num_widget.dart';
@@ -10,11 +11,11 @@ import 'filter_preview.dart';
 import 'filter_result.dart';
 import 'image_filter_result.dart';
 
-class FilterDetailsScreen extends StatefulWidget {
+class FilterLutDetailsScreen extends StatefulWidget {
   final FilterItem filter;
   final FilterFactory factory;
 
-  const FilterDetailsScreen({
+  const FilterLutDetailsScreen({
     Key? key,
     required this.filter,
     required this.factory,
@@ -24,16 +25,35 @@ class FilterDetailsScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _FilterDetailsState();
 }
 
-class _FilterDetailsState extends State<FilterDetailsScreen> {
+class _FilterDetailsState extends State<FilterLutDetailsScreen> {
   late final Filterable _filter;
 
   late final List<FilterInput> _details;
 
   String imageAssetPath = 'images/test.jpg';
+  List<String> imagesAssets = ['images/test.jpg'];
+
+  late LutAssetInfo filterLutAsset;
+  List<LutAssetInfo> filterLutAssets = [
+    LutAssetInfo('filters/filter_lut_1.png', 8, 8, 8),
+    LutAssetInfo('filters/filter_lut_2.png', 8, 8, 8),
+    LutAssetInfo('filters/filter_lut_3.png', 8, 8, 8),
+    LutAssetInfo('filters/filter_lut_4.png', 8, 8, 8),
+    LutAssetInfo('filters/filter_lut_5.png', 8, 8, 8),
+    LutAssetInfo('filters/filter_lut_6.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_7.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_8.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_9.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_10.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_11.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_12.png', 8, 64, 8),
+    LutAssetInfo('filters/filter_lut_13.png', 16, 1, 8),
+  ];
 
   @override
   void initState() {
     super.initState();
+    filterLutAsset = filterLutAssets[5];
     _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
             ?.toList() ??
         [];
@@ -89,9 +109,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ImageFilterResultScreen(
-                        filter: _filter,
-                        asset: imageAssetPath,
-                      ),
+                          filter: _filter, asset: imageAssetPath),
                     ),
                   );
                 },
@@ -119,7 +137,38 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: _filtersInfo,
+          children: [
+            DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: imageAssetPath,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                onChanged: (String? value) {
+                  if (value != null) {
+                    setState(() {
+                      imageAssetPath = value;
+                    });
+                  }
+                },
+                items: imagesAssets
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Image.asset(value, height: 100, width: 100,),
+                        Text(value),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            ..._filtersInfo
+          ],
         ),
       ),
     );
@@ -128,7 +177,12 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
   Future<void> _loadFilterInfo() async {
     if (Platform.isIOS) {
       final filterGroup = await widget.factory.createFilterGroup();
-      await filterGroup.addFilter(widget.filter.name);
+      final filter = await filterGroup.addFilter(widget.filter.name);
+      const size = 64;
+      await filter.setNumValue('inputCubeDimension', size);
+
+      await filter.setNSDataAsset('inputCubeData', filterLutAsset.path);
+
       final previewFilter = await filterGroup.addFilter('CISwipeTransition');
       await previewFilter.setNumValue('inputTime', 0.5);
       await previewFilter.setCIImageAsset(
@@ -139,16 +193,30 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
       final asset = await rootBundle.load(imageAssetPath);
       final image = await decodeImageFromList(asset.buffer.asUint8List());
 
-      await previewFilter.setDoubleArrayValue(
-        'inputExtent',
-        [0.0, 0.0, image.width.toDouble(), image.height.toDouble()],
-      );
+      await previewFilter.setDoubleArrayValue('inputExtent',
+          [0.0, 0.0, image.width.toDouble(), image.height.toDouble()]);
       await previewFilter.setColorValue('inputColor', Colors.black);
       _filter = filterGroup;
     } else {
-      final filterGroup = await widget.factory.createFilterGroup();
-      await filterGroup.addFilter(widget.filter.name);
-      _filter = filterGroup;
+      if (widget.filter.name == 'GlLookUpTableFilter') {
+        final filter = await widget.factory.createFilter(widget.filter.name);
+        await filter.setBitmapAsset(
+          'inputCubeData',
+          filterLutAsset.path,
+        );
+        _filter = filter;
+      } else if (widget.filter.name == 'GPULookup') {
+        final filter = await widget.factory.createFilter(widget.filter.name);
+        await filter.setBitmapAsset(
+          'inputTextureCubeData',
+          filterLutAsset.path,
+        );
+        _filter = filter;
+      } else {
+        final filterGroup = await widget.factory.createFilterGroup();
+        final filter = await filterGroup.addFilter(widget.filter.name);
+        _filter = filterGroup;
+      }
     }
 
     if (!mounted) return;
@@ -195,6 +263,7 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         items.add(
           InputNumberWidget(
             name: input.name,
+            value: input.defaultNum,
             valueChanged: (key, value) async {
               final Filter filter;
               if (_filter is Filter) {
@@ -207,6 +276,51 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
             },
           ),
         );
+      } else if (input.isData) {
+        items.add(DropdownButtonHideUnderline(
+          child: DropdownButton<LutAssetInfo>(
+            value: filterLutAsset,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (LutAssetInfo? value) {
+              if (value != null) {
+                setState(() {
+                  filterLutAsset = value;
+                });
+                final Filter filter;
+                if (_filter is Filter) {
+                  filter = _filter as Filter;
+                } else {
+                  final group = _filter as FilterGroup;
+                  filter = group[0];
+                }
+                if (Platform.isIOS) {
+                  filter.setNSDataAsset('inputCubeData', value.path);
+                } else if (Platform.isAndroid) {
+                  filter.setBitmapAsset('inputTextureCubeData', value.path);
+                }
+              }
+            },
+            items: filterLutAssets.map((value) {
+              return DropdownMenuItem<LutAssetInfo>(
+                value: value,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Image.asset(value.path, width: 50, height: 50,),
+                    Text(value.path),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+        ));
       }
       final data = input.data;
       items.addAll(_attributeDetails(data));
@@ -238,4 +352,23 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
         .expand((element) => element)
         .toList();
   }
+}
+
+class LutAssetInfo {
+  final String path;
+  final double size;
+  final double rows;
+  final double columns;
+
+  LutAssetInfo(this.path, this.size, this.rows, this.columns);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LutAssetInfo &&
+          runtimeType == other.runtimeType &&
+          path == other.path;
+
+  @override
+  int get hashCode => path.hashCode;
 }

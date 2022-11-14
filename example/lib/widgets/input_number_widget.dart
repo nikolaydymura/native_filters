@@ -4,12 +4,14 @@ typedef InputNumberChanged = Future<void> Function(String, num);
 
 class InputNumberWidget extends StatefulWidget {
   final String name;
+  final num? value;
   final InputNumberChanged valueChanged;
 
   const InputNumberWidget({
     Key? key,
     required this.name,
     required this.valueChanged,
+    this.value,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class _InputNumberWidgetState extends State<InputNumberWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _controller = TextEditingController(text: widget.value?.toString());
   }
 
   @override

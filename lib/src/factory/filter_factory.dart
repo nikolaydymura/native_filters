@@ -154,6 +154,11 @@ class FilterInput {
   bool get isNum =>
       data['AttributeClass'] == 'NSNumber' || data['AttributeClass'] == 'float';
 
+  bool get isData =>
+      data['AttributeClass'] == 'NSData' || data['AttributeClass'] == 'Bitmap';
+
+  num? get defaultNum => data['AttributeDefault'];
+
   bool get isSliderNum =>
       isNum &&
       data['AttributeSliderMax'] != null &&
