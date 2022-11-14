@@ -50,14 +50,18 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
     LutAssetInfo('filters/filter_lut_13.png', 16, 1, 8),
   ];
 
+  bool processNative = false;
+
   @override
   void initState() {
     super.initState();
-    filterLutAsset = filterLutAssets[5];
+    filterLutAsset = filterLutAssets.first;
     _details = FilterFactory.filterAttributes(filterName: widget.filter.name)
             ?.toList() ??
         [];
-    _loadFilterInfo();
+    _loadFilterInfo().whenComplete(
+      () => _applyLut(),
+    );
   }
 
   @override
@@ -109,7 +113,9 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ImageFilterResultScreen(
-                          filter: _filter, asset: imageAssetPath),
+                        filter: _filter,
+                        asset: imageAssetPath,
+                      ),
                     ),
                   );
                 },
@@ -151,15 +157,19 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
                     });
                   }
                 },
-                items: imagesAssets
-                    .map<DropdownMenuItem<String>>((String value) {
+                items:
+                    imagesAssets.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Image.asset(value, height: 100, width: 100,),
+                        Image.asset(
+                          value,
+                          height: 100,
+                          width: 100,
+                        ),
                         Text(value),
                       ],
                     ),
@@ -193,19 +203,14 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
       final asset = await rootBundle.load(imageAssetPath);
       final image = await decodeImageFromList(asset.buffer.asUint8List());
 
-      await previewFilter.setDoubleArrayValue('inputExtent',
-          [0.0, 0.0, image.width.toDouble(), image.height.toDouble()]);
+      await previewFilter.setDoubleArrayValue(
+        'inputExtent',
+        [0.0, 0.0, image.width.toDouble(), image.height.toDouble()],
+      );
       await previewFilter.setColorValue('inputColor', Colors.black);
       _filter = filterGroup;
     } else {
-      if (widget.filter.name == 'GlLookUpTableFilter') {
-        final filter = await widget.factory.createFilter(widget.filter.name);
-        await filter.setBitmapAsset(
-          'inputCubeData',
-          filterLutAsset.path,
-        );
-        _filter = filter;
-      } else if (widget.filter.name == 'GPULookup') {
+      if (widget.filter.name == 'GPULookup') {
         final filter = await widget.factory.createFilter(widget.filter.name);
         await filter.setBitmapAsset(
           'inputTextureCubeData',
@@ -277,55 +282,121 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
           ),
         );
       } else if (input.isData) {
-        items.add(DropdownButtonHideUnderline(
-          child: DropdownButton<LutAssetInfo>(
-            value: filterLutAsset,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
+        items.add(
+          DropdownButtonHideUnderline(
+            child: DropdownButton<LutAssetInfo>(
+              value: filterLutAsset,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (LutAssetInfo? value) {
+                if (value != null) {
+                  setState(() {
+                    filterLutAsset = value;
+                  });
+                  _applyLut();
+                }
+              },
+              items: filterLutAssets.map((value) {
+                return DropdownMenuItem<LutAssetInfo>(
+                  value: value,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Image.asset(
+                        value.path,
+                        width: 50,
+                        height: 50,
+                      ),
+                      Text(value.path),
+                    ],
+                  ),
+                );
+              }).toList(),
             ),
-            onChanged: (LutAssetInfo? value) {
-              if (value != null) {
-                setState(() {
-                  filterLutAsset = value;
-                });
-                final Filter filter;
-                if (_filter is Filter) {
-                  filter = _filter as Filter;
-                } else {
-                  final group = _filter as FilterGroup;
-                  filter = group[0];
-                }
-                if (Platform.isIOS) {
-                  filter.setNSDataAsset('inputCubeData', value.path);
-                } else if (Platform.isAndroid) {
-                  filter.setBitmapAsset('inputTextureCubeData', value.path);
-                }
-              }
-            },
-            items: filterLutAssets.map((value) {
-              return DropdownMenuItem<LutAssetInfo>(
-                value: value,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Image.asset(value.path, width: 50, height: 50,),
-                    Text(value.path),
-                  ],
-                ),
-              );
-            }).toList(),
           ),
-        ));
+        );
       }
       final data = input.data;
       items.addAll(_attributeDetails(data));
     }
+    items.add(
+      Row(
+        children: [
+          Checkbox(
+            value: processNative,
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  processNative = value;
+                });
+                _applyLut();
+              }
+            },
+          ),
+          const Text('Process LUT natively')
+        ],
+      ),
+    );
     return items;
+  }
+
+  Future<void> _applyLut() async {
+    final value = filterLutAsset;
+    final Filter filter;
+    if (_filter is Filter) {
+      filter = _filter as Filter;
+    } else {
+      final group = _filter as FilterGroup;
+      filter = group[0];
+    }
+    if (processNative) {
+      if (Platform.isIOS) {
+        await filter.setNSDataAsset(
+          'inputCubeData',
+          value.path,
+          lut8x64: value.rows == 64,
+          process: processNative,
+        );
+      } else if (Platform.isAndroid) {
+        await filter.setBitmapAsset(
+          'inputTextureCubeData',
+          value.path,
+          lut8x64: value.rows == 64,
+          process: processNative,
+        );
+      }
+    } else {
+      if (Platform.isIOS) {
+        const dimension = 64;
+        final image = await rootBundle
+            .load(value.path)
+            .then((value) => value.buffer.asUint8List())
+            .then((value) => img.decodeImage(value));
+        final data = lutPngToNSData(
+          dimension,
+          image!.getBytes(format: img.Format.rgba),
+          image.width ~/ dimension,
+          image.height ~/ dimension,
+        );
+        await filter.setNSData(
+          'inputCubeData',
+          data,
+        );
+      } else if (Platform.isAndroid) {
+        final byteData = await rootBundle.load(value.path);
+        final data = byteData.buffer.asUint8List();
+        await filter.setBitmap(
+          'inputTextureCubeData',
+          data,
+        );
+      }
+    }
   }
 
   List<Widget> _attributeDetails(Map<String, dynamic> items) {
@@ -343,6 +414,8 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
             ),
             Text(
               value.toString(),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
           ),
