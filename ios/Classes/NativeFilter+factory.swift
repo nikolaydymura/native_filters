@@ -255,6 +255,16 @@ extension ImageVideoFilterFactory {
         if targetClass == "CIImage" {
             filter.setValue(CIImage(data: msg.value.data), forKey: msg.key)
         } else if targetClass == "NSData" {
+            if msg.key == "inputCubeData" && msg.process.boolValue {
+                if msg.lut8x64.boolValue {
+                    let data = try? createColorCubeData(inputImage: UIImage(data: msg.value.data)!, cubeDimension: 64)
+                    filter.setValue(data, forKey: msg.key)
+                } else {
+                    let data = colorCubeFilterFromLUT(image: UIImage(data: msg.value.data)!, size: 64)
+                    filter.setValue(data, forKey: msg.key)
+                }
+                return
+            }
             filter.setValue(msg.value.data, forKey: msg.key)
         }
     }
