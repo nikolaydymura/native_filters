@@ -17,14 +17,13 @@ class FLTFrameUpdater: NSObject {
 }
 
 class VideoPreview: NSObject, FlutterTexture {
-    private let player = AVPlayer()
-    private var videoOutput: AVPlayerItemVideoOutput!
+    private var player: AVPlayer?
+    private var videoOutput: AVPlayerItemVideoOutput?
     private var filter: NativeFilter?
-    fileprivate var frameUpdater: FLTFrameUpdater!
-    private var displayLink: CADisplayLink!
+    fileprivate var frameUpdater: FLTFrameUpdater?
+    private var displayLink: CADisplayLink?
     
     override init() {
-        player.actionAtItemEnd = .none
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification: )), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
@@ -35,11 +34,14 @@ class VideoPreview: NSObject, FlutterTexture {
     
     
     @objc func playerItemDidReachEnd(notification: Notification) {
-        player.seek(to: CMTime.zero)
-        player.play()
+        player?.seek(to: CMTime.zero)
+        player?.play()
     }
     
     func copyPixelBuffer() -> Unmanaged<CVPixelBuffer>? {
+        guard let videoOutput = videoOutput else {
+            return nil
+        }
         let outputItemTime = videoOutput.itemTime(forHostTime: CACurrentMediaTime())
         if videoOutput.hasNewPixelBuffer(forItemTime: outputItemTime) {
             if let buffer = videoOutput.copyPixelBuffer(forItemTime: outputItemTime, itemTimeForDisplay: nil) {
@@ -54,12 +56,14 @@ class VideoPreview: NSObject, FlutterTexture {
     }
     
     func setSource(url: URL) {
-        
-        videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: [
+        let player = self.player ?? AVPlayer()
+        player.pause()
+        player.actionAtItemEnd = .none
+        let videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: [
             kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA,
             kCVPixelBufferIOSurfacePropertiesKey as String : [:] ])
         
-        displayLink = CADisplayLink(target: frameUpdater, selector: #selector(FLTFrameUpdater.onDisplayLink(_:)))
+        let displayLink = CADisplayLink(target: frameUpdater, selector: #selector(FLTFrameUpdater.onDisplayLink(_:)))
         displayLink.add(to: RunLoop.current, forMode: .common)
         displayLink.isPaused = true
         
@@ -75,17 +79,29 @@ class VideoPreview: NSObject, FlutterTexture {
         
         player.replaceCurrentItem(with: item)
         player.seek(to: CMTime.zero)
-        player.play()
-        displayLink.isPaused = false
+        self.videoOutput = videoOutput
+        self.player = player
+        self.displayLink = displayLink
+        self.player?.play()
+        self.displayLink?.isPaused = false
     }
     
     func pause() {
-        player.pause()
+        player?.pause()
     }
     
+    func stop() {
+        displayLink?.isPaused = true
+        displayLink?.remove(from: RunLoop.current, forMode: .common)
+        player?.pause()
+        player = nil
+        displayLink = nil
+        videoOutput = nil
+        frameUpdater = nil
+    }
     
     func play() {
-        player.play()
+        player?.play()
     }
 }
 class NewVideoPreview: NSObject, FLTVideoPreviewApi {
@@ -132,10 +148,9 @@ class NewVideoPreview: NSObject, FLTVideoPreviewApi {
     }
     
     func dispose(_ msg: FLTPreviewDisposeMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        guard let player = players.removeValue(forKey: msg.textureId.int64Value) else {
-            return
-        }
-        player.pause()
+        var player = players.removeValue(forKey: msg.textureId.int64Value)
+        player?.stop()
+        player = nil
     }
     
     
