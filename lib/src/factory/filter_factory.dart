@@ -27,11 +27,8 @@ class FilterFactory {
             CreateShaderFilterMessage(
               shader: body,
               params: params,
-              vertex: name == 'GPULookup'
-                  ? await rootBundle.loadString(
-                      'packages/native_filters/shaders/GPUTwoInput_vertex.glsl',
-                    )
-                  : null,
+              vertex: null,
+              twoInput: name == 'GPULookup',
             ),
           );
           return Filter._(name, message.filterId, 0, _api);

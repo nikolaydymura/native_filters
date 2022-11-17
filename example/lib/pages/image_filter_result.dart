@@ -51,6 +51,7 @@ class _FilterResultState extends State<ImageFilterResultScreen> {
     }
     final watch = Stopwatch();
     watch.start();
+    debugPrint('$runtimeType ${_output.absolute}');
     await widget.filter.export(_output);
     _elapsedMilliseconds = watch.elapsedMilliseconds;
   }

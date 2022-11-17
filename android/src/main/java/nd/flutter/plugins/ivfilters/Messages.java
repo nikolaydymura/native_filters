@@ -41,6 +41,15 @@ public class Messages {
       this.shader = setterArg;
     }
 
+    private @NonNull Boolean twoInput;
+    public @NonNull Boolean getTwoInput() { return twoInput; }
+    public void setTwoInput(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"twoInput\" is null.");
+      }
+      this.twoInput = setterArg;
+    }
+
     private @NonNull Map<String, Map<String, Object>> params;
     public @NonNull Map<String, Map<String, Object>> getParams() { return params; }
     public void setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
@@ -63,6 +72,11 @@ public class Messages {
         this.shader = setterArg;
         return this;
       }
+      private @Nullable Boolean twoInput;
+      public @NonNull Builder setTwoInput(@NonNull Boolean setterArg) {
+        this.twoInput = setterArg;
+        return this;
+      }
       private @Nullable Map<String, Map<String, Object>> params;
       public @NonNull Builder setParams(@NonNull Map<String, Map<String, Object>> setterArg) {
         this.params = setterArg;
@@ -72,6 +86,7 @@ public class Messages {
         CreateShaderFilterMessage pigeonReturn = new CreateShaderFilterMessage();
         pigeonReturn.setVertex(vertex);
         pigeonReturn.setShader(shader);
+        pigeonReturn.setTwoInput(twoInput);
         pigeonReturn.setParams(params);
         return pigeonReturn;
       }
@@ -80,6 +95,7 @@ public class Messages {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("vertex", vertex);
       toMapResult.put("shader", shader);
+      toMapResult.put("twoInput", twoInput);
       toMapResult.put("params", params);
       return toMapResult;
     }
@@ -89,6 +105,8 @@ public class Messages {
       pigeonResult.setVertex((String)vertex);
       Object shader = map.get("shader");
       pigeonResult.setShader((String)shader);
+      Object twoInput = map.get("twoInput");
+      pigeonResult.setTwoInput((Boolean)twoInput);
       Object params = map.get("params");
       pigeonResult.setParams((Map<String, Map<String, Object>>)params);
       return pigeonResult;

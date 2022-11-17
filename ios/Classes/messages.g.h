@@ -36,9 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithVertex:(nullable NSString *)vertex
     shader:(NSString *)shader
+    twoInput:(NSNumber *)twoInput
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params;
 @property(nonatomic, copy, nullable) NSString * vertex;
 @property(nonatomic, copy) NSString * shader;
+@property(nonatomic, strong) NSNumber * twoInput;
 @property(nonatomic, strong) NSDictionary<NSString *, NSDictionary<NSString *, id> *> * params;
 @end
 

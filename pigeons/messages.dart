@@ -20,9 +20,10 @@ import 'package:pigeon/pigeon.dart';
 ))
 
 class CreateShaderFilterMessage {
-  CreateShaderFilterMessage(this.shader, this.params, {this.vertex});
+  CreateShaderFilterMessage(this.shader, this.params, {this.twoInput = false, this.vertex});
   String? vertex;
   String shader;
+  bool twoInput;
   Map<String?, Map<String?, Object?>?> params;
 }
 

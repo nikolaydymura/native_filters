@@ -141,10 +141,12 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation FLTCreateShaderFilterMessage
 + (instancetype)makeWithVertex:(nullable NSString *)vertex
     shader:(NSString *)shader
+    twoInput:(NSNumber *)twoInput
     params:(NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)params {
   FLTCreateShaderFilterMessage* pigeonResult = [[FLTCreateShaderFilterMessage alloc] init];
   pigeonResult.vertex = vertex;
   pigeonResult.shader = shader;
+  pigeonResult.twoInput = twoInput;
   pigeonResult.params = params;
   return pigeonResult;
 }
@@ -153,6 +155,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   pigeonResult.vertex = GetNullableObject(dict, @"vertex");
   pigeonResult.shader = GetNullableObject(dict, @"shader");
   NSAssert(pigeonResult.shader != nil, @"");
+  pigeonResult.twoInput = GetNullableObject(dict, @"twoInput");
+  NSAssert(pigeonResult.twoInput != nil, @"");
   pigeonResult.params = GetNullableObject(dict, @"params");
   NSAssert(pigeonResult.params != nil, @"");
   return pigeonResult;
@@ -162,6 +166,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   return @{
     @"vertex" : (self.vertex ?: [NSNull null]),
     @"shader" : (self.shader ?: [NSNull null]),
+    @"twoInput" : (self.twoInput ?: [NSNull null]),
     @"params" : (self.params ?: [NSNull null]),
   };
 }

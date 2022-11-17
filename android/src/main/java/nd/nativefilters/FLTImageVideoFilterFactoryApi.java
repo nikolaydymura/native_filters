@@ -54,14 +54,19 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
 
         final String vertex = msg.getVertex();
         final NativeFilter filter;
-        if (vertex != null) {
-            filter = new NativeFilter(
-                    new GPUImageDynamicFilter(vertex, msg.getShader(), msg.getParams()),
-                    new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+        if (msg.getTwoInput()) {
+            GPUImageTwoInputDynamicFilter imageFilter = new GPUImageTwoInputDynamicFilter(msg.getShader(), msg.getParams());
+            filter = new NativeFilter(imageFilter,new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
         } else {
-            filter = new NativeFilter(
-                    new GPUImageDynamicFilter(msg.getShader(), msg.getParams()),
-                    new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+            if (vertex != null) {
+                filter = new NativeFilter(
+                        new GPUImageDynamicFilter(vertex, msg.getShader(), msg.getParams()),
+                        new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+            } else {
+                filter = new NativeFilter(
+                        new GPUImageDynamicFilter(msg.getShader(), msg.getParams()),
+                        new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+            }
         }
 
         filters.append(filterId, filter);
@@ -388,8 +393,14 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
             }
         }
         if(filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
-            GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) filter.filterGroup.getFilters().get(filterIndex);
-            imageFilter.update(msg.getKey(), msg.getValue());
+            final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(filterIndex);
+            if (rawFilter instanceof  GPUImageDynamicFilter) {
+                GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) filter.filterGroup.getFilters().get(filterIndex);
+                imageFilter.update(msg.getKey(), msg.getValue());
+            } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+                GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) filter.filterGroup.getFilters().get(filterIndex);
+                imageFilter.update(msg.getKey(), msg.getValue());
+            }
         }
     }
 
@@ -410,8 +421,17 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                 videoFilter.setBitmap(lutBitmap);
             }
             if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
-                GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
-                imageFilter.setBitmap(lutBitmap);
+                final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
+                if (rawFilter instanceof  GPUImageDynamicFilter) {
+                    GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) rawFilter;
+                    imageFilter.setBitmap(lutBitmap);
+                } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+                    GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) rawFilter;
+                    imageFilter.setBitmap(lutBitmap);
+                } else if (rawFilter instanceof  GPUImageLookupFilter) {
+                    GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) rawFilter;
+                    imageFilter.setBitmap(lutBitmap);
+                }
             }
         }
     }
@@ -428,16 +448,21 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                     final InputStream stream = binding.getApplicationContext()
                             .getAssets().open(asset);
 
-                    lutBitmap = BitmapFactory.decodeStream(stream);
+                    final BitmapFactory.Options opts = new BitmapFactory.Options();
+                    opts.inTargetDensity = binding.getApplicationContext().getResources().getDisplayMetrics().densityDpi;
+                    lutBitmap = BitmapFactory.decodeStream(stream, null, opts);
                 } else {
                     lutBitmap = BitmapFactory.decodeFile(msg.getValue());
                 }
-                if (filter.glFilterGroup != null && !filter.glFilterGroup.getFilters().isEmpty()) {
-                    GPUVideoDynamicFilter videoFilter = (GPUVideoDynamicFilter) filter.glFilterGroup.getFilters().get(msg.getFilterIndex().intValue());
-                    videoFilter.setBitmap(lutBitmap);
-                }
-                if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
-                    GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
+                final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
+                if (rawFilter instanceof  GPUImageDynamicFilter) {
+                    GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) rawFilter;
+                    imageFilter.setBitmap(lutBitmap);
+                } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+                    GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) rawFilter;
+                    imageFilter.setBitmap(lutBitmap);
+                } else if (rawFilter instanceof  GPUImageLookupFilter) {
+                    GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
                 }
             }

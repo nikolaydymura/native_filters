@@ -47,10 +47,13 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
     LutAssetInfo('filters/filter_lut_10.png', 8, 64, 8),
     LutAssetInfo('filters/filter_lut_11.png', 8, 64, 8),
     LutAssetInfo('filters/filter_lut_12.png', 8, 64, 8),
+    LutAssetInfo('filters/FESTIVAL.png', 8, 64, 8),
+    LutAssetInfo('filters/DEMO.png', 8, 64, 8),
+    LutAssetInfo('filters/DEMO_1.png', 8, 8, 8),
     LutAssetInfo('filters/filter_lut_13.png', 16, 1, 8),
   ];
 
-  bool processNative = false;
+  bool processNative = true;
 
   @override
   void initState() {
@@ -212,10 +215,6 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
     } else {
       if (widget.filter.name == 'GPULookup') {
         final filter = await widget.factory.createFilter(widget.filter.name);
-        await filter.setBitmapAsset(
-          'inputTextureCubeData',
-          filterLutAsset.path,
-        );
         _filter = filter;
       } else {
         final filterGroup = await widget.factory.createFilterGroup();
@@ -357,18 +356,22 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
     }
     if (processNative) {
       if (Platform.isIOS) {
-        await filter.setNSDataAsset(
+        final data = await rootBundle
+            .load(value.path)
+            .then((value) => value.buffer.asUint8List());
+        await filter.setNSData(
           'inputCubeData',
-          value.path,
+          data,
           lut8x64: value.rows == 64,
           process: processNative,
         );
       } else if (Platform.isAndroid) {
+        await filter.setNumValue('inputRows', value.rows);
+        await filter.setNumValue('inputColumns', value.columns);
+        await filter.setNumValue('inputSize', value.size);
         await filter.setBitmapAsset(
           'inputTextureCubeData',
           value.path,
-          lut8x64: value.rows == 64,
-          process: processNative,
         );
       }
     } else {
@@ -389,6 +392,9 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
           data,
         );
       } else if (Platform.isAndroid) {
+        await filter.setNumValue('inputRows', value.rows);
+        await filter.setNumValue('inputColumns', value.columns);
+        await filter.setNumValue('inputSize', value.size);
         final byteData = await rootBundle.load(value.path);
         final data = byteData.buffer.asUint8List();
         await filter.setBitmap(

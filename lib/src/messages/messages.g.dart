@@ -12,17 +12,20 @@ class CreateShaderFilterMessage {
   CreateShaderFilterMessage({
     this.vertex,
     required this.shader,
+    required this.twoInput,
     required this.params,
   });
 
   String? vertex;
   String shader;
+  bool twoInput;
   Map<String?, Map<String?, Object?>?> params;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['vertex'] = vertex;
     pigeonMap['shader'] = shader;
+    pigeonMap['twoInput'] = twoInput;
     pigeonMap['params'] = params;
     return pigeonMap;
   }
@@ -32,6 +35,7 @@ class CreateShaderFilterMessage {
     return CreateShaderFilterMessage(
       vertex: pigeonMap['vertex'] as String?,
       shader: pigeonMap['shader']! as String,
+      twoInput: pigeonMap['twoInput']! as bool,
       params: (pigeonMap['params'] as Map<Object?, Object?>?)!.cast<String?, Map<String?, Object?>?>(),
     );
   }
