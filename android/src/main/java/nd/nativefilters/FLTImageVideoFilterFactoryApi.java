@@ -17,19 +17,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
-import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageRenderer;
-import jp.co.cyberagent.android.gpuimage.GPUImageView;
 import jp.co.cyberagent.android.gpuimage.PixelBuffer;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilterGroup;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageLookupFilter;
 import nd.flutter.plugins.ivfilters.GPUImageDynamicFilter;
+import nd.flutter.plugins.ivfilters.GPUImageTwoInputDynamicFilter;
 import nd.flutter.plugins.ivfilters.GPUVideoDynamicFilter;
 import nd.flutter.plugins.ivfilters.Messages;
 
