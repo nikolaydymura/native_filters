@@ -152,7 +152,9 @@ class FilterInput {
       data['AttributeClass'] == 'NSNumber' || data['AttributeClass'] == 'float';
 
   bool get isData =>
-      data['AttributeClass'] == 'NSData' || data['AttributeClass'] == 'Bitmap';
+      data['AttributeClass'] == 'NSData' ||
+      data['AttributeClass'] == 'CIImage' ||
+      data['AttributeClass'] == 'Bitmap';
 
   num? get defaultNum => data['AttributeDefault'];
 

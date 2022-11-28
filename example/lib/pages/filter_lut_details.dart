@@ -191,11 +191,18 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
     if (Platform.isIOS) {
       final filterGroup = await widget.factory.createFilterGroup();
       final filter = await filterGroup.addFilter(widget.filter.name);
-      const size = 64;
-      await filter.setNumValue('inputCubeDimension', size);
+      if (widget.filter.name == 'CIColorCube') {
+        const size = 64;
+        await filter.setNumValue('inputCubeDimension', size);
 
-      await filter.setNSDataAsset('inputCubeData', filterLutAsset.path);
+        await filter.setNSDataAsset('inputCubeData', filterLutAsset.path);
+      } else {
+        await filter.setNumValue('inputRows', 8);
+        await filter.setNumValue('inputColumns', 8);
+        await filter.setNumValue('inputSize', 8);
 
+        await filter.setCIImageAsset('inputImage2', filterLutAsset.path);
+      }
       final previewFilter = await filterGroup.addFilter('CISwipeTransition');
       await previewFilter.setNumValue('inputTime', 0.5);
       await previewFilter.setCIImageAsset(

@@ -2,6 +2,39 @@ part of native_filters;
 
 const List<Map<String, dynamic>> _kCoreImageFilters = [
   {
+    'AttributeFilterName': 'GPULookup',
+    'AttributeFilterDisplayName': 'GPULookup',
+    'AttributeFilterCategories': ['CategoryStillImage', 'CategoryVideo'],
+    'inputImage': {
+      'CIAttributeClass': 'CIImage',
+      'CIAttributeDescription':
+      'The image to use as an input image. For filters that also use a background image, this is the foreground image.',
+      'CIAttributeDisplayName': 'Image',
+      'CIAttributeType': 'CIAttributeTypeImage'
+    },
+    'inputIntensity': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 1.0,
+    },
+    'inputSize': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 8.0,
+    },
+    'inputRows': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 64.0,
+    },
+    'inputColumns': {
+      'AttributeClass': 'float',
+      'AttributeDefault': 8.0,
+    },
+    'inputImage2': {
+      'AttributeClass': 'CIImage',
+      'CIAttributeDescription': 'The LUT image',
+      'CIAttributeDisplayName': 'Image2'
+    },
+  },
+  {
     'inputTime': {
       'AttributeClass': 'NSNumber',
       'AttributeDefault': 0,

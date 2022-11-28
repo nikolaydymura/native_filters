@@ -10,6 +10,7 @@ public class SwiftNativeFiltersPlugin: NSObject, FlutterPlugin {
         
         //let videoPreviewFactory = FilterVideoPreviewFactory(registrar: registrar, factory: instance.factory)
         //registrar.register(videoPreviewFactory, withId: videoPreviewFactory.id)
+        GPULookupFilterRegister.register()
     }
 
     let factory: ImageVideoFilterFactory
