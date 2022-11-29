@@ -74,10 +74,10 @@ extension CIImage {
         guard let type = uti?.takeRetainedValue() else {
             if pathExtension == "jpg" || pathExtension == "jpeg" {
                 if let file = output {
-                    try? Context.ciContext.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                     return nil
                 } else {
-                    return Context.ciContext.jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                 }
             }
             return nil
@@ -85,17 +85,17 @@ extension CIImage {
         
         if UTTypeConformsTo(type, kUTTypePNG) {
             if let file = output {
-                try? Context.ciContext.writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                try? CIContext().writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                 return nil
             } else {
-                return Context.ciContext.pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                return CIContext().pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
             }
         }
         if let file = output {
-            try? Context.ciContext.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
             return nil
         } else {
-            return Context.ciContext.jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
         }
     }
 }
@@ -166,7 +166,7 @@ class GPULookupFilter: CIFilter {
            vec2 textureCoordinate = samplerCoord(image);
            vec4 textureColor = sample(image, textureCoordinate);
            vec4 newColor = sampleAs3DTexture(lutImage, textureColor.rgb, inputSize, inputRows, inputColumns);
-           return mix(textureColor, vec4(newColor.rgb, textureColor.a), inputIntensity);
+           return mix(linear_to_srgb(textureColor), linear_to_srgb(vec4(newColor.rgb, textureColor.a)), inputIntensity);
         }
         """
     /*"""
