@@ -197,9 +197,9 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
 
         await filter.setNSDataAsset('inputCubeData', filterLutAsset.path);
       } else {
-        await filter.setNumValue('inputRows', 8);
-        await filter.setNumValue('inputColumns', 8);
-        await filter.setNumValue('inputSize', 8);
+        await filter.setNumValue('inputRows', filterLutAsset.rows);
+        await filter.setNumValue('inputColumns', filterLutAsset.columns);
+        await filter.setNumValue('inputSize', filterLutAsset.size);
 
         await filter.setCIImageAsset('inputImage2', filterLutAsset.path);
       }
@@ -361,8 +361,14 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
       final group = _filter as FilterGroup;
       filter = group[0];
     }
-    if (processNative) {
-      if (Platform.isIOS) {
+    if (Platform.isAndroid) {
+      await _applyAndroidLut(filter, value);
+      return;
+    } else if (Platform.isIOS && widget.filter.name == 'GPULookup') {
+      await _applyIOSLut(filter, value);
+      return;
+    } else if (Platform.isIOS) {
+      if (processNative) {
         final data = await rootBundle
             .load(value.path)
             .then((value) => value.buffer.asUint8List());
@@ -372,17 +378,7 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
           lut8x64: value.rows == 64,
           process: processNative,
         );
-      } else if (Platform.isAndroid) {
-        await filter.setNumValue('inputRows', value.rows);
-        await filter.setNumValue('inputColumns', value.columns);
-        await filter.setNumValue('inputSize', value.size);
-        await filter.setBitmapAsset(
-          'inputTextureCubeData',
-          value.path,
-        );
-      }
-    } else {
-      if (Platform.isIOS) {
+      } else {
         const dimension = 64;
         final image = await rootBundle
             .load(value.path)
@@ -398,18 +394,38 @@ class _FilterDetailsState extends State<FilterLutDetailsScreen> {
           'inputCubeData',
           data,
         );
-      } else if (Platform.isAndroid) {
-        await filter.setNumValue('inputRows', value.rows);
-        await filter.setNumValue('inputColumns', value.columns);
-        await filter.setNumValue('inputSize', value.size);
-        final byteData = await rootBundle.load(value.path);
-        final data = byteData.buffer.asUint8List();
-        await filter.setBitmap(
-          'inputTextureCubeData',
-          data,
-        );
       }
     }
+  }
+
+  Future<void> _applyAndroidLut(Filter filter, LutAssetInfo value) async {
+    if (processNative) {
+      await filter.setNumValue('inputRows', value.rows);
+      await filter.setNumValue('inputColumns', value.columns);
+      await filter.setNumValue('inputSize', value.size);
+      await filter.setBitmapAsset(
+        'inputTextureCubeData',
+        value.path,
+      );
+    } else {
+      await filter.setNumValue('inputRows', value.rows);
+      await filter.setNumValue('inputColumns', value.columns);
+      await filter.setNumValue('inputSize', value.size);
+      final byteData = await rootBundle.load(value.path);
+      final data = byteData.buffer.asUint8List();
+      await filter.setBitmap(
+        'inputTextureCubeData',
+        data,
+      );
+    }
+  }
+
+  Future<void> _applyIOSLut(Filter filter, LutAssetInfo value) async {
+    await filter.setNumValue('inputRows', filterLutAsset.rows);
+    await filter.setNumValue('inputColumns', filterLutAsset.columns);
+    await filter.setNumValue('inputSize', filterLutAsset.size);
+
+    await filter.setCIImageAsset('inputImage2', filterLutAsset.path);
   }
 
   List<Widget> _attributeDetails(Map<String, dynamic> items) {

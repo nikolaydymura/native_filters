@@ -74,10 +74,10 @@ extension CIImage {
         guard let type = uti?.takeRetainedValue() else {
             if pathExtension == "jpg" || pathExtension == "jpeg" {
                 if let file = output {
-                    try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    try? Context.ciContext.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                     return nil
                 } else {
-                    return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    return Context.ciContext.jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                 }
             }
             return nil
@@ -85,17 +85,17 @@ extension CIImage {
         
         if UTTypeConformsTo(type, kUTTypePNG) {
             if let file = output {
-                try? CIContext().writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                try? Context.ciContext.writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
                 return nil
             } else {
-                return CIContext().pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                return Context.ciContext.pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
             }
         }
         if let file = output {
-            try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            try? Context.ciContext.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
             return nil
         } else {
-            return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            return Context.ciContext.jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
         }
     }
 }
@@ -166,9 +166,40 @@ class GPULookupFilter: CIFilter {
            vec2 textureCoordinate = samplerCoord(image);
            vec4 textureColor = sample(image, textureCoordinate);
            vec4 newColor = sampleAs3DTexture(lutImage, textureColor.rgb, inputSize, inputRows, inputColumns);
-           return mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+           return mix(textureColor, vec4(newColor.rgb, textureColor.a), inputIntensity);
         }
         """
+    /*"""
+    kernel vec4 lutColor(sampler image, sampler lutImage, float inputSize, float inputRows, float inputColumns, float inputIntensity)
+    {
+        vec2 textureCoordinate = samplerCoord(image);
+        vec4 textureColor = sample(image, textureCoordinate);
+
+        float blueColor = textureColor.b * 63.0;
+
+        vec2 quad1;
+        quad1.y = floor(floor(blueColor) / 8.0);
+        quad1.x = floor(blueColor) - (quad1.y * 8.0);
+
+        vec2 quad2;
+        quad2.y = floor(ceil(blueColor) / 8.0);
+        quad2.x = ceil(blueColor) - (quad2.y * 8.0);
+
+        vec2 texPos1;
+        texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
+        texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
+
+        vec2 texPos2;
+        texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
+        texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
+
+        vec4 newColor1 = sample(lutImage, texPos1);
+        vec4 newColor2 = sample(lutImage, texPos2);
+
+        vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
+        return mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+    }
+    """*/
     )
     
     override var outputImage: CIImage? {
@@ -181,8 +212,9 @@ class GPULookupFilter: CIFilter {
         guard let  pseudoColorKernel = pseudoColorKernel else {
             return image
         }
+        let intensity = inputIntensity ?? 1.0
         let extent = image.extent
-        let arguments = [image, lutImage, inputSize, inputRows, inputColumns, inputIntensity] as [Any]
+        let arguments = [image, lutImage, inputSize, inputRows, inputColumns, intensity] as [Any]
         
         return pseudoColorKernel.apply(extent: extent,
                                        roiCallback:

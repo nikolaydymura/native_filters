@@ -1,4 +1,4 @@
-varying highp vec2 textureCoordinate;
+/*varying highp vec2 textureCoordinate;
 varying highp vec2 textureCoordinate2; // TODO: This is not used
 
 uniform sampler2D inputImageTexture;
@@ -36,10 +36,10 @@ void main()
 
     lowp vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
     gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
-}
+}*/
 
 
-/*precision mediump float;
+precision mediump float;
 varying highp vec2 textureCoordinate;
 uniform mediump sampler2D inputTextureCubeData;
 uniform lowp sampler2D inputImageTexture;
@@ -52,7 +52,7 @@ vec2 computeSliceOffset(float slice, float slicesPerRow, vec2 sliceSize) {
   return sliceSize * vec2(mod(slice, slicesPerRow),
                           floor(slice / slicesPerRow));
 }
-
+/*
 vec4 sampleAs3DTexture2(vec3 textureColor, float size, float numRows, float slicesPerRow) {
     highp vec2 blueColor = vec2(63.0, 63.0) * textureColor.b;
     vec2 sliceRect = vec2(8.0, 64.0);
@@ -82,6 +82,7 @@ vec4 sampleAs3DTexture2(vec3 textureColor, float size, float numRows, float slic
     lowp vec4 newColor = mix(newColor1, newColor2, zOffset);
     return newColor;
 }
+*/
 
 vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slicesPerRow) {
   float slice = textureColor.z * (size - 1.0);
@@ -104,6 +105,6 @@ vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slice
 
 void main() {
    vec4 textureColor = texture2D(inputImageTexture, textureCoordinate);
-   vec4 newColor = sampleAs3DTexture2(textureColor.rgb, inputSize, inputRows, inputColumns);
-   gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
-}*/
+   vec4 newColor = sampleAs3DTexture(textureColor.rgb, inputSize, inputRows, inputColumns);
+   gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.a), inputIntensity);
+}
