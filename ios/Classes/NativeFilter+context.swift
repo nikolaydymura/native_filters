@@ -66,6 +66,8 @@ extension UIImage {
 
 extension CIImage {
     func asData(pathExtension: String? = nil, output: URL? = nil) -> Data? {
+        let context = Context.ciContext
+        let defaultColorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear)
         let uti = UTTypeCreatePreferredIdentifierForTag(
             kUTTagClassFilenameExtension,
             (pathExtension ?? "png") as CFString,
@@ -74,10 +76,10 @@ extension CIImage {
         guard let type = uti?.takeRetainedValue() else {
             if pathExtension == "jpg" || pathExtension == "jpeg" {
                 if let file = output {
-                    try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    try? context.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? defaultColorSpace!)
                     return nil
                 } else {
-                    return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                    return context.jpegRepresentation(of: self, colorSpace: colorSpace ?? defaultColorSpace!)
                 }
             }
             return nil
@@ -85,17 +87,17 @@ extension CIImage {
         
         if UTTypeConformsTo(type, kUTTypePNG) {
             if let file = output {
-                try? CIContext().writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                try? context.writePNGRepresentation(of: self, to: file, format: CIFormat.RGBA8, colorSpace: colorSpace ?? defaultColorSpace!)
                 return nil
             } else {
-                return CIContext().pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+                return context.pngRepresentation(of: self, format: CIFormat.RGBA8, colorSpace: colorSpace ?? defaultColorSpace!)
             }
         }
         if let file = output {
-            try? CIContext().writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            try? context.writeJPEGRepresentation(of: self, to: file, colorSpace: colorSpace ?? defaultColorSpace!)
             return nil
         } else {
-            return CIContext().jpegRepresentation(of: self, colorSpace: colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!)
+            return context.jpegRepresentation(of: self, colorSpace: colorSpace ?? defaultColorSpace!)
         }
     }
 }
@@ -166,7 +168,8 @@ class GPULookupFilter: CIFilter {
            vec2 textureCoordinate = samplerCoord(image);
            vec4 textureColor = sample(image, textureCoordinate);
            vec4 newColor = sampleAs3DTexture(lutImage, textureColor.rgb, inputSize, inputRows, inputColumns);
-           return mix(linear_to_srgb(textureColor), linear_to_srgb(vec4(newColor.rgb, textureColor.a)), inputIntensity);
+           return mix(textureColor, vec4(newColor.rgb, textureColor.a), inputIntensity);
+           //return mix(linear_to_srgb(textureColor), linear_to_srgb(vec4(newColor.rgb, textureColor.a)), inputIntensity);
         }
         """
     /*"""
