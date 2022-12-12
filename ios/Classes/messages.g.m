@@ -112,9 +112,9 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (nullable FLTPreviewCreateMessage *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
-@interface FLTPreviewFilterMessage ()
-+ (FLTPreviewFilterMessage *)fromMap:(NSDictionary *)dict;
-+ (nullable FLTPreviewFilterMessage *)nullableFromMap:(NSDictionary *)dict;
+@interface FLTActivateFilterPreviewMessage ()
++ (FLTActivateFilterPreviewMessage *)fromMap:(NSDictionary *)dict;
++ (nullable FLTActivateFilterPreviewMessage *)nullableFromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
 @interface FLTPreviewSourceMessage ()
@@ -369,11 +369,13 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation FLTExportFileMessage
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
-    video:(NSNumber *)video {
+    video:(NSNumber *)video
+    context:(NSString *)context {
   FLTExportFileMessage* pigeonResult = [[FLTExportFileMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.path = path;
   pigeonResult.video = video;
+  pigeonResult.context = context;
   return pigeonResult;
 }
 + (FLTExportFileMessage *)fromMap:(NSDictionary *)dict {
@@ -384,6 +386,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   NSAssert(pigeonResult.path != nil, @"");
   pigeonResult.video = GetNullableObject(dict, @"video");
   NSAssert(pigeonResult.video != nil, @"");
+  pigeonResult.context = GetNullableObject(dict, @"context");
+  NSAssert(pigeonResult.context != nil, @"");
   return pigeonResult;
 }
 + (nullable FLTExportFileMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTExportFileMessage fromMap:dict] : nil; }
@@ -392,16 +396,19 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"filterId" : (self.filterId ?: [NSNull null]),
     @"path" : (self.path ?: [NSNull null]),
     @"video" : (self.video ?: [NSNull null]),
+    @"context" : (self.context ?: [NSNull null]),
   };
 }
 @end
 
 @implementation FLTExportDataMessage
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
-    data:(FlutterStandardTypedData *)data {
+    data:(nullable FlutterStandardTypedData *)data
+    context:(NSString *)context {
   FLTExportDataMessage* pigeonResult = [[FLTExportDataMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.data = data;
+  pigeonResult.context = context;
   return pigeonResult;
 }
 + (FLTExportDataMessage *)fromMap:(NSDictionary *)dict {
@@ -409,7 +416,8 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   pigeonResult.filterId = GetNullableObject(dict, @"filterId");
   NSAssert(pigeonResult.filterId != nil, @"");
   pigeonResult.data = GetNullableObject(dict, @"data");
-  NSAssert(pigeonResult.data != nil, @"");
+  pigeonResult.context = GetNullableObject(dict, @"context");
+  NSAssert(pigeonResult.context != nil, @"");
   return pigeonResult;
 }
 + (nullable FLTExportDataMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTExportDataMessage fromMap:dict] : nil; }
@@ -417,6 +425,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   return @{
     @"filterId" : (self.filterId ?: [NSNull null]),
     @"data" : (self.data ?: [NSNull null]),
+    @"context" : (self.context ?: [NSNull null]),
   };
 }
 @end
@@ -621,27 +630,32 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 }
 @end
 
-@implementation FLTPreviewFilterMessage
+@implementation FLTActivateFilterPreviewMessage
 + (instancetype)makeWithTextureId:(NSNumber *)textureId
-    filterId:(NSNumber *)filterId {
-  FLTPreviewFilterMessage* pigeonResult = [[FLTPreviewFilterMessage alloc] init];
+    filterId:(NSNumber *)filterId
+    context:(NSString *)context {
+  FLTActivateFilterPreviewMessage* pigeonResult = [[FLTActivateFilterPreviewMessage alloc] init];
   pigeonResult.textureId = textureId;
   pigeonResult.filterId = filterId;
+  pigeonResult.context = context;
   return pigeonResult;
 }
-+ (FLTPreviewFilterMessage *)fromMap:(NSDictionary *)dict {
-  FLTPreviewFilterMessage *pigeonResult = [[FLTPreviewFilterMessage alloc] init];
++ (FLTActivateFilterPreviewMessage *)fromMap:(NSDictionary *)dict {
+  FLTActivateFilterPreviewMessage *pigeonResult = [[FLTActivateFilterPreviewMessage alloc] init];
   pigeonResult.textureId = GetNullableObject(dict, @"textureId");
   NSAssert(pigeonResult.textureId != nil, @"");
   pigeonResult.filterId = GetNullableObject(dict, @"filterId");
   NSAssert(pigeonResult.filterId != nil, @"");
+  pigeonResult.context = GetNullableObject(dict, @"context");
+  NSAssert(pigeonResult.context != nil, @"");
   return pigeonResult;
 }
-+ (nullable FLTPreviewFilterMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTPreviewFilterMessage fromMap:dict] : nil; }
++ (nullable FLTActivateFilterPreviewMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTActivateFilterPreviewMessage fromMap:dict] : nil; }
 - (NSDictionary *)toMap {
   return @{
     @"textureId" : (self.textureId ?: [NSNull null]),
     @"filterId" : (self.filterId ?: [NSNull null]),
+    @"context" : (self.context ?: [NSNull null]),
   };
 }
 @end
@@ -1071,7 +1085,7 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
       NSCAssert([api respondsToSelector:@selector(exportData:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(exportData:error:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
-        FLTFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FLTExportDataMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         FLTExportDataMessage *output = [api exportData:arg_msg error:&error];
         callback(wrapResult(output, error));
@@ -1209,13 +1223,13 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
 {
   switch (type) {
     case 128:     
-      return [FLTPreviewCreateMessage fromMap:[self readValue]];
+      return [FLTActivateFilterPreviewMessage fromMap:[self readValue]];
     
     case 129:     
-      return [FLTPreviewDisposeMessage fromMap:[self readValue]];
+      return [FLTPreviewCreateMessage fromMap:[self readValue]];
     
     case 130:     
-      return [FLTPreviewFilterMessage fromMap:[self readValue]];
+      return [FLTPreviewDisposeMessage fromMap:[self readValue]];
     
     case 131:     
       return [FLTPreviewPauseMessage fromMap:[self readValue]];
@@ -1238,15 +1252,15 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
 @implementation FLTVideoPreviewApiCodecWriter
 - (void)writeValue:(id)value 
 {
-  if ([value isKindOfClass:[FLTPreviewCreateMessage class]]) {
+  if ([value isKindOfClass:[FLTActivateFilterPreviewMessage class]]) {
     [self writeByte:128];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTPreviewDisposeMessage class]]) {
+  if ([value isKindOfClass:[FLTPreviewCreateMessage class]]) {
     [self writeByte:129];
     [self writeValue:[value toMap]];
   } else 
-  if ([value isKindOfClass:[FLTPreviewFilterMessage class]]) {
+  if ([value isKindOfClass:[FLTPreviewDisposeMessage class]]) {
     [self writeByte:130];
     [self writeValue:[value toMap]];
   } else 
@@ -1319,7 +1333,7 @@ void FLTVideoPreviewApiSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObjec
       NSCAssert([api respondsToSelector:@selector(setFilter:error:)], @"FLTVideoPreviewApi api (%@) doesn't respond to @selector(setFilter:error:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
-        FLTPreviewFilterMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FLTActivateFilterPreviewMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api setFilter:arg_msg error:&error];
         callback(wrapResult(nil, error));

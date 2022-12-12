@@ -74,16 +74,18 @@ class InputDataMessage {
 }
 
 class ExportFileMessage {
-  ExportFileMessage(this.filterId, this.path, this.video);
+  ExportFileMessage(this.filterId, this.path, this.video, this.context);
   int filterId;
   String path;
   bool video;
+  String context;
 }
 
 class ExportDataMessage {
-  ExportDataMessage(this.filterId, this.data);
+  ExportDataMessage(this.filterId, this.data, this.context);
   int filterId;
-  Uint8List data;
+  Uint8List? data;
+  String context;
 }
 
 class InputNumberValueMessage {
@@ -148,7 +150,7 @@ abstract class ImageVideoFilterFactoryApi {
   @ObjCSelector('setInputSource:')
   void setInputSource(InputSourceMessage msg);
   @ObjCSelector('exportData:')
-  ExportDataMessage exportData(FilterMessage msg);
+  ExportDataMessage exportData(ExportDataMessage msg);
   @ObjCSelector('exportFile:')
   @async
   void exportFile(ExportFileMessage msg);
@@ -173,6 +175,13 @@ class PreviewFilterMessage {
   PreviewFilterMessage(this.textureId, this.filterId);
   int textureId;
   int filterId;
+}
+
+class ActivateFilterPreviewMessage {
+  ActivateFilterPreviewMessage(this.textureId, this.filterId, this.context);
+  int textureId;
+  int filterId;
+  String context;
 }
 
 class PreviewSourceMessage {
@@ -201,7 +210,7 @@ abstract class VideoPreviewApi {
   @ObjCSelector('create')
   PreviewCreateMessage create();
   @ObjCSelector('setFilter:')
-  void setFilter(PreviewFilterMessage msg);
+  void setFilter(ActivateFilterPreviewMessage msg);
   @ObjCSelector('setSource:')
   void setSource(PreviewSourceMessage msg);
   @ObjCSelector('play:')

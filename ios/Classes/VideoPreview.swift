@@ -125,7 +125,7 @@ class NewVideoPreview: NSObject, FLTVideoPreviewApi {
         return FLTPreviewCreateMessage.make(withTextureId: textureId as NSNumber)
     }
     
-    func setFilter(_ msg: FLTPreviewFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+    func setFilter(_ msg: FLTActivateFilterPreviewMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         guard let filter = filters[msg.filterId] else {
             return
         }

@@ -68,22 +68,52 @@ abstract class Filterable {
     await _api.setInputData(InputDataMessage(filterId: id, data: data));
   }
 
-  Future<Uint8List?> get binaryOutput async {
-    final result = await _api.exportData(FilterMessage(filterId: id));
+  Future<Uint8List?> binaryOutput({
+    CIContext context = CIContext.system,
+  }) async {
+    final result = await _api.exportData(
+      ExportDataMessage(filterId: id, context: context.platformKey),
+    );
     return result.data;
   }
 
-  Future<void> export(File output) async {
+  Future<void> export(
+    File output, {
+    CIContext context = CIContext.system,
+  }) async {
     if (output.path.isVideo) {
       await _api.exportFile(
-        ExportFileMessage(filterId: id, path: output.path, video: true),
+        ExportFileMessage(
+          filterId: id,
+          path: output.path,
+          video: true,
+          context: context.platformKey,
+        ),
       );
     } else if (output.path.isImage) {
       await _api.exportFile(
-        ExportFileMessage(filterId: id, path: output.path, video: false),
+        ExportFileMessage(
+          filterId: id,
+          path: output.path,
+          video: false,
+          context: context.platformKey,
+        ),
       );
     } else {
       throw 'Unsupported format $output';
+    }
+  }
+}
+
+enum CIContext { egl, system }
+
+extension on CIContext {
+  String get platformKey {
+    switch (this) {
+      case CIContext.egl:
+        return 'openGLES2';
+      case CIContext.system:
+        return 'system';
     }
   }
 }

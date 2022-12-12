@@ -5,6 +5,7 @@ import AVKit
 import MobileCoreServices
 
 class NativeFilter: NSObject {
+    lazy var currentContext: CIContext? = nil
     var filters: [CIFilter] = []
     
     var originalVideo: URL? {
@@ -54,7 +55,7 @@ extension NativeFilter {
         return image
     }
     
-    func processing(_ uiImage: UIImage) -> UIImage? {
+    /*func processing(_ uiImage: UIImage) -> UIImage? {
         #if DEBUG
         let start = DispatchTime.now()
         #endif
@@ -73,7 +74,7 @@ print("\(#function): \(timeInterval) seconds")
         
         let result = image?.asUIImage(scale: uiImage.scale, orientation: uiImage.imageOrientation)
         return result ?? uiImage
-    }
+    }*/
 }
 
 extension NativeFilter {
@@ -96,7 +97,7 @@ extension NativeFilter {
         let videoComposition = AVVideoComposition(asset: asset) { request in
             let source = request.sourceImage.clampedToExtent()
             let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
-            request.finish(with: output, context: nil)
+            request.finish(with: output, context: self.currentContext)
         }
         let item = AVPlayerItem(asset: asset)
         item.videoComposition = videoComposition
@@ -112,7 +113,7 @@ extension NativeFilter {
         let videoComposition = AVVideoComposition(asset: asset) { request in
             let source = request.sourceImage.clampedToExtent()
             let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
-            request.finish(with: output, context: nil)
+            request.finish(with: output, context: self.currentContext)
         }
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
         

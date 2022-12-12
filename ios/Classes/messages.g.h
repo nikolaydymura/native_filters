@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTInputDataSourceValueMessage;
 @class FLTFilterMessage;
 @class FLTPreviewCreateMessage;
-@class FLTPreviewFilterMessage;
+@class FLTActivateFilterPreviewMessage;
 @class FLTPreviewSourceMessage;
 @class FLTPreviewPlayMessage;
 @class FLTPreviewPauseMessage;
@@ -120,19 +120,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
-    video:(NSNumber *)video;
+    video:(NSNumber *)video
+    context:(NSString *)context;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, copy) NSString * path;
 @property(nonatomic, strong) NSNumber * video;
+@property(nonatomic, copy) NSString * context;
 @end
 
 @interface FLTExportDataMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
-    data:(FlutterStandardTypedData *)data;
+    data:(nullable FlutterStandardTypedData *)data
+    context:(NSString *)context;
 @property(nonatomic, strong) NSNumber * filterId;
-@property(nonatomic, strong) FlutterStandardTypedData * data;
+@property(nonatomic, strong, nullable) FlutterStandardTypedData * data;
+@property(nonatomic, copy) NSString * context;
 @end
 
 @interface FLTInputNumberValueMessage : NSObject
@@ -209,13 +213,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSNumber * textureId;
 @end
 
-@interface FLTPreviewFilterMessage : NSObject
+@interface FLTActivateFilterPreviewMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithTextureId:(NSNumber *)textureId
-    filterId:(NSNumber *)filterId;
+    filterId:(NSNumber *)filterId
+    context:(NSString *)context;
 @property(nonatomic, strong) NSNumber * textureId;
 @property(nonatomic, strong) NSNumber * filterId;
+@property(nonatomic, copy) NSString * context;
 @end
 
 @interface FLTPreviewSourceMessage : NSObject
@@ -265,7 +271,7 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 - (void)setInputData:(FLTInputDataMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setInputSource:(FLTInputSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
-- (nullable FLTExportDataMessage *)exportData:(FLTFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable FLTExportDataMessage *)exportData:(FLTExportDataMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)exportFile:(FLTExportFileMessage *)msg completion:(void(^)(FlutterError *_Nullable))completion;
 - (void)setNumberValue:(FLTInputNumberValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNumberListValue:(FLTInputNumberListValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
@@ -282,7 +288,7 @@ NSObject<FlutterMessageCodec> *FLTVideoPreviewApiGetCodec(void);
 @protocol FLTVideoPreviewApi
 /// @return `nil` only when `error != nil`.
 - (nullable FLTPreviewCreateMessage *)create:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setFilter:(FLTPreviewFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setFilter:(FLTActivateFilterPreviewMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setSource:(FLTPreviewSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)play:(FLTPreviewPlayMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(FLTPreviewPauseMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;

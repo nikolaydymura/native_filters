@@ -4,13 +4,20 @@ import AVFoundation
 import AVKit
 import MobileCoreServices
 
-final class Context {
+extension CIContext {
+    class var defaultContext : CIContext {
+        Context.context.defaultContext
+    }
     
-    public static let shared = Context()
+    class var defaultGLContext : CIContext {
+        Context.context.defaultGLContext
+    }
+}
+
+fileprivate class Context {
+    static let context = Context()
     
-    public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
-    
-    public static var options: [CIContextOption : Any] {
+    static var options: [CIContextOption : Any] {
         #if targetEnvironment(simulator)
         return [
             CIContextOption.priorityRequestLow : true,
@@ -24,26 +31,26 @@ final class Context {
         #endif
     }
     
-    public let defaultEgleContext : EAGLContext
-    public let defaultCIContext : CIContext
+    lazy var defaultContext = {
+         CIContext()
+    }()
     
-    public var egleContext : EAGLContext?
-    public var ciContext : CIContext?
+    lazy var defaultGLContext = {
+        CIContext(eaglContext: EAGLContext(api: .openGLES2)!, options: Context.options)
+    }()
     
     fileprivate init() {
-        self.defaultEgleContext = EAGLContext(api: .openGLES2)!
-        self.defaultCIContext = CIContext(eaglContext: self.defaultEgleContext, options: Context.options)
     }
 }
 
 extension CIImage {
-    func asUIImage(scale: CGFloat, orientation: UIImage.Orientation)-> UIImage? {
+    /*func asUIImage(scale: CGFloat, orientation: UIImage.Orientation)-> UIImage? {
         guard let cgImage = Context.ciContext.createCGImage(self, from: self.extent) else {
             return nil
         }
         
         return UIImage(cgImage: cgImage, scale: scale, orientation: orientation)
-    }
+    }*/
 }
 
 extension UIImage {
@@ -65,8 +72,7 @@ extension UIImage {
 }
 
 extension CIImage {
-    func asData(pathExtension: String? = nil, output: URL? = nil) -> Data? {
-        let context = Context.ciContext
+    func asData(context: CIContext, pathExtension: String? = nil, output: URL? = nil) -> Data? {
         let defaultColorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear)
         let uti = UTTypeCreatePreferredIdentifierForTag(
             kUTTagClassFilenameExtension,

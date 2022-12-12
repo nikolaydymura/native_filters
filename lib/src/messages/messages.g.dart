@@ -237,17 +237,20 @@ class ExportFileMessage {
     required this.filterId,
     required this.path,
     required this.video,
+    required this.context,
   });
 
   int filterId;
   String path;
   bool video;
+  String context;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['filterId'] = filterId;
     pigeonMap['path'] = path;
     pigeonMap['video'] = video;
+    pigeonMap['context'] = context;
     return pigeonMap;
   }
 
@@ -257,6 +260,7 @@ class ExportFileMessage {
       filterId: pigeonMap['filterId']! as int,
       path: pigeonMap['path']! as String,
       video: pigeonMap['video']! as bool,
+      context: pigeonMap['context']! as String,
     );
   }
 }
@@ -264,16 +268,19 @@ class ExportFileMessage {
 class ExportDataMessage {
   ExportDataMessage({
     required this.filterId,
-    required this.data,
+    this.data,
+    required this.context,
   });
 
   int filterId;
-  Uint8List data;
+  Uint8List? data;
+  String context;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['filterId'] = filterId;
     pigeonMap['data'] = data;
+    pigeonMap['context'] = context;
     return pigeonMap;
   }
 
@@ -281,7 +288,8 @@ class ExportDataMessage {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return ExportDataMessage(
       filterId: pigeonMap['filterId']! as int,
-      data: pigeonMap['data']! as Uint8List,
+      data: pigeonMap['data'] as Uint8List?,
+      context: pigeonMap['context']! as String,
     );
   }
 }
@@ -476,27 +484,31 @@ class PreviewCreateMessage {
   }
 }
 
-class PreviewFilterMessage {
-  PreviewFilterMessage({
+class ActivateFilterPreviewMessage {
+  ActivateFilterPreviewMessage({
     required this.textureId,
     required this.filterId,
+    required this.context,
   });
 
   int textureId;
   int filterId;
+  String context;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['textureId'] = textureId;
     pigeonMap['filterId'] = filterId;
+    pigeonMap['context'] = context;
     return pigeonMap;
   }
 
-  static PreviewFilterMessage decode(Object message) {
+  static ActivateFilterPreviewMessage decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return PreviewFilterMessage(
+    return ActivateFilterPreviewMessage(
       textureId: pigeonMap['textureId']! as int,
       filterId: pigeonMap['filterId']! as int,
+      context: pigeonMap['context']! as String,
     );
   }
 }
@@ -934,7 +946,7 @@ class ImageVideoFilterFactoryApi {
     }
   }
 
-  Future<ExportDataMessage> exportData(FilterMessage arg_msg) async {
+  Future<ExportDataMessage> exportData(ExportDataMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportData', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
@@ -1098,15 +1110,15 @@ class _VideoPreviewApiCodec extends StandardMessageCodec{
   const _VideoPreviewApiCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is PreviewCreateMessage) {
+    if (value is ActivateFilterPreviewMessage) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PreviewDisposeMessage) {
+    if (value is PreviewCreateMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PreviewFilterMessage) {
+    if (value is PreviewDisposeMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
@@ -1130,13 +1142,13 @@ class _VideoPreviewApiCodec extends StandardMessageCodec{
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return PreviewCreateMessage.decode(readValue(buffer)!);
+        return ActivateFilterPreviewMessage.decode(readValue(buffer)!);
       
       case 129:       
-        return PreviewDisposeMessage.decode(readValue(buffer)!);
+        return PreviewCreateMessage.decode(readValue(buffer)!);
       
       case 130:       
-        return PreviewFilterMessage.decode(readValue(buffer)!);
+        return PreviewDisposeMessage.decode(readValue(buffer)!);
       
       case 131:       
         return PreviewPauseMessage.decode(readValue(buffer)!);
@@ -1190,7 +1202,7 @@ class VideoPreviewApi {
     }
   }
 
-  Future<void> setFilter(PreviewFilterMessage arg_msg) async {
+  Future<void> setFilter(ActivateFilterPreviewMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.VideoPreviewApi.setFilter', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =

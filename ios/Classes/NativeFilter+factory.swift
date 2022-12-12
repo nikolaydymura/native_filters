@@ -126,20 +126,21 @@ extension ImageVideoFilterFactory {
 }
 
 extension ImageVideoFilterFactory {
-    func exportData(_ msg: FLTFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTExportDataMessage? {
+    func exportData(_ msg: FLTExportDataMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> FLTExportDataMessage? {
         guard let container = filters[msg.filterId.int64Value] else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
                                               details: nil)
            return nil
         }
-        guard let image = container.processedImage?.asData(pathExtension: container.originalImage?.pathExtension) else {
+        let context = msg.context == "openGLES2" ? CIContext.defaultGLContext : CIContext.defaultContext
+        guard let image = container.processedImage?.asData(context: context, pathExtension: container.originalImage?.pathExtension) else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Failed to export data",
                                               details: nil)
            return nil
         }
-        return FLTExportDataMessage.make(withFilterId: msg.filterId, data: FlutterStandardTypedData(bytes: image))
+        return FLTExportDataMessage.make(withFilterId: msg.filterId, data: FlutterStandardTypedData(bytes: image), context: msg.context)
     }
     
     func exportFile(_ msg: FLTExportFileMessage, completion: @escaping (FlutterError?) -> Void) {
@@ -151,6 +152,7 @@ extension ImageVideoFilterFactory {
         }
         if msg.video.boolValue {
             let output = URL(fileURLWithPath: msg.path)
+            container.currentContext = msg.context == "openGLES2" ? CIContext.defaultGLContext : nil
             guard let exporter = container.exportVideoSession else {
                 completion(FlutterError.init(code: "image-video-filter",
                                                    message: "Export session not configured",
@@ -171,7 +173,8 @@ extension ImageVideoFilterFactory {
             }
         } else {
             let output = URL(fileURLWithPath: msg.path)
-            container.processedImage?.asData(pathExtension: output.pathExtension, output: output)
+            let context = msg.context == "openGLES2" ? CIContext.defaultGLContext : CIContext.defaultContext
+            container.processedImage?.asData(context: context, pathExtension: output.pathExtension, output: output)
             completion(nil)
         }
     }

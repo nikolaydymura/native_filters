@@ -603,6 +603,15 @@ public class Messages {
       this.video = setterArg;
     }
 
+    private @NonNull String context;
+    public @NonNull String getContext() { return context; }
+    public void setContext(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"context\" is null.");
+      }
+      this.context = setterArg;
+    }
+
     /**Constructor is private to enforce null safety; use Builder. */
     private ExportFileMessage() {}
     public static final class Builder {
@@ -621,11 +630,17 @@ public class Messages {
         this.video = setterArg;
         return this;
       }
+      private @Nullable String context;
+      public @NonNull Builder setContext(@NonNull String setterArg) {
+        this.context = setterArg;
+        return this;
+      }
       public @NonNull ExportFileMessage build() {
         ExportFileMessage pigeonReturn = new ExportFileMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setPath(path);
         pigeonReturn.setVideo(video);
+        pigeonReturn.setContext(context);
         return pigeonReturn;
       }
     }
@@ -634,6 +649,7 @@ public class Messages {
       toMapResult.put("filterId", filterId);
       toMapResult.put("path", path);
       toMapResult.put("video", video);
+      toMapResult.put("context", context);
       return toMapResult;
     }
     static @NonNull ExportFileMessage fromMap(@NonNull Map<String, Object> map) {
@@ -644,6 +660,8 @@ public class Messages {
       pigeonResult.setPath((String)path);
       Object video = map.get("video");
       pigeonResult.setVideo((Boolean)video);
+      Object context = map.get("context");
+      pigeonResult.setContext((String)context);
       return pigeonResult;
     }
   }
@@ -659,13 +677,19 @@ public class Messages {
       this.filterId = setterArg;
     }
 
-    private @NonNull byte[] data;
-    public @NonNull byte[] getData() { return data; }
-    public void setData(@NonNull byte[] setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"data\" is null.");
-      }
+    private @Nullable byte[] data;
+    public @Nullable byte[] getData() { return data; }
+    public void setData(@Nullable byte[] setterArg) {
       this.data = setterArg;
+    }
+
+    private @NonNull String context;
+    public @NonNull String getContext() { return context; }
+    public void setContext(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"context\" is null.");
+      }
+      this.context = setterArg;
     }
 
     /**Constructor is private to enforce null safety; use Builder. */
@@ -677,14 +701,20 @@ public class Messages {
         return this;
       }
       private @Nullable byte[] data;
-      public @NonNull Builder setData(@NonNull byte[] setterArg) {
+      public @NonNull Builder setData(@Nullable byte[] setterArg) {
         this.data = setterArg;
+        return this;
+      }
+      private @Nullable String context;
+      public @NonNull Builder setContext(@NonNull String setterArg) {
+        this.context = setterArg;
         return this;
       }
       public @NonNull ExportDataMessage build() {
         ExportDataMessage pigeonReturn = new ExportDataMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setData(data);
+        pigeonReturn.setContext(context);
         return pigeonReturn;
       }
     }
@@ -692,6 +722,7 @@ public class Messages {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("filterId", filterId);
       toMapResult.put("data", data);
+      toMapResult.put("context", context);
       return toMapResult;
     }
     static @NonNull ExportDataMessage fromMap(@NonNull Map<String, Object> map) {
@@ -700,6 +731,8 @@ public class Messages {
       pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
       Object data = map.get("data");
       pigeonResult.setData((byte[])data);
+      Object context = map.get("context");
+      pigeonResult.setContext((String)context);
       return pigeonResult;
     }
   }
@@ -1221,7 +1254,7 @@ public class Messages {
   }
 
   /** Generated class from Pigeon that represents data sent in messages. */
-  public static class PreviewFilterMessage {
+  public static class ActivateFilterPreviewMessage {
     private @NonNull Long textureId;
     public @NonNull Long getTextureId() { return textureId; }
     public void setTextureId(@NonNull Long setterArg) {
@@ -1240,8 +1273,17 @@ public class Messages {
       this.filterId = setterArg;
     }
 
+    private @NonNull String context;
+    public @NonNull String getContext() { return context; }
+    public void setContext(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"context\" is null.");
+      }
+      this.context = setterArg;
+    }
+
     /**Constructor is private to enforce null safety; use Builder. */
-    private PreviewFilterMessage() {}
+    private ActivateFilterPreviewMessage() {}
     public static final class Builder {
       private @Nullable Long textureId;
       public @NonNull Builder setTextureId(@NonNull Long setterArg) {
@@ -1253,10 +1295,16 @@ public class Messages {
         this.filterId = setterArg;
         return this;
       }
-      public @NonNull PreviewFilterMessage build() {
-        PreviewFilterMessage pigeonReturn = new PreviewFilterMessage();
+      private @Nullable String context;
+      public @NonNull Builder setContext(@NonNull String setterArg) {
+        this.context = setterArg;
+        return this;
+      }
+      public @NonNull ActivateFilterPreviewMessage build() {
+        ActivateFilterPreviewMessage pigeonReturn = new ActivateFilterPreviewMessage();
         pigeonReturn.setTextureId(textureId);
         pigeonReturn.setFilterId(filterId);
+        pigeonReturn.setContext(context);
         return pigeonReturn;
       }
     }
@@ -1264,14 +1312,17 @@ public class Messages {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("textureId", textureId);
       toMapResult.put("filterId", filterId);
+      toMapResult.put("context", context);
       return toMapResult;
     }
-    static @NonNull PreviewFilterMessage fromMap(@NonNull Map<String, Object> map) {
-      PreviewFilterMessage pigeonResult = new PreviewFilterMessage();
+    static @NonNull ActivateFilterPreviewMessage fromMap(@NonNull Map<String, Object> map) {
+      ActivateFilterPreviewMessage pigeonResult = new ActivateFilterPreviewMessage();
       Object textureId = map.get("textureId");
       pigeonResult.setTextureId((textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId));
       Object filterId = map.get("filterId");
       pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
+      Object context = map.get("context");
+      pigeonResult.setContext((String)context);
       return pigeonResult;
     }
   }
@@ -1585,7 +1636,7 @@ public class Messages {
     void replaceFilter(@NonNull ReplaceFilterMessage msg);
     void setInputData(@NonNull InputDataMessage msg);
     void setInputSource(@NonNull InputSourceMessage msg);
-    @NonNull ExportDataMessage exportData(@NonNull FilterMessage msg);
+    @NonNull ExportDataMessage exportData(@NonNull ExportDataMessage msg);
     void exportFile(@NonNull ExportFileMessage msg, Result<Void> result);
     void setNumberValue(@NonNull InputNumberValueMessage msg);
     void setNumberListValue(@NonNull InputNumberListValueMessage msg);
@@ -1826,7 +1877,7 @@ public class Messages {
             try {
               ArrayList<Object> args = (ArrayList<Object>)message;
               assert args != null;
-              FilterMessage msgArg = (FilterMessage)args.get(0);
+              ExportDataMessage msgArg = (ExportDataMessage)args.get(0);
               if (msgArg == null) {
                 throw new NullPointerException("msgArg unexpectedly null.");
               }
@@ -2011,13 +2062,13 @@ public class Messages {
     protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
       switch (type) {
         case (byte)128:         
-          return PreviewCreateMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return ActivateFilterPreviewMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)129:         
-          return PreviewDisposeMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return PreviewCreateMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)130:         
-          return PreviewFilterMessage.fromMap((Map<String, Object>) readValue(buffer));
+          return PreviewDisposeMessage.fromMap((Map<String, Object>) readValue(buffer));
         
         case (byte)131:         
           return PreviewPauseMessage.fromMap((Map<String, Object>) readValue(buffer));
@@ -2035,17 +2086,17 @@ public class Messages {
     }
     @Override
     protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value)     {
-      if (value instanceof PreviewCreateMessage) {
+      if (value instanceof ActivateFilterPreviewMessage) {
         stream.write(128);
+        writeValue(stream, ((ActivateFilterPreviewMessage) value).toMap());
+      } else 
+      if (value instanceof PreviewCreateMessage) {
+        stream.write(129);
         writeValue(stream, ((PreviewCreateMessage) value).toMap());
       } else 
       if (value instanceof PreviewDisposeMessage) {
-        stream.write(129);
-        writeValue(stream, ((PreviewDisposeMessage) value).toMap());
-      } else 
-      if (value instanceof PreviewFilterMessage) {
         stream.write(130);
-        writeValue(stream, ((PreviewFilterMessage) value).toMap());
+        writeValue(stream, ((PreviewDisposeMessage) value).toMap());
       } else 
       if (value instanceof PreviewPauseMessage) {
         stream.write(131);
@@ -2068,7 +2119,7 @@ public class Messages {
   /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
   public interface VideoPreviewApi {
     @NonNull PreviewCreateMessage create();
-    void setFilter(@NonNull PreviewFilterMessage msg);
+    void setFilter(@NonNull ActivateFilterPreviewMessage msg);
     void setSource(@NonNull PreviewSourceMessage msg);
     void play(@NonNull PreviewPlayMessage msg);
     void pause(@NonNull PreviewPauseMessage msg);
@@ -2107,7 +2158,7 @@ public class Messages {
             try {
               ArrayList<Object> args = (ArrayList<Object>)message;
               assert args != null;
-              PreviewFilterMessage msgArg = (PreviewFilterMessage)args.get(0);
+              ActivateFilterPreviewMessage msgArg = (ActivateFilterPreviewMessage)args.get(0);
               if (msgArg == null) {
                 throw new NullPointerException("msgArg unexpectedly null.");
               }

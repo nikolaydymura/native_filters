@@ -53,9 +53,16 @@ class VideoPreviewController {
         .setSource(PreviewSourceMessage(textureId: _textureId, path: name));
   }
 
-  Future<void> setFilter(Filterable filter) async {
+  Future<void> setFilter(
+    Filterable filter, {
+    CIContext context = CIContext.system,
+  }) async {
     await _api.setFilter(
-      PreviewFilterMessage(textureId: _textureId, filterId: filter.id),
+      ActivateFilterPreviewMessage(
+        textureId: _textureId,
+        filterId: filter.id,
+        context: context.platformKey,
+      ),
     );
   }
 

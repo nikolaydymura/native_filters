@@ -145,7 +145,7 @@ abstract class TestHostImageVideoFilterFactoryApi {
   void replaceFilter(ReplaceFilterMessage msg);
   void setInputData(InputDataMessage msg);
   void setInputSource(InputSourceMessage msg);
-  ExportDataMessage exportData(FilterMessage msg);
+  ExportDataMessage exportData(ExportDataMessage msg);
   Future<void> exportFile(ExportFileMessage msg);
   void setNumberValue(InputNumberValueMessage msg);
   void setNumberListValue(InputNumberListValueMessage msg);
@@ -303,8 +303,8 @@ abstract class TestHostImageVideoFilterFactoryApi {
         channel.setMockMessageHandler((Object? message) async {
           assert(message != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportData was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final FilterMessage? arg_msg = (args[0] as FilterMessage?);
-          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportData was null, expected non-null FilterMessage.');
+          final ExportDataMessage? arg_msg = (args[0] as ExportDataMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportData was null, expected non-null ExportDataMessage.');
           final ExportDataMessage output = api.exportData(arg_msg!);
           return <Object?, Object?>{'result': output};
         });
@@ -413,15 +413,15 @@ class _TestVideoPreviewApiCodec extends StandardMessageCodec{
   const _TestVideoPreviewApiCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is PreviewCreateMessage) {
+    if (value is ActivateFilterPreviewMessage) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PreviewDisposeMessage) {
+    if (value is PreviewCreateMessage) {
       buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else 
-    if (value is PreviewFilterMessage) {
+    if (value is PreviewDisposeMessage) {
       buffer.putUint8(130);
       writeValue(buffer, value.encode());
     } else 
@@ -445,13 +445,13 @@ class _TestVideoPreviewApiCodec extends StandardMessageCodec{
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:       
-        return PreviewCreateMessage.decode(readValue(buffer)!);
+        return ActivateFilterPreviewMessage.decode(readValue(buffer)!);
       
       case 129:       
-        return PreviewDisposeMessage.decode(readValue(buffer)!);
+        return PreviewCreateMessage.decode(readValue(buffer)!);
       
       case 130:       
-        return PreviewFilterMessage.decode(readValue(buffer)!);
+        return PreviewDisposeMessage.decode(readValue(buffer)!);
       
       case 131:       
         return PreviewPauseMessage.decode(readValue(buffer)!);
@@ -472,7 +472,7 @@ abstract class TestVideoPreviewApi {
   static const MessageCodec<Object?> codec = _TestVideoPreviewApiCodec();
 
   PreviewCreateMessage create();
-  void setFilter(PreviewFilterMessage msg);
+  void setFilter(ActivateFilterPreviewMessage msg);
   void setSource(PreviewSourceMessage msg);
   void play(PreviewPlayMessage msg);
   void pause(PreviewPauseMessage msg);
@@ -500,8 +500,8 @@ abstract class TestVideoPreviewApi {
         channel.setMockMessageHandler((Object? message) async {
           assert(message != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setFilter was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final PreviewFilterMessage? arg_msg = (args[0] as PreviewFilterMessage?);
-          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setFilter was null, expected non-null PreviewFilterMessage.');
+          final ActivateFilterPreviewMessage? arg_msg = (args[0] as ActivateFilterPreviewMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.VideoPreviewApi.setFilter was null, expected non-null ActivateFilterPreviewMessage.');
           api.setFilter(arg_msg!);
           return <Object?, Object?>{};
         });
