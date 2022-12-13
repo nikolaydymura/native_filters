@@ -71,7 +71,7 @@ class VideoPreview: NSObject, FlutterTexture {
         let videoComposition = AVVideoComposition(asset: asset) { request in
             let source = request.sourceImage.clampedToExtent()
             let output = self.filter?.processing(source)?.cropped(to: request.sourceImage.extent)
-            request.finish(with: output ?? source, context: nil)
+            request.finish(with: output ?? source, context: self.filter?.currentContext)
         }
         let item = AVPlayerItem(asset: asset)
         item.add(videoOutput)

@@ -96,8 +96,8 @@ extension NativeFilter {
         let asset = AVAsset(url: url)
         let videoComposition = AVVideoComposition(asset: asset) { request in
             let source = request.sourceImage.clampedToExtent()
-            let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
-            request.finish(with: output, context: self.currentContext)
+            let output = self.processing(source)?.cropped(to: request.sourceImage.extent)
+            request.finish(with: output ?? source, context: self.currentContext)
         }
         let item = AVPlayerItem(asset: asset)
         item.videoComposition = videoComposition
@@ -112,8 +112,8 @@ extension NativeFilter {
         let asset = AVAsset(url: url)
         let videoComposition = AVVideoComposition(asset: asset) { request in
             let source = request.sourceImage.clampedToExtent()
-            let output = self.processing(source)!.cropped(to: request.sourceImage.extent)
-            request.finish(with: output, context: self.currentContext)
+            let output = self.processing(source)?.cropped(to: request.sourceImage.extent)
+            request.finish(with: output ?? source, context: self.currentContext)
         }
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
         
