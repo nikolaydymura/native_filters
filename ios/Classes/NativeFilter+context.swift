@@ -73,7 +73,7 @@ extension UIImage {
 
 extension CIImage {
     func asData(context: CIContext, pathExtension: String? = nil, output: URL? = nil) -> Data? {
-        let defaultColorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear)
+        let defaultColorSpace = context.workingColorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)
         let uti = UTTypeCreatePreferredIdentifierForTag(
             kUTTagClassFilenameExtension,
             (pathExtension ?? "png") as CFString,
