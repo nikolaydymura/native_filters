@@ -2,11 +2,11 @@ part of native_filters;
 
 extension on String {
   bool get isVideo {
-    return endsWith('.mp4') || endsWith('.mov');
+    return toLowerCase().endsWith('.mp4') || toLowerCase().endsWith('.mov');
   }
 
   bool get isImage {
-    return endsWith('.png') || endsWith('.jpg') || endsWith('.jpeg');
+    return toLowerCase().endsWith('.png') || toLowerCase().endsWith('.jpg') || toLowerCase().endsWith('.jpeg');
   }
 }
 
