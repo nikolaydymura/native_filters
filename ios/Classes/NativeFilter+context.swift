@@ -5,12 +5,38 @@ import AVKit
 import MobileCoreServices
 
 extension CIContext {
-    class var defaultContext : CIContext {
+    private class var defaultContext : CIContext {
         Context.context.defaultContext
     }
     
-    class var defaultGLContext : CIContext {
+    private class var defaultGLContext : CIContext {
         Context.context.defaultGLContext
+    }
+    
+    private class var defaultMLTContext : CIContext {
+        Context.context.defaultMLTContext
+    }
+    
+    class func selectImageContext(_ key: String) -> CIContext {
+        switch key {
+        case "openGLES2":
+            return CIContext.defaultGLContext
+        case "MLT":
+            return CIContext.defaultMLTContext
+        default:
+            return CIContext.defaultContext
+        }
+    }
+    
+    class func selectVideoContext(_ key: String) -> CIContext? {
+        switch key {
+        case "openGLES2":
+            return CIContext.defaultGLContext
+        case "MLT":
+            return CIContext.defaultMLTContext
+        default:
+            return nil
+        }
     }
 }
 
@@ -37,6 +63,10 @@ fileprivate class Context {
     
     lazy var defaultGLContext = {
         CIContext(eaglContext: EAGLContext(api: .openGLES2)!, options: Context.options)
+    }()
+    
+    lazy var defaultMLTContext = {
+        CIContext(mtlDevice: MTLCreateSystemDefaultDevice()!)
     }()
     
     fileprivate init() {

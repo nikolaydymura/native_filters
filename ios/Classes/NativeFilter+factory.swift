@@ -133,7 +133,7 @@ extension ImageVideoFilterFactory {
                                               details: nil)
            return nil
         }
-        let context = msg.context == "openGLES2" ? CIContext.defaultGLContext : CIContext.defaultContext
+        let context = CIContext.selectImageContext(msg.context)
         guard let image = container.processedImage?.asData(context: context, pathExtension: container.originalImage?.pathExtension) else {
             error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Failed to export data",
@@ -152,7 +152,7 @@ extension ImageVideoFilterFactory {
         }
         if msg.video.boolValue {
             let output = URL(fileURLWithPath: msg.path)
-            container.currentContext = msg.context == "openGLES2" ? CIContext.defaultGLContext : nil
+            container.currentContext = CIContext.selectVideoContext(msg.context)
             guard let exporter = container.exportVideoSession else {
                 completion(FlutterError.init(code: "image-video-filter",
                                                    message: "Export session not configured",
@@ -173,7 +173,7 @@ extension ImageVideoFilterFactory {
             }
         } else {
             let output = URL(fileURLWithPath: msg.path)
-            let context = msg.context == "openGLES2" ? CIContext.defaultGLContext : CIContext.defaultContext
+            let context = CIContext.selectImageContext(msg.context)
             container.processedImage?.asData(context: context, pathExtension: output.pathExtension, output: output)
             completion(nil)
         }

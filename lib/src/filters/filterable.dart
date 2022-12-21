@@ -105,13 +105,15 @@ abstract class Filterable {
   }
 }
 
-enum CIContext { egl, system }
+enum CIContext { egl, mlt, system }
 
 extension on CIContext {
   String get platformKey {
     switch (this) {
       case CIContext.egl:
         return 'openGLES2';
+      case CIContext.mlt:
+        return 'MLT';
       case CIContext.system:
         return 'system';
     }

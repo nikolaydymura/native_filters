@@ -129,7 +129,7 @@ class NewVideoPreview: NSObject, FLTVideoPreviewApi {
         guard let filter = filters[msg.filterId] else {
             return
         }
-        filter.currentContext = msg.context == "openGLES2" ? CIContext.defaultGLContext : CIContext.defaultContext
+        filter.currentContext = CIContext.selectVideoContext(msg.context)
         players[msg.textureId.int64Value]?.setFilter(filter: filter)
     }
     
