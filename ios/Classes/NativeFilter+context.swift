@@ -66,7 +66,7 @@ fileprivate class Context {
     }()
     
     lazy var defaultMLTContext = {
-        CIContext(mtlDevice: MTLCreateSystemDefaultDevice()!)
+        CIContext(mtlDevice: MTLCreateSystemDefaultDevice()!, options: Context.options)
     }()
     
     fileprivate init() {
