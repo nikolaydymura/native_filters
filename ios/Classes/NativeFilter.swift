@@ -110,7 +110,8 @@ extension NativeFilter {
         }
         
         let asset = AVAsset(url: url)
-        let videoTrack = asset.tracks.first { $0.mediaType == AVMediaType.video }
+        let composition = AVMutableComposition()
+        let videoTrack = asset.tracks(withMediaType: .video).first
         let videoFormat = videoTrack?.formatDescriptions.map{ $0 as! CMVideoFormatDescription}.first
         let hevc = videoFormat?.extensions[CMFormatDescription.Extensions.Key.formatName] == CMFormatDescription.Extensions.Value.string("HEVC")
         let videoComposition = AVVideoComposition(asset: asset) { request in
@@ -118,12 +119,82 @@ extension NativeFilter {
             let output = self.processing(source)?.cropped(to: request.sourceImage.extent)
             request.finish(with: output ?? source, context: self.currentContext)
         }
-        let exporter = AVAssetExportSession(asset: asset,
+        let _ = createComplexVideoComposition(with: asset, composition: composition)
+        let exporter = AVAssetExportSession(asset: composition,
                                             presetName: hevc ? AVAssetExportPresetHEVCHighestQuality : AVAssetExportPresetHighestQuality)
         
         exporter?.videoComposition = videoComposition
         exporter?.outputFileType = .mov
         return exporter
+    }
+    
+    func createComplexVideoComposition(with asset: AVAsset, composition: AVMutableComposition) -> AVVideoComposition? {
+        guard let assetVideoTrack = asset.tracks(withMediaType: .video).first,
+              let compositionVideoTrack = composition.addMutableTrack(withMediaType: .video,
+                                                                 preferredTrackID: kCMPersistentTrackID_Invalid) else {
+            NSLog("Something is wrong with the asset.")
+            return nil
+        }
+
+        do {
+            let timeRange = CMTimeRange(start: .zero, duration: asset.duration)
+            try compositionVideoTrack.insertTimeRange(timeRange, of: assetVideoTrack, at: .zero)
+
+            if let assetAudioTrack = asset.tracks(withMediaType: .audio).first,
+               let compositionAudioTrack = composition.addMutableTrack(withMediaType: .audio,
+                                                                       preferredTrackID: kCMPersistentTrackID_Invalid) {
+                try compositionAudioTrack.insertTimeRange(timeRange, of: assetAudioTrack, at: .zero)
+            }
+        } catch(let error) {
+            NSLog(error.localizedDescription)
+            return nil
+        }
+
+        compositionVideoTrack.preferredTransform = assetVideoTrack.preferredTransform
+        return combineVideoComposition(from: assetVideoTrack,
+                                       compositionVideoTrack: compositionVideoTrack,
+                                       composition: composition)
+    }
+    
+    private func combineVideoComposition(from assetVideoTrack: AVAssetTrack,
+                                         compositionVideoTrack: AVMutableCompositionTrack,
+                                         composition: AVMutableComposition) -> AVMutableVideoComposition {
+        var videoComposition = AVMutableVideoComposition()
+
+        combineOutputLayer(assetVideoTrack: assetVideoTrack, videoComposition: &videoComposition)
+
+        let instruction = AVMutableVideoCompositionInstruction()
+        instruction.timeRange = CMTimeRange(start: .zero, duration: composition.duration)
+        let layerInstruction = compositionLayerInstruction(for: compositionVideoTrack,
+                                                           assetTrack: assetVideoTrack)
+        instruction.layerInstructions = [layerInstruction]
+        videoComposition.instructions = [instruction]
+
+        return videoComposition
+    }
+
+    private func combineOutputLayer(assetVideoTrack: AVAssetTrack, videoComposition: inout AVMutableVideoComposition) {
+        let videoSize = assetVideoTrack.naturalSize
+
+        let videoLayer = CALayer()
+        videoLayer.frame = CGRect(origin: .zero, size: videoSize)
+
+        let outputLayer = CALayer()
+        outputLayer.frame = CGRect(origin: .zero, size: videoSize)
+        outputLayer.addSublayer(videoLayer)
+
+        videoComposition.renderSize = videoSize
+        videoComposition.frameDuration = CMTime(value: 1, timescale: 30)
+        videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer,
+                                                                             in: outputLayer)
+    }
+
+    private func compositionLayerInstruction(for track: AVCompositionTrack, assetTrack: AVAssetTrack) -> AVMutableVideoCompositionLayerInstruction {
+        let instruction = AVMutableVideoCompositionLayerInstruction(assetTrack: track)
+        let transform = assetTrack.preferredTransform
+
+        instruction.setTransform(transform, at: .zero)
+        return instruction
     }
 }
 

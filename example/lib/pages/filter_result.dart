@@ -51,8 +51,8 @@ class _FilterResultState extends State<FilterResultScreen> {
       await widget.filter.binaryOutput;
       debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
     }*/
-    await widget.filter.export(_output);
-    debugPrint('Exporting file took ${watch.elapsedMilliseconds} milliseconds');
+    await widget.filter.export(_output, context: CIContext.mlt);
+    debugPrint('Exporting ${_output.absolute} took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {
       _prepareVideo();
     }

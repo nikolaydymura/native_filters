@@ -65,7 +65,7 @@ class _VideoFilterPreviewState extends State<FilterPreviewScreen> {
     controller
         .setAssetSource(asset)
         .then((value) => _ready = true)
-        .then((value) => _controller.setFilter(widget.filter))
+        .then((value) => _controller.setFilter(widget.filter, context: CIContext.mlt))
         .whenComplete(() => setState(() {}));
   }
 }
