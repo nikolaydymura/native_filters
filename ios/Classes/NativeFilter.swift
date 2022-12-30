@@ -114,14 +114,16 @@ extension NativeFilter {
         let videoTrack = asset.tracks(withMediaType: .video).first
         let videoFormat = videoTrack?.formatDescriptions.map{ $0 as! CMVideoFormatDescription}.first
         let hevc = videoFormat?.extensions[CMFormatDescription.Extensions.Key.formatName] == CMFormatDescription.Extensions.Value.string("HEVC")
-        let videoComposition = AVVideoComposition(asset: asset) { request in
+
+        let _ = createComplexVideoComposition(with: asset, composition: composition)
+        let exporter = AVAssetExportSession(asset: composition,
+                                            presetName: hevc ? AVAssetExportPresetHEVCHighestQuality : AVAssetExportPresetHighestQuality)
+        
+        let videoComposition = AVVideoComposition(asset: composition) { request in
             let source = request.sourceImage.clampedToExtent()
             let output = self.processing(source)?.cropped(to: request.sourceImage.extent)
             request.finish(with: output ?? source, context: self.currentContext)
         }
-        let _ = createComplexVideoComposition(with: asset, composition: composition)
-        let exporter = AVAssetExportSession(asset: composition,
-                                            presetName: hevc ? AVAssetExportPresetHEVCHighestQuality : AVAssetExportPresetHighestQuality)
         
         exporter?.videoComposition = videoComposition
         exporter?.outputFileType = .mov
