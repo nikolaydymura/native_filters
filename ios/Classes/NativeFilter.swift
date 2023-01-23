@@ -6,6 +6,7 @@ import MobileCoreServices
 
 class NativeFilter: NSObject {
     lazy var currentContext: CIContext? = nil
+    lazy var currentPresetName: String? = nil
     var filters: [CIFilter] = []
     
     var originalVideo: URL? {
@@ -116,8 +117,9 @@ extension NativeFilter {
         let hevc = videoFormat?.extensions[CMFormatDescription.Extensions.Key.formatName] == CMFormatDescription.Extensions.Value.string("HEVC")
 
         let _ = createComplexVideoComposition(with: asset, composition: composition)
+        let presetName = currentPresetName ?? (hevc ? AVAssetExportPresetHEVCHighestQuality : AVAssetExportPresetHighestQuality)
         let exporter = AVAssetExportSession(asset: composition,
-                                            presetName: hevc ? AVAssetExportPresetHEVCHighestQuality : AVAssetExportPresetHighestQuality)
+                                            presetName: presetName)
         
         let videoComposition = AVVideoComposition(asset: composition) { request in
             let source = request.sourceImage.clampedToExtent()

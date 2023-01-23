@@ -153,6 +153,7 @@ extension ImageVideoFilterFactory {
         if msg.video.boolValue {
             let output = URL(fileURLWithPath: msg.path)
             container.currentContext = CIContext.selectVideoContext(msg.context)
+            container.currentPresetName = msg.presetName
             guard let exporter = container.exportVideoSession else {
                 completion(FlutterError.init(code: "image-video-filter",
                                                    message: "Export session not configured",
@@ -160,7 +161,15 @@ extension ImageVideoFilterFactory {
                 return
             }
             exporter.outputURL = output
+            #if DEBUG
+            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                print("Exporting \(output.lastPathComponent) progress = \(exporter.progress * 100)%")
+                })
+            #endif
             return exporter.exportAsynchronously { () -> Void in
+                #if DEBUG
+                timer.invalidate()
+                #endif
                 if exporter.error == nil && exporter.status == .completed {
                     completion(nil)
 

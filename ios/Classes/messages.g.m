@@ -370,12 +370,14 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
     video:(NSNumber *)video
-    context:(NSString *)context {
+    context:(NSString *)context
+    presetName:(nullable NSString *)presetName {
   FLTExportFileMessage* pigeonResult = [[FLTExportFileMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.path = path;
   pigeonResult.video = video;
   pigeonResult.context = context;
+  pigeonResult.presetName = presetName;
   return pigeonResult;
 }
 + (FLTExportFileMessage *)fromMap:(NSDictionary *)dict {
@@ -388,6 +390,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   NSAssert(pigeonResult.video != nil, @"");
   pigeonResult.context = GetNullableObject(dict, @"context");
   NSAssert(pigeonResult.context != nil, @"");
+  pigeonResult.presetName = GetNullableObject(dict, @"presetName");
   return pigeonResult;
 }
 + (nullable FLTExportFileMessage *)nullableFromMap:(NSDictionary *)dict { return (dict) ? [FLTExportFileMessage fromMap:dict] : nil; }
@@ -397,6 +400,7 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
     @"path" : (self.path ?: [NSNull null]),
     @"video" : (self.video ?: [NSNull null]),
     @"context" : (self.context ?: [NSNull null]),
+    @"presetName" : (self.presetName ?: [NSNull null]),
   };
 }
 @end

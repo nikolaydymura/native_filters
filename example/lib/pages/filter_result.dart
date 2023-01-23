@@ -42,7 +42,7 @@ class _FilterResultState extends State<FilterResultScreen> {
     final directory = await getTemporaryDirectory();
     const uuid = Uuid();
     final path =
-        '${directory.path}/${uuid.v4()}.${widget.video ? 'mp4' : 'jpg'}';
+        '${directory.path}/${uuid.v4()}.${asset.split('.').last}';
     _output = File(path);
     await widget.filter.setAssetSource(asset);
     final watch = Stopwatch();
@@ -51,7 +51,7 @@ class _FilterResultState extends State<FilterResultScreen> {
       await widget.filter.binaryOutput;
       debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
     }*/
-    await widget.filter.export(_output, context: CIContext.mlt);
+    await widget.filter.export(_output, context: CIContext.mlt, presetName: AVAssetExportPreset.lowQuality);
     debugPrint('Exporting ${_output.absolute} took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {
       _prepareVideo();

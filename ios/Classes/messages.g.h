@@ -121,11 +121,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
     video:(NSNumber *)video
-    context:(NSString *)context;
+    context:(NSString *)context
+    presetName:(nullable NSString *)presetName;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, copy) NSString * path;
 @property(nonatomic, strong) NSNumber * video;
 @property(nonatomic, copy) NSString * context;
+@property(nonatomic, copy, nullable) NSString * presetName;
 @end
 
 @interface FLTExportDataMessage : NSObject

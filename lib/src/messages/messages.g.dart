@@ -238,12 +238,14 @@ class ExportFileMessage {
     required this.path,
     required this.video,
     required this.context,
+    this.presetName,
   });
 
   int filterId;
   String path;
   bool video;
   String context;
+  String? presetName;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
@@ -251,6 +253,7 @@ class ExportFileMessage {
     pigeonMap['path'] = path;
     pigeonMap['video'] = video;
     pigeonMap['context'] = context;
+    pigeonMap['presetName'] = presetName;
     return pigeonMap;
   }
 
@@ -261,6 +264,7 @@ class ExportFileMessage {
       path: pigeonMap['path']! as String,
       video: pigeonMap['video']! as bool,
       context: pigeonMap['context']! as String,
+      presetName: pigeonMap['presetName'] as String?,
     );
   }
 }

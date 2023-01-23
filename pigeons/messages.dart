@@ -74,11 +74,12 @@ class InputDataMessage {
 }
 
 class ExportFileMessage {
-  ExportFileMessage(this.filterId, this.path, this.video, this.context);
+  ExportFileMessage(this.filterId, this.path, this.video, this.context, {this.presetName});
   int filterId;
   String path;
   bool video;
   String context;
+  String? presetName;
 }
 
 class ExportDataMessage {
