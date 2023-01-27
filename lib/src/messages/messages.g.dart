@@ -236,14 +236,12 @@ class ExportFileMessage {
   ExportFileMessage({
     required this.filterId,
     required this.path,
-    required this.video,
     required this.context,
     this.presetName,
   });
 
   int filterId;
   String path;
-  bool video;
   String context;
   String? presetName;
 
@@ -251,7 +249,6 @@ class ExportFileMessage {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['filterId'] = filterId;
     pigeonMap['path'] = path;
-    pigeonMap['video'] = video;
     pigeonMap['context'] = context;
     pigeonMap['presetName'] = presetName;
     return pigeonMap;
@@ -262,7 +259,6 @@ class ExportFileMessage {
     return ExportFileMessage(
       filterId: pigeonMap['filterId']! as int,
       path: pigeonMap['path']! as String,
-      video: pigeonMap['video']! as bool,
       context: pigeonMap['context']! as String,
       presetName: pigeonMap['presetName'] as String?,
     );
@@ -977,9 +973,9 @@ class ImageVideoFilterFactoryApi {
     }
   }
 
-  Future<void> exportFile(ExportFileMessage arg_msg) async {
+  Future<void> exportImageFile(ExportFileMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile', codec, binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -996,6 +992,33 @@ class ImageVideoFilterFactoryApi {
       );
     } else {
       return;
+    }
+  }
+
+  Future<int> exportVideoFile(ExportFileMessage arg_msg) async {
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile', codec, binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else if (replyMap['result'] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (replyMap['result'] as int?)!;
     }
   }
 

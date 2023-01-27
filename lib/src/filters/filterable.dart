@@ -98,7 +98,7 @@ abstract class Filterable {
           .map((event) => event as double)
           .distinct();
     } else if (output.path.isImage) {
-      await _api.exportFile(
+      await _api.exportImageFile(
         ExportFileMessage(
           filterId: id,
           path: output.path,
