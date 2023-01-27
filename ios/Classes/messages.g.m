@@ -369,13 +369,11 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 @implementation FLTExportFileMessage
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
-    video:(NSNumber *)video
     context:(NSString *)context
     presetName:(nullable NSString *)presetName {
   FLTExportFileMessage* pigeonResult = [[FLTExportFileMessage alloc] init];
   pigeonResult.filterId = filterId;
   pigeonResult.path = path;
-  pigeonResult.video = video;
   pigeonResult.context = context;
   pigeonResult.presetName = presetName;
   return pigeonResult;
@@ -386,8 +384,6 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   NSAssert(pigeonResult.filterId != nil, @"");
   pigeonResult.path = GetNullableObject(dict, @"path");
   NSAssert(pigeonResult.path != nil, @"");
-  pigeonResult.video = GetNullableObject(dict, @"video");
-  NSAssert(pigeonResult.video != nil, @"");
   pigeonResult.context = GetNullableObject(dict, @"context");
   NSAssert(pigeonResult.context != nil, @"");
   pigeonResult.presetName = GetNullableObject(dict, @"presetName");
@@ -398,7 +394,6 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
   return @{
     @"filterId" : (self.filterId ?: [NSNull null]),
     @"path" : (self.path ?: [NSNull null]),
-    @"video" : (self.video ?: [NSNull null]),
     @"context" : (self.context ?: [NSNull null]),
     @"presetName" : (self.presetName ?: [NSNull null]),
   };
@@ -1102,17 +1097,37 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
-        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile"
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile"
         binaryMessenger:binaryMessenger
         codec:FLTImageVideoFilterFactoryApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(exportFile:completion:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(exportFile:completion:)", api);
+      NSCAssert([api respondsToSelector:@selector(exportImageFile:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(exportImageFile:error:)", api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         FLTExportFileMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
-        [api exportFile:arg_msg completion:^(FlutterError *_Nullable error) {
-          callback(wrapResult(nil, error));
-        }];
+        FlutterError *error;
+        [api exportImageFile:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile"
+        binaryMessenger:binaryMessenger
+        codec:FLTImageVideoFilterFactoryApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(exportVideoFile:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(exportVideoFile:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTExportFileMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        NSNumber *output = [api exportVideoFile:arg_msg error:&error];
+        callback(wrapResult(output, error));
       }];
     }
     else {

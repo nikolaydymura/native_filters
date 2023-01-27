@@ -74,10 +74,9 @@ class InputDataMessage {
 }
 
 class ExportFileMessage {
-  ExportFileMessage(this.filterId, this.path, this.video, this.context, {this.presetName});
+  ExportFileMessage(this.filterId, this.path, this.context, {this.presetName});
   int filterId;
   String path;
-  bool video;
   String context;
   String? presetName;
 }
@@ -152,9 +151,10 @@ abstract class ImageVideoFilterFactoryApi {
   void setInputSource(InputSourceMessage msg);
   @ObjCSelector('exportData:')
   ExportDataMessage exportData(ExportDataMessage msg);
-  @ObjCSelector('exportFile:')
-  @async
-  void exportFile(ExportFileMessage msg);
+  @ObjCSelector('exportImageFile:')
+  void exportImageFile(ExportFileMessage msg);
+  @ObjCSelector('exportVideoFile:')
+  int exportVideoFile(ExportFileMessage msg);
   @ObjCSelector('setNumberValue:')
   void setNumberValue(InputNumberValueMessage msg);
   @ObjCSelector('setNumberListValue:')

@@ -79,30 +79,33 @@ abstract class Filterable {
     return result.data;
   }
 
-  Future<void> export(
+  Future<Stream<double>?> export(
     File output, {
     CIContext context = CIContext.system,
     AVAssetExportPreset? presetName,
   }) async {
     if (output.path.isVideo) {
-      await _api.exportFile(
+      final sessionId = await _api.exportVideoFile(
         ExportFileMessage(
           filterId: id,
           path: output.path,
-          video: true,
           context: context.platformKey,
           presetName: presetName?.platformKey,
         ),
       );
+      return EventChannel('AVAssetExportSession_$sessionId')
+          .receiveBroadcastStream()
+          .map((event) => event as double)
+          .distinct();
     } else if (output.path.isImage) {
       await _api.exportFile(
         ExportFileMessage(
           filterId: id,
           path: output.path,
-          video: false,
           context: context.platformKey,
         ),
       );
+      return null;
     } else {
       throw 'Unsupported format $output';
     }

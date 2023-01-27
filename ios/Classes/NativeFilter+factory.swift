@@ -1,11 +1,13 @@
 import Flutter
 import Accelerate
+import AVFoundation
 
 class ImageVideoFilterFactory: NSObject, FLTImageVideoFilterFactoryApi {
     
     private var filters: [Int64: NativeFilter] = [:]
     private let registrar: FlutterPluginRegistrar
     private var filterSequence: Int64 = 0
+    private var exporterSequence: Int64 = 0
     
     init(registrar: FlutterPluginRegistrar) {
         self.registrar =  registrar
@@ -143,49 +145,44 @@ extension ImageVideoFilterFactory {
         return FLTExportDataMessage.make(withFilterId: msg.filterId, data: FlutterStandardTypedData(bytes: image), context: msg.context)
     }
     
-    func exportFile(_ msg: FLTExportFileMessage, completion: @escaping (FlutterError?) -> Void) {
+    func exportImageFile(_ msg: FLTExportFileMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         guard let container = filters[msg.filterId.int64Value] else {
-            completion(FlutterError.init(code: "image-video-filter",
+            error.pointee = FlutterError.init(code: "image-video-filter",
                                               message: "Filter not found",
-                                              details: nil))
+                                              details: nil)
            return
         }
-        if msg.video.boolValue {
-            let output = URL(fileURLWithPath: msg.path)
-            container.currentContext = CIContext.selectVideoContext(msg.context)
-            container.currentPresetName = msg.presetName
-            guard let exporter = container.exportVideoSession else {
-                completion(FlutterError.init(code: "image-video-filter",
-                                                   message: "Export session not configured",
-                                                   details: nil))
-                return
-            }
-            exporter.outputURL = output
-            #if DEBUG
-            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-                print("Exporting \(output.lastPathComponent) progress = \(exporter.progress * 100)%")
-                })
-            #endif
-            return exporter.exportAsynchronously { () -> Void in
-                #if DEBUG
-                timer.invalidate()
-                #endif
-                if exporter.error == nil && exporter.status == .completed {
-                    completion(nil)
-
-                } else {
-                    let message = String(describing: exporter.error)
-                    completion(FlutterError.init(code: "image-video-filter",
-                                                 message: message,
-                                                 details: nil))
-                }
-            }
-        } else {
-            let output = URL(fileURLWithPath: msg.path)
-            let context = CIContext.selectImageContext(msg.context)
-            container.processedImage?.asData(context: context, pathExtension: output.pathExtension, output: output)
-            completion(nil)
+        let output = URL(fileURLWithPath: msg.path)
+        let context = CIContext.selectImageContext(msg.context)
+        container.processedImage?.asData(context: context, pathExtension: output.pathExtension, output: output)
+    }
+    
+    func exportVideoFile(_ msg: FLTExportFileMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> NSNumber? {
+        guard let container = filters[msg.filterId.int64Value] else {
+            error.pointee = FlutterError.init(code: "image-video-filter",
+                                              message: "Filter not found",
+                                              details: nil)
+            return nil
         }
+        let output = URL(fileURLWithPath: msg.path)
+        container.currentContext = CIContext.selectVideoContext(msg.context)
+        container.currentPresetName = msg.presetName
+        guard let exporter = container.exportVideoSession else {
+            error.pointee = FlutterError.init(code: "image-video-filter",
+                                              message: "Export session not configured",
+                                              details: nil)
+            return nil
+        }
+        exporter.outputURL = output
+        
+        let exportId = exporterSequence
+        exporterSequence += 1
+        
+        let eventChannel = FlutterEventChannel(name: "AVAssetExportSession_\(exportId)",
+                                               binaryMessenger: registrar.messenger())
+        
+        eventChannel.setStreamHandler(AVAssetExportSessionStreamHandler(session: exporter))
+        return NSNumber(value: exportId)
     }
 }
 
@@ -397,5 +394,48 @@ extension ImageVideoFilterFactory {
     
     func appendShaderFilter(_ msg: FLTAppendShaderFilterMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         
+    }
+}
+
+
+class AVAssetExportSessionStreamHandler: NSObject, FlutterStreamHandler {
+    private let session: AVAssetExportSession
+    private var eventSink: FlutterEventSink?
+    private var timer: Timer?
+    
+    init(session: AVAssetExportSession) {
+        self.session = session
+    }
+    
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        eventSink = events
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateProgess(_:))
+        session.exportAsynchronously(completionHandler: export)
+        return nil
+    }
+    
+    func updateProgess(_ timer: Timer) {
+        eventSink?(session.progress)
+    }
+    
+    func export() {
+        timer?.invalidate()
+        if session.error == nil && session.status == .completed {
+            eventSink?(-100.0)
+            
+        } else {
+            let message = String(describing: session.error)
+            eventSink?(FlutterError.init(code: "image-video-filter",
+                                         message: message,
+                                         details: nil))
+        }
+    }
+    
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        timer?.invalidate()
+        session.cancelExport()
+        eventSink = nil
+        timer = nil
+        return nil
     }
 }

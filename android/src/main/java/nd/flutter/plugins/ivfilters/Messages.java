@@ -594,15 +594,6 @@ public class Messages {
       this.path = setterArg;
     }
 
-    private @NonNull Boolean video;
-    public @NonNull Boolean getVideo() { return video; }
-    public void setVideo(@NonNull Boolean setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"video\" is null.");
-      }
-      this.video = setterArg;
-    }
-
     private @NonNull String context;
     public @NonNull String getContext() { return context; }
     public void setContext(@NonNull String setterArg) {
@@ -610,6 +601,12 @@ public class Messages {
         throw new IllegalStateException("Nonnull field \"context\" is null.");
       }
       this.context = setterArg;
+    }
+
+    private @Nullable String presetName;
+    public @Nullable String getPresetName() { return presetName; }
+    public void setPresetName(@Nullable String setterArg) {
+      this.presetName = setterArg;
     }
 
     /**Constructor is private to enforce null safety; use Builder. */
@@ -625,22 +622,22 @@ public class Messages {
         this.path = setterArg;
         return this;
       }
-      private @Nullable Boolean video;
-      public @NonNull Builder setVideo(@NonNull Boolean setterArg) {
-        this.video = setterArg;
-        return this;
-      }
       private @Nullable String context;
       public @NonNull Builder setContext(@NonNull String setterArg) {
         this.context = setterArg;
+        return this;
+      }
+      private @Nullable String presetName;
+      public @NonNull Builder setPresetName(@Nullable String setterArg) {
+        this.presetName = setterArg;
         return this;
       }
       public @NonNull ExportFileMessage build() {
         ExportFileMessage pigeonReturn = new ExportFileMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setPath(path);
-        pigeonReturn.setVideo(video);
         pigeonReturn.setContext(context);
+        pigeonReturn.setPresetName(presetName);
         return pigeonReturn;
       }
     }
@@ -648,8 +645,8 @@ public class Messages {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("filterId", filterId);
       toMapResult.put("path", path);
-      toMapResult.put("video", video);
       toMapResult.put("context", context);
+      toMapResult.put("presetName", presetName);
       return toMapResult;
     }
     static @NonNull ExportFileMessage fromMap(@NonNull Map<String, Object> map) {
@@ -658,10 +655,10 @@ public class Messages {
       pigeonResult.setFilterId((filterId == null) ? null : ((filterId instanceof Integer) ? (Integer)filterId : (Long)filterId));
       Object path = map.get("path");
       pigeonResult.setPath((String)path);
-      Object video = map.get("video");
-      pigeonResult.setVideo((Boolean)video);
       Object context = map.get("context");
       pigeonResult.setContext((String)context);
+      Object presetName = map.get("presetName");
+      pigeonResult.setPresetName((String)presetName);
       return pigeonResult;
     }
   }
@@ -1496,11 +1493,6 @@ public class Messages {
       return pigeonResult;
     }
   }
-
-  public interface Result<T> {
-    void success(T result);
-    void error(Throwable error);
-  }
   private static class ImageVideoFilterFactoryApiCodec extends StandardMessageCodec {
     public static final ImageVideoFilterFactoryApiCodec INSTANCE = new ImageVideoFilterFactoryApiCodec();
     private ImageVideoFilterFactoryApiCodec() {}
@@ -1637,7 +1629,8 @@ public class Messages {
     void setInputData(@NonNull InputDataMessage msg);
     void setInputSource(@NonNull InputSourceMessage msg);
     @NonNull ExportDataMessage exportData(@NonNull ExportDataMessage msg);
-    void exportFile(@NonNull ExportFileMessage msg, Result<Void> result);
+    void exportImageFile(@NonNull ExportFileMessage msg);
+    @NonNull Long exportVideoFile(@NonNull ExportFileMessage msg);
     void setNumberValue(@NonNull InputNumberValueMessage msg);
     void setNumberListValue(@NonNull InputNumberListValueMessage msg);
     void setDataValue(@NonNull InputDataValueMessage msg);
@@ -1895,7 +1888,7 @@ public class Messages {
       }
       {
         BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile", getCodec());
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile", getCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
             Map<String, Object> wrapped = new HashMap<>();
@@ -1906,23 +1899,38 @@ public class Messages {
               if (msgArg == null) {
                 throw new NullPointerException("msgArg unexpectedly null.");
               }
-              Result<Void> resultCallback = new Result<Void>() {
-                public void success(Void result) {
-                  wrapped.put("result", null);
-                  reply.reply(wrapped);
-                }
-                public void error(Throwable error) {
-                  wrapped.put("error", wrapError(error));
-                  reply.reply(wrapped);
-                }
-              };
-
-              api.exportFile(msgArg, resultCallback);
+              api.exportImageFile(msgArg);
+              wrapped.put("result", null);
             }
             catch (Error | RuntimeException exception) {
               wrapped.put("error", wrapError(exception));
-              reply.reply(wrapped);
             }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile", getCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              ArrayList<Object> args = (ArrayList<Object>)message;
+              assert args != null;
+              ExportFileMessage msgArg = (ExportFileMessage)args.get(0);
+              if (msgArg == null) {
+                throw new NullPointerException("msgArg unexpectedly null.");
+              }
+              Long output = api.exportVideoFile(msgArg);
+              wrapped.put("result", output);
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
           });
         } else {
           channel.setMessageHandler(null);

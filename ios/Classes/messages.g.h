@@ -120,12 +120,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
-    video:(NSNumber *)video
     context:(NSString *)context
     presetName:(nullable NSString *)presetName;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, copy) NSString * path;
-@property(nonatomic, strong) NSNumber * video;
 @property(nonatomic, copy) NSString * context;
 @property(nonatomic, copy, nullable) NSString * presetName;
 @end
@@ -274,7 +272,9 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 - (void)setInputSource:(FLTInputSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
 - (nullable FLTExportDataMessage *)exportData:(FLTExportDataMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)exportFile:(FLTExportFileMessage *)msg completion:(void(^)(FlutterError *_Nullable))completion;
+- (void)exportImageFile:(FLTExportFileMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+/// @return `nil` only when `error != nil`.
+- (nullable NSNumber *)exportVideoFile:(FLTExportFileMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNumberValue:(FLTInputNumberValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setNumberListValue:(FLTInputNumberListValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setDataValue:(FLTInputDataValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;

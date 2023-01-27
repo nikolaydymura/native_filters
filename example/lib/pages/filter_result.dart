@@ -21,6 +21,7 @@ class _FilterResultState extends State<FilterResultScreen> {
   late VideoPlayerController _controller;
   late File _output;
 
+  double progressValue = 0;
   bool processing = true;
 
   String get asset => widget.video ? 'videos/test.mp4' : 'images/test.jpg';
@@ -51,7 +52,18 @@ class _FilterResultState extends State<FilterResultScreen> {
       await widget.filter.binaryOutput;
       debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
     }*/
-    await widget.filter.export(_output, context: CIContext.mlt, presetName: AVAssetExportPreset.lowQuality);
+    final progressStream = await widget.filter.export(_output, context: CIContext.mlt, presetName: AVAssetExportPreset.lowQuality);
+    if (progressStream == null){
+      return;
+    }
+    await for(final progress in progressStream) {
+      if (progress == -100.0) {
+        break;
+      }
+      setState(() {
+        progressValue = progress;
+      });
+    }
     debugPrint('Exporting ${_output.absolute} took ${watch.elapsedMilliseconds} milliseconds');
     if (widget.video) {
       _prepareVideo();
@@ -95,7 +107,7 @@ class _FilterResultState extends State<FilterResultScreen> {
       ),
       body: Center(
         child: processing
-            ? const CircularProgressIndicator()
+            ? CircularProgressIndicator(value: progressValue,)
             : widget.video
                 ? videoPreview
                 : imagePreview,
