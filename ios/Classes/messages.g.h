@@ -121,11 +121,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)makeWithFilterId:(NSNumber *)filterId
     path:(NSString *)path
     context:(NSString *)context
-    presetName:(nullable NSString *)presetName;
+    presetName:(nullable NSString *)presetName
+    period:(NSNumber *)period;
 @property(nonatomic, strong) NSNumber * filterId;
 @property(nonatomic, copy) NSString * path;
 @property(nonatomic, copy) NSString * context;
 @property(nonatomic, copy, nullable) NSString * presetName;
+@property(nonatomic, strong) NSNumber * period;
 @end
 
 @interface FLTExportDataMessage : NSObject

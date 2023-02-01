@@ -146,7 +146,8 @@ abstract class TestHostImageVideoFilterFactoryApi {
   void setInputData(InputDataMessage msg);
   void setInputSource(InputSourceMessage msg);
   ExportDataMessage exportData(ExportDataMessage msg);
-  Future<void> exportFile(ExportFileMessage msg);
+  void exportImageFile(ExportFileMessage msg);
+  int exportVideoFile(ExportFileMessage msg);
   void setNumberValue(InputNumberValueMessage msg);
   void setNumberListValue(InputNumberListValueMessage msg);
   void setDataValue(InputDataValueMessage msg);
@@ -312,17 +313,33 @@ abstract class TestHostImageVideoFilterFactoryApi {
     }
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile', codec, binaryMessenger: binaryMessenger);
+          'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final ExportFileMessage? arg_msg = (args[0] as ExportFileMessage?);
-          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportFile was null, expected non-null ExportFileMessage.');
-          await api.exportFile(arg_msg!);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportImageFile was null, expected non-null ExportFileMessage.');
+          api.exportImageFile(arg_msg!);
           return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final ExportFileMessage? arg_msg = (args[0] as ExportFileMessage?);
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.ImageVideoFilterFactoryApi.exportVideoFile was null, expected non-null ExportFileMessage.');
+          final int output = api.exportVideoFile(arg_msg!);
+          return <Object?, Object?>{'result': output};
         });
       }
     }

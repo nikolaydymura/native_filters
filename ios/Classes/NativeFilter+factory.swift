@@ -181,7 +181,7 @@ extension ImageVideoFilterFactory {
         let eventChannel = FlutterEventChannel(name: "AVAssetExportSession_\(exportId)",
                                                binaryMessenger: registrar.messenger())
         
-        eventChannel.setStreamHandler(AVAssetExportSessionStreamHandler(session: exporter))
+        eventChannel.setStreamHandler(AVAssetExportSessionStreamHandler(session: exporter, withTimeInterval: msg.period.doubleValue))
         return NSNumber(value: exportId)
     }
 }
@@ -402,14 +402,16 @@ class AVAssetExportSessionStreamHandler: NSObject, FlutterStreamHandler {
     private let session: AVAssetExportSession
     private var eventSink: FlutterEventSink?
     private var timer: Timer?
+    private let timeInterval: TimeInterval
     
-    init(session: AVAssetExportSession) {
+    init(session: AVAssetExportSession, withTimeInterval timeInterval: Double) {
         self.session = session
+        self.timeInterval = timeInterval / 1000.0
     }
     
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         eventSink = events
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateProgess(_:))
+        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: updateProgess(_:))
         session.exportAsynchronously(completionHandler: export)
         return nil
     }

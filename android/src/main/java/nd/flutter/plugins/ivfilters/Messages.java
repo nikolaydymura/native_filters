@@ -609,6 +609,15 @@ public class Messages {
       this.presetName = setterArg;
     }
 
+    private @NonNull Long period;
+    public @NonNull Long getPeriod() { return period; }
+    public void setPeriod(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"period\" is null.");
+      }
+      this.period = setterArg;
+    }
+
     /**Constructor is private to enforce null safety; use Builder. */
     private ExportFileMessage() {}
     public static final class Builder {
@@ -632,12 +641,18 @@ public class Messages {
         this.presetName = setterArg;
         return this;
       }
+      private @Nullable Long period;
+      public @NonNull Builder setPeriod(@NonNull Long setterArg) {
+        this.period = setterArg;
+        return this;
+      }
       public @NonNull ExportFileMessage build() {
         ExportFileMessage pigeonReturn = new ExportFileMessage();
         pigeonReturn.setFilterId(filterId);
         pigeonReturn.setPath(path);
         pigeonReturn.setContext(context);
         pigeonReturn.setPresetName(presetName);
+        pigeonReturn.setPeriod(period);
         return pigeonReturn;
       }
     }
@@ -647,6 +662,7 @@ public class Messages {
       toMapResult.put("path", path);
       toMapResult.put("context", context);
       toMapResult.put("presetName", presetName);
+      toMapResult.put("period", period);
       return toMapResult;
     }
     static @NonNull ExportFileMessage fromMap(@NonNull Map<String, Object> map) {
@@ -659,6 +675,8 @@ public class Messages {
       pigeonResult.setContext((String)context);
       Object presetName = map.get("presetName");
       pigeonResult.setPresetName((String)presetName);
+      Object period = map.get("period");
+      pigeonResult.setPeriod((period == null) ? null : ((period instanceof Integer) ? (Integer)period : (Long)period));
       return pigeonResult;
     }
   }

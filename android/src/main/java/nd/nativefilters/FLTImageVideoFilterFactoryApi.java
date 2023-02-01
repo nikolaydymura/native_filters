@@ -2,7 +2,8 @@ package nd.nativefilters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.SparseArray;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.EventChannel;
 import jp.co.cyberagent.android.gpuimage.GPUImageRenderer;
 import jp.co.cyberagent.android.gpuimage.PixelBuffer;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
@@ -33,7 +35,8 @@ import nd.flutter.plugins.ivfilters.Messages;
 public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterFactoryApi {
     private final SparseArray<NativeFilter> filters = new SparseArray<>();
     private int filterSequence = 0;
-    private FlutterPlugin.FlutterPluginBinding binding;
+    private long composeSequence = 0;
+    private final FlutterPlugin.FlutterPluginBinding binding;
 
     FLTImageVideoFilterFactoryApi(FlutterPlugin.FlutterPluginBinding binding) {
         this.binding = binding;
@@ -53,7 +56,7 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
         final NativeFilter filter;
         if (msg.getTwoInput()) {
             GPUImageTwoInputDynamicFilter imageFilter = new GPUImageTwoInputDynamicFilter(msg.getShader(), msg.getParams());
-            filter = new NativeFilter(imageFilter,new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
+            filter = new NativeFilter(imageFilter, new GPUVideoDynamicFilter(msg.getShader(), msg.getParams()));
         } else {
             if (vertex != null) {
                 filter = new NativeFilter(
@@ -165,7 +168,8 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                         filter.filterGroup = new GPUImageFilterGroup();
                     }
                     filter.filterGroup.addFilter(gpuImageFilter);
-                } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+                } catch (IllegalAccessException | InstantiationException |
+                         ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             } else if (name.startsWith("Gl")) {
@@ -223,8 +227,10 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                 filter.inputFile = null;
                 filter.inputBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
+        } else {
+            throw new RuntimeException("Filter not found");
         }
     }
 
@@ -266,14 +272,16 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                     filter.inputBitmap = null;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
+        } else {
+            throw new RuntimeException("Filter not found");
         }
     }
 
     @NonNull
     @Override
-    public Messages.ExportDataMessage exportData(@NonNull Messages.FilterMessage msg) {
+    public Messages.ExportDataMessage exportData(@NonNull Messages.ExportDataMessage msg) {
         final int filterId = msg.getFilterId().intValue();
         final NativeFilter filter = filters.get(filterId);
         if (filter != null) {
@@ -306,74 +314,64 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                     .setData(outputStream.toByteArray())
                     .build();
         }
-        return null;
+        throw new RuntimeException("Filter not found");
     }
 
     @Override
-    public void exportFile(@NonNull Messages.ExportFileMessage msg, Messages.Result<Void> result) {
+    public void exportImageFile(@NonNull Messages.ExportFileMessage msg) {
         final int filterId = msg.getFilterId().intValue();
         final NativeFilter filter = filters.get(filterId);
         if (filter != null) {
-            if (msg.getVideo()) {
-                new GPUMp4Composer(filter.inputFile.getAbsolutePath(), msg.getPath())
-                        .size(1280, 720)
-                        .filter(filter.glFilterGroup)
-                        .listener(new GPUMp4Composer.Listener() {
-                            @Override
-                            public void onProgress(double progress) {
-                                Log.d(NativeFilter.class.getSimpleName(), "onProgress = " + progress);
-                            }
+            GPUImageRenderer renderer = new GPUImageRenderer(filter.filterGroup);
+            Bitmap bitmap = filter.inputBitmap;
+            if (bitmap == null && filter.inputFile != null) {
+                bitmap = BitmapFactory.decodeFile(filter.inputFile.getAbsolutePath());
+            }
+            renderer.setImageBitmap(bitmap, false);
+            PixelBuffer buffer = new PixelBuffer(bitmap.getWidth(), bitmap.getHeight());
+            buffer.setRenderer(renderer);
 
-                            @Override
-                            public void onCompleted() {
-                                result.success(null);
-                            }
+            renderer.setFilter(filter.filterGroup);
 
-                            @Override
-                            public void onCanceled() {
-                                result.error(new RuntimeException("canceled"));
-                            }
-
-                            @Override
-                            public void onFailed(Exception e) {
-                                result.error(e);
-                            }
-                        })
-                        .start();
-            } else {
-
-                GPUImageRenderer renderer = new GPUImageRenderer(filter.filterGroup);
-                Bitmap bitmap = filter.inputBitmap;
-                if (bitmap == null && filter.inputFile != null) {
-                    bitmap = BitmapFactory.decodeFile(filter.inputFile.getAbsolutePath());
-                }
-                renderer.setImageBitmap(bitmap, false);
-                PixelBuffer buffer = new PixelBuffer(bitmap.getWidth(), bitmap.getHeight());
-                buffer.setRenderer(renderer);
-
-                renderer.setFilter(filter.filterGroup);
-
-                final Bitmap decoded = buffer.getBitmap();
-                try {
-                    FileOutputStream outputStream = new FileOutputStream(new File(msg.getPath()));
-                    if (filter.inputFile != null) {
-                        if (filter.inputFile.getName().endsWith(".png")) {
-                            decoded.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                        } else {
-                            decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                        }
+            final Bitmap decoded = buffer.getBitmap();
+            try {
+                FileOutputStream outputStream = new FileOutputStream(new File(msg.getPath()));
+                if (filter.inputFile != null) {
+                    if (filter.inputFile.getName().endsWith(".png")) {
+                        decoded.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                     } else {
                         decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                     }
-                    result.success(null);
-                } catch (FileNotFoundException e) {
-                    result.error(e);
-                    e.printStackTrace();
-                } finally {
-                    renderer.deleteImage();
-                    buffer.destroy();
+                } else {
+                    decoded.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                 }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } finally {
+                renderer.deleteImage();
+                buffer.destroy();
             }
+        } else {
+            throw new RuntimeException("Filter not found");
+        }
+    }
+
+    @NonNull
+    @Override
+    public Long exportVideoFile(@NonNull Messages.ExportFileMessage msg) {
+        final int filterId = msg.getFilterId().intValue();
+        final NativeFilter filter = filters.get(filterId);
+        if (filter != null) {
+            GPUMp4Composer composer = new GPUMp4Composer(filter.inputFile.getAbsolutePath(), msg.getPath())
+                    .size(1280, 720)
+                    .filter(filter.glFilterGroup);
+            final long id = composeSequence;
+            composeSequence++;
+            EventChannel channel = new EventChannel(binding.getBinaryMessenger(), "GPUMp4Composer_" + id);
+            channel.setStreamHandler(new GPUMp4ComposerHandler(composer));
+            return id;
+        } else {
+            throw new RuntimeException("Filter not found");
         }
     }
 
@@ -384,17 +382,17 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
         final NativeFilter filter = filters.get(filterId);
         if (filter.glFilterGroup != null && !filter.glFilterGroup.getFilters().isEmpty()) {
             GlFilter glFilter = filter.glFilterGroup.getFilters().get(filterIndex);
-            if (glFilter instanceof  GPUVideoDynamicFilter) {
+            if (glFilter instanceof GPUVideoDynamicFilter) {
                 GPUVideoDynamicFilter videoFilter = (GPUVideoDynamicFilter) glFilter;
                 videoFilter.update(msg.getKey(), msg.getValue());
             }
         }
-        if(filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
+        if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
             final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(filterIndex);
-            if (rawFilter instanceof  GPUImageDynamicFilter) {
+            if (rawFilter instanceof GPUImageDynamicFilter) {
                 GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) filter.filterGroup.getFilters().get(filterIndex);
                 imageFilter.update(msg.getKey(), msg.getValue());
-            } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+            } else if (rawFilter instanceof GPUImageTwoInputDynamicFilter) {
                 GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) filter.filterGroup.getFilters().get(filterIndex);
                 imageFilter.update(msg.getKey(), msg.getValue());
             }
@@ -419,13 +417,13 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
             }
             if (filter.filterGroup != null && !filter.filterGroup.getFilters().isEmpty()) {
                 final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
-                if (rawFilter instanceof  GPUImageDynamicFilter) {
+                if (rawFilter instanceof GPUImageDynamicFilter) {
                     GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
-                } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+                } else if (rawFilter instanceof GPUImageTwoInputDynamicFilter) {
                     GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
-                } else if (rawFilter instanceof  GPUImageLookupFilter) {
+                } else if (rawFilter instanceof GPUImageLookupFilter) {
                     GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
                 }
@@ -452,13 +450,13 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
                     lutBitmap = BitmapFactory.decodeFile(msg.getValue());
                 }
                 final GPUImageFilter rawFilter = filter.filterGroup.getFilters().get(msg.getFilterIndex().intValue());
-                if (rawFilter instanceof  GPUImageDynamicFilter) {
+                if (rawFilter instanceof GPUImageDynamicFilter) {
                     GPUImageDynamicFilter imageFilter = (GPUImageDynamicFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
-                } else if (rawFilter instanceof  GPUImageTwoInputDynamicFilter) {
+                } else if (rawFilter instanceof GPUImageTwoInputDynamicFilter) {
                     GPUImageTwoInputDynamicFilter imageFilter = (GPUImageTwoInputDynamicFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
-                } else if (rawFilter instanceof  GPUImageLookupFilter) {
+                } else if (rawFilter instanceof GPUImageLookupFilter) {
                     GPUImageLookupFilter imageFilter = (GPUImageLookupFilter) rawFilter;
                     imageFilter.setBitmap(lutBitmap);
                 }
@@ -475,6 +473,58 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
         if (filter != null) {
             filters.remove(filterId);
             filter.destroy();
+        }
+    }
+}
+
+class GPUMp4ComposerHandler implements EventChannel.StreamHandler, GPUMp4Composer.Listener {
+    private final GPUMp4Composer composer;
+    private  final Handler uiHandler = new Handler(Looper.getMainLooper());
+    private EventChannel.EventSink eventSink = null;
+
+    public GPUMp4ComposerHandler(GPUMp4Composer composer) {
+        this.composer = composer;
+    }
+
+    @Override
+    public void onListen(Object arguments, EventChannel.EventSink events) {
+        eventSink = events;
+        composer.listener(this);
+        composer.start();
+    }
+
+    @Override
+    public void onCancel(Object arguments) {
+        composer.listener(null);
+        composer.cancel();
+        eventSink = null;
+    }
+
+    @Override
+    public void onProgress(double progress) {
+        if (eventSink != null) {
+            uiHandler.post(() -> eventSink.success(progress));
+        }
+    }
+
+    @Override
+    public void onCompleted() {
+        if (eventSink != null) {
+            uiHandler.post(() -> eventSink.endOfStream());
+        }
+    }
+
+    @Override
+    public void onCanceled() {
+        if (eventSink != null) {
+            uiHandler.post(() -> eventSink.endOfStream());
+        }
+    }
+
+    @Override
+    public void onFailed(Exception exception) {
+        if (eventSink != null) {
+            uiHandler.post(() -> eventSink.error("image-video-filter", exception.getLocalizedMessage(), exception));
         }
     }
 }

@@ -74,11 +74,12 @@ class InputDataMessage {
 }
 
 class ExportFileMessage {
-  ExportFileMessage(this.filterId, this.path, this.context, {this.presetName});
+  ExportFileMessage(this.filterId, this.path, this.context, this.period, {this.presetName});
   int filterId;
   String path;
   String context;
   String? presetName;
+  int period;
 }
 
 class ExportDataMessage {

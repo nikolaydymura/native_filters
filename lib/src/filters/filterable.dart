@@ -79,11 +79,12 @@ abstract class Filterable {
     return result.data;
   }
 
-  Future<Stream<double>?> export(
+  Stream<double> export(
     File output, {
     CIContext context = CIContext.system,
     AVAssetExportPreset? presetName,
-  }) async {
+    Duration period = const Duration(seconds: 1),
+  }) async* {
     if (output.path.isVideo) {
       final sessionId = await _api.exportVideoFile(
         ExportFileMessage(
@@ -91,21 +92,34 @@ abstract class Filterable {
           path: output.path,
           context: context.platformKey,
           presetName: presetName?.platformKey,
+          period: period.inMilliseconds,
         ),
       );
-      return EventChannel('AVAssetExportSession_$sessionId')
+      final channel = Platform.isAndroid
+          ? EventChannel('GPUMp4Composer_$sessionId')
+          : EventChannel('AVAssetExportSession_$sessionId');
+      final stream = channel
           .receiveBroadcastStream()
           .map((event) => event as double)
           .distinct();
+
+      await for(final value in stream){
+        if (value == -100) {
+          break;
+        }
+        yield value;
+      }
     } else if (output.path.isImage) {
+      yield 0.2;
       await _api.exportImageFile(
         ExportFileMessage(
           filterId: id,
           path: output.path,
           context: context.platformKey,
+          period: period.inMilliseconds,
         ),
       );
-      return null;
+      yield 1.0;
     } else {
       throw 'Unsupported format $output';
     }

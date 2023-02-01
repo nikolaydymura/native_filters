@@ -142,8 +142,9 @@ public class FilterVideoPreviewFactory extends PlatformViewFactory implements Me
         return null;
     }
 
+
     @Override
-    public void setFilter(@NonNull Messages.PreviewFilterMessage msg) {
+    public void setFilter(@NonNull Messages.ActivateFilterPreviewMessage msg) {
         previews.get(msg.getTextureId().intValue()).setFilter(factory.getById(msg.getFilterId().intValue()));
     }
 

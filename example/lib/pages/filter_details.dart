@@ -8,7 +8,6 @@ import '../widgets/input_number_widget.dart';
 import '../widgets/input_slider_num_widget.dart';
 import 'filter_preview.dart';
 import 'filter_result.dart';
-import 'image_filter_result.dart';
 
 class FilterDetailsScreen extends StatefulWidget {
   final FilterItem filter;
@@ -88,9 +87,8 @@ class _FilterDetailsState extends State<FilterDetailsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ImageFilterResultScreen(
+                      builder: (context) => FilterResultScreen(
                         filter: _filter,
-                        asset: imageAssetPath,
                       ),
                     ),
                   );

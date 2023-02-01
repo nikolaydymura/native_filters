@@ -48,26 +48,19 @@ class _FilterResultState extends State<FilterResultScreen> {
     await widget.filter.setAssetSource(asset);
     final watch = Stopwatch();
     watch.start();
-/*    if (!widget.video) {
-      await widget.filter.binaryOutput;
-      debugPrint('Exporting binary took ${watch.elapsedMilliseconds} milliseconds');
-    }*/
-    final progressStream = await widget.filter.export(_output, context: CIContext.mlt, presetName: AVAssetExportPreset.lowQuality);
-    if (progressStream == null){
-      return;
-    }
-    await for(final progress in progressStream) {
-      if (progress == -100.0) {
-        break;
-      }
+    final progressStream = widget.filter.export(
+      _output,
+      context: CIContext.mlt,
+      presetName: AVAssetExportPreset.lowQuality,
+      period: const Duration(milliseconds: 200),
+    );
+    await for (final progress in progressStream) {
+      debugPrint('Exporting ${_output.absolute} ${(progress * 100).toInt()}%');
       setState(() {
         progressValue = progress;
       });
     }
     debugPrint('Exporting ${_output.absolute} took ${watch.elapsedMilliseconds} milliseconds');
-    if (widget.video) {
-      _prepareVideo();
-    }
   }
 
   void _prepareVideo() {
