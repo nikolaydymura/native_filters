@@ -1239,6 +1239,46 @@ void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMesseng
       [channel setMessageHandler:nil];
     }
   }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.videoFormatName"
+        binaryMessenger:binaryMessenger
+        codec:FLTImageVideoFilterFactoryApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(videoFormatName:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(videoFormatName:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTInputSourceMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        NSString *output = [api videoFormatName:arg_msg error:&error];
+        callback(wrapResult(output, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel =
+      [[FlutterBasicMessageChannel alloc]
+        initWithName:@"dev.flutter.pigeon.ImageVideoFilterFactoryApi.videoAvailablePresets"
+        binaryMessenger:binaryMessenger
+        codec:FLTImageVideoFilterFactoryApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(videoAvailablePresets:error:)], @"FLTImageVideoFilterFactoryApi api (%@) doesn't respond to @selector(videoAvailablePresets:error:)", api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTInputSourceMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        NSArray<NSString *> *output = [api videoAvailablePresets:arg_msg error:&error];
+        callback(wrapResult(output, error));
+      }];
+    }
+    else {
+      [channel setMessageHandler:nil];
+    }
+  }
 }
 @interface FLTVideoPreviewApiCodecReader : FlutterStandardReader
 @end

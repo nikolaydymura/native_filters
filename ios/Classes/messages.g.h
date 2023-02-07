@@ -282,6 +282,9 @@ NSObject<FlutterMessageCodec> *FLTImageVideoFilterFactoryApiGetCodec(void);
 - (void)setDataValue:(FLTInputDataValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setDataSourceValue:(FLTInputDataSourceValueMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)disposeFilter:(FLTFilterMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable NSString *)videoFormatName:(FLTInputSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
+/// @return `nil` only when `error != nil`.
+- (nullable NSArray<NSString *> *)videoAvailablePresets:(FLTInputSourceMessage *)msg error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void FLTImageVideoFilterFactoryApiSetup(id<FlutterBinaryMessenger> binaryMessenger, NSObject<FLTImageVideoFilterFactoryApi> *_Nullable api);

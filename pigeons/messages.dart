@@ -166,6 +166,10 @@ abstract class ImageVideoFilterFactoryApi {
   void setDataSourceValue(InputDataSourceValueMessage msg);
   @ObjCSelector('disposeFilter:')
   void dispose(FilterMessage msg);
+  @ObjCSelector('videoFormatName:')
+  String? videoFormatName(InputSourceMessage msg);
+  @ObjCSelector('videoAvailablePresets:')
+  List<String> videoAvailablePresets(InputSourceMessage msg);
 }
 
 class PreviewCreateMessage {

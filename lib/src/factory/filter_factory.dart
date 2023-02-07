@@ -66,6 +66,70 @@ class FilterFactory {
     }
   }
 
+  @Deprecated('Uses `AVAssetExportSession.exportPresets` deprecated in iOS')
+  static Future<Iterable<AVAssetExportPreset>> videoAvailablePresetsAsset(
+    String name,
+  ) async {
+    final presets = await _api.videoAvailablePresets(
+      InputSourceMessage(
+        filterId: 0,
+        path: name,
+        asset: true,
+        video: true,
+      ),
+    );
+    return presets
+        .map(
+          (presetName) => AVAssetExportPreset.values.firstWhereOrNull(
+            (element) => element.platformKey == presetName,
+          ),
+        )
+        .whereNotNull();
+  }
+
+  @Deprecated('Uses `AVAssetExportSession.exportPresets` deprecated in iOS')
+  static Future<Iterable<AVAssetExportPreset>> videoAvailablePresetsFile(
+    File file,
+  ) async {
+    final presets = await _api.videoAvailablePresets(
+      InputSourceMessage(
+        filterId: 0,
+        path: file.absolute.path,
+        asset: false,
+        video: true,
+      ),
+    );
+    return presets
+        .map(
+          (presetName) => AVAssetExportPreset.values.firstWhereOrNull(
+            (element) => element.platformKey == presetName,
+          ),
+        )
+        .whereNotNull();
+  }
+
+  static Future<String?> videoFormatNameAsset(String name) {
+    return _api.videoFormatName(
+      InputSourceMessage(
+        filterId: 0,
+        path: name,
+        asset: true,
+        video: true,
+      ),
+    );
+  }
+
+  static Future<String?> videoFormatNameFile(File file) {
+    return _api.videoFormatName(
+      InputSourceMessage(
+        filterId: 0,
+        path: file.absolute.path,
+        asset: false,
+        video: true,
+      ),
+    );
+  }
+
   static Iterable<FilterItem> get availableFilters {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       return _kCoreImageFilters.where((element) {

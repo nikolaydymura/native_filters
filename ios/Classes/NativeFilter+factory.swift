@@ -397,6 +397,54 @@ extension ImageVideoFilterFactory {
     }
 }
 
+extension ImageVideoFilterFactory {
+    func videoFormatName(_ msg: FLTInputSourceMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> String? {
+        let url: URL
+        if msg.asset.boolValue {
+            let asset = registrar.lookupKey(forAsset: msg.path)
+            
+            guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
+                error.pointee = FlutterError.init(code: "image-video-filter",
+                                                  message: "Asset not found",
+                                                  details: nil)
+                return nil
+            }
+            url = URL(fileURLWithPath: path)
+            
+        } else {
+            url = URL(fileURLWithPath: msg.path)
+        }
+        let asset = AVAsset(url: url)
+        let videoTrack = asset.tracks(withMediaType: .video).first
+        let videoFormat = videoTrack?.formatDescriptions.map{ $0 as! CMVideoFormatDescription}.first
+        guard let hevc = videoFormat?.extensions[CMFormatDescription.Extensions.Key.formatName] else {
+            return nil
+        }
+        
+        return "\(hevc.propertyListRepresentation)"
+    }
+    
+    func videoAvailablePresets(_ msg: FLTInputSourceMessage, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> [String]? {
+        let url: URL
+        if msg.asset.boolValue {
+            let asset = registrar.lookupKey(forAsset: msg.path)
+            
+            guard let path = Bundle.main.path(forResource: asset, ofType: nil) else {
+                error.pointee = FlutterError.init(code: "image-video-filter",
+                                                  message: "Asset not found",
+                                                  details: nil)
+                return nil
+            }
+            url = URL(fileURLWithPath: path)
+            
+        } else {
+            url = URL(fileURLWithPath: msg.path)
+        }
+        let asset = AVAsset(url: url)
+        return AVAssetExportSession.exportPresets(compatibleWith: asset)
+    }
+}
+
 
 class AVAssetExportSessionStreamHandler: NSObject, FlutterStreamHandler {
     private let session: AVAssetExportSession
