@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.util.SparseArray;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.daasuu.gpuv.composer.GPUMp4Composer;
 import com.daasuu.gpuv.egl.filter.GlFilter;
@@ -474,6 +475,18 @@ public class FLTImageVideoFilterFactoryApi implements Messages.ImageVideoFilterF
             filters.remove(filterId);
             filter.destroy();
         }
+    }
+
+    @Nullable
+    @Override
+    public String videoFormatName(@NonNull Messages.InputSourceMessage msg) {
+        throw new UnsupportedOperationException();
+    }
+
+    @NonNull
+    @Override
+    public List<String> videoAvailablePresets(@NonNull Messages.InputSourceMessage msg) {
+        throw new UnsupportedOperationException();
     }
 }
 
