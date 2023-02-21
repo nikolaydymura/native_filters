@@ -17,9 +17,6 @@ public class NativeFiltersPlugin implements FlutterPlugin {
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         factoryApi = new FLTImageVideoFilterFactoryApi(binding);
         Messages.ImageVideoFilterFactoryApi.setup(binding.getBinaryMessenger(), factoryApi);
-        final FilterVideoPreviewFactory previews = new FilterVideoPreviewFactory((FLTImageVideoFilterFactoryApi) factoryApi, binding);
-        binding.getPlatformViewRegistry().registerViewFactory("FilterVideoPreview", previews);
-        Messages.VideoPreviewApi.setup(binding.getBinaryMessenger(), previews);
     }
 
     @Override
