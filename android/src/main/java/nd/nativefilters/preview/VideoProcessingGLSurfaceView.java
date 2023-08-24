@@ -25,20 +25,16 @@ import android.os.Handler;
 import android.view.Surface;
 import androidx.annotation.Nullable;
 import androidx.core.util.Supplier;
-
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.Renderer;
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.util.Assertions;
 import com.google.android.exoplayer2.util.GlUtil;
+import com.google.android.exoplayer2.util.Log;
 import com.google.android.exoplayer2.util.TimedValueQueue;
-import com.google.android.exoplayer2.video.MediaCodecVideoRenderer;
 import com.google.android.exoplayer2.video.VideoFrameMetadataListener;
-import com.google.android.exoplayer2.video.VideoRendererEventListener;
-
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -52,7 +48,13 @@ import javax.microedition.khronos.opengles.GL10;
  *
  * <p>This view must be created programmatically, as it is necessary to specify whether a context
  * supporting protected content should be created at construction time.
+ *
+ * @deprecated com.google.android.exoplayer2 is deprecated. Please migrate to androidx.media3 (which
+ *     contains the same ExoPlayer code). See <a
+ *     href="https://developer.android.com/guide/topics/media/media3/getting-started/migration-guide">the
+ *     migration guide</a> for more details, including a script to help with the migration.
  */
+@Deprecated
 public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
 
     /** Processes video frames, provided via a GL texture. */
@@ -77,6 +79,7 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
     }
 
     private static final int EGL_PROTECTED_CONTENT_EXT = 0x32C0;
+    private static final String TAG = "VPGlSurfaceView";
 
     private final VideoRenderer renderer;
     private final Handler mainHandler;
@@ -246,7 +249,11 @@ public final class VideoProcessingGLSurfaceView extends GLSurfaceView {
 
         @Override
         public synchronized void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            texture = GlUtil.createExternalTexture();
+            try {
+                texture = GlUtil.createExternalTexture();
+            } catch (GlUtil.GlException e) {
+                Log.e(TAG, "Failed to create an external texture", e);
+            }
             surfaceTexture = new SurfaceTexture(texture);
             surfaceTexture.setOnFrameAvailableListener(
                     surfaceTexture -> {

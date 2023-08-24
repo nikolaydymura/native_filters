@@ -44,6 +44,6 @@ android {
 dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
     implementation 'com.github.MasayukiSuda:GPUVideo-android:v0.1.2'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
-    implementation 'com.google.android.exoplayer:exoplayer-transformer:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-transformer:2.18.7'
 }

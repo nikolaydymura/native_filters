@@ -20,21 +20,16 @@ import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
-
-import com.daasuu.gpuv.egl.GlPreview;
-import com.daasuu.gpuv.egl.GlPreviewFilter;
-import com.daasuu.gpuv.egl.filter.GlFilter;
-import com.daasuu.gpuv.egl.filter.GlMonochromeFilter;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.util.GlProgram;
 import com.google.android.exoplayer2.util.GlUtil;
+import com.google.android.exoplayer2.util.Log;
 import java.io.IOException;
 import java.util.Locale;
 import javax.microedition.khronos.opengles.GL10;
@@ -42,110 +37,17 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Video processor that demonstrates how to overlay a bitmap on video output using a GL shader. The
  * bitmap is drawn using an Android {@link Canvas}.
+ *
+ * @deprecated com.google.android.exoplayer2 is deprecated. Please migrate to androidx.media3 (which
+ *     contains the same ExoPlayer code). See <a
+ *     href="https://developer.android.com/guide/topics/media/media3/getting-started/migration-guide">the
+ *     migration guide</a> for more details, including a script to help with the migration.
  */
-final class  FilterVideoProcessor implements VideoProcessingGLSurfaceView.VideoProcessor {
-    GlFilter filter;
-
-    @Override
-    public void initialize() {
-        filter.setup();
-    }
-
-    @Override
-    public void setSurfaceSize(int width, int height) {
-        filter.setFrameSize(width, height);
-    }
-
-    @Override
-    public void draw(int frameTexture, long frameTimestampUs, float[] transformMatrix) {
-        filter.draw(frameTexture, null);
-    }
-
-    @Override
-    public void release() {
-        filter.release();
-    }
-}
-
-final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.VideoProcessor {
-
-    private final Context context;
-    private final int[] textures;
-    private final Bitmap lutBitmap;
-
-    private GlProgram program;
-
-    public LookUpTableVideoProcessor(Context context) {
-        this.context = context.getApplicationContext();
-        textures = new int[1];
-        try {
-            lutBitmap = BitmapFactory.decodeStream(context.getAssets().open("lookup_sample.png"));
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
-    @Override
-    public void initialize() {
-        try {
-            program =
-                    new GlProgram(
-                            context,
-                            "monochrome_video_processor_vertex.glsl",
-                            "lookup_table_video_processor_fragment.glsl");
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-        program.setBufferAttribute(
-                "aFramePosition",
-                GlUtil.getNormalizedCoordinateBounds(),
-                GlUtil.HOMOGENEOUS_COORDINATE_VECTOR_SIZE);
-        program.setBufferAttribute(
-                "aTexCoords",
-                GlUtil.getTextureCoordinateBounds(),
-                GlUtil.HOMOGENEOUS_COORDINATE_VECTOR_SIZE);
-        GLES20.glGenTextures(1, textures, 0);
-        GLES20.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
-        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
-        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, /* level= */ 0, lutBitmap, /* border= */ 0);
-    }
-
-    @Override
-    public void setSurfaceSize(int width, int height) {
-    }
-
-    @Override
-    public void draw(int frameTexture, long frameTimestampUs, float[] transformMatrix) {
-        GLES20.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-        GLUtils.texSubImage2D(
-                GL10.GL_TEXTURE_2D, /* level= */ 0, /* xoffset= */ 0, /* yoffset= */ 0, lutBitmap);
-        GlUtil.checkGlError();
-
-        // Run the shader program.
-        GlProgram program = checkNotNull(this.program);
-        program.setSamplerTexIdUniform("sTexture", frameTexture, /* texUnitIndex= */ 0);
-        program.setFloatsUniform("uTexTransform", transformMatrix);
-        program.setSamplerTexIdUniform("inputCubeTexture", textures[0], /* texUnitIndex= */ 1);
-        program.bindAttributesAndUniforms();
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, /* first= */ 0, /* count= */ 4);
-        GlUtil.checkGlError();
-    }
-
-    @Override
-    public void release() {
-        if (program != null) {
-            program.delete();
-        }
-    }
-}
-
+@Deprecated
 /* package */ final class BitmapOverlayVideoProcessor
         implements VideoProcessingGLSurfaceView.VideoProcessor {
 
+    private static final String TAG = "BitmapOverlayVP";
     private static final int OVERLAY_WIDTH = 512;
     private static final int OVERLAY_HEIGHT = 256;
 
@@ -190,6 +92,9 @@ final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.Vi
                             /* fragmentShaderFilePath= */ "bitmap_overlay_video_processor_fragment.glsl");
         } catch (IOException e) {
             throw new IllegalStateException(e);
+        } catch (GlUtil.GlException e) {
+            Log.e(TAG, "Failed to initialize the shader program", e);
+            return;
         }
         program.setBufferAttribute(
                 "aFramePosition",
@@ -224,7 +129,11 @@ final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.Vi
         GLES20.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
         GLUtils.texSubImage2D(
                 GL10.GL_TEXTURE_2D, /* level= */ 0, /* xoffset= */ 0, /* yoffset= */ 0, overlayBitmap);
-        GlUtil.checkGlError();
+        try {
+            GlUtil.checkGlError();
+        } catch (GlUtil.GlException e) {
+            Log.e(TAG, "Failed to populate the texture", e);
+        }
 
         // Run the shader program.
         GlProgram program = checkNotNull(this.program);
@@ -233,16 +142,28 @@ final class LookUpTableVideoProcessor implements VideoProcessingGLSurfaceView.Vi
         program.setFloatUniform("uScaleX", bitmapScaleX);
         program.setFloatUniform("uScaleY", bitmapScaleY);
         program.setFloatsUniform("uTexTransform", transformMatrix);
-        program.bindAttributesAndUniforms();
+        try {
+            program.bindAttributesAndUniforms();
+        } catch (GlUtil.GlException e) {
+            Log.e(TAG, "Failed to update the shader program", e);
+        }
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, /* first= */ 0, /* count= */ 4);
-        GlUtil.checkGlError();
+        try {
+            GlUtil.checkGlError();
+        } catch (GlUtil.GlException e) {
+            Log.e(TAG, "Failed to draw a frame", e);
+        }
     }
 
     @Override
     public void release() {
         if (program != null) {
-            program.delete();
+            try {
+                program.delete();
+            } catch (GlUtil.GlException e) {
+                Log.e(TAG, "Failed to delete the shader program", e);
+            }
         }
     }
 }

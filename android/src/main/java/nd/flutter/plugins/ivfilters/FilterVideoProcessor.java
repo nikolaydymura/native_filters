@@ -5,10 +5,12 @@ import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.opengl.GLES20;
+import android.opengl.GLException;
 import android.opengl.GLUtils;
 
 import com.google.android.exoplayer2.util.GlProgram;
 import com.google.android.exoplayer2.util.GlUtil;
+import com.google.android.exoplayer2.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public final class FilterVideoProcessor implements VideoProcessingGLSurfaceView.
                             context,
                             "video_processor_vertex.glsl",
                             attributes.get("AttributeFilterName") + "_video_processor_fragment.glsl");
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new IllegalStateException(e);
         }
         program.setBufferAttribute(
@@ -107,7 +109,11 @@ public final class FilterVideoProcessor implements VideoProcessingGLSurfaceView.
             GLUtils.texSubImage2D(
                     GL10.GL_TEXTURE_2D, /* level= */ 0, /* xoffset= */ 0, /* yoffset= */ 0, bitmap);
         }
-        GlUtil.checkGlError();
+        try {
+            GlUtil.checkGlError();
+        } catch (GlUtil.GlException e) {
+            Log.e(getClass().getSimpleName(), "Failed to populate the texture", e);
+        }
 
         // Run the shader program.
         GlProgram program = checkNotNull(this.program);
@@ -132,16 +138,28 @@ public final class FilterVideoProcessor implements VideoProcessingGLSurfaceView.
                 }
             }
         }
-        program.bindAttributesAndUniforms();
+        try {
+            program.bindAttributesAndUniforms();
+        } catch (GlUtil.GlException e) {
+            Log.e(getClass().getSimpleName(), "Failed to update the shader program", e);
+        }
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, /* first= */ 0, /* count= */ 4);
-        GlUtil.checkGlError();
+        try {
+            GlUtil.checkGlError();
+        } catch (GlUtil.GlException e) {
+            Log.e(getClass().getSimpleName(), "Failed to draw a frame", e);
+        }
     }
 
     @Override
     public void release() {
         if (program != null) {
-            program.delete();
+            try {
+                program.delete();
+            } catch (GlUtil.GlException e) {
+                Log.e(getClass().getSimpleName(), "Failed to delete the shader program", e);
+            }
         }
     }
 }
